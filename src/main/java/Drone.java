@@ -4,7 +4,7 @@
 public class Drone {
     private static String direction;
 
-    public Drone(String direction){
-        this.direction=direction;
+    public Drone(String direction1){
+        direction=direction1;
     }
 }
