@@ -4,9 +4,7 @@ import eu.ace_design.island.bot.IExplorerRaid;
 public class Explorer implements IExplorerRaid {
 
     @Override
-    public void initialize(String s) {
-        throw new UnsupportedOperationException("Not yet implemented!");
-    }
+    public void initialize(String s) { throw new UnsupportedOperationException("Not yet implemented!"); }
 
     @Override
     public String takeDecision() {
@@ -22,4 +20,5 @@ public class Explorer implements IExplorerRaid {
     public String deliverFinalReport() {
         throw new UnsupportedOperationException("Not yet implemented!");
     }
+
 }

@@ -33,19 +33,33 @@ public class Drone {
     }
 
     public boolean findIsland(){
+
         switch (etat){
-            case 0: action ="{ \"action\": \"scan\" }" ;
+
+            case 0:
+                action ="{ \"action\": \"scan\" }" ;
                 if (result.equals("GROUND")){ etat=10;}
                 else {etat=1;}
                 break;
-            case 1: action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \""+direction+"\" } }";
+
+            case 1:
+                action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \""+direction+"\" } }";
                 if(result.equals("CROUND")){
                     etat=9;
                     nbCaseFace=nbCase;
                 }
-                else{etat=2;}
+                else {
+                    if (nbCase == 0) {
+                        etat = 10;
+                    }
+                    else {
+                        etat = 2;
+                    }
+                }
                 break;
-            case 2: String directionLeft=left(direction);
+
+            case 2:
+                String directionLeft=left(direction);
                 action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\""+directionLeft+"\" } }";
                 if(result.equals("CROUND")){
                     etat=9;
@@ -56,7 +70,9 @@ public class Drone {
                     nbCaseLeft=nbCase;
                 }
                 break;
-            case 3: String directionRight= right(direction);
+
+            case 3:
+                String directionRight= right(direction);
                 action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\""+directionRight+"\" } }";
                 if(result.equals("CROUND")){
                     etat=9;
@@ -67,7 +83,9 @@ public class Drone {
                     nbCaseRight=nbCase;
                 }
                 break;
-            case 4: if(nbCaseLeft>nbCaseRight){
+
+            case 4:
+                if(nbCaseLeft>nbCaseRight){
                 String directionLeft2=left(direction);
                 action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\""+directionLeft2+"\" } }";
                 etat=1;
@@ -77,11 +95,15 @@ public class Drone {
                 action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\""+directionRight2+"\" } }";
                 etat=1;
                 }
-            case 9: action= "{ \"action\": \"fly\" }";
+
+            case 9:
+                action= "{ \"action\": \"fly\" }";
                 nbCaseFace--;
                 if(nbCaseFace==0){etat=10;}
                 break;
-            case 10: action="{ \"action\": \"stop\" }";
+
+            case 10:
+                action="{ \"action\": \"stop\" }";
                 return true;
         }
         return false;
