@@ -21,6 +21,8 @@ public class Explorer implements IExplorerRaid {
     private boolean status;
     private Drone drone;
     private int etat;
+    private String []biomes;
+
     @Override
     public void initialize(String s) {
 	resultat = new String();
@@ -69,7 +71,7 @@ public class Explorer implements IExplorerRaid {
 	switch(etat){
 
 	case 0:
-	    if( !findIsland() )
+	    if( !drone.findIsland() )
 		etat++;
 	    else
 		this.action = drone.getAction();		
@@ -89,6 +91,8 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void acknowledgeResults(String s) {
 	JSONObject jsonobject = new JSONObject(s);
+	int i = 0;
+	
 	switch(action)
 	    {
 	    case "ECHO":
@@ -109,7 +113,30 @@ public class Explorer implements IExplorerRaid {
 		    drone.setNbCase(range);
 
 		break;
-		//rajouter LE SCAN
+	    case "SCAN":
+		if( jsonobject.has("cost"))
+		    this.cost = jsonobject.getInt("cost");
+
+		if ( jsonobject.has("status"))
+		    this.status = jsonobject.getString("status").equals("OK");
+
+		if( jsonobject.has("extras"))
+		    {
+			JSONArray array = jsonobject.getJSONArray("extras");
+			biomes =(String []) array.get(0);
+		    }
+		while( i < biomes.length){
+		    if (! biomes[i].equals("OCEAN") )
+			drone.setResult("GROUND");
+		    i++;
+		}
+		    
+		    
+		    
+		//manque creek
+		//manque site
+		
+		break;
 
 	    }
 
