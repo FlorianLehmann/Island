@@ -33,17 +33,17 @@ public class Drone {
     }
 
     public String left(String direction){
-        if(direction.equals("N")){ return "E";}
-        else if (direction.equals("S")){ return "W";}
-        else if(direction.equals("E")){ return "S";}
-        else{ return "N";}
-    }
-
-    public String right(String direction){
         if(direction.equals("N")){ return "W";}
         else if (direction.equals("S")){ return "E";}
         else if(direction.equals("E")){ return "N";}
         else{ return "S";}
+    }
+
+    public String right(String direction){
+        if(direction.equals("N")){ return "E";}
+        else if (direction.equals("S")){ return "W";}
+        else if(direction.equals("E")){ return "S";}
+        else{ return "N";}
     }
 
     /*public boolean findIsland(){
