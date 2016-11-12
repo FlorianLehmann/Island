@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fr.unice.polytech.3a.qgl</groupId>
-  <artifactId>iaac</artifactId> <!-- CHANGE ME -->
+  <artifactId>islac</artifactId> <!-- CHANGE ME -->
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>iaac :: azerty</name> <!-- CHANGE ME -->
+  <name>ISLAC :: azerty</name> <!-- CHANGE ME -->
   <url>http://www.i3s.unice.fr/~mosser/teaching/16_17/se</url>
 
   <properties>

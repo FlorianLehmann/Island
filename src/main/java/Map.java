@@ -14,7 +14,7 @@ public class Map {
 
     public int sizemap(){return map.size();}
 
-    public List getCaseRessource(String ressource){
+    public List<Case> getCaseRessource(String ressource){
         List<Case> cases=new ArrayList<Case>();
         for(int i=0;i<map.size();i++){
             for(int j=0;j<map.get(i).getRessources().size();j++){

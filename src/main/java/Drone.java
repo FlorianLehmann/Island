@@ -11,7 +11,7 @@ public class Drone {
     private int nbCaseFace;
     private int nbCaseLeft;
     private int nbCaseRight;
-
+    private Map map = new Map();
     public Drone(){
 	direction = new String();
 	result = new String();

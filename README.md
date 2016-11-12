@@ -2,19 +2,18 @@
 
 ## Team Information
 
-  * Identifier: `XX`
-  * Team name: 
+  * Identifier: `AC`
+  * Team name: azerty
   * Members:
-    *  [Member #1](mailto:login1@etu.unice.fr)
-    *  [Member #2](mailto:login1@etu.unice.fr)
-    *  [Member #3](mailto:login1@etu.unice.fr)
-    *  [Member #4](mailto:login1@etu.unice.fr)
+    *  [Lehmann F. #1](mailto:lf612146@etu.unice.fr)
+    *  [Duret Q. #2](mailto:dq610272@etu.unice.fr)
+    *  [Degand S. #3](mailto:ds611932@etu.unice.fr)
 
 ## Features Change log
 
 ### Week 45
 
-Short list of the **features** available in the bot delivered for the championship that happened at the end of week 46.
+-The bot is able to reach the an island.
 
 ### Week 46
 

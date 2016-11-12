@@ -73,7 +73,7 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"stop\" }");
     }
 
-        @Test
+    @Test
     public void findIslandEtat3N(){
         drone =new Drone("N","",10);
         drone.findIsland();
