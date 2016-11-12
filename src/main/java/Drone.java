@@ -3,9 +3,9 @@
  */
 public class Drone {
 
-    private  String direction;
-    private  String result;
-    private  int nbCase;
+    private String direction;
+    private String result;
+    private int nbCase;
     private int etat;
     private String action ;
     private int nbCaseFace;
