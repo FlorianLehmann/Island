@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class ExplorerTest{
 
     Explorer explorer;
-    Drone drone;
+
     @Before
     public void defineContext(){
 	explorer = new Explorer();
@@ -39,8 +39,6 @@ public class ExplorerTest{
 	assertTrue(wood == 600 && glass == 200);
     }
 
-
-
     @Test
     public void checkTakeDecision(){
 	assertEquals(explorer.takeDecision(),  "{ \"action\": \"scan\" }");
@@ -53,13 +51,29 @@ public class ExplorerTest{
 	assertEquals(explorer.getFound(), "GROUND");
     }
 
-    /*        @Test
+    @Test
     public void checkAcknowledgeReults2(){
 	explorer.takeDecision();
 	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
-	assertFalse(explorer.getFound(), "GROUND");
-	}*/
+	assertFalse(explorer.getFound().equals("GROUND"));
+	}
 
+    @Test
+    public void checkAcknowledgeReults3(){
+	explorer.takeDecision();
+	explorer.takeDecision();
+	explorer.acknowledgeResults("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+	assertEquals(2 ,2);
 
+    }
+
+        @Test
+    public void checkAcknowledgeReults4(){
+	explorer.takeDecision();
+	explorer.takeDecision();
+	explorer.acknowledgeResults("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+	assertEquals("GROUND" ,explorer.getFound());
+
+    }
 
 }

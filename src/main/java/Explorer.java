@@ -107,9 +107,10 @@ public class Explorer implements IExplorerRaid {
 		    this.cost = jsonobject.getInt("cost");
 		if( jsonobject.has("extras"))
 		    {
-			JSONArray array = jsonobject.getJSONArray("extras");
-			range = array.getInt(0);
-			found = array.getString(1);
+			JSONObject bio = jsonobject.getJSONObject("extras");
+			JSONArray tab = bio.getJSONArray("biomes");
+			range = tab.getInt(0);
+			found = tab.getString(1);
 		    }
 
 		    if ( jsonobject.has("status"))
@@ -186,6 +187,9 @@ public class Explorer implements IExplorerRaid {
 
     static public String getFound(){
 	return found;
+    }
+    public int getRange(){
+	return range;
     }
 	
 

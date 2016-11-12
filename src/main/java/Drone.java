@@ -12,11 +12,16 @@ public class Drone {
     private int nbCaseLeft;
     private int nbCaseRight;
 
-    public Drone(){}
+    public Drone(){
+	direction = new String();
+	result = new String();
+	action = new String();
 
     public Drone(String direction){
         this.direction=direction;
         this.etat=0;
+	result = new String();
+	action = new String();
     }
 
     public Drone(String direction, String result, int nbCase){
