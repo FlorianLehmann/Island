@@ -164,7 +164,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        throw new UnsupportedOperationException("Not yet implemented!");
+        return new String();
     }
     static public String getResult()
     {
