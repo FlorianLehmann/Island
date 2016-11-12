@@ -45,6 +45,20 @@ public class ExplorerTest{
     }
 
     @Test
+    public void checkTakeDecision2(){
+	explorer.takeDecision();
+	assertEquals(explorer.takeDecision(),  "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"W\" } }");
+    }
+
+    @Test
+    public void checkTakeDecision3(){
+	Explorer explorer2 = new Explorer();
+	String str = "{\"men\": 12,\"budget\": 18,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}";
+	explorer2.initialize(str);
+	assertEquals(explorer.takeDecision(),  "{ \"action\": \"stop\" }");
+    }
+
+    @Test
     public void checkAcknowledgeReults(){
 	explorer.takeDecision();
 	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"GLACIER\", \"ALPINE\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");

@@ -32,7 +32,7 @@ public class Explorer implements IExplorerRaid {
 	range = 0;
 	found = new String();
 	status = true;// est-ce que le staus est verifie
-	drone = new Drone();
+	drone = new Drone(heading);
 
 	JSONObject jsonobject = new JSONObject(s);
 	if (jsonobject.has("men"))
@@ -85,6 +85,8 @@ public class Explorer implements IExplorerRaid {
 
 
 	}
+	if (budget < 19)
+	    this.action = "{ \"action\": \"stop\" }";
 	return this.action;
     }
 
@@ -104,7 +106,9 @@ public class Explorer implements IExplorerRaid {
 	    {
 	    case "echo":
 		if( jsonobject.has("cost"))
-		    this.cost = jsonobject.getInt("cost");
+		    {			
+			this.cost = jsonobject.getInt("cost");
+		    }
 		if( jsonobject.has("extras"))
 		    {
 			JSONObject bio = jsonobject.getJSONObject("extras");
@@ -118,7 +122,7 @@ public class Explorer implements IExplorerRaid {
 
 		    drone.setResult(found);
 		    drone.setNbCase(range);
-
+		    
 		break;
 	    case "scan":
 		if( jsonobject.has("cost"))
@@ -142,7 +146,7 @@ public class Explorer implements IExplorerRaid {
 			    }
 			    i++;
 			}
-
+			
 
 
 
@@ -152,6 +156,9 @@ public class Explorer implements IExplorerRaid {
 		break;
 
 	    }
+	budget = budget - cost;
+
+				
 
     }
 
