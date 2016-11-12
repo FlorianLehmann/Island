@@ -59,7 +59,7 @@ public class Drone {
                 break;
 
             case 3:
-                if(result.equals("CROUND")){
+                if(result.equals("GROUND")){
                     etat=9;
                     nbCaseFace=nbCase;
                 }
@@ -78,7 +78,7 @@ public class Drone {
                 break;
 
             case 5:
-                if(result.equals("CROUND")){
+                if(result.equals("GROUND")){
                     etat=9;
                     nbCaseFace=nbCase;
                 }
@@ -94,7 +94,7 @@ public class Drone {
                 break;
 
             case 7:
-                if(result.equals("CROUND")){
+                if(result.equals("GROUND")){
                     etat=9;
                     nbCaseFace=nbCase;
                 }

@@ -33,7 +33,7 @@ public class Explorer implements IExplorerRaid {
 	found = new String();
 	status = true;// est-ce que le staus est verifie
 	drone = new Drone();
-	
+
 	JSONObject jsonobject = new JSONObject(s);
 	if (jsonobject.has("men"))
 	{
@@ -63,7 +63,7 @@ public class Explorer implements IExplorerRaid {
 		}
 
 	    }
-				  
+
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Explorer implements IExplorerRaid {
 	    if( drone.findIsland() )
 		etat++;
 	    else
-		this.action = drone.getAction();		
+		this.action = drone.getAction();
 	    break;
 	case 1:
 	    this.action = "{ \"action\": \"stop\" }";
@@ -82,7 +82,7 @@ public class Explorer implements IExplorerRaid {
 	default:
 	    this.action = "{ \"action\": \"stop\" }";
 		break;
-	    
+
 
 	}
 	return this.action;
@@ -93,8 +93,13 @@ public class Explorer implements IExplorerRaid {
 	JSONObject jsonobject = new JSONObject(s);
 	JSONObject jsonaction = new JSONObject(action);
 	int i = 0;
+<<<<<<< HEAD
 	
 	switch(jsonaction.getString("action"))
+=======
+
+	switch(action)
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 	    {
 	    case "echo":
 		if( jsonobject.has("cost"))
@@ -123,6 +128,7 @@ public class Explorer implements IExplorerRaid {
 
 		if( jsonobject.has("extras"))
 		    {
+<<<<<<< HEAD
 			
 			JSONObject bio = jsonobject.getJSONObject("extras");
 			JSONArray tab = bio.getJSONArray("biomes");
@@ -139,9 +145,22 @@ public class Explorer implements IExplorerRaid {
 		    }		    
 		    
 		    
+=======
+			JSONArray array = jsonobject.getJSONArray("extras");
+			biomes =(String []) array.get(0);
+		    }
+		while( i < biomes.length){
+		    if (! biomes[i].equals("OCEAN") )
+			drone.setResult("GROUND");
+		    i++;
+		}
+
+
+
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 		//manque creek
 		//manque site
-		
+
 		break;
 
 	    }
@@ -176,8 +195,12 @@ public class Explorer implements IExplorerRaid {
     {
 	return contracts;
     }
+<<<<<<< HEAD
     static public String getFound(){
 	return found;
     }
 	
+=======
+
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 }

@@ -39,6 +39,7 @@ public class ExplorerTest{
 	assertTrue(wood == 600 && glass == 200);
     }
 
+<<<<<<< HEAD
     @Test
     public void checkTakeDecision(){
 	assertEquals(explorer.takeDecision(),  "{ \"action\": \"scan\" }");
@@ -57,5 +58,7 @@ public class ExplorerTest{
 	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
 	assertFalse(explorer.getFound(), "GROUND");
     }
+=======
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 
 }
