@@ -164,7 +164,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        return new String();
+        return new String(); //
     }
     static public String getResult()
     {
