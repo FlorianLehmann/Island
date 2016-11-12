@@ -93,13 +93,14 @@ public class Explorer implements IExplorerRaid {
 	JSONObject jsonobject = new JSONObject(s);
 	JSONObject jsonaction = new JSONObject(action);
 	int i = 0;
-<<<<<<< HEAD
+
+
 	
 	switch(jsonaction.getString("action"))
-=======
 
-	switch(action)
->>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
+
+
+
 	    {
 	    case "echo":
 		if( jsonobject.has("cost"))
@@ -157,6 +158,9 @@ public class Explorer implements IExplorerRaid {
 
 
 
+<<<<<<< HEAD
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
+=======
 >>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 		//manque creek
 		//manque site
@@ -196,10 +200,14 @@ public class Explorer implements IExplorerRaid {
 	return contracts;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     static public String getFound(){
 	return found;
     }
 	
+=======
+
+>>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 =======
 
 >>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
