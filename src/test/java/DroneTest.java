@@ -66,9 +66,10 @@ public class DroneTest {
 
     @Test
     public void findIslandEtat2N(){
-        drone =new Drone("N","OCEAN",10);
+        drone =new Drone("N","",10);
         drone.findIsland();
+        drone.setResult("GROUND");
         drone.findIsland();
-        assertEquals(drone.getAction(),"{ \"action\": \"echo\", \"parameters\": { \"direction\": \"N\" } }");
+        assertEquals(drone.getAction(),"{ \"action\": \"stop\" }");
     }
 }
