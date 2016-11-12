@@ -17,7 +17,7 @@ public class Explorer implements IExplorerRaid {
     private String action;
     private int cost;
     private int range;
-    private String found;
+    static private String found;
     private boolean status;
     private Drone drone;
     private int etat;
@@ -71,7 +71,7 @@ public class Explorer implements IExplorerRaid {
 	switch(etat){
 
 	case 0:
-	    if( !drone.findIsland() )
+	    if( drone.findIsland() )
 		etat++;
 	    else
 		this.action = drone.getAction();		
@@ -91,11 +91,12 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void acknowledgeResults(String s) {
 	JSONObject jsonobject = new JSONObject(s);
+	JSONObject jsonaction = new JSONObject(action);
 	int i = 0;
 	
-	switch(action)
+	switch(jsonaction.getString("action"))
 	    {
-	    case "ECHO":
+	    case "echo":
 		if( jsonobject.has("cost"))
 		    this.cost = jsonobject.getInt("cost");
 		if( jsonobject.has("extras"))
@@ -113,7 +114,7 @@ public class Explorer implements IExplorerRaid {
 		    drone.setNbCase(range);
 
 		break;
-	    case "SCAN":
+	    case "scan":
 		if( jsonobject.has("cost"))
 		    this.cost = jsonobject.getInt("cost");
 
@@ -122,15 +123,20 @@ public class Explorer implements IExplorerRaid {
 
 		if( jsonobject.has("extras"))
 		    {
-			JSONArray array = jsonobject.getJSONArray("extras");
-			biomes =(String []) array.get(0);
-		    }
-		while( i < biomes.length){
-		    if (! biomes[i].equals("OCEAN") )
-			drone.setResult("GROUND");
-		    i++;
-		}
-		    
+			
+			JSONObject bio = jsonobject.getJSONObject("extras");
+			JSONArray tab = bio.getJSONArray("biomes");
+
+			Iterator iterator = tab.iterator();
+			
+			while( iterator.hasNext()){
+			    if (! (iterator.next()).equals("OCEAN") ){
+				drone.setResult("GROUND");
+				found = "GROUND";
+			    }
+			    i++;
+			}
+		    }		    
 		    
 		    
 		//manque creek
@@ -169,6 +175,9 @@ public class Explorer implements IExplorerRaid {
     static public Map<String, Integer> getContracts()
     {
 	return contracts;
+    }
+    static public String getFound(){
+	return found;
     }
 	
 }

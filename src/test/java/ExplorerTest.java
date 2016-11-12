@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class ExplorerTest{
 
     Explorer explorer;
-
+    Drone drone;
     @Before
     public void defineContext(){
 	explorer = new Explorer();
@@ -39,5 +39,23 @@ public class ExplorerTest{
 	assertTrue(wood == 600 && glass == 200);
     }
 
-    
+    @Test
+    public void checkTakeDecision(){
+	assertEquals(explorer.takeDecision(),  "{ \"action\": \"scan\" }");
+    }
+
+    @Test
+    public void checkAcknowledgeReults(){
+	explorer.takeDecision();
+	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"GLACIER\", \"ALPINE\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+	assertEquals(explorer.getFound(), "GROUND");
+    }
+
+        @Test
+    public void checkAcknowledgeReults2(){
+	explorer.takeDecision();
+	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+	assertFalse(explorer.getFound(), "GROUND");
+    }
+
 }
