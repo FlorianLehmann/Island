@@ -53,12 +53,12 @@ public class ExplorerTest{
 	assertEquals(explorer.getFound(), "GROUND");
     }
 
-        @Test
+    /*        @Test
     public void checkAcknowledgeReults2(){
 	explorer.takeDecision();
 	explorer.acknowledgeResults("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
 	assertFalse(explorer.getFound(), "GROUND");
-    }
+	}*/
 
 
 
