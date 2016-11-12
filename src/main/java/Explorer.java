@@ -129,7 +129,6 @@ public class Explorer implements IExplorerRaid {
 
 		if( jsonobject.has("extras"))
 		    {
-<<<<<<< HEAD
 			
 			JSONObject bio = jsonobject.getJSONObject("extras");
 			JSONArray tab = bio.getJSONArray("biomes");
@@ -143,28 +142,13 @@ public class Explorer implements IExplorerRaid {
 			    }
 			    i++;
 			}
-		    }		    
-		    
-		    
-=======
-			JSONArray array = jsonobject.getJSONArray("extras");
-			biomes =(String []) array.get(0);
-		    }
-		while( i < biomes.length){
-		    if (! biomes[i].equals("OCEAN") )
-			drone.setResult("GROUND");
-		    i++;
-		}
 
 
 
-<<<<<<< HEAD
->>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
-=======
->>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
+
 		//manque creek
 		//manque site
-
+            }
 		break;
 
 	    }
@@ -199,16 +183,10 @@ public class Explorer implements IExplorerRaid {
     {
 	return contracts;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     static public String getFound(){
 	return found;
     }
 	
-=======
 
->>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
-=======
-
->>>>>>> 7fbb919ac57f31004579f45ac022dd48b4ef8c6d
 }
