@@ -16,6 +16,7 @@ public class Drone {
 	direction = new String();
 	result = new String();
 	action = new String();
+    }
 
     public Drone(String direction){
         this.direction=direction;
