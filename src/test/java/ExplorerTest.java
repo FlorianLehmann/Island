@@ -39,5 +39,5 @@ public class ExplorerTest{
 	assertTrue(wood == 600 && glass == 200);
     }
 
-    
+
 }

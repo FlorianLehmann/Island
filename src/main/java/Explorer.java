@@ -33,7 +33,7 @@ public class Explorer implements IExplorerRaid {
 	found = new String();
 	status = true;// est-ce que le staus est verifie
 	drone = new Drone();
-	
+
 	JSONObject jsonobject = new JSONObject(s);
 	if (jsonobject.has("men"))
 	{
@@ -63,7 +63,7 @@ public class Explorer implements IExplorerRaid {
 		}
 
 	    }
-				  
+
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Explorer implements IExplorerRaid {
 	    if( !drone.findIsland() )
 		etat++;
 	    else
-		this.action = drone.getAction();		
+		this.action = drone.getAction();
 	    break;
 	case 1:
 	    this.action = "{ \"action\": \"stop\" }";
@@ -82,7 +82,7 @@ public class Explorer implements IExplorerRaid {
 	default:
 	    this.action = "{ \"action\": \"stop\" }";
 		break;
-	    
+
 
 	}
 	return this.action;
@@ -92,7 +92,7 @@ public class Explorer implements IExplorerRaid {
     public void acknowledgeResults(String s) {
 	JSONObject jsonobject = new JSONObject(s);
 	int i = 0;
-	
+
 	switch(action)
 	    {
 	    case "ECHO":
@@ -130,12 +130,12 @@ public class Explorer implements IExplorerRaid {
 			drone.setResult("GROUND");
 		    i++;
 		}
-		    
-		    
-		    
+
+
+
 		//manque creek
 		//manque site
-		
+
 		break;
 
 	    }
@@ -170,5 +170,5 @@ public class Explorer implements IExplorerRaid {
     {
 	return contracts;
     }
-	
+
 }
