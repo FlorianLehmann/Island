@@ -108,9 +108,8 @@ public class Explorer implements IExplorerRaid {
 		if( jsonobject.has("extras"))
 		    {
 			JSONObject bio = jsonobject.getJSONObject("extras");
-			JSONArray tab = bio.getJSONArray("biomes");
-			range = tab.getInt(0);
-			found = tab.getString(1);
+			range = bio.getInt("range");
+			found = bio.getString("found");
 		    }
 
 		    if ( jsonobject.has("status"))

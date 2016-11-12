@@ -63,11 +63,11 @@ public class ExplorerTest{
 	explorer.takeDecision();
 	explorer.takeDecision();
 	explorer.acknowledgeResults("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-	assertEquals(2 ,2);
+	assertEquals(2 , explorer.getRange());
 
     }
 
-        @Test
+    @Test
     public void checkAcknowledgeReults4(){
 	explorer.takeDecision();
 	explorer.takeDecision();
