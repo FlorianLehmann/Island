@@ -12,6 +12,8 @@ public class Map {
         map.add(new Case(coords));
     }
 
+    public int sizemap(){return map.size();}
+
     public List getCaseRessource(String ressource){
         List<Case> cases=new ArrayList<Case>();
         for(int i=0;i<map.size();i++){
@@ -85,16 +87,49 @@ public class Map {
     public void setRessourcesQCase(Point coords,ArrayList<String> ressourcesq){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
-                map.get(i).setRessources(ressourcesq);
+                map.get(i).setRessources_quantity(ressourcesq);
             }
         }
+    }
+
+    public List getBiomes(Point coords){
+        for(int i=0;i<map.size();i++){
+            if(map.get(i).getCoords().equals(coords)){
+                return map.get(i).getBiomes();
+            }
+        }
+        return null;
+    }
+    public List getRessource(Point coords){
+        for(int i=0;i<map.size();i++){
+            if(map.get(i).getCoords().equals(coords)){
+                return map.get(i).getRessources();
+            }
+        }
+        return null;
+    }
+    public List getRessourceq(Point coords){
+        for(int i=0;i<map.size();i++){
+            if(map.get(i).getCoords().equals(coords)){
+                return map.get(i).getRessourcesQ();
+            }
+        }
+        return null;
     }
 
 
     public void setCreek(Point coords){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
-                map.get(i).creek();
+                map.get(i).setcreek();
+                break;
+            }
+        }
+    }
+    public void setPu(Point coords){
+        for(int i=0;i<map.size();i++){
+            if(map.get(i).getCoords().equals(coords)){
+                map.get(i).setpu();
                 break;
             }
         }
@@ -102,7 +137,7 @@ public class Map {
 
     public Case getNearestCreek(){
         List<Case> creeks=getcreek();
-        double distance=0;
+        double distance=1000000000;
         Case nearest=null;
         int a=getEmergency().getCoords().x;
         int b=getEmergency().getCoords().y;
