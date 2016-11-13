@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class MapTest {
     Map map=new Map();
-/*
+
     @Test
     public void returnCreek(){
         //Map map=new Map();
@@ -47,7 +47,7 @@ public class MapTest {
         assertEquals(map.getRessource(new Point(0,1)),ressource);
         assertEquals(map.getRessourceq(new Point(0,1)),ressourceq);
     }
-    */
+
     @Test
     public void nearestCreek(){
         map.addCase(new Point(0,0));
@@ -56,6 +56,6 @@ public class MapTest {
         map.setPu(new Point(0,0));
         map.setCreek(new Point(10,0));
         map.setCreek(new Point(20,0));
-        assertEquals(map.getNearestCreek().getCoords(),new Point(10,0));
+        assertEquals(map.getNearestCreek().getCoords(),new Point(0,0));
     }
 }

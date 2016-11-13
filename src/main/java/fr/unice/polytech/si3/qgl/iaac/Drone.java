@@ -185,6 +185,7 @@ public class Drone {
         if (etat == 4) {
             String directionLeft = left(direction);
             action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + directionLeft + "\" } }";
+            etat = 5;
             return false;
         }
 
@@ -201,6 +202,7 @@ public class Drone {
         if (etat == 6) {
             String directionRight = right(direction);
             action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + directionRight + "\" } }";
+            etat = 7;
             return false;
         }
 
