@@ -1,3 +1,4 @@
+package fr.unice.polytech.si3.qgl.iaac;
 /**
  * A simple class to say hello
  */

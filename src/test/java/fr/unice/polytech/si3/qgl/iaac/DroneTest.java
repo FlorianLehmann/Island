@@ -1,4 +1,4 @@
-
+package fr.unice.polytech.si3.qgl.iaac;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
