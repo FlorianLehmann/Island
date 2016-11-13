@@ -1,3 +1,4 @@
+package fr.unice.polytech.si3.qgl.iaac;
 import eu.ace_design.island.bot.IExplorerRaid;
 import org.json.*;
 import java.util.List;

@@ -1,3 +1,4 @@
+package fr.unice.polytech.si3.qgl.iaac;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
