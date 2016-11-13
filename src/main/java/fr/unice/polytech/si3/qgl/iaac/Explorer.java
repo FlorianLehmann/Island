@@ -83,7 +83,7 @@ public class Explorer implements IExplorerRaid {
 	default:
 	    this.action = "{ \"action\": \"stop\" }";
 		break;
-
+	 
 
 	}
 	if (budget < 19)
@@ -96,7 +96,7 @@ public class Explorer implements IExplorerRaid {
 	JSONObject jsonobject = new JSONObject(s);
 	JSONObject jsonaction = new JSONObject(action);
 	int i = 0;
-
+	cost = 0;
 
 	
 	switch(jsonaction.getString("action"))
@@ -126,8 +126,7 @@ public class Explorer implements IExplorerRaid {
 		    
 		break;
 	    case "scan":
-		if( jsonobject.has("cost"))
-		    this.cost = jsonobject.getInt("cost");
+
 
 		if ( jsonobject.has("status"))
 		    this.status = jsonobject.getString("status").equals("OK");
@@ -147,13 +146,18 @@ public class Explorer implements IExplorerRaid {
 			    }
 			    i++;
 			}
-			
-
-
-
 		//manque creek
 		//manque site
             }
+		break;
+	    case "heading":
+		if( jsonobject.has("cost"))
+		    this.cost = jsonobject.getInt("cost");
+		break;
+
+	    case "fly":
+		if( jsonobject.has("cost"))
+		    this.cost = jsonobject.getInt("cost");
 		break;
 
 	    }
