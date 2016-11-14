@@ -138,13 +138,15 @@ public class Map {
 
     public Case getNearestCreek(){
         List<Case> creeks=getcreek();
-        double distance=1000000000;
-        Case nearest=null;
+        int x=creeks.get(0).getCoords().x;
+        int y=creeks.get(0).getCoords().y;
         int a=getEmergency().getCoords().x;
         int b=getEmergency().getCoords().y;
-        for(int i=0;i<creeks.size();i++){
-            int x=creeks.get(i).getCoords().x;
-            int y=creeks.get(i).getCoords().y;
+        double distance=Math.sqrt((x-a)*(x-a)+(y-b)*(y-b));
+        Case nearest=creeks.get(0);
+        for(int i=1;i<creeks.size();i++){
+            x=creeks.get(i).getCoords().x;
+            y=creeks.get(i).getCoords().y;
             double d=Math.sqrt((x-a)*(x-a)+(y-b)*(y-b));
             if(d<distance){
                 distance=d;
