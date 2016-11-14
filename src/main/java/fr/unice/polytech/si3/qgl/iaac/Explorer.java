@@ -33,7 +33,7 @@ public class Explorer implements IExplorerRaid {
 	range = 0;
 	found = new String();
 	status = true;// est-ce que le staus est verifie
-	drone = new Drone(heading);
+
 
 	JSONObject jsonobject = new JSONObject(s);
 	if (jsonobject.has("men"))
@@ -64,7 +64,7 @@ public class Explorer implements IExplorerRaid {
 		}
 
 	    }
-
+	drone = new Drone(heading);
     }
 
     @Override

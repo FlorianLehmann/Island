@@ -86,9 +86,24 @@ public class ExplorerTest{
     public void checkAcknowledgeReults4(){
 	explorer.takeDecision();
 	explorer.takeDecision();
+	explorer.takeDecision();
+
+
+
+
+
 	explorer.acknowledgeResults("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
 	assertEquals("GROUND" ,explorer.getFound());
 
     }
 
+    @Test
+    public void checkAcknowledgeReults5(){
+	for(int i = 0; i < 1000; i++)
+	    explorer.takeDecision();
+
+
+	assertEquals(2 , 2);
+
+    }
 }
