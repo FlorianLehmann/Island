@@ -245,4 +245,14 @@ public class Drone {
     return false;
     }
 
+    //=====================================================================
+
+    private boolean piEtat0(){
+        return false;
+    }
+
+    public void parcourirIle(){
+
+    }
+
 }
