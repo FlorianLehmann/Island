@@ -15,19 +15,21 @@ public class Drone {
     private Map map = new Map();
     private String idCrique;
     private String idPU;
+    private String lastDirection;
 
 
     public Drone(){
-	direction = new String();
-	result = new String();
-	action = new String();
+        direction = new String();
+        result = new String();
+        action = new String();
     }
 
     public Drone(String direction){
         this.direction=direction;
         this.etat=0;
-	result = new String();
-	action = new String();
+        this.lastDirection=right(direction);
+        result = new String();
+        action = new String();
     }
 
     public Drone(String direction, String result, int nbCase){
@@ -35,6 +37,7 @@ public class Drone {
         this.nbCase=nbCase;
         this.result=result;
         this.etat=0;
+        this.lastDirection=right(direction);
     }
 
     public String left(String direction){
@@ -247,10 +250,17 @@ public class Drone {
             etat=0;
             return true;
         }
-    return false;
+        return false;
     }
 
     //=====================================================================
+
+    private String oppose(String direction){
+        if(direction.equals("N")){ return "S";}
+        else if (direction.equals("S")){ return "N";}
+        else if(direction.equals("E")){ return "W";}
+        else{ return "E";}
+    }
 
     public void setIdCrique(String idCrique){
         this.idCrique=idCrique;
@@ -297,4 +307,38 @@ public class Drone {
     }
 
 
+    private boolean piEtat5(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        return false;
+    }
+
+    private void piEtat6(){
+        if (result.equals("GROUND") && nbCase<3) {
+            etat = 7;
+        } else {
+            etat = 8;
+        }
+    }
+
+    private boolean piEtat7(){
+        action = "{ \"action\": \"fly\" }";
+        etat=5;
+        return false;
+    }
+
+    private boolean piEtat8(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat=9;
+        return false;
+    }
+
+    private boolean piEtat9(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat=10;
+        lastDirection=opposeLastDirection;
+        return false;
+    }
 }
