@@ -341,4 +341,39 @@ public class Drone {
         lastDirection=opposeLastDirection;
         return false;
     }
+
+    private boolean piEtat13(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat=14;
+        return false;
+    }
+
+    private boolean piEtat14(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat=15;
+        return false;
+    }
+
+    private boolean piEtat15(){
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat=16;
+        return false;
+    }
+
+    private boolean piEtat16(){
+        action = "{ \"action\": \"fly\" }";
+        etat=17;
+        return false;
+    }
+
+    private boolean piEtat17() {
+        String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        etat = 10;
+        lastDirection = opposeLastDirection;
+        return false;
+    }
 }
