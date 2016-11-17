@@ -301,6 +301,29 @@ public class Drone {
         return true;
     }
 
+    private boolean piEtat10(){
+        action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"" + direction + "\" } }";
+        etat=11;
+        return false;
+    }
+    private void piEtat11(){
+        if(result.equals("GROUND")){
+            nbCaseFace=nbCase;
+            etat=12;
+        }
+        else{
+            etat=13;
+        }
+    }
+    private boolean piEtat12(){
+        action = "{ \"action\": \"fly\" }";
+        nbCaseFace--;
+        if (nbCaseFace == 0) {
+            etat = 0;
+        }
+        return false;
+    }
+
 
     public void parcourirIle(){
 
