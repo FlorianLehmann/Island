@@ -13,6 +13,10 @@ public class Drone {
     private int nbCaseLeft;
     private int nbCaseRight;
     private Map map = new Map();
+    private String idCrique;
+    private String idPU;
+
+
     public Drone(){
 	direction = new String();
 	result = new String();
@@ -239,7 +243,8 @@ public class Drone {
         }
 
         if (etat == 10) {
-            action = "{ \"action\": \"stop\" }";
+            //action = "{ \"action\": \"stop\" }";
+            etat=0;
             return true;
         }
     return false;
@@ -247,11 +252,24 @@ public class Drone {
 
     //=====================================================================
 
+    public void setIdCrique(String idCrique){
+        this.idCrique=idCrique;
+    }
+
+    public void setIdPU(String idPU){
+        this.idPU=idPU;
+    }
+
+
     private boolean piEtat0(){
         return false;
     }
 
     public void parcourirIle(){
+
+    }
+
+    private boolean piEtat(){
 
     }
 
