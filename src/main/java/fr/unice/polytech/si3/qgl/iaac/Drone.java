@@ -27,7 +27,7 @@ public class Drone {
     public Drone(String direction){
         this.direction=direction;
         this.etat=0;
-        this.lastDirection=right(direction);
+        this.lastDirection="R";
         result = new String();
         action = new String();
     }
@@ -37,7 +37,7 @@ public class Drone {
         this.nbCase=nbCase;
         this.result=result;
         this.etat=0;
-        this.lastDirection=right(direction);
+        this.lastDirection="R";
     }
 
     public String left(String direction){
@@ -256,10 +256,8 @@ public class Drone {
     //=====================================================================
 
     private String oppose(String direction){
-        if(direction.equals("N")){ return "S";}
-        else if (direction.equals("S")){ return "N";}
-        else if(direction.equals("E")){ return "W";}
-        else{ return "E";}
+        if(direction.equals("R")){ return "G";}
+        else{ return "R";}
     }
 
     public void setIdCrique(String idCrique){
@@ -373,37 +371,47 @@ public class Drone {
     }
 
     private boolean piEtat8(){
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=9;
         return false;
     }
 
     private boolean piEtat9(){
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=10;
-        lastDirection=opposeLastDirection;
+        lastDirection=oppose(lastDirection);
         return false;
     }
 
     private boolean piEtat13(){
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" +direction + "\" } }";
         etat=14;
         return false;
     }
 
     private boolean piEtat14(){
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=15;
         return false;
     }
 
     private boolean piEtat15(){
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=16;
         return false;
     }
@@ -415,10 +423,12 @@ public class Drone {
     }
 
     private boolean piEtat17() {
-        String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat = 10;
-        lastDirection = opposeLastDirection;
+        lastDirection = oppose(direction);
         return false;
     }
 }
