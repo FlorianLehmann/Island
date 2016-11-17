@@ -262,15 +262,39 @@ public class Drone {
 
 
     private boolean piEtat0(){
+        action = "{ \"action\": \"scan\" }";
         return false;
     }
+    private void piEtat1(){
+        if(idCrique!=null && idPU!=null)etat=100;
+        else{
+            etat=2;
+        }
+    }
+    private boolean piEtat2(){
+        action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"" + direction + "\" } }";
+        return false;
+    }
+    private void piEtat3(){
+        if(result.equals("GROUND"))etat=4;
+        else{
+            etat=5;
+        }
+    }
+    private boolean piEtat4(){
+        action = "{ \"action\": \"fly\" }";
+        etat=0;
+        return false;
+    }
+    private boolean piEtat100(){
+        action = "{ \"action\": \"stop\" }";
+        return true;
+    }
+
 
     public void parcourirIle(){
 
     }
 
-    private boolean piEtat(){
-
-    }
 
 }
