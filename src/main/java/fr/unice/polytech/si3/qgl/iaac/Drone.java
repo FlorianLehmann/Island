@@ -431,4 +431,8 @@ public class Drone {
         lastDirection = oppose(direction);
         return false;
     }
+
+    public String getIdCrique(){return idCrique;}
+
+    public String getIdPU(){return idPU;}
 }
