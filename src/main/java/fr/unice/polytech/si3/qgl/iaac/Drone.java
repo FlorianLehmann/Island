@@ -225,12 +225,12 @@ public class Drone {
 
         if (etat == 8) {
             if (nbCaseLeft > nbCaseRight) {
-                String directionLeft2 = left(direction);
-                action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + directionLeft2 + "\" } }";
+                direction = left(direction);
+                action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
                 etat = 1;
             } else {
-                String directionRight2 = right(direction);
-                action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + directionRight2 + "\" } }";
+                direction = right(direction);
+                action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
                 etat = 1;
             }
             return false;
@@ -282,7 +282,7 @@ public class Drone {
     }
     private boolean piEtat2(){
         action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"" + direction + "\" } }";
-        etat=2;
+        etat=3;
         return false;
     }
     private void piEtat3(){
@@ -316,9 +316,10 @@ public class Drone {
         }
     }
     private boolean piEtat12(){
+        
         action = "{ \"action\": \"fly\" }";
         nbCaseFace--;
-        if (nbCaseFace == 0) {
+        if (nbCaseFace <= 0) {
             etat = 0;
         }
         return false;
@@ -326,32 +327,45 @@ public class Drone {
 
 
     public boolean parcourirIle(){
-        if(etat==0){piEtat0();}
+        if(etat==0){piEtat0(); return false;}
         if(etat==1){piEtat1();}
-        if(etat==2){piEtat2();}
+        if(etat==2){piEtat2(); return false;}
         if(etat==3){piEtat3();}
-        if(etat==4){piEtat4();}
-        if(etat==5){piEtat5();}
+        if(etat==4){piEtat4();return false;}
+        if(etat==5){piEtat5(); return false;}
         if(etat==6){piEtat6();}
-        if(etat==7){piEtat7();}
-        if(etat==8){piEtat8();}
-        if(etat==9){piEtat9();}
-        if(etat==10){piEtat10();}
-        if(etat==11){piEtat11();}
-        if(etat==12){piEtat12();}
-        if(etat==13){piEtat13();}
-        if(etat==14){piEtat14();}
-        if(etat==15){piEtat15();}
-        if(etat==16){piEtat16();}
-        if(etat==17){piEtat17();}
-        if(etat==100){piEtat100();}
+        if(etat==7){piEtat7(); return false;}
+        if(etat==8){piEtat8(); return false;}
+        if(etat==9){piEtat9(); return false;}
+        if(etat==10){piEtat10(); return false;}
+        if(etat==11){piEtat11(); }
+        if(etat==12){piEtat12(); return false;}
+        if(etat==13){piEtat13(); return false;}
+        if(etat==14){piEtat14(); return false;}
+        if(etat==15){piEtat15(); return false;}
+        if(etat==16){piEtat16(); return false;}
+        if(etat==17){piEtat17();return false;}
+        if(etat==100){return piEtat100();}
         return false;
     }
 
 
     private boolean piEtat5(){
         String opposeLastDirection = oppose(lastDirection);
-        action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + opposeLastDirection + "\" } }";
+        String direction1;
+        if(oppose(lastDirection).equals("R"))
+        {
+            direction1 = right(direction);
+            //lastDirection = "R";
+        }
+        else
+        {
+            direction1 = left(direction);
+            //lastDirection = "G";
+        }
+            
+        //String opposeLastDirection = oppose(lastDirection);
+        action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }";
         etat=6;
         return false;
     }

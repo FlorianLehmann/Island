@@ -64,23 +64,4 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"scan\" }");
     }
 
-    @Test
-    public void findIslandEtat2N(){
-        drone =new Drone("N","",10);
-        drone.findIsland();
-        drone.setResult("GROUND");
-        drone.findIsland();
-        assertEquals(drone.getAction(),"{ \"action\": \"stop\" }");
-    }
-
-    @Test
-    public void findIslandEtat3N(){
-        drone =new Drone("N","",10);
-        drone.findIsland();
-	drone.findIsland();
-	drone.setResult("OCEAN");
-	drone.setNbCase(0);
-        drone.findIsland();
-        assertEquals(drone.getAction(),"{ \"action\": \"stop\" }");
-    }
 }
