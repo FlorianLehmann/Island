@@ -407,7 +407,7 @@ public class Drone {
         else direction=left(direction);
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=10;
-        lastDirection=oppose(lastDirection);
+        //lastDirection=oppose(lastDirection);
         return false;
     }
 
@@ -421,10 +421,7 @@ public class Drone {
     }
 
     public boolean piEtat14(){
-        if (lastDirection.equals("R")){
-            direction =right(direction);}
-        else direction=left(direction);
-        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
+        action = "{ \"action\": \"fly\" }";
         etat=15;
         return false;
     }
@@ -439,20 +436,24 @@ public class Drone {
     }
 
     public boolean piEtat16(){
-        action = "{ \"action\": \"fly\" }";
-        etat=17;
-        return false;
-    }
-
-    public boolean piEtat17() {
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
-        etat = 10;
-        lastDirection = oppose(direction);
+        etat=17;
         return false;
     }
+
+    public boolean piEtat17(){
+        if (lastDirection.equals("R")){
+            direction =right(direction);}
+        else direction=left(direction);
+        action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
+        etat=10;
+        return false;
+    }
+
+
     
     public String getIdCrique(){return idCrique;}
     
