@@ -11,6 +11,7 @@ public class Explorer implements IExplorerRaid {
 
     static private int men;
     static private List<Men> menList;
+    private List<Integer> verifcout;
     static private int budget;
     static private String heading;
     static private Map<String, Integer> contracts;
@@ -33,7 +34,7 @@ public class Explorer implements IExplorerRaid {
 	range = 0;
 	found = new String();
 	status = true;// est-ce que le staus est verifie
-
+    
 
 	JSONObject jsonobject = new JSONObject(s);
 	if (jsonobject.has("men"))
@@ -120,15 +121,10 @@ public class Explorer implements IExplorerRaid {
 	JSONObject jsonobject = new JSONObject(s);
 	JSONObject jsonaction = new JSONObject(action);
 	int i = 0;
-	cost = 0;
+	cost = 0; //modif a suppr!
 
 	
-	switch(jsonaction.getString("action"))
-
-
-
-
-	    {
+	switch(jsonaction.getString("action")){
 	    case "echo":
 		if( jsonobject.has("cost"))
 		    {			
@@ -150,7 +146,10 @@ public class Explorer implements IExplorerRaid {
 		    
 		break;
 	    case "scan":
-
+            if( jsonobject.has("cost"))
+            {
+                this.cost = jsonobject.getInt("cost");
+            }
 
 		if ( jsonobject.has("status"))
 		    this.status = jsonobject.getString("status").equals("OK");
@@ -187,10 +186,6 @@ public class Explorer implements IExplorerRaid {
 			while( iterator.hasNext()){
 			    drone.setIdPU( (String) iterator.next());
 			}
-			    
-			
-		//manque creek
-		//manque site
             }
 		break;
 	    case "heading":
@@ -202,6 +197,10 @@ public class Explorer implements IExplorerRaid {
 		if( jsonobject.has("cost"))
 		    this.cost = jsonobject.getInt("cost");
 		break;
+        case "stop":
+            if( jsonobject.has("cost"))
+                this.cost = jsonobject.getInt("cost");
+            break;
 
 	    }
 	budget = budget - cost;
@@ -212,7 +211,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        return new String(); //
+        return new String("Budget =" + budget); //
     }
     static public String getResult()
     {

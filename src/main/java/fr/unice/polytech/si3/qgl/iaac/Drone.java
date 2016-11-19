@@ -355,12 +355,12 @@ public class Drone {
         String direction1;
         if(oppose(lastDirection).equals("R"))
         {
-            direction1 = right(direction);
+            direction1 = left(direction);
             //lastDirection = "R";
         }
         else
         {
-            direction1 = left(direction);
+            direction1 = right(direction);
             //lastDirection = "G";
         }
             
@@ -445,10 +445,11 @@ public class Drone {
         lastDirection = oppose(direction);
         return false;
     }
-
-
+    
     public String getIdCrique(){return idCrique;}
-
+    
     public String getIdPU(){return idPU;}
+    
+    //Pour Test
+    public int getEtat(){return etat;}
 }
-
