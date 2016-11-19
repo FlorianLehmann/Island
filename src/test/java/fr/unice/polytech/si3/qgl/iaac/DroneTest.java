@@ -141,5 +141,116 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
     }
 
+    @Test
+    public void testPiEtat9(){
+        drone =new Drone("N");
+        drone.piEtat9();
+        String direction1=drone.right("N");
+        assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
+    }
 
+    @Test
+    public void testPiEtat13(){
+        drone =new Drone("N");
+        drone.piEtat13();
+        String direction1=drone.right("N");
+        assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
+    }
+
+    @Test
+    public void testPiEtat14(){
+        drone =new Drone("N");
+        drone.piEtat14();
+        String direction1=drone.right("N");
+        assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
+    }
+
+    @Test
+    public void testPiEtat15(){
+        drone =new Drone("N");
+        drone.piEtat15();
+        String direction1=drone.right("N");
+        assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
+    }
+
+    @Test
+    public void testPiEtat16(){
+        drone =new Drone("N");
+        drone.piEtat16();
+        assertEquals(drone.getAction(),"{ \"action\": \"fly\" }");
+    }
+
+    @Test
+    public void testPiEtat17(){
+        drone =new Drone("N");
+        drone.piEtat17();
+        String direction1=drone.right("N");
+        assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
+    }
+
+    @Test
+    public void testPiEtat1(){
+        drone =new Drone("N");
+        drone.piEtat1();
+        assertTrue(drone.getEtat()==2);
+    }
+
+    @Test
+    public void testPiEtat1Bis(){
+        drone =new Drone("N");
+        drone.setIdCrique("1");
+        drone.setIdPU("2");
+        drone.piEtat1();
+        assertTrue(drone.getEtat()==100);
+    }
+
+    @Test
+    public void testPiEtat3(){
+        drone =new Drone("N");
+        drone.setResult("OCEAN");
+        drone.setLastGround(false);
+        drone.piEtat3();
+        assertTrue(drone.getEtat()==5);
+    }
+
+    @Test
+    public void testPiEtat3Bis(){
+        drone =new Drone("N");
+        drone.setResult("GROUND");
+        drone.piEtat3();
+        assertTrue(drone.getEtat()==4);
+    }
+
+    @Test
+    public void testPiEtat11(){
+        drone =new Drone("N");
+        drone.setResult("GROUND");
+        drone.piEtat11();
+        assertTrue(drone.getEtat()==12);
+    }
+
+    @Test
+    public void testPiEtat11Bis(){
+        drone =new Drone("N");
+        drone.setResult("OCEAN");
+        drone.piEtat11();
+        assertTrue(drone.getEtat()==13);
+    }
+
+    @Test
+    public void testPiEtat6(){
+        drone =new Drone("N");
+        drone.setResult("GROUND");
+        drone.setNbCase(1);
+        drone.piEtat6();
+        assertTrue(drone.getEtat()==7);
+    }
+
+    @Test
+    public void testPiEtat6Bis(){
+        drone =new Drone("N");
+        drone.setResult("OCEAN");
+        drone.piEtat6();
+        assertTrue(drone.getEtat()==8);
+    }
 }
