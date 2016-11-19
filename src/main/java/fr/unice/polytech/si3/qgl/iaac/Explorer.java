@@ -69,6 +69,26 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String takeDecision() {
+        
+        /*if ( etat == 0){
+            if( drone.findIsland() )
+                etat++;
+            else {
+                this.action = drone.getAction();
+                break;}
+            
+        }
+        if ( etat == 1){
+            if (drone.parcourirIle()) {
+                etat++;
+            }
+            else{
+                this.action = drone.getAction();
+                break;
+            }
+            
+        } else this.action = "{ \"action\": \"stop\" }";*/
+        
 	switch(etat){
 
 	case 0:
@@ -78,8 +98,12 @@ public class Explorer implements IExplorerRaid {
 		this.action = drone.getAction();
 	    break;
 	case 1:
-	    this.action = "{ \"action\": \"stop\" }";
-		break;
+	    if (drone.parcourirIle()) {
+		etat++;
+	    }
+	    else
+		this.action = drone.getAction();
+	    break;
 	default:
 	    this.action = "{ \"action\": \"stop\" }";
 		break;
@@ -146,6 +170,25 @@ public class Explorer implements IExplorerRaid {
 			    }
 			    i++;
 			}
+
+
+			tab = bio.getJSONArray("creeks");
+
+			iterator = tab.iterator();
+			
+			while( iterator.hasNext()){
+			    drone.setIdCrique((String) iterator.next());
+			    }
+
+			tab = bio.getJSONArray("sites");
+
+			iterator = tab.iterator();
+			
+			while( iterator.hasNext()){
+			    drone.setIdPU( (String) iterator.next());
+			}
+			    
+			
 		//manque creek
 		//manque site
             }
