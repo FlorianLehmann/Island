@@ -16,7 +16,7 @@ public class Drone {
     private String idCrique;
     private String idPU;
     private String lastDirection;
-
+    private boolean lastGround = true;
 
     public Drone(){
         direction = new String();
@@ -286,10 +286,18 @@ public class Drone {
         return false;
     }
     public void piEtat3(){
-        if(result.equals("GROUND"))etat=4;
+        if(result.equals("GROUND") || lastGround ) {
+            etat=4;
+            if( !result.equals("GROUND") )
+            {lastGround = false;}
+            if( result.equals("GROUND") )
+            {lastGround = true;}
+        
+        }
         else{
             etat=5;
         }
+        
     }
     public boolean piEtat4(){
         action = "{ \"action\": \"fly\" }";

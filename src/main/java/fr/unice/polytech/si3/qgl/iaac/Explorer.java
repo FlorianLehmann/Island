@@ -211,7 +211,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        return new String("Budget =" + budget); //
+        return new String("CREEK:" + drone.getIdCrique()+"\n"+ "EMERGENCY:" + drone.getIdPU()+"\n"); //
     }
     static public String getResult()
     {
