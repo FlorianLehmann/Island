@@ -1,3 +1,4 @@
+package fr.unice.polytech.si3.qgl.iaac;
 /**
  * Created by seb on 08/11/16 .
  */
@@ -11,7 +12,7 @@ public class Drone {
     private int nbCaseFace;
     private int nbCaseLeft;
     private int nbCaseRight;
-
+    private Map map = new Map();
     public Drone(){
 	direction = new String();
 	result = new String();
@@ -58,7 +59,7 @@ public class Drone {
                 if (result.equals("GROUND")){ etat=10;}
                 else {etat=2;}
 
-
+     bre
             case 2:
                 action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \""+direction+"\" } }";
                 etat=3;
@@ -184,6 +185,7 @@ public class Drone {
         if (etat == 4) {
             String directionLeft = left(direction);
             action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + directionLeft + "\" } }";
+            etat = 5;
             return false;
         }
 
@@ -200,6 +202,7 @@ public class Drone {
         if (etat == 6) {
             String directionRight = right(direction);
             action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + directionRight + "\" } }";
+            etat = 7;
             return false;
         }
 

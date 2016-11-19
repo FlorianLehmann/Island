@@ -59,7 +59,7 @@ public class Drone {
                 if (result.equals("GROUND")){ etat=10;}
                 else {etat=2;}
 
-
+     bre
             case 2:
                 action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \""+direction+"\" } }";
                 etat=3;

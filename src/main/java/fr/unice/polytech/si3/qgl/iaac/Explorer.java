@@ -64,7 +64,7 @@ public class Explorer implements IExplorerRaid {
 		}
 
 	    }
-	drone = new Drone(heading);
+		drone = new Drone(heading);
     }
 
     @Override
