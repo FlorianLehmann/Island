@@ -66,7 +66,7 @@ public class Drone {
                 if (result.equals("GROUND")){ etat=10;}
                 else {etat=2;}
 
-
+     bre
             case 2:
                 action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \""+direction+"\" } }";
                 etat=3;
@@ -269,44 +269,44 @@ public class Drone {
     }
 
 
-    private boolean piEtat0(){
+    public boolean piEtat0(){
         action = "{ \"action\": \"scan\" }";
         etat=1;
         return false;
     }
-    private void piEtat1(){
+    public void piEtat1(){
         if(idCrique!=null && idPU!=null)etat=100;
         else{
             etat=2;
         }
     }
-    private boolean piEtat2(){
+    public boolean piEtat2(){
         action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"" + direction + "\" } }";
         etat=3;
         return false;
     }
-    private void piEtat3(){
+    public void piEtat3(){
         if(result.equals("GROUND"))etat=4;
         else{
             etat=5;
         }
     }
-    private boolean piEtat4(){
+    public boolean piEtat4(){
         action = "{ \"action\": \"fly\" }";
         etat=0;
         return false;
     }
-    private boolean piEtat100(){
+    public boolean piEtat100(){
         action = "{ \"action\": \"stop\" }";
         return true;
     }
 
-    private boolean piEtat10(){
+    public boolean piEtat10(){
         action = "{ \"action\": \"echo\", \"parameters\": { \"direction\": \"" + direction + "\" } }";
         etat=11;
         return false;
     }
-    private void piEtat11(){
+    public void piEtat11(){
         if(result.equals("GROUND")){
             nbCaseFace=nbCase;
             etat=12;
@@ -315,7 +315,7 @@ public class Drone {
             etat=13;
         }
     }
-    private boolean piEtat12(){
+    public boolean piEtat12(){
         
         action = "{ \"action\": \"fly\" }";
         nbCaseFace--;
@@ -350,7 +350,7 @@ public class Drone {
     }
 
 
-    private boolean piEtat5(){
+    public boolean piEtat5(){
         String opposeLastDirection = oppose(lastDirection);
         String direction1;
         if(oppose(lastDirection).equals("R"))
@@ -370,7 +370,7 @@ public class Drone {
         return false;
     }
 
-    private void piEtat6(){
+    public void piEtat6(){
         if (result.equals("GROUND") && nbCase<3) {
             etat = 7;
         } else {
@@ -378,13 +378,13 @@ public class Drone {
         }
     }
 
-    private boolean piEtat7(){
+    public boolean piEtat7(){
         action = "{ \"action\": \"fly\" }";
         etat=5;
         return false;
     }
 
-    private boolean piEtat8(){
+    public boolean piEtat8(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -393,7 +393,7 @@ public class Drone {
         return false;
     }
 
-    private boolean piEtat9(){
+    public boolean piEtat9(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -403,7 +403,7 @@ public class Drone {
         return false;
     }
 
-    private boolean piEtat13(){
+    public boolean piEtat13(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -412,7 +412,7 @@ public class Drone {
         return false;
     }
 
-    private boolean piEtat14(){
+    public boolean piEtat14(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -421,7 +421,7 @@ public class Drone {
         return false;
     }
 
-    private boolean piEtat15(){
+    public boolean piEtat15(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -430,13 +430,13 @@ public class Drone {
         return false;
     }
 
-    private boolean piEtat16(){
+    public boolean piEtat16(){
         action = "{ \"action\": \"fly\" }";
         etat=17;
         return false;
     }
 
-    private boolean piEtat17() {
+    public boolean piEtat17() {
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
@@ -449,7 +449,7 @@ public class Drone {
     public String getIdCrique(){return idCrique;}
     
     public String getIdPU(){return idPU;}
-    
+
     //Pour Test
     public int getEtat(){return etat;}
 }
