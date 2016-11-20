@@ -133,7 +133,7 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"fly\" }");
     }
 
-    @Test
+    /*@Test
     public void testPiEtat8(){
         drone =new Drone("N");
         drone.piEtat8();
@@ -147,7 +147,7 @@ public class DroneTest {
         drone.piEtat9();
         String direction1=drone.right("N");
         assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
-    }
+    }*/
 
     @Test
     public void testPiEtat13(){
@@ -157,7 +157,7 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
     }
 
-    @Test
+    /*@Test
     public void testPiEtat14(){
         drone =new Drone("N");
         drone.piEtat14();
@@ -186,7 +186,7 @@ public class DroneTest {
         drone.piEtat17();
         String direction1=drone.right("N");
         assertEquals(drone.getAction(),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction1 + "\" } }");
-    }
+    }*/
 
     @Test
     public void testPiEtat1(){
@@ -237,20 +237,20 @@ public class DroneTest {
         assertTrue(drone.getEtat()==13);
     }
 
-    @Test
+    /*@Test
     public void testPiEtat6(){
         drone =new Drone("N");
         drone.setResult("GROUND");
         drone.setNbCase(1);
         drone.piEtat6();
         assertTrue(drone.getEtat()==7);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testPiEtat6Bis(){
         drone =new Drone("N");
         drone.setResult("OCEAN");
         drone.piEtat6();
         assertTrue(drone.getEtat()==8);
-    }
+    }*/
 }

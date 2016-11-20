@@ -16,8 +16,10 @@ public class Drone {
     private String idCrique;
     private String idPU;
     private String lastDirection;
+    private int nbfly = 3;
     private boolean lastGround = true;
-
+    private int nbCasePorte = 0;
+    
     public Drone(){
         direction = new String();
         result = new String();
@@ -198,14 +200,23 @@ public class Drone {
 
         if (etat == 5) {
             if (result.equals("GROUND")) {
-                etat = 9;
+                etat = 15;
                 nbCaseFace = nbCase;
             } else {
                 etat = 6;
                 nbCaseLeft = nbCase;
             }
         }
-
+        
+        if (etat == 15) {
+            
+            direction = left(direction);
+            action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
+            etat = 9;
+            lastDirection="G";
+            return false;
+        }
+        
         if (etat == 6) {
             String directionRight = right(direction);
             action = "{ \"action\": \"echo\", \"parameters\": { \"direction\":\"" + directionRight + "\" } }";
@@ -215,12 +226,21 @@ public class Drone {
 
         if (etat == 7) {
             if (result.equals("GROUND")) {
-                etat = 9;
+                etat = 16;
                 nbCaseFace = nbCase;
             } else {
                 etat = 8;
                 nbCaseRight = nbCase;
             }
+        }
+        
+        if (etat == 16) {
+           
+            direction = right(direction);
+            action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
+            etat = 9;
+            lastDirection="R";
+            return false;
         }
 
         if (etat == 8) {
@@ -235,7 +255,9 @@ public class Drone {
             }
             return false;
         }
-
+        
+        
+        
         if (etat == 9) {
             action = "{ \"action\": \"fly\" }";
             nbCaseFace--;
@@ -295,13 +317,21 @@ public class Drone {
         
         }
         else{
+            nbCasePorte = nbCase;
             etat=5;
+        }
+        if((result.equals("OUT_OF_RANGE")) && (nbCase  == 0)){
+            etat = 99;
         }
         
     }
     public boolean piEtat4(){
         action = "{ \"action\": \"fly\" }";
         etat=0;
+        return false;
+    }
+    public boolean piEtat99(){
+        action = "{ \"action\": \"stop\" }";
         return false;
     }
     public boolean piEtat100(){
@@ -320,6 +350,7 @@ public class Drone {
             etat=12;
         }
         else{
+            //lastDirection = oppose(lastDirection);
             etat=13;
         }
     }
@@ -354,6 +385,7 @@ public class Drone {
         if(etat==16){piEtat16(); return false;}
         if(etat==17){piEtat17();return false;}
         if(etat==100){return piEtat100();}
+        if(etat==99){return piEtat99();}
         return false;
     }
 
@@ -363,12 +395,12 @@ public class Drone {
         String direction1;
         if(oppose(lastDirection).equals("R"))
         {
-            direction1 = left(direction);
+            direction1 = right(direction);
             //lastDirection = "R";
         }
         else
         {
-            direction1 = right(direction);
+            direction1 = left(direction);
             //lastDirection = "G";
         }
             
@@ -379,62 +411,76 @@ public class Drone {
     }
 
     public void piEtat6(){
-        if (result.equals("GROUND") && nbCase<3) {
+        if (result.equals("GROUND") && nbCase<4) { // nbcase<3 modif suite au week 02
             etat = 7;
         } else {
             etat = 8;
+        }
+        if(nbCasePorte  == 0){
+            etat = 99;
         }
     }
 
     public boolean piEtat7(){
         action = "{ \"action\": \"fly\" }";
+        nbCasePorte--;
+        
         etat=5;
         return false;
     }
 
     public boolean piEtat8(){
-        if (lastDirection.equals("R")){
-            direction =right(direction);}
-        else direction=left(direction);
+        if (oppose(lastDirection).equals("R")){
+            direction =right(direction);}//rigth
+        else direction=left(direction);//left
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=9;
         return false;
     }
-
+    
     public boolean piEtat9(){
-        if (lastDirection.equals("R")){
-            direction =right(direction);}
-        else direction=left(direction);
+        if (oppose(lastDirection).equals("R")){
+            direction =right(direction);}//rigth
+        else direction=left(direction);//left
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=10;
-        //lastDirection=oppose(lastDirection);
+        lastDirection=oppose(lastDirection);//oppose
         return false;
     }
-
+    //rajouté un echo ici dans meme  direction que pietat13
     public boolean piEtat13(){
+        //lastDirection=oppose(lastDirection);
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" +direction + "\" } }";
         etat=14;
+        //nbfly = 3;
         return false;
     }
-
+    
+    //rajouté un echo ici dans meme  direction que pietat16
     public boolean piEtat14(){
         action = "{ \"action\": \"fly\" }";
-        etat=15;
+        //nbfly--;
+        /*if (nbfly <= 0)
+            etat=15;
+        else*/
+            etat = 17;
         return false;
     }
-
+    
+    
+    //rajouté un echo ici dans meme  direction que pietat14
     public boolean piEtat15(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
-        else direction=left(direction);
+        else direction=right(direction);
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=16;
         return false;
     }
-
+    
     public boolean piEtat16(){
         if (lastDirection.equals("R")){
             direction =right(direction);}
@@ -443,17 +489,17 @@ public class Drone {
         etat=17;
         return false;
     }
+    
 
-    public boolean piEtat17(){
+    public boolean piEtat17() {
         if (lastDirection.equals("R")){
-            direction =right(direction);}
-        else direction=left(direction);
+            direction =left(direction);}//right
+        else direction=right(direction);//left
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
-        etat=10;
+        etat = 0;
+        lastDirection = oppose(lastDirection);
         return false;
     }
-
-
     
     public String getIdCrique(){return idCrique;}
     
