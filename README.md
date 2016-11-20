@@ -17,7 +17,7 @@
 
 ### Week 46
 
-...
+-The drone is able to find a creek and the Emergency site
 
 
     
