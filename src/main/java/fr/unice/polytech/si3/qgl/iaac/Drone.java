@@ -508,4 +508,5 @@ public class Drone {
     //Pour Test
     public int getEtat(){return etat;}
     public void setLastGround(boolean a ) {lastGround= a;}
+    public void setNbCasePorte(int a ) {nbCasePorte= a;}
 }
