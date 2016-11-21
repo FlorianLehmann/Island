@@ -10,49 +10,49 @@ public class DroneTest {
     private Drone drone;
 
     @Test
-    public void leftN (){
+    public void leftWhenDirectionN (){
         drone =new Drone();
         assertEquals(drone.left("N"),"W");
     }
 
     @Test
-    public void leftS (){
+    public void leftWhenDirectionS (){
         drone =new Drone();
         assertEquals(drone.left("S"),"E");
     }
 
     @Test
-    public void leftE (){
+    public void leftWhenDirectionE (){
         drone =new Drone();
         assertEquals(drone.left("E"),"N");
     }
 
     @Test
-    public void leftW (){
+    public void leftWhenDirectionW (){
         drone =new Drone();
         assertEquals(drone.left("W"),"S");
     }
 
     @Test
-    public void rightN (){
+    public void rightWhenDirectionN (){
         drone =new Drone();
         assertEquals(drone.right("N"),"E");
     }
 
     @Test
-    public void rightS (){
+    public void rightWhenDirectionS (){
         drone =new Drone();
         assertEquals(drone.right("S"),"W");
     }
 
     @Test
-    public void rightE (){
+    public void rightWhenDirectionE (){
         drone =new Drone();
         assertEquals(drone.right("E"),"S");
     }
 
     @Test
-    public void rightW (){
+    public void rightWhenDirectionW (){
         drone =new Drone();
         assertEquals(drone.right("W"),"N");
     }
