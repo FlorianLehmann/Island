@@ -14,6 +14,8 @@ public class Case {
     private List<MiniCase>   miniCase=new ArrayList<MiniCase>();
     protected boolean creek=false;
     protected boolean pu=false;
+    String idcreek;
+    String idpu;
 
 
     public Case(Point coords){
@@ -79,5 +81,7 @@ public class Case {
     }
     public void setcreek(){creek=true;}
     public void setpu(){pu=true;}
+    public void setIdCreek(String idcreek){this.idcreek=idcreek;}
+    public void setIdPu(String idpu){this.idpu=idpu;}
 
 }

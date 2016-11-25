@@ -119,18 +119,20 @@ public class Map {
     }
 
 
-    public void setCreek(Point coords){
+    public void setCreek(Point coords,String idcreek){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
                 map.get(i).setcreek();
+                map.get(i).setIdCreek(idcreek);
                 break;
             }
         }
     }
-    public void setPu(Point coords){
+    public void setPu(Point coords,String idpu){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
                 map.get(i).setpu();
+                map.get(i).setIdPu(idpu);
                 break;
             }
         }
