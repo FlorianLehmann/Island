@@ -23,7 +23,9 @@ public class Drone {
     private int nbCasePorte = 0;
     private int X=0;
     private int Y=0;
-    
+    private int nbCreek=0;
+
+
     public Drone(){
         direction = new String();
         result = new String();
@@ -296,6 +298,8 @@ public class Drone {
     public void setIdCrique(String idCrique){
         this.idCrique=idCrique;
         map.setCreek(new Point(X,Y),this.idCrique);
+        this.idCrique=map.getNearestCreek();
+        nbCreek++;
     }
 
     public void setIdPU(String idPU){
@@ -311,7 +315,7 @@ public class Drone {
         return false;
     }
     public void piEtat1(){
-        if(idCrique!=null && idPU!=null)etat=100;
+        if(idCrique!=null && idPU!=null && nbCreek>4)etat=100;
         else{
             etat=2;
         }
@@ -352,7 +356,6 @@ public class Drone {
     }
     public boolean piEtat100(){
         action = "{ \"action\": \"stop\" }";
-        idCrique=map.getNearestCreek();
         return true;
     }
 
