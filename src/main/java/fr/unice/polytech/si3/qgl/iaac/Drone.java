@@ -375,6 +375,8 @@ public class Drone {
         action = "{ \"action\": \"fly\" }";
         nbCaseFace--;
         if (nbCaseFace <= 0) {
+            fly(direction);
+            map.addCase(new Point(X,Y));
             etat = 0;
         }
         return false;
