@@ -168,7 +168,7 @@ public class Map {
     public String getIdPu(){
         for(int i=0;i<map.size();i++){
             if(map.get(i).pu()==true){
-                return getIdPu();
+                return map.get(i).getIdpu();
             }
         }
         return null;
