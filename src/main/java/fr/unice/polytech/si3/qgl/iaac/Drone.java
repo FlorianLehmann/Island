@@ -1,4 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
+
+import java.awt.*;
 /**
  * Created by seb on 08/11/16 .
  */
@@ -19,6 +21,8 @@ public class Drone {
     private int nbfly = 3;
     private boolean lastGround = true;
     private int nbCasePorte = 0;
+    private int X=0;
+    private int Y=0;
     
     public Drone(){
         direction = new String();
@@ -43,17 +47,24 @@ public class Drone {
     }
 
     public String left(String direction){
-        if(direction.equals("N")){ return "W";}
-        else if (direction.equals("S")){ return "E";}
-        else if(direction.equals("E")){ return "N";}
-        else{ return "S";}
+        if(direction.equals("N")){ X--;return "W";}
+        else if (direction.equals("S")){X++; return "E";}
+        else if(direction.equals("E")){ Y++;return "N";}
+        else{ Y--;return "S";}
     }
 
     public String right(String direction){
-        if(direction.equals("N")){ return "E";}
-        else if (direction.equals("S")){ return "W";}
-        else if(direction.equals("E")){ return "S";}
-        else{ return "N";}
+        if(direction.equals("N")){X++; return "E";}
+        else if (direction.equals("S")){ X--;return "W";}
+        else if(direction.equals("E")){ Y--;return "S";}
+        else{ Y++;return "N";}
+    }
+
+    public void fly(String direction){
+        if(direction.equals("N")){ Y++;}
+        else if (direction.equals("S")){Y--; }
+        else if(direction.equals("E")){ X++;}
+        else{ X--;}
     }
 
     /*public boolean findIsland(){
@@ -284,14 +295,17 @@ public class Drone {
 
     public void setIdCrique(String idCrique){
         this.idCrique=idCrique;
+        map.setCreek(new Point(X,Y),this.idCrique);
     }
 
     public void setIdPU(String idPU){
         this.idPU=idPU;
+        map.setPu(new Point(X,Y),this.idPU);
     }
 
 
     public boolean piEtat0(){
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"scan\" }";
         etat=1;
         return false;
@@ -327,6 +341,8 @@ public class Drone {
     }
     public boolean piEtat4(){
         action = "{ \"action\": \"fly\" }";
+        fly(direction);
+        map.addCase(new Point(X,Y));
         etat=0;
         return false;
     }
@@ -424,7 +440,8 @@ public class Drone {
     public boolean piEtat7(){
         action = "{ \"action\": \"fly\" }";
         nbCasePorte--;
-        
+        fly(direction);
+        map.addCase(new Point(X,Y));
         etat=5;
         return false;
     }
@@ -433,6 +450,7 @@ public class Drone {
         if (oppose(lastDirection).equals("R")){
             direction =right(direction);}//rigth
         else direction=left(direction);//left
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=9;
         return false;
@@ -442,6 +460,7 @@ public class Drone {
         if (oppose(lastDirection).equals("R")){
             direction =right(direction);}//rigth
         else direction=left(direction);//left
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=10;
         lastDirection=oppose(lastDirection);//oppose
@@ -453,6 +472,7 @@ public class Drone {
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" +direction + "\" } }";
         etat=14;
         //nbfly = 3;
@@ -462,6 +482,8 @@ public class Drone {
     //rajouté un echo ici dans meme  direction que pietat16
     public boolean piEtat14(){
         action = "{ \"action\": \"fly\" }";
+        fly(direction);
+        map.addCase(new Point(X,Y));
         //nbfly--;
         /*if (nbfly <= 0)
             etat=15;
@@ -476,6 +498,7 @@ public class Drone {
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=right(direction);
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=16;
         return false;
@@ -485,6 +508,7 @@ public class Drone {
         if (lastDirection.equals("R")){
             direction =right(direction);}
         else direction=left(direction);
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat=17;
         return false;
@@ -495,6 +519,7 @@ public class Drone {
         if (lastDirection.equals("R")){
             direction =left(direction);}//right
         else direction=right(direction);//left
+        map.addCase(new Point(X,Y));
         action = "{ \"action\": \"heading\", \"parameters\": { \"direction\":\"" + direction + "\" } }";
         etat = 0;
         lastDirection = oppose(lastDirection);
