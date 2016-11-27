@@ -16,7 +16,7 @@ public class MapTest {
         //Map map=new Map();
         map.addCase(new Point(0,0));
         map.addCase(new Point(0,2));
-        map.setCreek(new Point(0,0));
+        map.setCreek(new Point(0,0),"dzdfeferfvv");
         assertEquals(map.getcreek().size(),1);
     }
 
@@ -24,7 +24,7 @@ public class MapTest {
     public void returnPU(){
         //Map map=new Map();
         map.addCase(new Point(0,1));
-        map.setPu(new Point(0,1));
+        map.setPu(new Point(0,1),"fegfrggvrt");
         assertEquals(map.getEmergency().getCoords(),new Point(0,1));
     }
 
@@ -53,9 +53,9 @@ public class MapTest {
         map.addCase(new Point(0,0));
         map.addCase(new Point(10,0));
         map.addCase(new Point(20,0));
-        map.setPu(new Point(0,0));
-        map.setCreek(new Point(10,0));
-        map.setCreek(new Point(20,0));
-        assertEquals(map.getNearestCreek().getCoords(),new Point(0,0));
+        map.setPu(new Point(0,0),"fegfrggvrt");
+        map.setCreek(new Point(10,0),"fesvsdfbd");
+        map.setCreek(new Point(20,0),"fegrbbgbb");
+        assertEquals(map.getNearestCreek(),"dzdfeferfvv");
     }
 }
