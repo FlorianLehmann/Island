@@ -20,13 +20,13 @@ public class MapTest {
         assertEquals(map.getcreek().size(),1);
     }
 
-    @Test
+    /*@Test
     public void returnPU(){
         //Map map=new Map();
         map.addCase(new Point(0,1));
         map.setPu(new Point(0,1),"fegfrggvrt");
         assertEquals(map.getEmergency().getCoords(),new Point(0,1));
-    }
+    }*/
 
     @Test
     public void setbiome(){

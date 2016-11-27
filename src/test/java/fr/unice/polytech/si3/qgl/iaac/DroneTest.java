@@ -88,12 +88,12 @@ public class DroneTest {
         assertEquals(drone.getAction(),"{ \"action\": \"fly\" }");
     }
 
-    @Test
+    /*@Test
     public void testPiEtat100(){
         drone =new Drone("N");
         drone.piEtat100();
         assertEquals(drone.getAction(),"{ \"action\": \"stop\" }");
-    }
+    }*/
 
     @Test
     public void testPiEtat10(){
@@ -195,14 +195,14 @@ public class DroneTest {
         assertTrue(drone.getEtat()==2);
     }
 
-    @Test
+/*    @Test
     public void testPiEtat1Bis(){
         drone =new Drone("N");
         drone.setIdCrique("1");
         drone.setIdPU("2");
         drone.piEtat1();
         assertTrue(drone.getEtat()==100);
-    }
+    }*/
 
     @Test
     public void testPiEtat3(){
