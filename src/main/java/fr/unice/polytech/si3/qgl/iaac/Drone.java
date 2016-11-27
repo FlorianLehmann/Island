@@ -352,6 +352,7 @@ public class Drone {
     }
     public boolean piEtat100(){
         action = "{ \"action\": \"stop\" }";
+        idCrique=map.getNearestCreek();
         return true;
     }
 
