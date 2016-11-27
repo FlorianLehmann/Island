@@ -298,7 +298,6 @@ public class Drone {
     public void setIdCrique(String idCrique){
         this.idCrique=idCrique;
         map.setCreek(new Point(X,Y),this.idCrique);
-        this.idCrique=map.getNearestCreek();
         nbCreek++;
     }
 
@@ -356,6 +355,7 @@ public class Drone {
     }
     public boolean piEtat100(){
         action = "{ \"action\": \"stop\" }";
+        this.idCrique=map.getNearestCreek();
         return true;
     }
 
