@@ -9,8 +9,12 @@ import java.util.List;
 public class Map {
     private static List<Case> map=new ArrayList<Case>();
 
-    public void addCase(Point coords){
+    public boolean addCase(Point coords){
+        for(int i=0;i<map.size();i++){
+            if(coords.equals(map.get(i).getCoords()))return false;
+        }
         map.add(new Case(coords));
+        return true;
     }
 
     public int sizemap(){return map.size();}
@@ -138,7 +142,7 @@ public class Map {
         }
     }
 
-    public Case getNearestCreek(){
+    public String getNearestCreek(){
         List<Case> creeks=getcreek();
         int x=creeks.get(0).getCoords().x;
         int y=creeks.get(0).getCoords().y;
@@ -157,6 +161,6 @@ public class Map {
 
 
         }
-        return nearest;
+        return nearest.getIdcreek();
     }
 }

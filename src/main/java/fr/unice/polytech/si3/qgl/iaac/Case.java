@@ -49,6 +49,8 @@ public class Case {
     public boolean creek(){
         return creek;
     }
+    public String getIdcreek() {return idcreek;}
+    public String getIdpu() {return getIdpu();}
 
     public boolean pu(){
         return pu;
