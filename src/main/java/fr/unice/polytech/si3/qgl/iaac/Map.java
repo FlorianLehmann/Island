@@ -31,6 +31,11 @@ public class Map {
         return cases;
     }
 
+    /**
+     * Retourne la liste des cases contenant une crique
+     * @return List
+     */
+
     public List getcreek(){
         List<Case> cases=new ArrayList<Case>();
         for(int i=0;i<map.size();i++){
@@ -41,6 +46,10 @@ public class Map {
         return cases;
     }
 
+    /**
+     * Retourne la Case contenant le point d'urgence
+     * @return Case
+     */
     public Case getEmergency(){
         for(int i=0;i<map.size();i++){
             if(map.get(i).pu()==true){
@@ -122,7 +131,11 @@ public class Map {
         return null;
     }
 
-
+    /**
+     * stocke l'id de la crique dans la case
+     * @param coords
+     * @param idcreek
+     */
     public void setCreek(Point coords,String idcreek){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
@@ -132,6 +145,12 @@ public class Map {
             }
         }
     }
+
+    /**
+     * Stocke l'id du point d'urgence dans la case.
+     * @param coords
+     * @param idpu
+     */
     public void setPu(Point coords,String idpu){
         for(int i=0;i<map.size();i++){
             if(map.get(i).getCoords().equals(coords)){
@@ -142,6 +161,23 @@ public class Map {
         }
     }
 
+    /**
+     * retourne l'id du point d'urgence
+     * @return
+     */
+    public String getIdPu(){
+        for(int i=0;i<map.size();i++){
+            if(map.get(i).pu()==true){
+                return getIdPu();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Renvoie la crique la plus proche du point d'urgence
+     * @return
+     */
     public String getNearestCreek(){
         List<Case> creeks=getcreek();
         int x=creeks.get(0).getCoords().x;
