@@ -49,17 +49,17 @@ public class Drone {
     }
 
     public String left(String direction){
-        if(direction.equals("N")){ X--;return "W";}
-        else if (direction.equals("S")){X++; return "E";}
-        else if(direction.equals("E")){ Y++;return "N";}
-        else{ Y--;return "S";}
+        if(direction.equals("N")){ X--;Y++;return "W";}
+        else if (direction.equals("S")){X++;Y--; return "E";}
+        else if(direction.equals("E")){ Y++;X++;return "N";}
+        else{ Y--;X--;return "S";}
     }
 
     public String right(String direction){
-        if(direction.equals("N")){X++; return "E";}
-        else if (direction.equals("S")){ X--;return "W";}
-        else if(direction.equals("E")){ Y--;return "S";}
-        else{ Y++;return "N";}
+        if(direction.equals("N")){X++;Y++; return "E";}
+        else if (direction.equals("S")){ X--;Y--;return "W";}
+        else if(direction.equals("E")){ Y--;X++;return "S";}
+        else{ Y++;X--;return "N";}
     }
 
     public void fly(String direction){
