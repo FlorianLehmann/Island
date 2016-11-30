@@ -16,7 +16,7 @@ public class State15 implements State {
 	    drone.setAction(ECHO.toString(drone.getDirection().right()));
 	else
 	    drone.setAction(ECHO.toString(drone.getDirection().left()));*/
-        if( drone.getOpposeLastDirection().equals(drone.getDirection().right()))
+        if( drone.getLastDirection().equals(drone.getDirection().right()))
             drone.setAction(ECHO.toString(drone.getDirection().right()));
         else
             drone.setAction(ECHO.toString(drone.getDirection().left()));

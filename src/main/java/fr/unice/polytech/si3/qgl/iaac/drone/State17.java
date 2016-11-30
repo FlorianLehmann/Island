@@ -21,14 +21,18 @@ public class State17 implements State {
 	drone.setAction(HEADING.toString(drone.getDirection().front()));*/
      //drone.setAction(HEADING.toString(drone.getLastDirection().front()));
         if (drone.getOpposeLastDirection().equals("R")) {
+            drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().right()));
             drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().right()));
+            
         }
         else {
+            drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
+
             drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
+            
         }
         drone.setAction(HEADING.toString(drone.getDirection().front()));
-        drone.setAction(HEADING.toString(drone.getDirection().front()));
-
+        
         
     }
 

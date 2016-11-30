@@ -14,6 +14,7 @@ public class State16 implements State {
      */
     public void execute(Drone drone) {
 	drone.setAction(FLY.toString(""));
+    drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().front()));
 	drone.setCaseToTarget(drone.getCaseToTarget() -1);
     }
 

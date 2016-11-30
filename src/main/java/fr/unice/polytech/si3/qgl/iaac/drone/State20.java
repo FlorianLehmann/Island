@@ -14,6 +14,8 @@ public class State20 implements State {
     @Override
     public void execute(Drone drone) {
 	drone.setAction(FLY.toString(""));
+    drone.changeCoord(FLY, EnumDirection.getEnumDirection(drone.getDirection().front()));
+
 	drone.setCaseToTarget(drone.getCaseToTarget() - 1);
 	
     }

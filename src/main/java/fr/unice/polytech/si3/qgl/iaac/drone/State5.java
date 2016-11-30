@@ -13,7 +13,9 @@ public class State5 implements State {
     @Override
     public void execute(Drone drone) {
 	drone.setAction(HEADING.toString(drone.getDirection().right()));
+    drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().right()));
 	drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().right()));
+    
     //drone.setLastDirection(EnumDirection.getEnumDirection(drone.getDirection().right()));//rajout
         drone.setLastDirection("R");
     }

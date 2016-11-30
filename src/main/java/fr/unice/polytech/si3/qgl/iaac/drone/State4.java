@@ -14,12 +14,15 @@ public class State4 implements State {
     public void execute(Drone drone) {
 	if (drone.getNbCaseLeft() > drone.getNbCaseRight()) {
 	    drone.setAction(HEADING.toString(drone.getDirection().left()));
+        drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
 	    drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
       	}
 	else {
 	    drone.setAction(HEADING.toString(drone.getDirection().right()));
+        drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().right()));
 	    drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().right()));
 	}
+        
     }
 
     /**
