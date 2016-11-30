@@ -1,0 +1,40 @@
+package fr.unice.polytech.si3.qgl.iaac.drone;
+
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+
+public class State2 implements State {
+
+    /**
+     *
+     * Demande un echo sur la gauche
+     *
+     */
+    @Override
+    public void execute(Drone drone) {
+
+	drone.setAction(ECHO.toString(direction.left()));
+
+    }
+
+    /**
+     *
+     * Analyse du resultat et passsage à l'etat suivant
+     *
+     */
+    @Override
+    public void wait(Drone drone) {
+	if(result.equals("GROUND")) {
+	    drone.setState(new State6());
+	    drone.setCaseToTarget((int) ReadJSON.get("range"));
+	}
+	else {
+	    drone.setState(new State3());
+	    drone.setNbCaseLeft((int) ReadJSON.get("range"));
+	}
+    }
+	
+	
+
+
+
+}

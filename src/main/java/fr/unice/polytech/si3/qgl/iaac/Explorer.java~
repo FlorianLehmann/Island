@@ -3,9 +3,6 @@ package fr.unice.polytech.si3.qgl.iaac;
 import eu.ace_design.island.bot.IExplorerRaid;
 import java.util.LinkedList;
 import java.util.List;
-import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
-import fr.unice.polytech.si3.qgl.iaac.drone.State;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 
 public class Explorer implements IExplorerRaid {
 
@@ -33,13 +30,13 @@ public class Explorer implements IExplorerRaid {
 	json.read(s);
 	List<Men> men = new LinkedList();
 
-	budget = (int) json.getInformations().get("budget");
+	budget = json.get("budget");
 
-	for (int i = 0; i < ((int) json.getInformations().get("men")); i++) {
+	for (int i = 0; i < json.get("men"); i++) {
 	    men.add(new Men());
 	}
 
-	direction = EnumDirection.getEnumDirection((String) json.getInformations().get("heading"));
+	direction = json.get("heading").getEnumDirection();
 
 	drone = new Drone(direction);
 
@@ -48,25 +45,20 @@ public class Explorer implements IExplorerRaid {
 	
     }
 
-    /**
-     *
-     * Take decision
-     *
-     */
     @Override
     public String takeDecision() {
-	drone.getState().wait(drone);
-	drone.getState().execute(drone);
-	return drone.getAction();
+
+	//correspond au contexte du command pattern state
+
     }
 
     @Override
     public void acknowledgeResults(String s) {
-	json.read(s);
+
     }
 
     @Override
     public String deliverFinalReport() {
-	return "";
+
     }
 }
