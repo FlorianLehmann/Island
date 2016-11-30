@@ -14,15 +14,18 @@ public class Case {
     private List<MiniCase>   miniCase=new ArrayList<MiniCase>();
     protected boolean creek=false;
     protected boolean pu=false;
+    String idcreek;
+    String idpu;
 
 
     public Case(Point coords){
         this.coords=coords;
+        /*
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                 miniCase.add(new MiniCase(new Point(i,j)));
             }
-        }
+        }*/
 
     }
     public Case(){
@@ -44,10 +47,13 @@ public class Case {
     public List getRessourcesQ(){
         return ressources_quantity;
     }
+
     public boolean creek(){
         return creek;
     }
+    public String getIdcreek() {return idcreek;}
 
+    public String getIdpu() {return getIdpu();}
     public boolean pu(){
         return pu;
     }
@@ -77,7 +83,13 @@ public class Case {
     public void setRessources_quantity(String ressource_quantity){
         ressources_quantity.add(ressource_quantity);
     }
+
     public void setcreek(){creek=true;}
+
     public void setpu(){pu=true;}
+
+    public void setIdCreek(String idcreek){this.idcreek=idcreek;}
+
+    public void setIdPu(String idpu){this.idpu=idpu;}
 
 }
