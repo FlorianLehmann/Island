@@ -5,8 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
 import fr.unice.polytech.si3.qgl.iaac.drone.State;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-
+import java.awt.*;
 public class Explorer implements IExplorerRaid {
 
     /**
@@ -14,6 +15,7 @@ public class Explorer implements IExplorerRaid {
      * Attributes
      *
      */
+    private Carte carte;
     private List<Men> men;
     private ReadJSON json;
     private int budget;
@@ -28,7 +30,8 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void initialize(String s) {
-
+        carte = new Carte();
+        
 	json = new ReadJSON();
 	json.read(s);
 	List<Men> men = new LinkedList();
@@ -41,7 +44,7 @@ public class Explorer implements IExplorerRaid {
 
 	direction = EnumDirection.getEnumDirection((String) json.getInformations().get("heading"));
 
-	drone = new Drone(direction);
+	drone = new Drone(direction, carte);
 
 	//gérer les ressources
 	
@@ -67,6 +70,6 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-	return "";
+        return "CREEK:" + carte.getNearestCreekPU() +"\n" +"EMERGENCY:" + carte.getPU();
     }
 }

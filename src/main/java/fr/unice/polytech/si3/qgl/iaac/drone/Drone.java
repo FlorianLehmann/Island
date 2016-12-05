@@ -1,12 +1,15 @@
 package fr.unice.polytech.si3.qgl.iaac.drone;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.Creek;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.PU;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import java.util.LinkedList;
-import java.util.List;
 import java.awt.*;
+
 
 public class Drone {
 
@@ -16,12 +19,11 @@ public class Drone {
      *
      */
     private State state;
+    private int budget;
     private String action;
+    private Carte carte;
     private EnumDirection direction;
-    private String creeks;
-    private String PU;
     private Point point;
-    //private EnumDirection lastDirection;
     private String lastDirection;
     private int CaseToTarget;
     private int NbCaseRight;
@@ -32,18 +34,19 @@ public class Drone {
      * default constructor
      *
      */
-    public Drone(EnumDirection direction) {
-        state = new State0();
-        action = new String();
-        lastDirection = "R";
-        this.direction = direction;
-        creeks = new String();
-        PU = new String();
-        CaseToTarget = 0;
-        NbCaseLeft = 0;
-        NbCaseRight = 0;
-        lastGround = true;
-        point.setLocation(0,0);
+    public Drone(EnumDirection direction, Carte carte) {
+        this.carte = carte;
+    carte = new Carte();
+	state = new State0();
+	action = new String();
+    budget = (int) ReadJSON.getInformations().get("budget");
+    point = new Point(0,0);
+    this.lastDirection = "R"; // a suppr
+	this.direction = direction;
+	CaseToTarget = 0;
+	NbCaseLeft = 0;
+	NbCaseRight = 0;
+	lastGround = true;
     }
 
     /**
@@ -53,7 +56,7 @@ public class Drone {
      *
      */
     public void setState(State state) {
-        this.state = state;
+	this.state = state;
     }
 
     /**
@@ -63,7 +66,10 @@ public class Drone {
      *
      */
     public State getState() {
-        return state;
+        if (budget < 19) {
+            return new State11();
+        }
+	return state;
     }
 
 
@@ -71,91 +77,91 @@ public class Drone {
      * get Case to target
      */
     public int getCaseToTarget() {
-        return CaseToTarget;
+	return CaseToTarget;
     }
 
     /**
      * set CaseToTarget
      */
     public void setCaseToTarget(int CaseToTarget) {
-        this.CaseToTarget = CaseToTarget;
+	this.CaseToTarget = CaseToTarget;
     }
 
     /**
      * get direction
      */
     public EnumDirection getDirection() {
-        return direction;
+	return direction;
     }
 
     /**
      * set direction
      */
     public void setDirection(EnumDirection direction) {
-        this.direction = direction;
+	this.direction = direction;
     }
 
     /**
      * Set NbCaseRight
      */
     public void setNbCaseRight(int NbCaseRight) {
-        this.NbCaseRight = NbCaseRight;
+	this.NbCaseRight = NbCaseRight;
     }
 
     /**
      * get NbCaseRight
      */
     public int getNbCaseRight() {
-        return NbCaseRight;
+	return NbCaseRight;
     }
 
     /**
      * Set NbCaseLeft
      */
     public void setNbCaseLeft(int NbCaseLeft) {
-        this.NbCaseLeft = NbCaseLeft;
+	this.NbCaseLeft = NbCaseLeft;
     }
 
     /**
      * get NbCaseLeft
      */
     public int getNbCaseLeft() {
-        return NbCaseLeft;
+	return NbCaseLeft;
     }
 
     /**
      * Set action
      */
     public void setAction(String action) {
-        this.action = action;
+	this.action = action;
     }
 
     /**
      * Get action
      */
     public String getAction() {
-        return action;
+	return action;
     }
 
     /**
      * Get LastDirection
      */
     public String getLastDirection() {
-        return lastDirection;
+	return lastDirection;
     }
 
     /**
      * Set LastDirection
      */
     public void setLastDirection(String lastDirection) {
-        this.lastDirection = lastDirection;
+	this.lastDirection = lastDirection;
     }
 
     /**
      * set LastGround
      */
     public void setLastGround(boolean lastGround) {
-        this.lastGround= lastGround;
+	this.lastGround= lastGround;
     }
 
    
@@ -165,7 +171,7 @@ public class Drone {
         if (lastDirection.equals("R")) {
             return "G";
         }
-        else
+            else
             return "R";
     }
     
@@ -173,21 +179,21 @@ public class Drone {
      * get Lastground
      */
     public boolean getLastGround() {
-        return lastGround;
+	return lastGround;
     }
 
     /**
      *  @return boolean
      */
     public boolean hasPU() {
-        return PU != null;
+        return carte.hasPU();
     }
-
+    
     /**
      *  @return boolean
      */
     public boolean hasCreek() {
-        return creeks != null;
+        return carte.hasCreek();
     }
     
     /**
@@ -196,18 +202,18 @@ public class Drone {
     public void changeCoord(EnumJSON req, EnumDirection direction){
         if (req == HEADING) {
             switch(direction) {
-            case NORD:
-                point.setLocation(point.getX(), point.getY() + 1);
-                break;
-            case SUD:
-                point.setLocation(point.getX(), point.getY() - 1);
-                break;
-            case WEST:
-                point.setLocation(point.getX() - 1, point.getY());
-                break;
-            case EST:
-                point.setLocation(point.getX() + 1, point.getY());
-                break;
+                case NORD:
+                    point.setLocation(point.getX(), point.getY() + 1);
+                    break;
+                case SUD:
+                    point.setLocation(point.getX(), point.getY() - 1);
+                    break;
+                case WEST:
+                    point.setLocation(point.getX() - 1, point.getY());
+                    break;
+                case EST:
+                    point.setLocation(point.getX() + 1, point.getY());
+                    break;
             }
         }
         switch(this.direction) {
@@ -233,6 +239,38 @@ public class Drone {
         return point;
     }
     
+    /**
+     * Add a case to the map
+     */
+    public void addCase() {
+        carte.addCase(point);
+    }
     
+    /**
+     * Set a PU
+     */
+    public void setPU(String id) {
+        carte.setPOI(new PU(id), point);
+    }
     
+    /**
+     * Set a creek
+     */
+    public void setCreek(String id) {
+        carte.setPOI(new Creek(id), point);
+    }
+    
+    /**
+     * get the budget
+     */
+    public int getBudget() {
+        return budget;
+    }
+    
+    /**
+     * budget - x
+     */
+    public void subBudget(int x) {
+        budget = budget - x;
+    }
 }

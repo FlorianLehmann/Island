@@ -14,7 +14,7 @@ public class State16 implements State {
      */
     public void execute(Drone drone) {
 	drone.setAction(FLY.toString(""));
-    drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().front()));
+    drone.changeCoord(FLY, drone.getDirection());
 	drone.setCaseToTarget(drone.getCaseToTarget() -1);
     }
 
@@ -24,6 +24,7 @@ public class State16 implements State {
      *
      */
     public void wait(Drone drone) {
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	drone.setState(new State15());
     }
     

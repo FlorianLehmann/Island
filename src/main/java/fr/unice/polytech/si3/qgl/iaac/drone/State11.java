@@ -1,6 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.drone;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+
 
 public class State11 implements State {
 
@@ -22,7 +24,7 @@ public class State11 implements State {
     @Override
     public void wait(Drone drone) {
 
-
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
     }
 
 }

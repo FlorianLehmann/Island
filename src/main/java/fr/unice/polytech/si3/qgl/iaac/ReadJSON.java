@@ -33,7 +33,8 @@ public class ReadJSON {
      *
      */
     public void read(String s) {
-
+        if(!informations.isEmpty())
+            informations.clear();
 	jsonobject = new JSONObject(s);
 
 	if (jsonobject.has("men"))
@@ -69,14 +70,45 @@ public class ReadJSON {
 		
 
 	}
-	if( jsonobject.has("extras"))
-		    {
-			JSONObject bio = jsonobject.getJSONObject("extras");
+	if(jsonobject.has("extras"))
+	    {
+		JSONObject bio = jsonobject.getJSONObject("extras");
                 if( bio.has("range"))
                     informations.put("range", bio.getInt("range"));
                 if( bio.has("found"))
                     informations.put("found", bio.getString("found"));
-		    }
+		JSONArray tab;
+		Iterator iterator;
+		if (bio.has("creeks")) {
+		tab = bio.getJSONArray("creeks");
+
+			iterator = tab.iterator();
+			
+			while( iterator.hasNext()){
+			    informations.put("creeks", iterator.next());
+			}
+		}
+		/*else { informations.remove("creeks"); }*/
+		if (bio.has("sites")) {
+		    
+	     
+
+			tab = bio.getJSONArray("sites");
+
+			iterator = tab.iterator();
+			
+			while( iterator.hasNext()){
+			    informations.put("sites", iterator.next());
+			    
+			}
+		}
+		/*else { informations.remove("sites"); }*/
+	    }
+        
+        if( jsonobject.has("cost"))
+        {
+            informations.put("cost", jsonobject.getInt("cost"));
+        }
 	    
 	    
 	

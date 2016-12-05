@@ -35,6 +35,7 @@ public class State18 implements State {
      */
     @Override
     public void wait(Drone drone) {
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	drone.setState(new State19());
 
     }

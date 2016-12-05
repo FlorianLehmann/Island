@@ -23,6 +23,7 @@ public class State3 implements State {
      */
     @Override
     public void wait(Drone drone) {
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	if (ReadJSON.getInformations().get("found").equals("GROUND")) {
 	    drone.setState(new State5());
 	    drone.setCaseToTarget((int) ReadJSON.getInformations().get("range"));

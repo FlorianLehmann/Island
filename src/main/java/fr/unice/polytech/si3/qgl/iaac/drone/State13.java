@@ -23,6 +23,7 @@ public class State13 implements State {
      */
     @Override
     public void wait(Drone drone) {
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	if (ReadJSON.getInformations().get("found").equals("GROUND") || drone.getLastGround()) {
 	    drone.setState(new State14());
 	    if ( !ReadJSON.getInformations().get("found").equals("GROUND") )

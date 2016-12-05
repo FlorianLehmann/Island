@@ -13,10 +13,9 @@ public class State6 implements State {
      */
     @Override
     public void execute(Drone drone) {
-
-	drone.setAction(HEADING.toString(drone.getDirection().left()));
         drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
 
+	drone.setAction(HEADING.toString(drone.getDirection().left()));
 	drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
     //drone.setLastDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));//rajout
         drone.setLastDirection("G");
@@ -30,7 +29,7 @@ public class State6 implements State {
      */
     @Override
     public void wait(Drone drone) {
-
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	drone.setState(new State10());
 	
     }

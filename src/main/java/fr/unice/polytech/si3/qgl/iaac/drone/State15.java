@@ -12,14 +12,20 @@ public class State15 implements State {
      */
     @Override
     public void execute(Drone drone) {
+        //drone.getOpposeLastDirection().equals("R")
+        if( drone.getOpposeLastDirection().equals("R"))
+            drone.setAction(ECHO.toString(drone.getDirection().right()));
+        else
+            drone.setAction(ECHO.toString(drone.getDirection().left()));
+        
 	/*if( EnumDirection.getOppose(drone.getLastDirection()).equals(drone.getDirection().right()))
 	    drone.setAction(ECHO.toString(drone.getDirection().right()));
 	else
 	    drone.setAction(ECHO.toString(drone.getDirection().left()));*/
-        if( drone.getLastDirection().equals(drone.getDirection().right()))
+        /*if( drone.getLastDirection().equals(drone.getDirection().right()))
             drone.setAction(ECHO.toString(drone.getDirection().right()));
         else
-            drone.setAction(ECHO.toString(drone.getDirection().left()));
+            drone.setAction(ECHO.toString(drone.getDirection().left()));*/
 	
     }
 
@@ -30,6 +36,7 @@ public class State15 implements State {
      */
     @Override
     public void wait(Drone drone) {
+        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
 	if (ReadJSON.getInformations().get("found").equals("GROUND") && (((int) ReadJSON.getInformations().get("range")) < 4)) {
 	    drone.setState(new State16());
 	}
