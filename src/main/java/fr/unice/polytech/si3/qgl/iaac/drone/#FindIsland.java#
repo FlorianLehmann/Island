@@ -1,0 +1,13 @@
+package fr.unice.polytech.si3.qgl.iaac.drone;
+
+public class FindIsland implements DroneState {
+
+    
+    
+    @Override
+    public void execute() {
+
+
+    }
+    
+}
