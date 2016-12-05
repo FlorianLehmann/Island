@@ -34,7 +34,7 @@ public class State1 implements State {
 
 	}
 	else if ((int) ReadJSON.getInformations().get("range") == 0) {
-	    drone.setState(new State12());//11
+	    drone.setState(new State11());//11
 	}
 	else {
 	    drone.setState(new State2());
