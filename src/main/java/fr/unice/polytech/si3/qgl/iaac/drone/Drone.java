@@ -35,14 +35,14 @@ public class Drone {
      *
      */
     public Drone(EnumDirection direction, Carte carte) {
-        this.carte = carte;
-    carte = new Carte();
+    this.carte = carte;
+    //carte = new Carte();
 	state = new State0();
 	action = new String();
-    budget = (int) ReadJSON.getInformations().get("budget");
+    budget =  (int) ReadJSON.getInformations().get("budget");
     point = new Point(0,0);
     this.lastDirection = "R"; // a suppr
-	this.direction = direction;
+        this.direction = direction;
 	CaseToTarget = 0;
 	NbCaseLeft = 0;
 	NbCaseRight = 0;
