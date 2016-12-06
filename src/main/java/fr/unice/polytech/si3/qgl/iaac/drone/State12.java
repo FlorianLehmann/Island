@@ -32,7 +32,7 @@ public class State12 implements State {
 	if(ReadJSON.getInformations().containsKey("creeks") /*&& !((String)ReadJSON.getInformations().get("sites")).equals("")*/) {// TODO:
        drone.setCreek((String) ReadJSON.getInformations().get("creeks"));
     }
-	if ( drone.hasPU() && drone.hasCreek() ) {
+	if ( drone.hasPU() && (drone.getNbCreek() == 10) ) {
 	    drone.setState(new State11());
 	}
 	else {

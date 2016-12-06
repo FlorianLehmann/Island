@@ -107,6 +107,19 @@ public class Carte {
 
     }
 
+    /**
+     * get the number of Creeks
+     * @return int
+     */
+    public int getNbCreek() {
+	int j = 0;
+	for (int i = 0; i < cases.size() ; i++)
+	    if (cases.get(i).hasCreek() == true)
+		j++;
+	return j;
+
+    }
+
 }
 
 
