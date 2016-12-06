@@ -273,4 +273,12 @@ public class Drone {
     public void subBudget(int x) {
         budget = budget - x;
     }
+
+    /**
+     * return the number of creeks
+     *
+     */
+    public int getNbCreek() {
+	return carte.getNbCreek();
+    }
 }

@@ -1,4 +1,3 @@
-fr/unice/polytech/si3/qgl/iaac/GreeterTest.class
-fr/unice/polytech/si3/qgl/iaac/MapTest.class
-fr/unice/polytech/si3/qgl/iaac/DroneTest.class
-fr/unice/polytech/si3/qgl/iaac/ExplorerTest.class
+fr/unice/polytech/si3/qgl/iaac/drone/State2Test.class
+fr/unice/polytech/si3/qgl/iaac/drone/Sate3Test.class
+fr/unice/polytech/si3/qgl/iaac/drone/State4Test.class

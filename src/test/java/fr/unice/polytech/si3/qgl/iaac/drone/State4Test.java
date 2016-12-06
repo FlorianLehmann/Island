@@ -30,14 +30,15 @@ public class State4Test {
 
     }
 
-    @Ignore
     @Test
     public void ActionTest() {
         nbCaseRight=10;
         nbCaseLeft=20;
+        drone.setNbCaseRight(nbCaseRight);
+        drone.setNbCaseLeft(nbCaseLeft);
         drone.setState(new State4());
         drone.getState().execute(drone);
-        assertEquals(HEADING.toString(drone.getDirection().left()), drone.getAction());
+        assertEquals(HEADING.toString(NORD.left()), drone.getAction());
     }
 }
 

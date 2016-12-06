@@ -14,12 +14,20 @@ public class State1Test {
     private Drone drone;
     private Carte carte;
     
-    @Test
+    @Before
     public void init() {
         read = new ReadJSON();
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
 	carte = new Carte();
 	drone = new Drone(SUD, new Carte());
+    }
+
+    @Test
+    public void ActionTest() {
+	drone.setState(new State1());
+	drone.getState().execute(drone);
+	assertEquals("t","t");
+
     }
 
     
