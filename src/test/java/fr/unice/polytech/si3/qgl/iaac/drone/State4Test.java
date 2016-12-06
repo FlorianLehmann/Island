@@ -40,5 +40,16 @@ public class State4Test {
         drone.getState().execute(drone);
         assertEquals(HEADING.toString(NORD.left()), drone.getAction());
     }
+
+    @Test
+    public void ActionTest2() {
+        nbCaseRight=20;
+        nbCaseLeft=10;
+        drone.setNbCaseRight(nbCaseRight);
+        drone.setNbCaseLeft(nbCaseLeft);
+        drone.setState(new State4());
+        drone.getState().execute(drone);
+        assertEquals(HEADING.toString(NORD.right()), drone.getAction());
+    }
 }
 
