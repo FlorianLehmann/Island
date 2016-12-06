@@ -1,4 +1,8 @@
-/Users/dev/qgl4/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/DroneTest.java
-/Users/dev/qgl4/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/GreeterTest.java
-/Users/dev/qgl4/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/MapTest.java
-/Users/dev/qgl4/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/ExplorerTest.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/carte/CarteTest.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State3Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State5Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State1Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State2Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State6Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State10Test.java
+/Users/dev/qgl2/private/src/test/java/fr/unice/polytech/si3/qgl/iaac/drone/State4Test.java
