@@ -13,8 +13,7 @@ import org.junit.*;
 /**
  * Created by Quentin on 06/12/2016.
  */
-public class Sate3Test {
-
+public class State6Test {
     private ReadJSON read;
     private Drone drone;
     private Carte carte;
@@ -28,11 +27,10 @@ public class Sate3Test {
 
     }
 
-
     @Test
     public void ActionTest() {
-        drone.setState(new State3());
+        drone.setState(new State6());
         drone.getState().execute(drone);
-        assertEquals(ECHO.toString(drone.getDirection().right()), drone.getAction());
+        assertEquals(HEADING.toString(NORD.left()), drone.getAction());
     }
 }
