@@ -18,18 +18,23 @@ public class State1Test {
     public void init() {
         read = new ReadJSON();
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
-	carte = new Carte();
-	drone = new Drone(SUD, new Carte());
+        carte = new Carte();
+        drone = new Drone(SUD, new Carte());
+        drone.setState(new State1());
     }
 
     @Test
     public void ActionTest() {
-	drone.setState(new State1());
 	drone.getState().execute(drone);
-	assertEquals("t","t");
-
+	assertEquals(ECHO.toString(drone.getDirection().front()),drone.getAction());
     }
 
+    @Test
+    public void GroundTest() {
+        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
+        drone.getState().wait(drone);
+        assertEquals(ECHO.toString(drone.getDirection().front()),drone.getAction());
+    }
     
 
 }
