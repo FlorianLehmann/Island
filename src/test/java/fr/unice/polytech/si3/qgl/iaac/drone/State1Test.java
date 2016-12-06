@@ -31,9 +31,25 @@ public class State1Test {
 
     @Test
     public void GroundTest() {
-        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
+        read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertEquals(ECHO.toString(drone.getDirection().front()),drone.getAction());
+        assertEquals(drone.getCaseToTarget(),2);
+        assertTrue(drone.getState() instanceof State10);
+        assertEquals("G",drone.getLastDirection());
+    }
+    
+    @Test
+    public void OceanTest() {
+        read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
+        drone.getState().wait(drone);
+        assertTrue(drone.getState() instanceof State2);
+    }
+    
+    @Test
+    public void OutOfRangeTest() {
+        read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
+        drone.getState().wait(drone);
+        assertTrue(drone.getState() instanceof State11);
     }
     
 

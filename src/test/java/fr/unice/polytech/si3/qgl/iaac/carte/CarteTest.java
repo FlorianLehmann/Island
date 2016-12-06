@@ -10,9 +10,6 @@ import org.junit.*;
 
 import java.awt.*;
 
-/**
- * Created by sebde on 05/12/2016
- */
 public class CarteTest {
 
 private Carte carte;
@@ -26,4 +23,11 @@ private Carte carte;
         carte.setPOI(new Creek("creek1"),new Point(0,0));
         assertEquals(carte.hasCreek(),true);
     }
+    
+    @Test
+    public void PasCrique() {
+        assertEquals(carte.getNbCreek(), 0);
+    }
+    
+
 }
