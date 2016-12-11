@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.drone;
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
@@ -21,13 +22,20 @@ public class State16Test {
         read = new ReadJSON();
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte();
-        drone = new Drone(SUD,carte);
+        drone = new Drone(SUD, carte);
+        drone.setState(new State16());
     }
 
     @Test
-    public void ActionTest(){
-        drone.setState(new State16());
+    public void ActionTest() {
         drone.getState().execute(drone);
-        assertEquals(FLY.toString(""),drone.getAction());
+        assertEquals(FLY.toString(""), drone.getAction());
+    }
+
+    @Test
+    public void WaitTest() {
+        read.read("{ \"cost\": 2, \"extras\": {}, \"status\": \"OK\" }");
+        drone.getState().wait(drone);
+        assertTrue(drone.getState() instanceof State15);
     }
 }
