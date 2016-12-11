@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.awt.*;
 
-public class Wood {
+public class Wood extends Res{
 
     private static List<Point> wood;
 

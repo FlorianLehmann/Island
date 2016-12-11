@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by sebde on 11/12/2016.
  */
-public class Flower {
+public class Flower extends Res{
     private static java.util.List<Point> flower;
 
     public Flower() {

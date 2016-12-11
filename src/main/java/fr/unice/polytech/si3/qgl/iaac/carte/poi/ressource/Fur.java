@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by sebde on 11/12/2016.
  */
-public class Fur {
+public class Fur extends Res{
     private static java.util.List<Point> fur;
 
     public Fur() {
