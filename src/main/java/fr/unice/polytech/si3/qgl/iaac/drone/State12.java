@@ -1,8 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac.drone;
+package sample.bot.drone;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import static sample.bot.EnumJSON.*;
+import sample.bot.EnumDirection;
+import sample.bot.ReadJSON;
 import java.util.HashMap;
 
 public class State12 implements State {
@@ -32,8 +32,8 @@ public class State12 implements State {
 	if(ReadJSON.getInformations().containsKey("creeks") /*&& !((String)ReadJSON.getInformations().get("sites")).equals("")*/) {// TODO:
        drone.setCreek((String) ReadJSON.getInformations().get("creeks"));
     }
-	if ( drone.hasPU() && (drone.getNbCreek() == 10) ) {
-	    drone.setState(new State11());
+	if ( drone.hasPU() && (drone.getNbCreek() == 8) ) {
+	    drone.setState(new State26());
 	}
 	else {
 	    drone.setState(new State13());
@@ -41,3 +41,4 @@ public class State12 implements State {
     }
 
 }
+

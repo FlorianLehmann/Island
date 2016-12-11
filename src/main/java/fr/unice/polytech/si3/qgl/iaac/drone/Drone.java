@@ -1,13 +1,13 @@
-package fr.unice.polytech.si3.qgl.iaac.drone;
+package sample.bot.drone;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.Creek;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.PU;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import sample.bot.EnumDirection;
+import sample.bot.EnumJSON;
+import sample.bot.carte.Carte;
+import sample.bot.carte.poi.Creek;
+import sample.bot.carte.poi.PU;
+import static sample.bot.EnumJSON.*;
+import static sample.bot.EnumDirection.*;
+import sample.bot.ReadJSON;
 import java.awt.*;
 
 
@@ -29,6 +29,7 @@ public class Drone {
     private int NbCaseRight;
     private int NbCaseLeft;
     private boolean lastGround;
+    private int nbMen;
     /**
      *
      * default constructor
@@ -36,6 +37,7 @@ public class Drone {
      */
     public Drone(EnumDirection direction, Carte carte) {
     this.carte = carte;
+    nbMen = (int) ReadJSON.getInformations().get("men");
     //carte = new Carte();
 	state = new State0();
 	action = new String();
@@ -72,7 +74,22 @@ public class Drone {
 	return state;
     }
 
-
+    /**
+     * @return if of the first crique
+     *
+     */
+    public String getACrique() {
+	return carte.getCaseCreek();
+    }
+    
+    /**
+     * get Men
+     *
+     */
+    public int getNbMen() {
+	return nbMen;
+    }
+    
     /**
      * get Case to target
      */

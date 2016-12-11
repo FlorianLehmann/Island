@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 import org.json.*;
 import java.util.Map;

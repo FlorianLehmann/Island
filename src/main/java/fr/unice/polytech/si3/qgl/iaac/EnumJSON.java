@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 public enum EnumJSON {
 
@@ -33,7 +33,7 @@ public enum EnumJSON {
 	
     }
 
-    public String toString(String parametre1,String parametre2){
+    public String toString(String parametre1,int parametre2){
         return debut + parametre1 + milieu + parametre2 + fin;
     }
 

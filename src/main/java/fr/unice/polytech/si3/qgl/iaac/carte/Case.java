@@ -1,8 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac.carte;
+package sample.bot.carte;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.*;
+import sample.bot.carte.poi.*;
 
 public class Case {
 

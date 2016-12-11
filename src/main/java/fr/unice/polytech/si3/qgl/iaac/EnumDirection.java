@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 import java.util.Map;
 import java.util.HashMap;

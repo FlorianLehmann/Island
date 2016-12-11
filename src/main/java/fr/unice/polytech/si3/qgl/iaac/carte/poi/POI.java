@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.carte.poi;
+package sample.bot.carte.poi;
 
 import java.awt.*;
 

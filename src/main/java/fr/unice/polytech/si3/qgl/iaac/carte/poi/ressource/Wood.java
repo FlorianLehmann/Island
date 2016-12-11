@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource;
+package sample.bot.carte.poi.ressource;
 
 import java.util.List;
 import java.util.ArrayList;
