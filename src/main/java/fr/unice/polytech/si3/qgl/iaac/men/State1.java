@@ -3,6 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import java.util.Stack;
 import java.awt.*;
@@ -20,8 +22,8 @@ public class State1 implements State {
     @Override
     public void execute(Men men) {
         //on définie le chemin jsuqu'à la ressource
-        EnumDirection direction;
-        String tmp;
+        EnumDirection direction = NORD;
+        String tmp = new String();
         int X;
         int Y;
         if(!wayDefine){
