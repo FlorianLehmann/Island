@@ -1,13 +1,13 @@
-package sample.bot.drone;
+package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import sample.bot.EnumDirection;
-import sample.bot.EnumJSON;
-import sample.bot.carte.Carte;
-import sample.bot.carte.poi.Creek;
-import sample.bot.carte.poi.PU;
-import static sample.bot.EnumJSON.*;
-import static sample.bot.EnumDirection.*;
-import sample.bot.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.Creek;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.PU;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import java.awt.*;
 
 
@@ -301,5 +301,5 @@ public class Drone {
 
     public String getCaseCreek(){
         return carte.getCaseCreek().toString();
-    }
+    } 
 }

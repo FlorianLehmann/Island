@@ -1,7 +1,7 @@
-package sample.bot.drone;
+package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import static sample.bot.EnumJSON.*;
-import sample.bot.ReadJSON;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,9 @@ public class State26 implements State {
 
     @Override
     public void wait(Drone drone) {
+
         drone.subBudget((int) ReadJSON.getInformations().get("cost"));
-        
+
         drone.setState(new State11());
     }
 }

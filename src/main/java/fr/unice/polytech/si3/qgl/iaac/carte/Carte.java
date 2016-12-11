@@ -1,5 +1,5 @@
-package sample.bot.carte;
-import sample.bot.carte.poi.POI;
+package fr.unice.polytech.si3.qgl.iaac.carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.POI;
 import java.util.List;
 import java.util.LinkedList;
 import java.awt.*;

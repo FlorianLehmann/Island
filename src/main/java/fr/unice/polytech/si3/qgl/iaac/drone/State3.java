@@ -1,8 +1,8 @@
-package sample.bot.drone;
+package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import sample.bot.EnumDirection;
-import static sample.bot.EnumJSON.*;
-import sample.bot.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 public class State3 implements State {
 
