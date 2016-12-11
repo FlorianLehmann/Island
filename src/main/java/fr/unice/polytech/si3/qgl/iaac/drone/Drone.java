@@ -66,7 +66,7 @@ public class Drone {
      *
      */
     public State getState() {
-        if (budget < 19) {
+        if (budget < 21) {
             return new State11();
         }
 	return state;
