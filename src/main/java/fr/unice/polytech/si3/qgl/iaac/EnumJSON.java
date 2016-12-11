@@ -7,7 +7,12 @@ public enum EnumJSON {
     FLY( "{ \"action\": \"fly\" }","", "" ),
     STOP( "{ \"action\": \"stop\" }","", ""),
     HEADING("{ \"action\": \"heading\", \"parameters\": { \"direction\":\"","", "\" } }"),
-    LAND("{ \"action\": \"land\", \"parameters\": { \"creek\": \"","\", \"people\": "," }}");
+    LAND("{ \"action\": \"land\", \"parameters\": { \"creek\": \"","\", \"people\": "," }}"),
+    MOVETO("{ \"action\": \"move_to\", \"parameters\": { \"direction\": \"" ,"","\" } }"),
+    SCOUT("{ \"action\": \"scout\", \"parameters\": { \"direction\": \"","","\" } }"),
+    GLIMPSE("{ \"action\": \"glimpse\", \"parameters\": { \"direction\": \"","\", \"range\": "," } }"),
+    EXPLORE("{ \"action\": \"explore\" }","",""),
+    EXPLOIT("{ \"action\": \"exploit\", \"parameters\": { \"resource\": \"","","\" }}");
 
     String debut, milieu, fin;
 
