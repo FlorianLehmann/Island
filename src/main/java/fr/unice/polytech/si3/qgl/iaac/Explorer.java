@@ -39,11 +39,13 @@ public class Explorer implements IExplorerRaid {
 
 	budget = (int) json.getInformations().get("budget");
 
-	
 
 	direction = EnumDirection.getEnumDirection((String) json.getInformations().get("heading"));
 
 	drone = new Drone(direction, carte);
+        
+        men = new Men(carte, new Point(0,0));
+
 
 	//gérer les ressources
 	
