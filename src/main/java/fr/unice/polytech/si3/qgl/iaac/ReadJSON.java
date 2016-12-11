@@ -16,6 +16,7 @@ public class ReadJSON {
      */
     private static Map<String, Object> informations;
     private static List<String> contracts;
+    private static List<String> biome;
     private JSONObject jsonobject;
 
     /**
@@ -27,6 +28,7 @@ public class ReadJSON {
 
 	informations = new HashMap();
         contracts = new ArrayList();
+        biome = new ArrayList();
 	
     }
 
@@ -107,6 +109,20 @@ public class ReadJSON {
 			    
 			}
 		}
+            if (bio.has("biomes")) {
+                
+                biome.clear();
+                
+                tab = bio.getJSONArray("biomes");
+                //informations.put("biomes", new ArrayList<String>());
+                
+                iterator =  tab.iterator();
+                
+                while( iterator.hasNext()){
+                    biome.add((String) iterator.next());
+                    
+                }
+            }
 		/*else { informations.remove("sites"); }*/
 	    }
         
@@ -128,6 +144,12 @@ public class ReadJSON {
 
 	return informations;
 
+    }
+    
+    static public List<String> getBiome() {
+        
+        return biome;
+        
     }
 	
 }
