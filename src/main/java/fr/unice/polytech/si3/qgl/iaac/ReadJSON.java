@@ -4,6 +4,8 @@ import org.json.*;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ReadJSON {
 
@@ -13,6 +15,7 @@ public class ReadJSON {
      *
      */
     private static Map<String, Object> informations;
+    private static List<String> contracts;
     private JSONObject jsonobject;
 
     /**
@@ -23,9 +26,13 @@ public class ReadJSON {
     public ReadJSON() {
 
 	informations = new HashMap();
+        contracts = new ArrayList();
 	
     }
 
+    public static List getContracts() {
+        return contracts;
+    }
 
     /**
      *
@@ -60,9 +67,7 @@ public class ReadJSON {
 		iterator_ressource = jsonobject2.keys();
 		
 		while(iterator_ressource.hasNext()) {
-
-		    tmp = iterator_ressource.next();
-		    informations.put(tmp, jsonobject2.get(tmp));
+            contracts.add(iterator_ressource.next());
 		    
 		}
 

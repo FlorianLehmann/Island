@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac;
 import eu.ace_design.island.bot.IExplorerRaid;
 import java.util.LinkedList;
 import java.util.List;
+import fr.unice.polytech.si3.qgl.iaac.men.Men;
 import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
 import fr.unice.polytech.si3.qgl.iaac.drone.State;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
@@ -16,7 +17,7 @@ public class Explorer implements IExplorerRaid {
      *
      */
     private Carte carte;
-    private List<Men> men;
+    private Men men;
     private ReadJSON json;
     private int budget;
     private EnumDirection direction;
@@ -34,13 +35,11 @@ public class Explorer implements IExplorerRaid {
         
 	json = new ReadJSON();
 	json.read(s);
-	List<Men> men = new LinkedList();
+	
 
 	budget = (int) json.getInformations().get("budget");
 
-	for (int i = 0; i < ((int) json.getInformations().get("men")); i++) {
-	    men.add(new Men());
-	}
+	
 
 	direction = EnumDirection.getEnumDirection((String) json.getInformations().get("heading"));
 
@@ -48,7 +47,7 @@ public class Explorer implements IExplorerRaid {
 
 	//gérer les ressources
 	
-	
+
     }
 
     /**
@@ -58,9 +57,22 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String takeDecision() {
-	drone.getState().wait(drone);
-	drone.getState().execute(drone);
-	return drone.getAction();
+	if (!drone.getEnd()) {
+	    drone.getState().wait(drone);
+	    drone.getState().execute(drone);
+        if (drone.getEnd()) {
+            men = new Men(carte, drone.getPoint());
+        }
+        return drone.getAction();
+	}
+	else {
+        drone.getState().wait(drone);
+        drone.getState().execute(drone);
+
+        
+        
+	}
+	return men.getAction();
     }
 
     @Override

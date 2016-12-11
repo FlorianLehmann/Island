@@ -84,6 +84,13 @@ public class Carte {
         return null;
     }
     
+    public Point getCoordCreek() {
+        for (int i = 0; i < cases.size() ; i++)
+            if (cases.get(i).hasCreek() == true)
+                return cases.get(i).getCoords();
+        return null;
+    }
+    
     /**
      * @return String id of pu
      *

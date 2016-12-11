@@ -21,7 +21,7 @@ public class State26 implements State {
     public void wait(Drone drone) {
 
         drone.subBudget((int) ReadJSON.getInformations().get("cost"));
-
+        drone.setCoord();
         drone.setState(new State11());
     }
 }

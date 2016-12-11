@@ -30,6 +30,7 @@ public class Drone {
     private int NbCaseLeft;
     private boolean lastGround;
     private int nbMen;
+    private boolean end;
     /**
      *
      * default constructor
@@ -41,6 +42,7 @@ public class Drone {
     //carte = new Carte();
 	state = new State0();
 	action = new String();
+	end = false;
     budget =  (int) ReadJSON.getInformations().get("budget");
     point = new Point(0,0);
     this.lastDirection = "R"; // a suppr
@@ -59,6 +61,14 @@ public class Drone {
      */
     public void setState(State state) {
 	this.state = state;
+    }
+
+    public void setEnd() {
+	end = true;
+    }
+
+    public boolean getEnd() {
+	return end;
     }
 
     /**
@@ -249,6 +259,11 @@ public class Drone {
         }
     }
     
+    
+    public void setCoord() {
+        
+        this.point = carte.getCoordCreek();
+    }
     /**
      * get Point
      */
