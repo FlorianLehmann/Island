@@ -13,7 +13,7 @@ public class SugarCane {
         sugarCane = new ArrayList();
     }
 
-    static public void addWood(Point point) {
+    static public void addSugarCane(Point point) {
         sugarCane.add(new Point((int)point.getX(),(int)point.getY()));
     }
     static public Point getNearest(Point point) {

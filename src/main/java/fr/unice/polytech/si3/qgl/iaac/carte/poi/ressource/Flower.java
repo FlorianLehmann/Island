@@ -13,7 +13,7 @@ public class Flower {
         flower = new ArrayList();
     }
 
-    static public void addWood(Point point) {
+    static public void addFlower(Point point) {
         flower.add(new Point((int)point.getX(),(int)point.getY()));
     }
     static public Point getNearest(Point point) {

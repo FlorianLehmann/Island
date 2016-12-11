@@ -13,7 +13,7 @@ public class Quartz {
         quartz = new ArrayList();
     }
 
-    static public void addWood(Point point) {
+    static public void addQuartz(Point point) {
         quartz.add(new Point((int)point.getX(),(int)point.getY()));
     }
     static public Point getNearest(Point point) {

@@ -13,7 +13,7 @@ public class Ore {
         ore = new ArrayList();
     }
 
-    static public void addWood(Point point) {
+    static public void addOre(Point point) {
         ore.add(new Point((int)point.getX(),(int)point.getY()));
     }
     static public Point getNearest(Point point) {

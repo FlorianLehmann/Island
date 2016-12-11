@@ -13,7 +13,7 @@ public class Fur {
         fur = new ArrayList();
     }
 
-    static public void addWood(Point point) {
+    static public void addFur(Point point) {
         fur.add(new Point((int)point.getX(),(int)point.getY()));
     }
     static public Point getNearest(Point point) {
