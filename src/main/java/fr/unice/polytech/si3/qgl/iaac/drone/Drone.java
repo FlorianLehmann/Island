@@ -281,4 +281,8 @@ public class Drone {
     public int getNbCreek() {
 	return carte.getNbCreek();
     }
+
+    public String getCaseCreek(){
+        return carte.getCaseCreek().toString();
+    }
 }
