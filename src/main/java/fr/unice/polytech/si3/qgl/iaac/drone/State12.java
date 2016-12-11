@@ -32,6 +32,49 @@ public class State12 implements State {
 	if(ReadJSON.getInformations().containsKey("creeks") /*&& !((String)ReadJSON.getInformations().get("sites")).equals("")*/) {// TODO:
        drone.setCreek((String) ReadJSON.getInformations().get("creeks"));
     }
+    for(int i=0;i<ReadJSON.getbiome().size;i++){
+        switch (ReadJSON.getbiome().get(i)){
+            case "TROPICAL_RAIN_FOREST":
+                wood.addWood(drone.getPoint());
+                flower.addFlower(drone.getPoint());
+                sugarCane.addSugarCane(drone.getPoint());
+                break;
+            case "MANGROVE":
+                wood.addWood(drone.getPoint());
+                flower.addFlower(drone.getPoint());
+                break;
+            case "TROPICAL_SEASONAL_FOREST":
+                wood.addWood(drone.getPoint());
+                flower.addFlower(drone.getPoint());
+                break;
+            case "TEMPERATE_DECIDUOUS_FOREST":
+                wood.addWood(drone.getPoint());
+                break;
+            case "TEMPERATE_RAIN_FOREST":
+                wood.addWood(drone.getPoint());
+                fur.addfur(drone.getPoint());
+                break;
+            case "OCEAN":
+                fish.addFish(drone.getPoint());
+                break;
+            case "LAKE":
+                fish.addFish(drone.getPoint());
+                break;
+            case "BEACH":
+                quartz.addQuartz(drone.getPoint());
+                break;
+            case "GRASSLAND":
+                break;
+            case "TEMPERATE_DESERT":
+                ore.addOre(drone.getPoint());
+                quartz.addQuartz(drone.getPoint());
+                break;
+
+
+
+        }
+
+    }
 
 	if ( drone.hasPU() && (drone.getNbCreek() == 8) ) {
 
