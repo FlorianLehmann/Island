@@ -18,6 +18,8 @@ public class Drone {
      * Attributes
      *
      */
+    private Map<String, Res> res;
+
     private State state;
     private int budget;
     private String action;
@@ -51,6 +53,15 @@ public class Drone {
 	NbCaseLeft = 0;
 	NbCaseRight = 0;
 	lastGround = true;
+        res = new HashMap();
+        res.put("FISH", new Fish());
+        res.put("FLOWER", new Flower());
+        res.put("FRUITS", new Fruits());
+        res.put("FUR", new Fur());
+        res.put("ORE", new Ore());
+        res.put("QUARTZ", new Quartz());
+        res.put("SUGAR_CANE", new SugarCane());
+        res.put("WOOD", new Wood());
     }
 
     /**
@@ -78,7 +89,7 @@ public class Drone {
      *
      */
     public State getState() {
-        if (budget < 21) {
+        if (budget < 2100) {
             return new State11();
         }
 	return state;
@@ -316,5 +327,10 @@ public class Drone {
 
     public String getCaseCreek(){
         return carte.getCaseCreek().toString();
-    } 
+    }
+    
+    public boolean hasFR(){
+        return res.get((String) ReadJSON.getContracts().get(0)).hasR();
+        
+    }
 }
