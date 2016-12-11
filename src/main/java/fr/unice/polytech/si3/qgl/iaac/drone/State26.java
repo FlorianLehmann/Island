@@ -19,6 +19,6 @@ public class State26 implements State {
 
     @Override
     public void wait(Drone drone) {
-
+        drone.setState(new State11());
     }
 }
