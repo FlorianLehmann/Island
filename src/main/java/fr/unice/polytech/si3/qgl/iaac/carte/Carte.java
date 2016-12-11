@@ -74,6 +74,17 @@ public class Carte {
     }
     
     /**
+     * @return POI crique
+     *
+     */
+    public Case getCaseCreek() {
+        for (int i = 0; i < cases.size() ; i++)
+            if (cases.get(i).hasCreek() == true)
+                return cases.get(i);
+        return null;
+    }
+    
+    /**
      * @return String id of pu
      *
      */
