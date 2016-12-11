@@ -2,7 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.Res;
 import java.awt.*;
 import java.util.Map;
 import java.util.HashMap;
