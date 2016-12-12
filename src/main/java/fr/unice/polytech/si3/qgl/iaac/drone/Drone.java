@@ -8,7 +8,10 @@ import fr.unice.polytech.si3.qgl.iaac.carte.poi.PU;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 import java.awt.*;
+import java.util.Map;
+import java.util.HashMap;
 
 
 public class Drone {

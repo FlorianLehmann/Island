@@ -13,6 +13,9 @@ public class Flower extends Res{
         flower = new ArrayList();
     }
 
+    static public boolean hasR() {
+        return flower.size() != 0;
+    }
     static public void addFlower(Point point) {
         flower.add(new Point((int)point.getX(),(int)point.getY()));
     }

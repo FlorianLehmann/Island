@@ -12,7 +12,9 @@ public class Fruits extends Res{
     public Fruits() {
         fruits = new ArrayList();
     }
-
+    static public boolean hasR() {
+        return fruits.size() != 0;
+    }
     static public void addFruits(Point point) {
         fruits.add(new Point((int)point.getX(),(int)point.getY()));
     }

@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.drone;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 import java.util.HashMap;
 
 public class State12 implements State {
@@ -32,42 +33,42 @@ public class State12 implements State {
 	if(ReadJSON.getInformations().containsKey("creeks") /*&& !((String)ReadJSON.getInformations().get("sites")).equals("")*/) {// TODO:
        drone.setCreek((String) ReadJSON.getInformations().get("creeks"));
     }
-    for(int i=0;i<ReadJSON.getbiome().size;i++){
-        switch (ReadJSON.getbiome().get(i)){
+    for(int i=0;i<ReadJSON.getBiome().size();i++){
+        switch (ReadJSON.getBiome().get(i)){
             case "TROPICAL_RAIN_FOREST":
-                wood.addWood(drone.getPoint());
-                flower.addFlower(drone.getPoint());
-                sugarCane.addSugarCane(drone.getPoint());
+                Wood.addWood(drone.getPoint());
+                Flower.addFlower(drone.getPoint());
+                SugarCane.addSugarCane(drone.getPoint());
                 break;
             case "MANGROVE":
-                wood.addWood(drone.getPoint());
-                flower.addFlower(drone.getPoint());
+                Wood.addWood(drone.getPoint());
+                Flower.addFlower(drone.getPoint());
                 break;
             case "TROPICAL_SEASONAL_FOREST":
-                wood.addWood(drone.getPoint());
-                flower.addFlower(drone.getPoint());
+                Wood.addWood(drone.getPoint());
+                Flower.addFlower(drone.getPoint());
                 break;
             case "TEMPERATE_DECIDUOUS_FOREST":
-                wood.addWood(drone.getPoint());
+                Wood.addWood(drone.getPoint());
                 break;
             case "TEMPERATE_RAIN_FOREST":
-                wood.addWood(drone.getPoint());
-                fur.addfur(drone.getPoint());
+                Wood.addWood(drone.getPoint());
+                Fur.addFur(drone.getPoint());
                 break;
             case "OCEAN":
-                fish.addFish(drone.getPoint());
+                Fish.addFish(drone.getPoint());
                 break;
             case "LAKE":
-                fish.addFish(drone.getPoint());
+                Fish.addFish(drone.getPoint());
                 break;
             case "BEACH":
-                quartz.addQuartz(drone.getPoint());
+                Quartz.addQuartz(drone.getPoint());
                 break;
             case "GRASSLAND":
                 break;
             case "TEMPERATE_DESERT":
-                ore.addOre(drone.getPoint());
-                quartz.addQuartz(drone.getPoint());
+                Ore.addOre(drone.getPoint());
+                Quartz.addQuartz(drone.getPoint());
                 break;
 
 
@@ -76,7 +77,7 @@ public class State12 implements State {
 
     }
 
-	if ( drone.hasPU() && (drone.getNbCreek() == 8) ) {
+	if ( drone.hasPU() && (drone.getNbCreek() == 2) ) {
 
 
 	    drone.setState(new State26());

@@ -12,7 +12,9 @@ public class SugarCane extends Res{
     public SugarCane() {
         sugarCane = new ArrayList();
     }
-
+    static public boolean hasR() {
+        return sugarCane.size() != 0;
+    }
     static public void addSugarCane(Point point) {
         sugarCane.add(new Point((int)point.getX(),(int)point.getY()));
     }

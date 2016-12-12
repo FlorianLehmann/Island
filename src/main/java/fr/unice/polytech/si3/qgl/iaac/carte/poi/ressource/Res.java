@@ -7,4 +7,7 @@ public abstract class Res {
     public static Point getNearest(Point point) {
         return null;
     }
+    public static boolean hasR() {
+        return false;
+    }
 }

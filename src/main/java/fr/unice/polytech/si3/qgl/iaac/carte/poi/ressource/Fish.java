@@ -16,6 +16,11 @@ public class Fish extends Res{
     static public void addFish(Point point) {
         fish.add(new Point((int)point.getX(),(int)point.getY()));
     }
+    
+    static public boolean hasR() {
+        return fish.size() != 0;
+    }
+    
     static public Point getNearest(Point point) {
         double norme = 0;
         double Min;

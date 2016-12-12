@@ -12,7 +12,9 @@ public class Quartz extends Res{
     public Quartz() {
         quartz = new ArrayList();
     }
-
+    static public boolean hasR() {
+        return quartz.size() != 0;
+    }
     static public void addQuartz(Point point) {
         quartz.add(new Point((int)point.getX(),(int)point.getY()));
     }
