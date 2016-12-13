@@ -17,7 +17,7 @@ public class Fish extends Res{
         fish.add(new Point((int)point.getX(),(int)point.getY()));
     }
     
-    static public boolean hasR() {
+    public boolean hasR() {
         return fish.size() != 0;
     }
     

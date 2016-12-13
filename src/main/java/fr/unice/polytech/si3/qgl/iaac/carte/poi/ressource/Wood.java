@@ -11,7 +11,7 @@ public class Wood extends Res{
     public Wood() {
 	wood = new ArrayList();
     }
-    static public boolean hasR() {
+    public boolean hasR() {
         return wood.size() != 0;
     }
     static public void addWood(Point point) {

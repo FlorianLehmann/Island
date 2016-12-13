@@ -12,7 +12,7 @@ public class Fur extends Res{
     public Fur() {
         fur = new ArrayList();
     }
-    static public boolean hasR() {
+    public boolean hasR() {
         return fur.size() != 0;
     }
     static public void addFur(Point point) {

@@ -13,7 +13,7 @@ public class Flower extends Res{
         flower = new ArrayList();
     }
 
-    static public boolean hasR() {
+    public boolean hasR() {
         return flower.size() != 0;
     }
     static public void addFlower(Point point) {

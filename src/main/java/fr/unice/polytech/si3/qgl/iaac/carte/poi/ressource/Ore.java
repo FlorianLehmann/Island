@@ -12,7 +12,7 @@ public class Ore extends Res{
     public Ore() {
         ore = new ArrayList();
     }
-    static public boolean hasR() {
+    public boolean hasR() {
         return ore.size() != 0;
     }
     static public void addOre(Point point) {
