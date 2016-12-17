@@ -1,14 +1,14 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 import eu.ace_design.island.bot.IExplorerRaid;
 import java.util.LinkedList;
 import java.util.List;
-import fr.unice.polytech.si3.qgl.iaac.men.Men;
-import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
-import fr.unice.polytech.si3.qgl.iaac.drone.State;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import sample.bot.men.Men;
+import sample.bot.drone.Drone;
+import sample.bot.carte.poi.ressource.*;
+import sample.bot.drone.State;
+import sample.bot.carte.Carte;
+import sample.bot.EnumDirection;
 import java.awt.*;
 public class Explorer implements IExplorerRaid {
 

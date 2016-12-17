@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 public enum EnumJSON {
 

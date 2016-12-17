@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource;
+package sample.bot.carte.poi.ressource;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -45,6 +45,7 @@ public class Wood extends Res {
 
             }
         }
+
         return point;
 
 

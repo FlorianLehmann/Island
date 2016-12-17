@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
 public class State0 implements State{
 

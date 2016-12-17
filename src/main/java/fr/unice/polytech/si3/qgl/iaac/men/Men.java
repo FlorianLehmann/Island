@@ -1,8 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import sample.bot.carte.Carte;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+import sample.bot.carte.poi.ressource.*;
 import java.awt.*;
 import java.util.Map;
 import java.util.HashMap;

@@ -1,10 +1,10 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import sample.bot.ReadJSON;
 
 import java.util.Stack;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
+import static sample.bot.EnumJSON.EXPLORE;
 
 public class State2 implements State {
 

@@ -1,14 +1,14 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+import static sample.bot.EnumJSON.*;
+import sample.bot.ReadJSON;
+import sample.bot.EnumDirection;
+import sample.bot.carte.poi.ressource.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
+import static sample.bot.EnumDirection.*;
 import java.util.Stack;
 import java.awt.*;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import sample.bot.carte.Carte;
 
 public class State1 implements State {
 
@@ -66,7 +66,7 @@ public class State1 implements State {
     public void wait(Men men) {
         //drone.subBudget((int) ReadJSON.getInformations().get("cost"));
         if (stack.isEmpty())
-            men.setState(new State11());
+            men.setState(new State2());
     }
 
 

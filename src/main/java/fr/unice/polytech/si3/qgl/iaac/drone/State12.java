@@ -1,9 +1,9 @@
-package fr.unice.polytech.si3.qgl.iaac.drone;
+package sample.bot.drone;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+import static sample.bot.EnumJSON.*;
+import sample.bot.EnumDirection;
+import sample.bot.ReadJSON;
+import sample.bot.carte.poi.ressource.*;
 import java.util.HashMap;
 
 public class State12 implements State {

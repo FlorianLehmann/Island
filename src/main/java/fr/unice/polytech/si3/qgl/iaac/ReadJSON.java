@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -132,7 +132,7 @@ public class ReadJSON {
             }
             if (bio.has("resources")) {
 
-
+                resources.clear();
                 tab = bio.getJSONArray("resources");
 
                 iterator = tab.iterator();
