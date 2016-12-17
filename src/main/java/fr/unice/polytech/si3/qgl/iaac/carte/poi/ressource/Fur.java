@@ -7,10 +7,10 @@ import java.util.*;
  * Created by sebde on 11/12/2016.
  */
 public class Fur extends Res{
-    private static java.util.List<Point> fur;
+    private static java.util.List<Point> fur = new ArrayList();;
+    private int amount = 0;
 
     public Fur() {
-        fur = new ArrayList();
     }
     public boolean hasR() {
         return fur.size() != 0;
@@ -18,7 +18,8 @@ public class Fur extends Res{
     static public void addFur(Point point) {
         fur.add(new Point((int)point.getX(),(int)point.getY()));
     }
-    static public Point getNearest(Point point) {
+    
+     public Point getNearest(Point point) {
         double norme = 0;
         double Min;
         int index = 0;
@@ -31,5 +32,13 @@ public class Fur extends Res{
             }
         }
         return fur.get(index);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

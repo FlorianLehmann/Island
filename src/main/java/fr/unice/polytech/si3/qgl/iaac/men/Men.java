@@ -22,7 +22,7 @@ public class Men {
         
         this.carte = carte;
         state = new State0();
-        this.point = point;
+        this.point = new Point((int)point.getX(), (int)point.getY());
         res = new HashMap();
         res.put("FISH", new Fish());
         res.put("FLOWER", new Flower());

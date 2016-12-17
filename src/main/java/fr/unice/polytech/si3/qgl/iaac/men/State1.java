@@ -29,24 +29,28 @@ public class State1 implements State {
         if(!wayDefine){
             if (ReadJSON.getContracts().size() > 0)
                 tmp = (String) ReadJSON.getContracts().get(0);
-            Point point = men.getRessource(tmp).getNearest(men.getPoint());
-             X = (int) (point.getX()-men.getPoint().getX());
-             Y = (int) (point.getY()-men.getPoint().getY());
+            Point point = (men.getRessource(tmp)).getNearest(men.getPoint());
+            (men.getRessource(tmp)).setAmount(ReadJSON.getAmount().get(0));
+            X = (int) (Wood.getTabMax().getX()-men.getPoint().getX());//(point.getX()-men.getPoint().getX());
+            Y = (int) (Wood.getTabMax().getY()-men.getPoint().getY());//(point.getY()-men.getPoint().getY());
             if (X < 0)
-                direction = EST;
-            if (X > 0)
                 direction = WEST;
+            if (X > 0)
+                direction = EST;
             for(int i = 0; i < Math.abs(X)*3; i++ )
                 stack.push(MOVETO.toString(direction.front()));
             if (Y < 0)
-                direction = NORD;
-            if (Y > 0)
                 direction = SUD;
+            if (Y > 0)
+                direction = NORD;
             for(int i = 0; i < Math.abs(X)*3; i++ )
                 stack.push(MOVETO.toString(direction.front()));
             wayDefine = true;
         }
-        men.setAction(stack.pop());
+        if (stack.isEmpty())
+            men.setAction(EXPLORE.toString(tmp));//risque de bug si la ressource existe pas
+        else
+            men.setAction(stack.pop());
         
         //tant qu'il reste des élément dans la pile on continue'
             

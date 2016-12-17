@@ -7,10 +7,11 @@ import java.util.*;
  * Created by sebde on 11/12/2016.
  */
 public class Fruits extends Res{
-    private static java.util.List<Point> fruits;
+    private static java.util.List<Point> fruits = new ArrayList();
+    private int amount = 0;
+
 
     public Fruits() {
-        fruits = new ArrayList();
     }
     public boolean hasR() {
         return fruits.size() != 0;
@@ -18,7 +19,8 @@ public class Fruits extends Res{
     static public void addFruits(Point point) {
         fruits.add(new Point((int)point.getX(),(int)point.getY()));
     }
-    static public Point getNearest(Point point) {
+    
+     public Point getNearest(Point point) {
         double norme = 0;
         double Min;
         int index = 0;
@@ -31,5 +33,13 @@ public class Fruits extends Res{
             }
         }
         return fruits.get(index);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

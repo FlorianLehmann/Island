@@ -7,10 +7,10 @@ import java.util.*;
  * Created by sebde on 11/12/2016.
  */
 public class Ore extends Res{
-    private static java.util.List<Point> ore;
+    private static java.util.List<Point> ore = new ArrayList();;
+    private int amount = 0;
 
     public Ore() {
-        ore = new ArrayList();
     }
     public boolean hasR() {
         return ore.size() != 0;
@@ -18,7 +18,9 @@ public class Ore extends Res{
     static public void addOre(Point point) {
         ore.add(new Point((int)point.getX(),(int)point.getY()));
     }
-    static public Point getNearest(Point point) {
+    
+    @Override
+     public Point getNearest(Point point) {
         double norme = 0;
         double Min;
         int index = 0;
@@ -31,5 +33,13 @@ public class Ore extends Res{
             }
         }
         return ore.get(index);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

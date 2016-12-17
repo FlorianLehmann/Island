@@ -22,6 +22,6 @@ public class State26 implements State {
 
         drone.subBudget((int) ReadJSON.getInformations().get("cost"));
         drone.setCoord();
-        drone.setState(new State11());
+        drone.setEnd();
     }
 }

@@ -7,10 +7,11 @@ import java.util.*;
  * Created by sebde on 11/12/2016.
  */
 public class Quartz extends Res{
-    private static java.util.List<Point> quartz;
+    private static java.util.List<Point> quartz = new ArrayList();;
+    private int amount = 0;
+
 
     public Quartz() {
-        quartz = new ArrayList();
     }
     public boolean hasR() {
         return quartz.size() != 0;
@@ -18,7 +19,9 @@ public class Quartz extends Res{
     static public void addQuartz(Point point) {
         quartz.add(new Point((int)point.getX(),(int)point.getY()));
     }
-    static public Point getNearest(Point point) {
+    
+    @Override
+    public Point getNearest(Point point) {
         double norme = 0;
         double Min;
         int index = 0;
@@ -33,4 +36,11 @@ public class Quartz extends Res{
         return quartz.get(index);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }

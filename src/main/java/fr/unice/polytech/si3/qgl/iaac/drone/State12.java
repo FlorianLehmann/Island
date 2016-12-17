@@ -77,7 +77,7 @@ public class State12 implements State {
 
     }
 
-	if ( drone.hasPU() && (drone.getNbCreek() == 2) ) {
+	if ( drone.hasPU() && (drone.getNbCreek() >= 2) ) {
 
 
 	    drone.setState(new State26());

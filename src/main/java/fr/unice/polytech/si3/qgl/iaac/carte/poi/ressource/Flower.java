@@ -8,6 +8,7 @@ import java.util.*;
  */
 public class Flower extends Res{
     private static java.util.List<Point> flower;
+    private int amount = 0;
 
     public Flower() {
         flower = new ArrayList();
@@ -19,7 +20,8 @@ public class Flower extends Res{
     static public void addFlower(Point point) {
         flower.add(new Point((int)point.getX(),(int)point.getY()));
     }
-    static public Point getNearest(Point point) {
+    
+     public Point getNearest(Point point) {
         double norme = 0;
         double Min;
         int index = 0;
@@ -32,5 +34,13 @@ public class Flower extends Res{
             }
         }
         return flower.get(index);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

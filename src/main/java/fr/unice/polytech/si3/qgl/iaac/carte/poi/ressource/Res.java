@@ -4,8 +4,8 @@ import java.awt.*;
 
 public abstract class Res {
 
-    public static Point getNearest(Point point) {
-        return null;
-    }
+    public abstract void setAmount(int n);
+    public abstract Point getNearest(Point point);
     public  abstract boolean hasR();
+    public abstract int getAmount();
 }
