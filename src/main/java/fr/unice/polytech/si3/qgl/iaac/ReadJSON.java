@@ -1,4 +1,4 @@
-package sample.bot;
+package fr.unice.polytech.si3.qgl.iaac;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

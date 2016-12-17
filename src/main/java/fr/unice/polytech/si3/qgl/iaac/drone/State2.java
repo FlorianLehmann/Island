@@ -1,7 +1,7 @@
- package sample.bot.drone;
+ package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import static sample.bot.EnumJSON.*;
-import sample.bot.ReadJSON;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 public class State2 implements State {
 

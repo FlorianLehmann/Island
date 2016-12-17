@@ -1,8 +1,9 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import sample.bot.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 
-import sample.bot.carte.poi.ressource.*;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 import java.awt.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public class Men {
 
     private State state;
     private Carte carte;
+    private static int budget;
     private Point point;
     private String action;
     private Map<String, Res> res;
@@ -36,9 +38,9 @@ public class Men {
     }
     
     public State getState() {
-        /*if (budget < 21) {
+        if (budget < 1000) {
             return new State11();
-        }*/
+        }
         return state;
     }
     
@@ -63,5 +65,30 @@ public class Men {
     public Res getRessource(String tmp) {
         
         return res.get(tmp);
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
+    public void subBudget(int cost) {
+        budget = budget -cost;
+    }
+
+    public void setCoord(EnumDirection direc) {
+        switch (direc) {
+            case NORD:
+                point.setLocation(point.getX(), point.getY() + 1);
+                break;
+            case EST:
+                point.setLocation(point.getX()+1, point.getY());
+                break;
+            case SUD:
+                point.setLocation(point.getX(), point.getY() - 1);
+                break;
+            case WEST:
+                point.setLocation(point.getX()-1, point.getY());
+                break;
+        }
     }
 }

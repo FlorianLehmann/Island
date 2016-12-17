@@ -1,10 +1,10 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import sample.bot.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import java.util.Stack;
 
-import static sample.bot.EnumJSON.EXPLORE;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
 
 public class State2 implements State {
 
@@ -30,6 +30,8 @@ public class State2 implements State {
      */
     @Override
     public void wait(Men men) {
+        men.subBudget((int) ReadJSON.getInformations().get("cost"));
+
         boolean resource;
         resource = false;
         for (int i = 0; i < ReadJSON.getResources().size(); i++) {

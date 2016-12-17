@@ -1,14 +1,14 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import static sample.bot.EnumJSON.*;
-import sample.bot.ReadJSON;
-import sample.bot.EnumDirection;
-import sample.bot.carte.poi.ressource.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 
-import static sample.bot.EnumDirection.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import java.util.Stack;
 import java.awt.*;
-import sample.bot.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 
 public class State1 implements State {
 
@@ -29,28 +29,38 @@ public class State1 implements State {
         if(!wayDefine){
             if (ReadJSON.getContracts().size() > 0)
                 tmp = (String) ReadJSON.getContracts().get(0);
-            Point point = (men.getRessource(tmp)).getNearest(men.getPoint());
+            //Point point = (men.getRessource(tmp)).getNearest(men.getPoint());
             (men.getRessource(tmp)).setAmount(ReadJSON.getAmount().get(0));
-            X = (int) (Wood.getTabMax().getX()-men.getPoint().getX());//(point.getX()-men.getPoint().getX());
-            Y = (int) (Wood.getTabMax().getY()-men.getPoint().getY());//(point.getY()-men.getPoint().getY());
+            Point point;
+            point = men.getRessource(tmp).getTabMax();
+            X = (int) ((point.getX()*3)-men.getPoint().getX());//(point.getX()-men.getPoint().getX());
+            Y = (int) ((point.getY()*3)-men.getPoint().getY());//(point.getY()-men.getPoint().getY());
             if (X < 0)
                 direction = WEST;
             if (X > 0)
                 direction = EST;
-            for(int i = 0; i < Math.abs(X)*3; i++ )
+            for(int i = 0; i < Math.abs(X); i++ ) {
                 stack.push(MOVETO.toString(direction.front()));
+                men.setCoord(direction);
+            }
             if (Y < 0)
                 direction = SUD;
             if (Y > 0)
                 direction = NORD;
-            for(int i = 0; i < Math.abs(X)*3; i++ )
+            for(int i = 0; i < Math.abs(Y); i++ ) {
                 stack.push(MOVETO.toString(direction.front()));
+                men.setCoord(direction);
+            }
             wayDefine = true;
         }
-        if (stack.isEmpty())
-            men.setAction(EXPLORE.toString(tmp));//risque de bug si la ressource existe pas
-        else
+        if (stack.isEmpty()) {
+            men.setAction(EXPLORE.toString(""));//on débarque!
+
+            //men.setAction(EXPLORE.toString(tmp));//risque de bug si la ressource existe pas
+        }
+        else {
             men.setAction(stack.pop());
+        }
         
         //tant qu'il reste des élément dans la pile on continue'
             
@@ -64,10 +74,14 @@ public class State1 implements State {
      */
     @Override
     public void wait(Men men) {
+        men.subBudget((int) ReadJSON.getInformations().get("cost"));
+
         //drone.subBudget((int) ReadJSON.getInformations().get("cost"));
         if (stack.isEmpty())
             men.setState(new State2());
     }
 
-
+    public static void setWayDefine(boolean a) {
+        wayDefine = a;
+    }
 }

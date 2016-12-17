@@ -1,4 +1,4 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
 public interface State {
 

@@ -1,10 +1,11 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import sample.bot.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
-import static sample.bot.EnumDirection.EST;
-import static sample.bot.EnumJSON.EXPLOIT;
-import static sample.bot.EnumJSON.MOVETO;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.EST;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
 
 /**
  * Created by dev on 17/12/2016.
@@ -24,6 +25,8 @@ public class State4 implements State {
             case 0:
 
                 men.setAction(MOVETO.toString(direction.front()));
+                men.setCoord(direction);
+                //men.setCoord(direction);
                 compteurNbMove--;
                 if(compteurNbMove <= 0) {
                     direction = EnumDirection.getEnumDirection(direction.left());
@@ -33,6 +36,7 @@ public class State4 implements State {
                 break;
             case 1:
                 men.setAction(MOVETO.toString(direction.front()));
+                men.setCoord(direction);
                 compteurNbMove--;
                 if(compteurNbMove <= 0) {
                     direction = EnumDirection.getEnumDirection(direction.left());
@@ -43,6 +47,8 @@ public class State4 implements State {
                 }
                 break;
         }
+
+
         /*if (compteur == 0){
             compteurNbMove2++;
             compteurNbMove = compteurNbMove2;
@@ -63,8 +69,18 @@ public class State4 implements State {
 
     }
 
+    public static void init() {
+        compteur = 2;
+        compteurNbMove = 1;
+        compteurNbMove2 = 1;
+
+        etat = 0;
+    }
+
     @Override
     public void wait(Men men) {
+        men.subBudget((int) ReadJSON.getInformations().get("cost"));
+
         men.setState(new State2());
     }
 }
