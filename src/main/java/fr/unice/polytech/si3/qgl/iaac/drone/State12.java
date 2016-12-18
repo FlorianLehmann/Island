@@ -39,17 +39,22 @@ public class State12 implements State {
                 Wood.addWood(drone.getPoint());
                 Flower.addFlower(drone.getPoint());
                 SugarCane.addSugarCane(drone.getPoint());
+                Fruits.addFruits(drone.getPoint());
                 break;
             case "MANGROVE":
                 Wood.addWood(drone.getPoint());
                 Flower.addFlower(drone.getPoint());
                 break;
             case "TROPICAL_SEASONAL_FOREST":
+                SugarCane.addSugarCane(drone.getPoint());
                 Wood.addWood(drone.getPoint());
                 Flower.addFlower(drone.getPoint());
+                Fruits.addFruits(drone.getPoint());
                 break;
             case "TEMPERATE_DECIDUOUS_FOREST":
                 Wood.addWood(drone.getPoint());
+                //Fur.addFur(drone.getPoint()); // a suppr
+
                 break;
             case "TEMPERATE_RAIN_FOREST":
                 Wood.addWood(drone.getPoint());
@@ -65,10 +70,36 @@ public class State12 implements State {
                 Quartz.addQuartz(drone.getPoint());
                 break;
             case "GRASSLAND":
+                Fur.addFur(drone.getPoint());
                 break;
             case "TEMPERATE_DESERT":
                 Ore.addOre(drone.getPoint());
                 Quartz.addQuartz(drone.getPoint());
+                break;
+            //test
+            case "TAIGA":
+
+                break;
+            case "SNOW":
+
+                break;
+            case "TUNDRA":
+
+                break;
+            case "ALPINE":
+                Flower.addFlower(drone.getPoint());
+                Ore.addOre(drone.getPoint());
+                break;
+            case "GLACIER":
+                Flower.addFlower(drone.getPoint());
+
+                break;
+            case "SHRUBLAND":
+
+                break;
+            case "SUB_TROPICAL_DESERT":
+                Quartz.addQuartz(drone.getPoint());
+
                 break;
 
 
@@ -77,7 +108,7 @@ public class State12 implements State {
 
     }
 
-	if ( drone.hasPU() && (drone.getNbCreek() >= 2) ) {
+	if ( /*(((drone.getBudgetInit() - (drone.getBudgetInit()/3)) > drone.getBudget())  && (drone.getNbCreek() >= 2)) ||*/ drone.getNbAllerRetour()>=4) {
 
 
 	    drone.setState(new State26());
