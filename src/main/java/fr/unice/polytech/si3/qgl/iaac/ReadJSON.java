@@ -86,6 +86,18 @@ public class ReadJSON {
 
             }
 
+            for (int i = 0; i < contracts.size(); i++) {
+                if (contracts.get(i).equals("FISH")) {
+                    int amount1 = amount.get(0);
+                    String tmp1 = contracts.get(0);
+                    contracts.set(0, contracts.get(i));
+                    amount.set(0, amount.get(i));
+                    contracts.set(i, tmp1);
+                    amount.set(i, amount1);
+                }
+
+            }
+
 
         }
         if (jsonobject.has("extras")) {
