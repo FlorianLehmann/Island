@@ -1,7 +1,7 @@
-package fr.unice.polytech.si3.qgl.iaac.drone;
+package sample.bot.drone;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import static sample.bot.EnumJSON.*;
+import sample.bot.ReadJSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,11 @@ public class State26 implements State {
 
     @Override
     public void execute(Drone drone) {
-        drone.setAction(LAND.toString(drone.getACrique(),drone.getNbMen()-1));
+        int nb = drone.getNbMen()-1;
+        if (nb > 6) {
+            nb = 6;
+        }
+        drone.setAction(LAND.toString(drone.getACrique(),nb));
 
     }
 

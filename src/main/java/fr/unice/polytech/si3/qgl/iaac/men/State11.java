@@ -1,6 +1,6 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
+import static sample.bot.EnumJSON.STOP;
 
 
 public class State11 implements State {

@@ -1,9 +1,9 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import sample.bot.EnumDirection;
+import sample.bot.carte.Carte;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+import sample.bot.carte.poi.ressource.*;
 import java.awt.*;
 import java.util.Map;
 import java.util.HashMap;
@@ -43,7 +43,12 @@ public class Men {
         }
         return state;
     }
-    
+
+    public Point getACrique() {
+        return carte.getCoordCreek();
+    }
+
+
     public void setAction(String tmp) {
         action = tmp;
     }

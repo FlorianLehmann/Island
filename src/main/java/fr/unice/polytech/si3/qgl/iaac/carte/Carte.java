@@ -1,5 +1,5 @@
-package fr.unice.polytech.si3.qgl.iaac.carte;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.POI;
+package sample.bot.carte;
+import sample.bot.carte.poi.POI;
 import java.util.List;
 import java.util.LinkedList;
 import java.awt.*;
@@ -83,6 +83,7 @@ public class Carte {
                 return cases.get(i).getCreek().toString();
         return null;
     }
+
     
     public Point getCoordCreek() {
         for (int i = 0; i < cases.size() ; i++)

@@ -1,7 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package sample.bot;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import sample.bot.carte.poi.ressource.EnumSecondaire;
 
 import java.util.*;
 
@@ -74,8 +75,12 @@ public class ReadJSON {
                 iterator_ressource = jsonobject2.keys();
 
                 while(iterator_ressource.hasNext()) {
-                    amount.add(jsonobject2.getInt(iterator_ressource.next()));
-                    contracts.add(jsonobject2.getString(iterator_ressource.next()));
+                    int am = jsonobject2.getInt(iterator_ressource.next());
+                    String re = jsonobject2.getString(iterator_ressource.next());
+                    if (!EnumSecondaire.isSecond(re)) {
+                        amount.add(am);
+                        contracts.add(re);
+                    }
 
                 }
 

@@ -1,15 +1,13 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import sample.bot.EnumDirection;
+import sample.bot.ReadJSON;
 
 import java.awt.*;
 import java.util.Stack;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
+import static sample.bot.EnumDirection.*;
+import static sample.bot.EnumJSON.*;
 
 public class State1 implements State {
 
@@ -52,7 +50,11 @@ public class State1 implements State {
                 //Point point = (men.getRessource(tmp)).getNearest(men.getPoint());
                 (men.getRessource(tmp)).setAmount(ReadJSON.getAmount().get(0));
                 Point point;
-                point = men.getRessource(tmp).getTabMax();
+                if (tmp.equals("FISH")) {
+                    point = men.getACrique();
+                } else {
+                    point = men.getRessource(tmp).getTabMax();
+                }
                 X = (int) ((point.getX() * 3) - men.getPoint().getX());//(point.getX()-men.getPoint().getX());
                 Y = (int) ((point.getY() * 3) - men.getPoint().getY());//(point.getY()-men.getPoint().getY());
                 if (X < 0)
@@ -80,8 +82,9 @@ public class State1 implements State {
             } else {
                 men.setAction(stack.pop());
             }
-        }
-        else {
+        } else
+
+        {
             men.setAction(STOP.toString(""));
         }
         //tant qu'il reste des élément dans la pile on continue'

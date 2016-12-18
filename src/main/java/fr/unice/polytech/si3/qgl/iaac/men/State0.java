@@ -1,6 +1,6 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import sample.bot.ReadJSON;
 
 public class State0 implements State{
 

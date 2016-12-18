@@ -1,11 +1,11 @@
-package fr.unice.polytech.si3.qgl.iaac.men;
+package sample.bot.men;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import sample.bot.EnumDirection;
+import sample.bot.ReadJSON;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.EST;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
+import static sample.bot.EnumDirection.EST;
+import static sample.bot.EnumJSON.EXPLOIT;
+import static sample.bot.EnumJSON.MOVETO;
 
 /**
  * Created by dev on 17/12/2016.
