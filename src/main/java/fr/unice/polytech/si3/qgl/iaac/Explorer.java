@@ -1,11 +1,11 @@
-package sample.bot;
+package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
-import sample.bot.carte.Carte;
-import sample.bot.carte.poi.ressource.Fish;
-import sample.bot.carte.poi.ressource.Wood;
-import sample.bot.drone.Drone;
-import sample.bot.men.Men;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.Fish;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.Wood;
+import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
+import fr.unice.polytech.si3.qgl.iaac.men.Men;
 
 import java.awt.*;
 

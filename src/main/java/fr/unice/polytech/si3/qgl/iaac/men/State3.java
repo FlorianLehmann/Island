@@ -1,8 +1,8 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import sample.bot.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
-import static sample.bot.EnumJSON.EXPLOIT;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
 
 /**
  * Created by dev on 17/12/2016.

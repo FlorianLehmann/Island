@@ -1,13 +1,13 @@
-package sample.bot.men;
+package fr.unice.polytech.si3.qgl.iaac.men;
 
-import sample.bot.EnumDirection;
-import sample.bot.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import java.awt.*;
 import java.util.Stack;
 
-import static sample.bot.EnumDirection.*;
-import static sample.bot.EnumJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 
 public class State1 implements State {
 

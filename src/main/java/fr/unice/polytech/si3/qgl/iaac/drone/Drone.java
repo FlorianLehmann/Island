@@ -1,18 +1,18 @@
-package sample.bot.drone;
+package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import sample.bot.EnumDirection;
-import sample.bot.EnumJSON;
-import sample.bot.ReadJSON;
-import sample.bot.carte.Carte;
-import sample.bot.carte.poi.Creek;
-import sample.bot.carte.poi.PU;
-import sample.bot.carte.poi.ressource.*;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.Creek;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.PU;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static sample.bot.EnumJSON.HEADING;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.HEADING;
 
 
 public class Drone {

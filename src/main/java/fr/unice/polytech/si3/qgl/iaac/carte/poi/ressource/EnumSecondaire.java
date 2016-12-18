@@ -1,6 +1,6 @@
-package sample.bot.carte.poi.ressource;
+package fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource;
 
-import sample.bot.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 
 import java.util.Arrays;
 import java.util.HashMap;

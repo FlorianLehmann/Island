@@ -1,8 +1,8 @@
-package sample.bot;
+package fr.unice.polytech.si3.qgl.iaac;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import sample.bot.carte.poi.ressource.EnumSecondaire;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.EnumSecondaire;
 
 import java.util.*;
 
