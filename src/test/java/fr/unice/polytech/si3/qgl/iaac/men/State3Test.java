@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Quentin on 14/01/2017.
  */
-public class State1Test {
+public class State3Test {
     private ReadJSON read;
     private Men men;
     private Carte carte;
@@ -28,21 +28,20 @@ public class State1Test {
         carte = new Carte();
         point = new Point(0, 0);
         men = new Men(carte, point);
-        men.setState(new State1());
-        }
-
-        @Test
-        public void executeTest(){
-            men.getState().execute(men);
-
-        }
-        @Test
-        public void waitTest(){
-            men.getState().wait(men);
-            assertTrue(men.getState() instanceof State2);
-        }
-
+        men.setState(new State3());
     }
+
+    @Test
+    public void executeTest(){
+        men.getState().execute(men);
+        assertEquals(EXPLOIT.toString((String) ReadJSON.getContracts().get(0)),men.getAction());
+    }
+    @Test
+    public void waitTest(){
+        men.getState().wait(men);
+    }
+
+}
 
 
 
