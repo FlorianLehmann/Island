@@ -37,9 +37,21 @@ public class State3Test {
         men.getState().execute(men);
         assertEquals(EXPLOIT.toString((String) ReadJSON.getContracts().get(0)),men.getAction());
     }
-    @Test
-    public void waitTest(){
 
+    @Test
+    public void wait1Test(){
+        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 0, \"resource\": \"WOOD\" }],\"heading\": \"W\"}");
+        read.read("{\"cost\": 3, \"extras\": {\"amount\": 9}, \"status\": \"OK\"}");
+        men.getState().wait(men);
+        assertTrue(men.getState() instanceof State1);
+    }
+
+    @Test
+    public void wait2Test(){
+        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 100, \"resource\": \"WOOD\" }],\"heading\": \"W\"}");
+        read.read("{\"cost\": 3, \"extras\": {\"amount\": 9}, \"status\": \"OK\"}");
+        men.getState().wait(men);
+        assertTrue(men.getState() instanceof State4);
     }
 
 }
