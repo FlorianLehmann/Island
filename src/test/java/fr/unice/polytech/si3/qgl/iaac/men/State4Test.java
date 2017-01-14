@@ -9,6 +9,7 @@ import java.awt.*;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -30,14 +31,43 @@ public class State4Test {
         point = new Point(0, 0);
         men = new Men(carte, point);
         men.setState(new State4());
+        men.setBudget(1000);
     }
 
     @Test
-    public void executeTest(){
+    public void case0EstTest(){
         men.getState().execute(men);
+        assertEquals(MOVETO.toString("E"),men.getAction());
     }
+
+    @Test
+    public void case1NorthTest(){
+        men.getState().execute(men);
+        men.getState().execute(men);
+        assertEquals(MOVETO.toString("N"),men.getAction());
+    }
+
+    @Test
+    public void case0WestTest(){
+        men.getState().execute(men);
+        men.getState().execute(men);
+        men.getState().execute(men);
+        assertEquals(MOVETO.toString("W"),men.getAction());
+    }
+
+    @Test
+    public void case1SouthTest(){
+        men.getState().execute(men);
+        men.getState().execute(men);
+        men.getState().execute(men);
+        men.getState().execute(men);
+        men.getState().execute(men);
+        assertEquals(MOVETO.toString("S"),men.getAction());
+    }
+
     @Test
     public void waitTest(){
+        read.read("{\"cost\": 12}");
         men.getState().wait(men);
         assertTrue(men.getState() instanceof State2);
     }

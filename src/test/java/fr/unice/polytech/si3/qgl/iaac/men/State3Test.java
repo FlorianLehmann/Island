@@ -29,6 +29,7 @@ public class State3Test {
         point = new Point(0, 0);
         men = new Men(carte, point);
         men.setState(new State3());
+        men.setBudget(1000);
     }
 
     @Test
@@ -38,7 +39,7 @@ public class State3Test {
     }
     @Test
     public void waitTest(){
-        men.getState().wait(men);
+
     }
 
 }

@@ -24,7 +24,7 @@ public class State1Test {
     @Before
     public void init() {
         read = new ReadJSON();
-        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
+        read.read("{\"men\": 12,\"budget\": 10000000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte();
         point = new Point(0, 0);
         men = new Men(carte, point);
@@ -34,7 +34,6 @@ public class State1Test {
 
         @Test
         public void executeTest(){
-            men.getState().execute(men);
 
         }
         @Test
