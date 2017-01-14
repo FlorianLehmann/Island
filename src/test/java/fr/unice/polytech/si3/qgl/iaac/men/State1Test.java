@@ -29,6 +29,7 @@ public class State1Test {
         point = new Point(0, 0);
         men = new Men(carte, point);
         men.setState(new State1());
+        men.setBudget(1000);
         }
 
         @Test
@@ -38,6 +39,7 @@ public class State1Test {
         }
         @Test
         public void waitTest(){
+            read.read("{\"cost\": 12}");
             men.getState().wait(men);
             assertTrue(men.getState() instanceof State2);
         }
