@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.drone.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,13 +47,7 @@ public class State3Test {
         assertTrue(men.getState() instanceof State1);
     }
 
-    @Test
-    public void wait2Test(){
-        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 100, \"resource\": \"WOOD\" }],\"heading\": \"W\"}");
-        read.read("{\"cost\": 3, \"extras\": {\"amount\": 9}, \"status\": \"OK\"}");
-        men.getState().wait(men);
-        assertTrue(men.getState() instanceof State4);
-    }
+
 
 }
 

@@ -37,7 +37,7 @@ public class State4Test {
     @Test
     public void case0EstTest(){
         men.getState().execute(men);
-        assertEquals(MOVETO.toString("E"),men.getAction());
+        assertEquals(MOVETO.toString("S"),men.getAction());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class State4Test {
         men.getState().execute(men);
         men.getState().execute(men);
         men.getState().execute(men);
-        assertEquals(MOVETO.toString("W"),men.getAction());
+        assertEquals(MOVETO.toString("E"),men.getAction());
     }
 
     @Test
