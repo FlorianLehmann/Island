@@ -13,7 +13,11 @@ public class State26 implements State {
 
     @Override
     public void execute(Drone drone) {
-        drone.setAction(LAND.toString(drone.getACrique(),drone.getNbMen()-1));
+        int nb = drone.getNbMen()-1;
+        if (nb > 6) {
+            nb = 6;
+        }
+        drone.setAction(LAND.toString(drone.getACrique(),nb));
 
     }
 

@@ -83,6 +83,7 @@ public class Carte {
                 return cases.get(i).getCreek().toString();
         return null;
     }
+
     
     public Point getCoordCreek() {
         for (int i = 0; i < cases.size() ; i++)

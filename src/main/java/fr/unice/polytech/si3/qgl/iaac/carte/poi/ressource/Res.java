@@ -8,4 +8,5 @@ public abstract class Res {
     public abstract Point getNearest(Point point);
     public  abstract boolean hasR();
     public abstract int getAmount();
+    public abstract Point getTabMax();
 }

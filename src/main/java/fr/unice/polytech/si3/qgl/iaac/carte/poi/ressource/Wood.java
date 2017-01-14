@@ -18,15 +18,13 @@ public class Wood extends Res {
             }
         }
     }
-    public Wood() {
 
-    }
 
     public static int[][] getTab() {
         return tab;
     }
 
-    public static Point getTabMax() {
+    public Point getTabMax() {
         int sum = 0;
         int max = 0;
         Point point = new Point();
@@ -45,8 +43,13 @@ public class Wood extends Res {
 
             }
         }
+
         return point;
 
+
+    }
+
+    public Wood() {
 
     }
 
