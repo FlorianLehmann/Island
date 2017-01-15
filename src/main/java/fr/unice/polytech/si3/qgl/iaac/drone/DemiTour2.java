@@ -8,6 +8,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class DemiTour2 implements State {
 
+    /**
+     *
+     * @param drone
+     */
     @Override
     public void execute(Drone drone) {
 
@@ -15,6 +19,10 @@ public class DemiTour2 implements State {
         drone.changeCoord(FLY, EnumDirection.getEnumDirection(drone.getDirection().front()));
     }
 
+    /**
+     * Change the state
+     * @param drone
+     */
     @Override
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));

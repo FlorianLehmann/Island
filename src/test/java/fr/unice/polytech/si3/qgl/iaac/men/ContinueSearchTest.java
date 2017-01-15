@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -30,7 +28,7 @@ public class ContinueSearchTest {
         carte = new Carte();
         point = new Point(0, 0);
         men = new Men(carte, point);
-        men.setState(new State4());
+        men.setState(new TournerRond());
         men.setBudget(1000);
     }
 
@@ -69,7 +67,7 @@ public class ContinueSearchTest {
     public void waitTest(){
         read.read("{\"cost\": 12}");
         men.getState().wait(men);
-        assertTrue(men.getState() instanceof State2);
+        assertTrue(men.getState() instanceof Explore);
     }
 
 }

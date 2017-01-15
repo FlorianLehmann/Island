@@ -39,7 +39,7 @@ public class Men {
 
     public State getState() {
         if (budget < 500) {
-            return new State11();
+            return new StopMen();
         }
         return state;
     }

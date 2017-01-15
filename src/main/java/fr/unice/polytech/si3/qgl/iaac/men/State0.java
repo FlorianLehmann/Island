@@ -15,7 +15,7 @@ public class State0 implements State {
     public void wait(Men men) {
         men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
 
-        men.setState(new State1());
+        men.setState(new CheminRessource());
     }
 
 }

@@ -2,13 +2,11 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
-import java.util.Stack;
-
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 
-public class State2 implements State {
+public class Explore implements State {
 
     /**
      *
@@ -39,9 +37,9 @@ public class State2 implements State {
 
         }
         if (resource == true)
-            men.setState(new State3());
+            men.setState(new Exploit());
         else
-            men.setState(new State4());
+            men.setState(new TournerRond());
 
     }
 

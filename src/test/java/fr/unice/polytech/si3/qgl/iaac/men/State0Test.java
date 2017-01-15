@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -36,7 +35,7 @@ public class State0Test {
     public void waitTest(){
         read.read("{\"cost\": 12}");
         men.getState().wait(men);
-        assertTrue(men.getState() instanceof State1);
+        assertTrue(men.getState() instanceof CheminRessource);
     }
 
 }

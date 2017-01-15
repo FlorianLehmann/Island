@@ -10,7 +10,7 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 /**
  * Created by dev on 17/12/2016.
  */
-public class State4 implements State {
+public class TournerRond implements State {
 
     private static EnumDirection direction = EST;
     private static int compteurNbMove = 1;
@@ -58,6 +58,6 @@ public class State4 implements State {
     public void wait(Men men) {
         men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
 
-        men.setState(new State2());
+        men.setState(new Explore());
     }
 }

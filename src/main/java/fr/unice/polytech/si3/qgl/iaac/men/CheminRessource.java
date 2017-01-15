@@ -6,14 +6,13 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 
-public class State1 implements State {
+public class CheminRessource implements State {
 
     private static boolean wayDefine = false;
     private static Deque<String> stack = new ArrayDeque<>();
@@ -87,7 +86,7 @@ public class State1 implements State {
     public void wait(Men men) {
         men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
         if (stack.isEmpty())
-            men.setState(new State2());
+            men.setState(new Explore());
     }
 
     public static void setWayDefine(boolean a) {

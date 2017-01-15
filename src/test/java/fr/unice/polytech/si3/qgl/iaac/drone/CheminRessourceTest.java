@@ -8,7 +8,7 @@ import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class State1Test {
+public class CheminRessourceTest {
     private ReadJSON read;
     private Drone drone;
     private Carte carte;

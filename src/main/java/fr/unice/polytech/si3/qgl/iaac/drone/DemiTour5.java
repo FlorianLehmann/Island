@@ -10,7 +10,7 @@ public class DemiTour5 implements State {
 
     /**
      *
-     *
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -25,6 +25,10 @@ public class DemiTour5 implements State {
         drone.setLastDirection(drone.getOpposeLastDirection());
     }
 
+    /**
+     * Change the state
+     * @param drone
+     */
     @Override
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));

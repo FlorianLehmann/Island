@@ -12,6 +12,9 @@ public class Flower extends Res {
 
     private static int[][] tab = new int[200][200];
 
+    /**
+     * init the tab
+     */
     static {
         for (int i = 5; i < 195; i++) {
             for (int j = 5; j < 195; j++) {
@@ -20,6 +23,10 @@ public class Flower extends Res {
         }
     }
 
+    /**
+     * make a convolution in order to know where is located (the most of) a resource
+     * @return point
+     */
     public Point getTabMax() {
         int sum;
         int max = 0;
@@ -45,19 +52,35 @@ public class Flower extends Res {
 
     }
 
+    /**
+     * default constructor
+     */
     public Flower() {
         flower = new ArrayList();
     }
 
+    /**
+     * Do there is Flower?
+     * @return true if it is the case
+     */
     public boolean hasR() {
         return flower.size() != 0;
     }
 
+    /**
+     * add a biome Flower
+     * @param point
+     */
     public static void addFlower(Point point) {
         tab[(int) point.getX() + 100][(int) point.getY() + 100] = 1;
         flower.add(new Point((int) point.getX(), (int) point.getY()));
     }
 
+    /**
+     * get the nearest biome from a location
+     * @param point of location
+     * @return point of biome
+     */
     public Point getNearest(Point point) {
         double norme;
         double Min;
@@ -73,10 +96,18 @@ public class Flower extends Res {
         return flower.get(index);
     }
 
+    /**
+     * getter for amount
+     * @return amount to collect
+     */
     public int getAmount() {
         return amount;
     }
 
+    /**
+     * setter for amount
+     * @param amount collected
+     */
     public void setAmount(int amount) {
         this.amount = amount;
     }

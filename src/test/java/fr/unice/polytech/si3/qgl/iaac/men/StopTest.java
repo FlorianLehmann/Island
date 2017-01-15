@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLORE;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,7 +28,7 @@ public class StopTest {
         carte = new Carte();
         point = new Point(0, 0);
         men = new Men(carte, point);
-        men.setState(new State11());
+        men.setState(new StopMen());
         men.setBudget(1000);
     }
 

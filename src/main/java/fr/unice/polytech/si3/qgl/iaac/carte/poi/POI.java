@@ -13,7 +13,7 @@ public class POI {
     /**
      * constructor
      *
-     * @param String id
+     * @param id
      */
     public POI(String id) {
         this.id = id;

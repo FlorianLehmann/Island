@@ -10,6 +10,7 @@ public class ContinueSearch implements State {
 
     /**
      * Demande de changement de cap
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -28,7 +29,8 @@ public class ContinueSearch implements State {
     }
 
     /**
-     * Set the state
+     * Change the state
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

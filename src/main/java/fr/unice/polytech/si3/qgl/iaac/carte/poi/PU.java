@@ -5,7 +5,7 @@ public class PU extends POI {
     /**
      * constructor
      *
-     * @param String id
+     * @param id PU
      */
     public PU(String id) {
         super(id);

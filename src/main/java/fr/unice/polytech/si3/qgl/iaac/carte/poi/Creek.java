@@ -5,12 +5,13 @@ public class Creek extends POI {
     /**
      * constructor
      *
-     * @param String id
+     * @param id Creek
      */
     public Creek(String id) {
         super(id);
     }
 
+    @Override
     public String toString() {
         return id;
     }

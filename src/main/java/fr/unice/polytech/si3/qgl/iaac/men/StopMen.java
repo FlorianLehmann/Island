@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
 
 
-public class State11 implements State {
+public class StopMen implements State {
 
     /**
      * Stop la partie

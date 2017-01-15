@@ -22,7 +22,7 @@ public class Carte {
     /**
      * Add case to the map
      *
-     * @param Point point
+     * @param point
      */
     public void addCase(Point point) {
         cases.add(new Case(new Point((int) point.getX(), (int) point.getY())));//
@@ -31,8 +31,8 @@ public class Carte {
     /**
      * Set a new POI
      *
-     * @param POI   poi
-     * @param Point point
+     * @param poi
+     * @param point
      */
     public void setPOI(POI poi, Point point) {
         int i = 0;
@@ -74,7 +74,7 @@ public class Carte {
     }
 
     /**
-     * @return POI crique
+     * @return POI creek
      */
     public String getCaseCreek() {
         for (int i = 0; i < cases.size(); i++)
@@ -84,6 +84,10 @@ public class Carte {
     }
 
 
+    /**
+     *
+     * @return coord of the first creek stored
+     */
     public Point getCoordCreek() {
         for (int i = 0; i < cases.size(); i++)
             if (cases.get(i).hasCreek())
@@ -131,7 +135,7 @@ public class Carte {
     public int getNbCreek() {
         int j = 0;
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek() == true)
+            if (cases.get(i).hasCreek())
                 j++;
         return j;
 
