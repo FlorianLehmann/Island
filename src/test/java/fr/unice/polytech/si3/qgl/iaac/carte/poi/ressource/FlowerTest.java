@@ -28,8 +28,9 @@ public class FlowerTest {
         assertEquals(ressource.getTabMax(),new Point(0,0));
     }
 
-    @Ignore
+    @Test
     public void hasRTest(){
+        Flower.addFlower(new Point(0,0));
         assertTrue(ressource.hasR());
     }
 

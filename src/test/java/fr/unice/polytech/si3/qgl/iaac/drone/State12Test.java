@@ -32,7 +32,6 @@ public class State12Test {
         assertEquals(SCAN.toString(""),drone.getAction());
     }
 
-    @Ignore
     @Test
     public void PUCreekTest() {
         for(int i=0;i<7;i++){drone.setCreek(""+i);}
