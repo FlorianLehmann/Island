@@ -1,7 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +26,7 @@ public enum EnumSecondaire {
         Arrays.asList(EnumSecondaire.values()).forEach(cw -> map.put(cw.name, cw));
     }
 
-    EnumSecondaire (String name) {
+    EnumSecondaire(String name) {
         this.name = name;
     }
 

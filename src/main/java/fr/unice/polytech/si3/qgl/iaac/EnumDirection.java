@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum EnumDirection {
 

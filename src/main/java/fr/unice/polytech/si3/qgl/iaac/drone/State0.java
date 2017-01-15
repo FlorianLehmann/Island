@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.drone;
 
-public class State0 implements State{
+public class State0 implements State {
 
     @Override
     public void execute(Drone drone) {
@@ -9,7 +9,7 @@ public class State0 implements State{
 
     @Override
     public void wait(Drone drone) {
-	drone.setState(new State1());
+        drone.setState(new State1());
     }
-    
+
 }

@@ -4,7 +4,6 @@ import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.EST;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.MOVETO;
 
 /**
@@ -28,7 +27,7 @@ public class State4 implements State {
                 men.setCoord(direction);
                 //men.setCoord(direction);
                 compteurNbMove--;
-                if(compteurNbMove <= 0) {
+                if (compteurNbMove <= 0) {
                     direction = EnumDirection.getEnumDirection(direction.left());
                     etat = 1;
                     compteurNbMove = compteurNbMove2;
@@ -38,7 +37,7 @@ public class State4 implements State {
                 men.setAction(MOVETO.toString(direction.front()));
                 men.setCoord(direction);
                 compteurNbMove--;
-                if(compteurNbMove <= 0) {
+                if (compteurNbMove <= 0) {
                     direction = EnumDirection.getEnumDirection(direction.left());
 
                     etat = 0;

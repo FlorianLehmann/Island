@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.EnumSecondaire;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.EnumSecondaire;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class ReadJSON {
         return amount;
     }
 
-    public static int getCollect(){
+    public static int getCollect() {
         return (int) informations.get("amount");
     }
 
@@ -69,12 +69,12 @@ public class ReadJSON {
             Iterator<String> iterator_ressource;
             String tmp;
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
 
                 jsonobject2 = (JSONObject) iterator.next();
                 iterator_ressource = jsonobject2.keys();
 
-                while(iterator_ressource.hasNext()) {
+                while (iterator_ressource.hasNext()) {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
                     if (!EnumSecondaire.isSecond(re)) {
@@ -160,14 +160,12 @@ public class ReadJSON {
 
                 }
             }
-		/*else { informations.remove("sites"); }*/
+        /*else { informations.remove("sites"); }*/
         }
 
         if (jsonobject.has("cost")) {
             informations.put("cost", jsonobject.getInt("cost"));
         }
-
-
 
 
     }

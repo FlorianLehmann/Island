@@ -2,8 +2,6 @@ package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.Fish;
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.Wood;
 import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
 import fr.unice.polytech.si3.qgl.iaac.men.Men;
 
@@ -56,7 +54,7 @@ public class Explorer implements IExplorerRaid {
             drone.getState().wait(drone);
             drone.getState().execute(drone);
             if (drone.getEnd()) {
-                men = new Men(carte, new Point((int) drone.getPoint().getX()*3, (int) drone.getPoint().getY()*3));
+                men = new Men(carte, new Point((int) drone.getPoint().getX() * 3, (int) drone.getPoint().getY() * 3));
                 men.setBudget(drone.getBudget());
             }
             return drone.getAction();

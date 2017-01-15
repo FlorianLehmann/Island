@@ -36,8 +36,8 @@ public class State2 implements State {
         resource = false;
         for (int i = 0; i < ReadJSON.getResources().size(); i++) {
             //for (int j = 0; j < ReadJSON.getContracts().size(); j++) {
-                if (ReadJSON.getResources().get(i).equals((String) ReadJSON.getContracts().get(0)))
-                    resource = true;
+            if (ReadJSON.getResources().get(i).equals((String) ReadJSON.getContracts().get(0)))
+                resource = true;
             //}
 
         }

@@ -2,11 +2,11 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-
 import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+
 import java.awt.*;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Men {
 
@@ -16,15 +16,15 @@ public class Men {
     private Point point;
     private String action;
     private Map<String, Res> res;
+
     /**
      * default constructor
-     *
      */
     public Men(Carte carte, Point point) {
-        
+
         this.carte = carte;
         state = new State0();
-        this.point = new Point((int)point.getX(), (int)point.getY());
+        this.point = new Point((int) point.getX(), (int) point.getY());
         res = new HashMap();
         res.put("FISH", new Fish());
         res.put("FLOWER", new Flower());
@@ -34,9 +34,9 @@ public class Men {
         res.put("QUARTZ", new Quartz());
         res.put("SUGAR_CANE", new SugarCane());
         res.put("WOOD", new Wood());
-        
+
     }
-    
+
     public State getState() {
         if (budget < 500) {
             return new State11();
@@ -52,23 +52,23 @@ public class Men {
     public void setAction(String tmp) {
         action = tmp;
     }
-    
+
     public String getAction() {
         return action;
     }
-    
+
     public void setState(State state) {
-        
+
         this.state = state;
     }
 
     public Point getPoint() {
-        
+
         return point;
     }
-    
+
     public Res getRessource(String tmp) {
-        
+
         return res.get(tmp);
     }
 
@@ -77,7 +77,7 @@ public class Men {
     }
 
     public void subBudget(int cost) {
-        budget = budget -cost;
+        budget = budget - cost;
     }
 
     public void setCoord(EnumDirection direc) {
@@ -86,13 +86,13 @@ public class Men {
                 point.setLocation(point.getX(), point.getY() + 1);
                 break;
             case EST:
-                point.setLocation(point.getX()+1, point.getY());
+                point.setLocation(point.getX() + 1, point.getY());
                 break;
             case SUD:
                 point.setLocation(point.getX(), point.getY() - 1);
                 break;
             case WEST:
-                point.setLocation(point.getX()-1, point.getY());
+                point.setLocation(point.getX() - 1, point.getY());
                 break;
         }
     }

@@ -37,8 +37,7 @@ public class State3 implements State {
             State1.setWayDefine(false);
             State4.init();
             men.setState(new State1());
-        }
-        else {
+        } else {
             men.setState(new State4());
         }
 

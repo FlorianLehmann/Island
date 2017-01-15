@@ -6,17 +6,17 @@ public class POI {
 
     /**
      * attributs
-     *
      */
     protected String id;
     protected Point point;
 
     /**
      * constructor
+     *
      * @param String id
      */
     public POI(String id) {
-	this.id = id;
+        this.id = id;
     }
-    
+
 }

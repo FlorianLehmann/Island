@@ -2,7 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
-public class State0 implements State{
+public class State0 implements State {
 
     @Override
     public void execute(Men men) {
@@ -15,5 +15,5 @@ public class State0 implements State{
 
         men.setState(new State1());
     }
-    
+
 }
