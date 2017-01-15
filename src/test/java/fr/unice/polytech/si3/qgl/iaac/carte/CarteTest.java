@@ -81,6 +81,15 @@ private Carte carte;
         carte.setPOI(new Creek("idcreek2"),new Point(10,10));
         assertEquals(carte.getNearestCreekPU(),"idcreek2");
     }
+
+    @Test
+    public void getnbcreekTest(){
+        carte.addCase(new Point(0,0));
+        carte.addCase(new Point(0,1));
+        carte.setPOI(new Creek("creek1"),new Point(0,0));
+        carte.setPOI(new Creek("creek2"),new Point(0,1));
+        assertEquals(carte.getNbCreek(),2);
+    }
     
 
 }
