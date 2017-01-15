@@ -105,7 +105,7 @@ public class State12 implements State {
 
         if ( /*(((drone.getBudgetInit() - (drone.getBudgetInit()/3)) > drone.getBudget())  && (drone.getNbCreek() >= 2)) /*||*/ drone.getNbAllerRetour() >= 4) {
 
-            drone.setState(new State26());
+            drone.setState(new Land());
         } else {
             drone.setState(new State13());
         }

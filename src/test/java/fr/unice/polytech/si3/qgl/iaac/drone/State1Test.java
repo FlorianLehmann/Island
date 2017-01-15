@@ -1,9 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.drone;
 
-import fr.unice.polytech.si3.qgl.iaac.drone.Drone.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.*;
@@ -20,7 +19,7 @@ public class State1Test {
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte();
         drone = new Drone(SUD, new Carte());
-        drone.setState(new State1());
+        drone.setState(new EchoFront());
     }
 
     @Test
@@ -42,14 +41,14 @@ public class State1Test {
     public void OceanTest() {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State2);
+        assertTrue(drone.getState() instanceof EchoLeft);
     }
     
     @Test
     public void OutOfRangeTest() {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State11);
+        assertTrue(drone.getState() instanceof Stop);
     }
     
 

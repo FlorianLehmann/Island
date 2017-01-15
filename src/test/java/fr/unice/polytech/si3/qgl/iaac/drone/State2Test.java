@@ -25,7 +25,7 @@ public class State2Test {
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte();
         drone = new Drone(NORD, carte);
-        drone.setState(new State2());
+        drone.setState(new EchoLeft());
     }
 
 
@@ -46,7 +46,7 @@ public class State2Test {
     public void OceanTest() {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State3);
+        assertTrue(drone.getState() instanceof EchoRight);
     }
 
 }

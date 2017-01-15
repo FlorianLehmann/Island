@@ -33,7 +33,7 @@ public class State13 implements State {
             drone.setCaseToTarget((int) ReadJSON.getInformations().get(RANGE.toString()));
         }
         if ("OUT_OF_RANGE".equals(ReadJSON.getInformations().get(FOUND.toString())) && (((int) ReadJSON.getInformations().get(RANGE.toString())) == 0)) {
-            drone.setState(new State11());
+            drone.setState(new Stop());
         }
     }
 }

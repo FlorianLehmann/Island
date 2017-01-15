@@ -6,35 +6,30 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.HEADING;
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
-public class State4 implements State {
+public class DemiTour4 implements State {
 
     /**
-     * Demande de changement de cap
+     *
+     *
      */
     @Override
     public void execute(Drone drone) {
-
-        if (drone.getNbCaseLeft() > drone.getNbCaseRight()) {
-            drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
-
-            drone.setAction(HEADING.toString(drone.getDirection().left()));
-            drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
-        } else {
+        if ((drone.getLastDirection()).equals("R")) {
             drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().right()));
-
-            drone.setAction(HEADING.toString(drone.getDirection().right()));
             drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().right()));
+        } else {
+            drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
+            drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
         }
+        drone.setAction(HEADING.toString(drone.getDirection().front()));
+
     }
 
-    /**
-     * Set the state
-     */
     @Override
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
-        drone.setState(new EchoFront());
-    }
+        drone.setState(new DemiTour5());
 
+    }
 
 }

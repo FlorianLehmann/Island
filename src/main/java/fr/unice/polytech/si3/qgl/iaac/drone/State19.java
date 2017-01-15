@@ -24,7 +24,7 @@ public class State19 implements State {
             drone.setCaseToTarget((int) ReadJSON.getInformations().get(RANGE.toString()));
             drone.setState(new State20());
         } else {
-            drone.setState(new State21());
+            drone.setState(new DemiTour1());
         }
     }
 

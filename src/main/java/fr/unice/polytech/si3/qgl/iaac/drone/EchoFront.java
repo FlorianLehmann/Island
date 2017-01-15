@@ -29,9 +29,9 @@ public class EchoFront implements State {
             drone.setLastDirection("G");
 
         } else if ((int) ReadJSON.getInformations().get("range") == 0) {
-            drone.setState(new State11());//11
+            drone.setState(new Stop());//11
         } else {
-            drone.setState(new State2());
+            drone.setState(new EchoLeft());
         }
 
     }

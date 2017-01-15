@@ -11,7 +11,7 @@ import org.junit.*;
 /**
  * Created by sebde on 05/12/2016.
  */
-public class State11Test {
+public class StopTest {
     private Drone drone;
     private Carte carte;
     private ReadJSON read;
@@ -26,7 +26,7 @@ public class State11Test {
 
     @Test
     public void ActionTest(){
-        drone.setState(new State11());
+        drone.setState(new Stop());
         drone.getState().execute(drone);
         assertEquals(STOP.toString(""),drone.getAction());
     }

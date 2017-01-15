@@ -6,7 +6,7 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.FLY;
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
-public class State22 implements State {
+public class DemiTour2 implements State {
 
     @Override
     public void execute(Drone drone) {
@@ -19,7 +19,7 @@ public class State22 implements State {
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
 
-        drone.setState(new State23());
+        drone.setState(new DemiTour3());
     }
 
 

@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
 
-public class State2 implements State {
+public class EchoLeft implements State {
 
     /**
      * Demande un echo sur la gauche
@@ -26,7 +26,7 @@ public class State2 implements State {
             drone.setState(new State6());
             drone.setCaseToTarget((int) ReadJSON.getInformations().get("range"));
         } else {
-            drone.setState(new State3());
+            drone.setState(new EchoRight());
             drone.setNbCaseLeft((int) ReadJSON.getInformations().get("range"));
         }
     }

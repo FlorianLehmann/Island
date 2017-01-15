@@ -88,10 +88,10 @@ public class Drone {
      * get the current state
      */
     public State getState() {
-        if (state instanceof State25)
+        if (state instanceof DemiTour5)
             nbAllerRetour++;
         if (budget < 1000) {
-            return new State11();
+            return new Stop();
         }
         return state;
     }

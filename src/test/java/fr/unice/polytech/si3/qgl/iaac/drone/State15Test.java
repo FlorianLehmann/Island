@@ -69,6 +69,6 @@ public class State15Test {
     public void OutOfRangeTest() {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State11);
+        assertTrue(drone.getState() instanceof Stop);
     }
 }

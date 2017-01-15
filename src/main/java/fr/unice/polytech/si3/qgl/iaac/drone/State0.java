@@ -9,7 +9,7 @@ public class State0 implements State {
 
     @Override
     public void wait(Drone drone) {
-        drone.setState(new State1());
+        drone.setState(new EchoFront());
     }
 
 }

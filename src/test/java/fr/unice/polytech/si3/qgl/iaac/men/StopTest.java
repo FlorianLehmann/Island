@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Quentin on 14/01/2017.
  */
-public class State11Test {
+public class StopTest {
     private ReadJSON read;
     private Men men;
     private Carte carte;

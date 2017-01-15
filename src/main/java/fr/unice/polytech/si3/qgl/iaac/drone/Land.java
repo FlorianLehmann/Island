@@ -8,7 +8,7 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 /**
  * Created by sebde on 11/12/2016.
  */
-public class State26 implements State {
+public class Land implements State {
 
     @Override
     public void execute(Drone drone) {
@@ -17,7 +17,6 @@ public class State26 implements State {
             nb = 6;
         }
         drone.setAction(LAND.toString(drone.getACrique(), nb));
-
     }
 
     @Override

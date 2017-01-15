@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.*;
@@ -14,7 +13,7 @@ import org.junit.*;
 /**
  * Created by Quentin on 06/12/2016.
  */
-public class State21Test {
+public class DemiTour1Test {
     private ReadJSON read;
     private Drone drone;
     private Carte carte;
@@ -26,7 +25,7 @@ public class State21Test {
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte();
         drone = new Drone(NORD, carte);
-        drone.setState(new State21());
+        drone.setState(new DemiTour1());
 
     }
 
@@ -50,6 +49,6 @@ public class State21Test {
     public void WaitTest() {
         read.read("{ \"cost\": 4, \"extras\": {}, \"status\": \"OK\" }");
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State22);
+        assertTrue(drone.getState() instanceof DemiTour2);
     }
 }

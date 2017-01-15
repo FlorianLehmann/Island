@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.*;
@@ -49,7 +48,7 @@ public class State19Test {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 3, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
         drone.setCaseToTarget(1);
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State21);
+        assertTrue(drone.getState() instanceof DemiTour1);
     }
 
 }

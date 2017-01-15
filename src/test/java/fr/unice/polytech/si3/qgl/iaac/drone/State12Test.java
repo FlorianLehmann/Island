@@ -41,7 +41,7 @@ public class State12Test {
         drone.getState().wait(drone);
         drone.setState(new State12());
         drone.getState().wait(drone);
-        assertTrue(drone.getState() instanceof State26);
+        assertTrue(drone.getState() instanceof Land);
     }*/
 
     @Test

@@ -42,7 +42,7 @@ public class State15 implements State {
             drone.setState(new State17());
         }
         if (drone.getCaseToTarget() == 0) {
-            drone.setState(new State11());
+            drone.setState(new Stop());
         }
     }
 
