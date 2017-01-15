@@ -8,16 +8,21 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State13 implements State {
 
+
     /**
      * Demande un echo dans la direction du drone
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
         drone.setAction(ECHO.toString(drone.getDirection().front()));
     }
 
+
     /**
+     *
      * Analyse du résultat
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

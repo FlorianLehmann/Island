@@ -11,8 +11,7 @@ public class State17 implements State {
 
     /**
      *
-     *
-     *
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -29,8 +28,8 @@ public class State17 implements State {
     }
 
     /**
-     *
-     *
+     * Analyse du résultat
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

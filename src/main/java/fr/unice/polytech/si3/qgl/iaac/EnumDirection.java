@@ -29,6 +29,10 @@ public enum EnumDirection {
 
     /**
      * Constructeur de l'enum
+     * @param direction
+     * @param left
+     * @param right
+     * @param back
      */
     EnumDirection(String direction, String left, String right, String back) {
 
@@ -96,7 +100,9 @@ public enum EnumDirection {
     }
 
     /**
-     *
+     * Donne la direction opposée
+     * @param direction
+     * @return
      */
     public static EnumDirection getOppose(EnumDirection direction) {
         return EnumDirection.getEnumDirection(direction.back());

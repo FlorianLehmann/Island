@@ -9,8 +9,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State10 implements State {
 
+
     /**
      * Vol jusqu'à la terre
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -22,6 +24,7 @@ public class State10 implements State {
 
     /**
      * Change the state
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

@@ -13,8 +13,10 @@ public class StopMen implements State {
         men.setAction(STOP.toString(""));
     }
 
+
     /**
      * Do nothing
+     * @param men
      */
     @Override
     public void wait(Men men) {

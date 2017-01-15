@@ -7,8 +7,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.FLY;
 
 public class State20 implements State {
 
+
     /**
      * le drone avance
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -19,7 +21,8 @@ public class State20 implements State {
     }
 
     /**
-     *
+     * Analyse du résultat
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

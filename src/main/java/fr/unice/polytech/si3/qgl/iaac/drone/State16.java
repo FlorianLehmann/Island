@@ -10,6 +10,7 @@ public class State16 implements State {
 
     /**
      * le drone avance
+     * @param drone
      */
     public void execute(Drone drone) {
         drone.setAction(FLY.toString(""));
@@ -19,6 +20,7 @@ public class State16 implements State {
 
     /**
      * passage à l'état suivant
+     * @param drone
      */
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));

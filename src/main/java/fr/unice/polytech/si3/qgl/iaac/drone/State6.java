@@ -9,8 +9,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State6 implements State {
 
+
     /**
      * Tourne à gauche
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -24,6 +26,7 @@ public class State6 implements State {
 
     /**
      * Change the state
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

@@ -21,9 +21,8 @@ public class Explore implements State {
     }
 
     /**
-     *
-     *
-     *
+     * Analyse du résultat
+     * @param men
      */
     @Override
     public void wait(Men men) {

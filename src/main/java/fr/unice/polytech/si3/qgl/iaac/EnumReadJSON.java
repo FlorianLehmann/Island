@@ -21,6 +21,10 @@ public enum EnumReadJSON {
 
     String word;
 
+    /**
+     * default constructor
+     * @param word
+     */
     EnumReadJSON(String word) {
         this.word = word;
     }

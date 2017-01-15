@@ -177,12 +177,20 @@ public class ReadJSON {
 
     }
 
+    /**
+     *
+     * @return
+     */
     static public List<String> getBiome() {
 
         return biome;
 
     }
 
+    /**
+     *
+     * @return
+     */
     static public List<String> getResources() {
 
         return resources;

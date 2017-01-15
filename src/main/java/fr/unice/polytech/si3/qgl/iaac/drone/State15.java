@@ -8,30 +8,23 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State15 implements State {
 
+
     /**
      * Demande un echo
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
-        //drone.getOpposeLastDirection().equals("R")
         if (drone.getOpposeLastDirection().equals("R"))
             drone.setAction(ECHO.toString(drone.getDirection().right()));
         else
             drone.setAction(ECHO.toString(drone.getDirection().left()));
-        
-	/*if( EnumDirection.getOppose(drone.getLastDirection()).equals(drone.getDirection().right()))
-        drone.setAction(ECHO.toString(drone.getDirection().right()));
-	else
-	    drone.setAction(ECHO.toString(drone.getDirection().left()));*/
-        /*if( drone.getLastDirection().equals(drone.getDirection().right()))
-            drone.setAction(ECHO.toString(drone.getDirection().right()));
-        else
-            drone.setAction(ECHO.toString(drone.getDirection().left()));*/
 
     }
 
     /**
      * Analyse du résultat
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

@@ -10,6 +10,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
  */
 public class Land implements State {
 
+    /**
+     * Land
+     * @param drone
+     */
     @Override
     public void execute(Drone drone) {
         int nb = drone.getNbMen() - 1;
@@ -19,6 +23,10 @@ public class Land implements State {
         drone.setAction(LAND.toString(drone.getACrique(), nb));
     }
 
+    /**
+     * change the state
+     * @param drone
+     */
     @Override
     public void wait(Drone drone) {
 

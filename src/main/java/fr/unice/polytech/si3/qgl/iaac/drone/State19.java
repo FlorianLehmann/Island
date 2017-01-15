@@ -8,8 +8,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State19 implements State {
 
+
     /**
-     * Demand un echo
+     * Demande d'un echo
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -17,6 +19,10 @@ public class State19 implements State {
         drone.setAction(ECHO.toString(drone.getDirection().front()));
     }
 
+    /**
+     * Analyse du résultat
+     * @param drone
+     */
     @Override
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));

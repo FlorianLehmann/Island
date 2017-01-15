@@ -10,6 +10,7 @@ public class State5 implements State {
 
     /**
      * Tourne à droite
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -21,6 +22,7 @@ public class State5 implements State {
 
     /**
      * Change the state
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

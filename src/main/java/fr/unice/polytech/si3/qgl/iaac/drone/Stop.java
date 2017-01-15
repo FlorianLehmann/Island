@@ -10,6 +10,7 @@ public class Stop implements State {
 
     /**
      * Stop la partie
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -18,6 +19,7 @@ public class Stop implements State {
 
     /**
      * Do nothing
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

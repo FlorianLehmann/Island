@@ -18,9 +18,8 @@ public class CheminRessource implements State {
     private static Deque<String> stack = new ArrayDeque<>();
 
     /**
-     *
-     *
-     *
+     * define a way
+     * @param men
      */
     @Override
     public void execute(Men men) {
@@ -78,9 +77,8 @@ public class CheminRessource implements State {
     }
 
     /**
-     *
-     *
-     *
+     * Analyse du résultat
+     * @param men
      */
     @Override
     public void wait(Men men) {

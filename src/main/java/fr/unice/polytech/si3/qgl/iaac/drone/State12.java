@@ -9,8 +9,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State12 implements State {
 
+
     /**
-     * Demande un SCAN
+     * Demande un scan
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -19,7 +21,8 @@ public class State12 implements State {
     }
 
     /**
-     * Analyse du résultat
+     * Analyse du résultat, ajout des criques, des pu
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

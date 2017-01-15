@@ -8,8 +8,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class EchoRight implements State {
 
+
     /**
      * Demande un echo sur la droite
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -18,6 +20,7 @@ public class EchoRight implements State {
 
     /**
      * Analyse du résultat
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

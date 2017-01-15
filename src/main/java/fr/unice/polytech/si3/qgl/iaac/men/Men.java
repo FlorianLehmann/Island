@@ -19,6 +19,8 @@ public class Men {
 
     /**
      * default constructor
+     * @param carte
+     * @param point
      */
     public Men(Carte carte, Point point) {
 
@@ -37,6 +39,10 @@ public class Men {
 
     }
 
+    /**
+     * getter for the state
+     * @return
+     */
     public State getState() {
         if (budget < 500) {
             return new StopMen();
@@ -44,42 +50,78 @@ public class Men {
         return state;
     }
 
+    /**
+     * give the location of a creek
+     * @return point
+     */
     public Point getACrique() {
         return carte.getCoordCreek();
     }
 
-
+    /**
+     *
+     * @param tmp
+     */
     public void setAction(String tmp) {
         action = tmp;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAction() {
         return action;
     }
 
+    /**
+     *
+     * @param state
+     */
     public void setState(State state) {
 
         this.state = state;
     }
 
+    /**
+     *
+     * @return
+     */
     public Point getPoint() {
 
         return point;
     }
 
+    /**
+     *
+     * @param tmp
+     * @return
+     */
     public Res getRessource(String tmp) {
 
         return res.get(tmp);
     }
 
+    /**
+     *
+     * @param budgett
+     */
     public static void setBudget(int budgett) {
         budget = budgett;
     }
 
+    /**
+     *
+     * @param cost
+     */
     public static void subBudget(int cost) {
         budget = budget - cost;
     }
 
+    /**
+     *
+     * @param direc
+     */
     public void setCoord(EnumDirection direc) {
         switch (direc) {
             case NORD:

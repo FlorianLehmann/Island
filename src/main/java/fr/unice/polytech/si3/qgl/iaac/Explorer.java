@@ -21,6 +21,7 @@ public class Explorer implements IExplorerRaid {
 
     /**
      * Initialize attributes with the JSON request
+     * @param s
      */
     @Override
     public void initialize(String s) {
@@ -43,6 +44,7 @@ public class Explorer implements IExplorerRaid {
 
     /**
      * Take decision
+     * @return
      */
     @Override
     public String takeDecision() {
@@ -63,11 +65,19 @@ public class Explorer implements IExplorerRaid {
         return men.getAction();
     }
 
+    /**
+     * result of the inquiry
+     * @param s
+     */
     @Override
     public void acknowledgeResults(String s) {
         json.read(s);
     }
 
+    /**
+     * deliver the final report
+     * @return
+     */
     @Override
     public String deliverFinalReport() {
         return "Report";

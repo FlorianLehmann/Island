@@ -18,7 +18,10 @@ public enum EnumJSON {
 
 
     /**
-     * default constructor of the enum
+     * default constructor
+     * @param debut
+     * @param milieu
+     * @param fin
      */
     EnumJSON(String debut, String milieu, String fin) {
         this.debut = debut;
@@ -37,6 +40,12 @@ public enum EnumJSON {
 
     }
 
+    /**
+     *
+     * @param parametre1
+     * @param parametre2
+     * @return
+     */
     public String toString(String parametre1, int parametre2) {
         return debut + parametre1 + milieu + parametre2 + fin;
     }

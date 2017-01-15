@@ -6,8 +6,10 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
 
 public class EchoFront implements State {
 
+
     /**
      * Demande un echo devant
+     * @param drone
      */
     @Override
     public void execute(Drone drone) {
@@ -18,6 +20,7 @@ public class EchoFront implements State {
 
     /**
      * Analyse du résultat et passage à l'etat suivant
+     * @param drone
      */
     @Override
     public void wait(Drone drone) {

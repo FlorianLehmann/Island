@@ -18,6 +18,10 @@ public class TournerRond implements State {
 
     private static int etat = 0;
 
+    /**
+     * tourner en rond autour du biome
+     * @param men
+     */
     @Override
     public void execute(Men men) {
         switch (etat) {
@@ -48,12 +52,19 @@ public class TournerRond implements State {
 
     }
 
+    /**
+     * init the attributes
+     */
     public static void init() {
         compteurNbMove = 1;
         compteurNbMove2 = 1;
         etat = 0;
     }
 
+    /**
+     * Analyse du résultat
+     * @param men
+     */
     @Override
     public void wait(Men men) {
         men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
