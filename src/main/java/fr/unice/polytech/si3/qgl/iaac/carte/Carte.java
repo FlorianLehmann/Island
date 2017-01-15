@@ -17,8 +17,6 @@ public class Carte {
      */
     public Carte() {
         cases = new LinkedList();
-        //a suppr pour test
-        //cases.add((new Case(new Point(0,0))));
     }
 
     /**
@@ -49,7 +47,7 @@ public class Carte {
      */
     public boolean hasPU() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU() == true)
+            if (cases.get(i).hasPU())
                 return true;
         return false;
     }
@@ -60,7 +58,7 @@ public class Carte {
      */
     public boolean hasCreek() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek() == true)
+            if (cases.get(i).hasCreek())
                 return true;
         return false;
     }
@@ -70,7 +68,7 @@ public class Carte {
      */
     public Case getCasePU() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU() == true)
+            if (cases.get(i).hasPU())
                 return cases.get(i);
         return null;
     }
@@ -80,7 +78,7 @@ public class Carte {
      */
     public String getCaseCreek() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek() == true)
+            if (cases.get(i).hasCreek())
                 return cases.get(i).getCreek().toString();
         return null;
     }
@@ -88,7 +86,7 @@ public class Carte {
 
     public Point getCoordCreek() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek() == true)
+            if (cases.get(i).hasCreek())
                 return cases.get(i).getCoords();
         return null;
     }
@@ -98,7 +96,7 @@ public class Carte {
      */
     public String getPU() {
         for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU() == true)
+            if (cases.get(i).hasPU())
                 return cases.get(i).getPU().toString();
         return null;
     }
@@ -108,9 +106,9 @@ public class Carte {
      */
     public String getNearestCreekPU() {
         Point pu = getCasePU().getCoords();
-        String id = new String();
+        String id = "";
         double normeMin = Integer.MAX_VALUE;
-        double norme = 0;
+        double norme;
 
         for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).hasCreek()) {

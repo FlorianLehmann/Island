@@ -4,6 +4,8 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.SCAN;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+
 
 public class State12 implements State {
 
@@ -21,12 +23,12 @@ public class State12 implements State {
      */
     @Override
     public void wait(Drone drone) {
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
-        if (ReadJSON.getInformations().containsKey("sites")) {
-            drone.setPU((String) ReadJSON.getInformations().get("sites"));
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
+        if (ReadJSON.getInformations().containsKey(SITES.toString())) {
+            drone.setPU((String) ReadJSON.getInformations().get(SITES.toString()));
         }
-        if (ReadJSON.getInformations().containsKey("creeks")) {
-            drone.setCreek((String) ReadJSON.getInformations().get("creeks"));
+        if (ReadJSON.getInformations().containsKey(CREEKS.toString())) {
+            drone.setCreek((String) ReadJSON.getInformations().get(CREEKS.toString()));
         }
         for (int i = 0; i < ReadJSON.getBiome().size(); i++) {
             switch (ReadJSON.getBiome().get(i)) {

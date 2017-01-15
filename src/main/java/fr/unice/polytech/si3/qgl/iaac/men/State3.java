@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.men;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.EXPLOIT;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 /**
  * Created by dev on 17/12/2016.
@@ -28,7 +29,7 @@ public class State3 implements State {
      */
     @Override
     public void wait(Men men) {
-        men.subBudget((int) ReadJSON.getInformations().get("cost"));
+        men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
 
         men.getRessource((String) ReadJSON.getContracts().get(0)).setAmount(men.getRessource((String) ReadJSON.getContracts().get(0)).getAmount() - ReadJSON.getCollect());
         if (men.getRessource(((String) ReadJSON.getContracts().get(0))).getAmount() <= 0) {

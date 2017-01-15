@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.drone;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.LAND;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 /**
  * Created by sebde on 11/12/2016.
@@ -22,7 +23,7 @@ public class State26 implements State {
     @Override
     public void wait(Drone drone) {
 
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
         drone.setCoord();
         drone.setEnd();
     }

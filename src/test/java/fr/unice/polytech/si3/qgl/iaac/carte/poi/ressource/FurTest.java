@@ -29,6 +29,7 @@ public class FurTest {
 
     @Test
     public void hasRTest(){
+        Fur.addFur(new Point(0,0));
         assertTrue(ressource.hasR());
     }
 

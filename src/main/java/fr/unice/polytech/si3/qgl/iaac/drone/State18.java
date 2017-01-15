@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.HEADING;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 public class State18 implements State {
 
@@ -21,8 +22,6 @@ public class State18 implements State {
             drone.changeCoord(HEADING, EnumDirection.getEnumDirection(drone.getDirection().left()));
             drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().left()));
         }
-    /*drone.setAction(HEADING.toString(drone.getDirection().back()));
-    drone.setDirection(EnumDirection.getEnumDirection(drone.getDirection().back()));*/
         drone.setAction(HEADING.toString(drone.getDirection().front()));
         drone.setLastDirection(drone.getOpposeLastDirection());
 
@@ -35,7 +34,7 @@ public class State18 implements State {
      */
     @Override
     public void wait(Drone drone) {
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
         drone.setState(new State19());
 
     }

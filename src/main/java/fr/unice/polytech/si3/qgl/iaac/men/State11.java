@@ -10,8 +10,7 @@ public class State11 implements State {
      */
     @Override
     public void execute(Men men) {
-        men.setAction(STOP.toString(""));//on débarque!
-        //drone.setAction(LAND.toString("", drone.getACrique()));//on débarque!
+        men.setAction(STOP.toString(""));
     }
 
     /**
@@ -20,7 +19,6 @@ public class State11 implements State {
     @Override
     public void wait(Men men) {
 
-//        men.subBudget((int) ReadJSON.getInformations().get("cost"));
     }
 
 }

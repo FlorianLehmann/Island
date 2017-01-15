@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Fur extends Res {
     private static java.util.List<Point> fur = new ArrayList();
-    ;
     private int amount = 0;
 
 

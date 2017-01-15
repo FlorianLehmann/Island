@@ -4,15 +4,19 @@ import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import java.awt.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+
 
 public class State1 implements State {
 
     private static boolean wayDefine = false;
-    private static Stack<String> stack = new Stack();
+    private static Deque<String> stack = new ArrayDeque<>();
 
     /**
      *
@@ -38,7 +42,7 @@ public class State1 implements State {
 
                 (men.getRessource(tmp)).setAmount(ReadJSON.getAmount().get(0));
                 Point point;
-                if (tmp.equals("FISH")) {
+                if ("FISH".equals(tmp)) {
                     point = men.getACrique();
                 } else {
                     point = men.getRessource(tmp).getTabMax();
@@ -81,7 +85,7 @@ public class State1 implements State {
      */
     @Override
     public void wait(Men men) {
-        men.subBudget((int) ReadJSON.getInformations().get("cost"));
+        men.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
         if (stack.isEmpty())
             men.setState(new State2());
     }

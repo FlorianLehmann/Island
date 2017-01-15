@@ -21,7 +21,7 @@ public class Flower extends Res {
     }
 
     public Point getTabMax() {
-        int sum = 0;
+        int sum;
         int max = 0;
         Point point = new Point();
         for (int i = 5; i < 195; i++) {

@@ -18,7 +18,6 @@ public class Explorer implements IExplorerRaid {
     private int budget;
     private EnumDirection direction;
     private Drone drone;
-    //voir ou on va stocker les ressources
 
     /**
      * Initialize attributes with the JSON request
@@ -39,9 +38,6 @@ public class Explorer implements IExplorerRaid {
         drone = new Drone(direction, carte);
         men = new Men(carte, new Point(0, 0));
         men.setBudget(drone.getBudget());
-
-        //gérer les ressources
-
 
     }
 

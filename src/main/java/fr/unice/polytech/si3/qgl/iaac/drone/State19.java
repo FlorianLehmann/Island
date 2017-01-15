@@ -3,6 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac.drone;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+
 
 public class State19 implements State {
 
@@ -17,9 +19,9 @@ public class State19 implements State {
 
     @Override
     public void wait(Drone drone) {
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
-        if (ReadJSON.getInformations().get("found").equals("GROUND")) {
-            drone.setCaseToTarget((int) ReadJSON.getInformations().get("range"));
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
+        if ("GROUND".equals(ReadJSON.getInformations().get(FOUND.toString()))) {
+            drone.setCaseToTarget((int) ReadJSON.getInformations().get(RANGE.toString()));
             drone.setState(new State20());
         } else {
             drone.setState(new State21());

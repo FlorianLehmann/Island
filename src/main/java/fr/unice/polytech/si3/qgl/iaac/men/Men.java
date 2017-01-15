@@ -72,11 +72,11 @@ public class Men {
         return res.get(tmp);
     }
 
-    public void setBudget(int budget) {
-        this.budget = budget;
+    public static void setBudget(int budgett) {
+        budget = budgett;
     }
 
-    public void subBudget(int cost) {
+    public static void subBudget(int cost) {
         budget = budget - cost;
     }
 

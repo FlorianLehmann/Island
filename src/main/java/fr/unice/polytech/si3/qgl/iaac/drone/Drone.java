@@ -21,7 +21,6 @@ public class Drone {
      * Attributes
      */
     private Map<String, Res> res;
-
     private State state;
     private int budget;
     private int budgetInit;
@@ -44,9 +43,8 @@ public class Drone {
     public Drone(EnumDirection direction, Carte carte) {
         this.carte = carte;
         nbMen = (int) ReadJSON.getInformations().get("men");
-        //carte = new Carte();
         state = new State0();
-        action = new String();
+        action = " ";
         nbAllerRetour = 0;
         end = false;
         budgetInit = (int) ReadJSON.getInformations().get("budget");
@@ -206,7 +204,7 @@ public class Drone {
 
     public String getOpposeLastDirection() {
 
-        if (lastDirection.equals("R")) {
+        if ("R".equals(lastDirection)) {
             return "G";
         } else
             return "R";
@@ -251,6 +249,8 @@ public class Drone {
                 case EST:
                     point.setLocation(point.getX() + 1, point.getY());
                     break;
+                default:
+                    break;
             }
         }
         switch (this.direction) {
@@ -265,6 +265,8 @@ public class Drone {
                 break;
             case EST:
                 point.setLocation(point.getX() + 1, point.getY());
+                break;
+            default:
                 break;
         }
     }

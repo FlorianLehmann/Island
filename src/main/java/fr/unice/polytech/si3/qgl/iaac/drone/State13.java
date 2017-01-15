@@ -3,6 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac.drone;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+
 
 public class State13 implements State {
 
@@ -19,18 +21,18 @@ public class State13 implements State {
      */
     @Override
     public void wait(Drone drone) {
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
-        if (ReadJSON.getInformations().get("found").equals("GROUND") || drone.getLastGround()) {
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
+        if ("GROUND".equals(ReadJSON.getInformations().get(FOUND.toString())) || drone.getLastGround()) {
             drone.setState(new State14());
-            if (!ReadJSON.getInformations().get("found").equals("GROUND"))
+            if (!"GROUND".equals(ReadJSON.getInformations().get(FOUND.toString())))
                 drone.setLastGround(false);
-            if (ReadJSON.getInformations().get("found").equals("GROUND"))
+            if ("GROUND".equals(ReadJSON.getInformations().get(FOUND.toString())))
                 drone.setLastGround(true);
         } else {
             drone.setState(new State15());
-            drone.setCaseToTarget((int) ReadJSON.getInformations().get("range"));
+            drone.setCaseToTarget((int) ReadJSON.getInformations().get(RANGE.toString()));
         }
-        if (ReadJSON.getInformations().get("found").equals("OUT_OF_RANGE") && (((int) ReadJSON.getInformations().get("range")) == 0)) {
+        if ("OUT_OF_RANGE".equals(ReadJSON.getInformations().get(FOUND.toString())) && (((int) ReadJSON.getInformations().get(RANGE.toString())) == 0)) {
             drone.setState(new State11());
         }
     }

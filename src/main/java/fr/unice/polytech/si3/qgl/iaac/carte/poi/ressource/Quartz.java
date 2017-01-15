@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Quartz extends Res {
     private static java.util.List<Point> quartz = new ArrayList();
-    ;
     private int amount = 0;
 
     private static int[][] tab = new int[200][200];

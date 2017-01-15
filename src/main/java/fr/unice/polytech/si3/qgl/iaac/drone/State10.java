@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.FLY;
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 
 
 public class State10 implements State {
@@ -24,10 +25,10 @@ public class State10 implements State {
      */
     @Override
     public void wait(Drone drone) {
-        drone.subBudget((int) ReadJSON.getInformations().get("cost"));
+        drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
         if (drone.getCaseToTarget() <= 0) {
-            drone.setState(new State12()); //11
-            drone.setLastDirection("G");//rajout
+            drone.setState(new State12());
+            drone.setLastDirection("G");
 
         }
 

@@ -4,6 +4,8 @@ import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.EnumSecondaire;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+
 import java.util.*;
 
 public class ReadJSON {
@@ -52,22 +54,21 @@ public class ReadJSON {
             informations.clear();
         jsonobject = new JSONObject(s);
 
-        if (jsonobject.has("men"))
-            informations.put("men", jsonobject.getInt("men"));
+        if (jsonobject.has(MEN.toString()))
+            informations.put(MEN.toString(), jsonobject.getInt(MEN.toString()));
 
-        if (jsonobject.has("budget"))
-            informations.put("budget", jsonobject.getInt("budget"));
+        if (jsonobject.has(BUDGET.toString()))
+            informations.put(BUDGET.toString(), jsonobject.getInt(BUDGET.toString()));
 
-        if (jsonobject.has("heading"))
-            informations.put("heading", jsonobject.getString("heading")); // retourner un enumDirection
+        if (jsonobject.has(HEADING.toString()))
+            informations.put(HEADING.toString(), jsonobject.getString(HEADING.toString()));
 
-        if (jsonobject.has("contracts")) {
+        if (jsonobject.has(CONTRACTS.toString())) {
 
             JSONObject jsonobject2;
-            JSONArray array = jsonobject.getJSONArray("contracts");
+            JSONArray array = jsonobject.getJSONArray(CONTRACTS.toString());
             Iterator iterator = array.iterator();
             Iterator<String> iterator_ressource;
-            String tmp;
 
             while (iterator.hasNext()) {
 
@@ -87,7 +88,7 @@ public class ReadJSON {
             }
 
             for (int i = 0; i < contracts.size(); i++) {
-                if (contracts.get(i).equals("FISH")) {
+                if ("FISH".equals(contracts.get(i))) {
                     int amount1 = amount.get(0);
                     String tmp1 = contracts.get(0);
                     contracts.set(0, contracts.get(i));
@@ -100,42 +101,40 @@ public class ReadJSON {
 
 
         }
-        if (jsonobject.has("extras")) {
-            JSONObject bio = jsonobject.getJSONObject("extras");
-            if (bio.has("range"))
-                informations.put("range", bio.getInt("range"));
-            if (bio.has("found"))
-                informations.put("found", bio.getString("found"));
+        if (jsonobject.has(EXTRAS.toString())) {
+            JSONObject bio = jsonobject.getJSONObject(EXTRAS.toString());
+            if (bio.has(RANGE.toString()))
+                informations.put(RANGE.toString(), bio.getInt(RANGE.toString()));
+            if (bio.has(FOUND.toString()))
+                informations.put(FOUND.toString(), bio.getString(FOUND.toString()));
             JSONArray tab;
             Iterator iterator;
-            if (bio.has("creeks")) {
-                tab = bio.getJSONArray("creeks");
+            if (bio.has(CREEKS.toString())) {
+                tab = bio.getJSONArray(CREEKS.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    informations.put("creeks", iterator.next());
+                    informations.put(CREEKS.toString(), iterator.next());
                 }
             }
-        /*else { informations.remove("creeks"); }*/
-            if (bio.has("sites")) {
+            if (bio.has(SITES.toString())) {
 
 
-                tab = bio.getJSONArray("sites");
+                tab = bio.getJSONArray(SITES.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    informations.put("sites", iterator.next());
+                    informations.put(SITES.toString(), iterator.next());
 
                 }
             }
-            if (bio.has("biomes")) {
+            if (bio.has(BIOMES.toString())) {
 
                 biome.clear();
 
-                tab = bio.getJSONArray("biomes");
-                //informations.put("biomes", new ArrayList<String>());
+                tab = bio.getJSONArray(BIOMES.toString());
 
                 iterator = tab.iterator();
 
@@ -144,27 +143,26 @@ public class ReadJSON {
 
                 }
             }
-            if (bio.has("amount")) {
-                informations.put("amount", bio.getInt("amount"));
+            if (bio.has(AMOUNT.toString())) {
+                informations.put(AMOUNT.toString(), bio.getInt(AMOUNT.toString()));
             }
-            if (bio.has("resources")) {
+            if (bio.has(RESOURCES.toString())) {
 
                 resources.clear();
-                tab = bio.getJSONArray("resources");
+                tab = bio.getJSONArray(RESOURCES.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    resources.add(((String) ((JSONObject) iterator.next()).getString("resource")));
+                    resources.add(( ((JSONObject) iterator.next()).getString(RESOURCES.toString())));
 
 
                 }
             }
-        /*else { informations.remove("sites"); }*/
         }
 
-        if (jsonobject.has("cost")) {
-            informations.put("cost", jsonobject.getInt("cost"));
+        if (jsonobject.has(COST.toString())) {
+            informations.put(COST.toString(), jsonobject.getInt(COST.toString()));
         }
 
 
