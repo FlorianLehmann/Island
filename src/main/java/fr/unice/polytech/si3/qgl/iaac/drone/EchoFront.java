@@ -4,7 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
 
-public class State1 implements State {
+public class EchoFront implements State {
 
     /**
      * Demande un echo devant

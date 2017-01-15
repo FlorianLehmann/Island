@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" time="0.021" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.102-b14"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/dev/qgl4/private"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/dev/Documents/qgl/private"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/dev/qgl4/private"/>
+    <property name="user.dir" value="/Users/dev/Documents/qgl/private"/>
     <property name="java.runtime.version" value="1.8.0_102-b14"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -62,16 +62,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkJson2" time="0.013"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkJson3" time="0"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkJson4" time="0"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkAcknowledgeReults" time="0.001"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkTakeDecision" time="0.001"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkJson" time="0.003"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkTakeDecision2" time="0.001"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkTakeDecision3" time="0.001"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkAcknowledgeReults2" time="0"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkAcknowledgeReults3" time="0"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkAcknowledgeReults4" time="0"/>
-  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="checkAcknowledgeReults5" time="0.001"/>
+  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="TakeDecisionTest" time="0.004"/>
+  <testcase classname="fr.unice.polytech.si3.qgl.iaac.ExplorerTest" name="FinalReportTest" time="0"/>
 </testsuite>

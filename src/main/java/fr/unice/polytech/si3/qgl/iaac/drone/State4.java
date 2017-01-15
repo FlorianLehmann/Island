@@ -33,7 +33,7 @@ public class State4 implements State {
     @Override
     public void wait(Drone drone) {
         drone.subBudget((int) ReadJSON.getInformations().get(COST.toString()));
-        drone.setState(new State1());
+        drone.setState(new EchoFront());
     }
 
 

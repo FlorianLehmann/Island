@@ -50,7 +50,7 @@ public class Drone {
         budgetInit = (int) ReadJSON.getInformations().get("budget");
         budget = (int) ReadJSON.getInformations().get("budget");
         point = new Point(0, 0);
-        this.lastDirection = "R"; // a suppr
+        this.lastDirection = "R";
         this.direction = direction;
         CaseToTarget = 0;
         NbCaseLeft = 0;

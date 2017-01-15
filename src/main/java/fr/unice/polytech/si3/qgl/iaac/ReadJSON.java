@@ -154,7 +154,7 @@ public class ReadJSON {
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    resources.add(( ((JSONObject) iterator.next()).getString(RESOURCES.toString())));
+                    resources.add(( ((JSONObject) iterator.next()).getString("resource")));
 
 
                 }
