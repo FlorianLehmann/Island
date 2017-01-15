@@ -76,7 +76,6 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        Fish fish = new Fish();
         return "Report";
     }
 }

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by florian on 15/01/2017.
  */
-public class Ore {
+public class SugarCaneTest {
 
     Res ressource;
 
