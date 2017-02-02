@@ -34,19 +34,3 @@
 ### Week 50
 
 - Un contrat peut être rempli
-
-### Week 51
-
-- Un contrat peut être rempli
-
-### Week 52
-
-- Localisation des ressources plus précises
-
-### Week 01
-
-- Localisation des ressources plus précises
-
-### Week 02
-
-- Localisation des ressources plus précises
