@@ -1,0 +1,141 @@
+package fr.unice.polytech.si3.qgl.iaac.men;
+
+import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.*;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Men {
+
+    private State state;
+    private Carte carte;
+    private static int budget;
+    private Point point;
+    private String action;
+    private Map<String, Res> res;
+
+    /**
+     * default constructor
+     * @param carte
+     * @param point
+     */
+    public Men(Carte carte, Point point) {
+
+        this.carte = carte;
+        state = new State0();
+        this.point = new Point((int) point.getX(), (int) point.getY());
+        res = new HashMap();
+        res.put("FISH", new Fish());
+        res.put("FLOWER", new Flower());
+        res.put("FRUITS", new Fruits());
+        res.put("FUR", new Fur());
+        res.put("ORE", new Ore());
+        res.put("QUARTZ", new Quartz());
+        res.put("SUGAR_CANE", new SugarCane());
+        res.put("WOOD", new Wood());
+
+    }
+
+    /**
+     * getter for the state
+     * @return
+     */
+    public State getState() {
+        if (budget < 500) {
+            return new StopMen();
+        }
+        return state;
+    }
+
+    /**
+     * give the location of a creek
+     * @return point
+     */
+    public Point getACrique() {
+        return carte.getCoordCreek();
+    }
+
+    /**
+     *
+     * @param tmp
+     */
+    public void setAction(String tmp) {
+        action = tmp;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getAction() {
+        return action;
+    }
+
+    /**
+     *
+     * @param state
+     */
+    public void setState(State state) {
+
+        this.state = state;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Point getPoint() {
+
+        return point;
+    }
+
+    /**
+     *
+     * @param tmp
+     * @return
+     */
+    public Res getRessource(String tmp) {
+
+        return res.get(tmp);
+    }
+
+    /**
+     *
+     * @param budgett
+     */
+    public static void setBudget(int budgett) {
+        budget = budgett;
+    }
+
+    /**
+     *
+     * @param cost
+     */
+    public static void subBudget(int cost) {
+        budget = budget - cost;
+    }
+
+    /**
+     *
+     * @param direc
+     */
+    public void setCoord(EnumDirection direc) {
+        switch (direc) {
+            case NORD:
+                point.setLocation(point.getX(), point.getY() + 1);
+                break;
+            case EST:
+                point.setLocation(point.getX() + 1, point.getY());
+                break;
+            case SUD:
+                point.setLocation(point.getX(), point.getY() - 1);
+                break;
+            case WEST:
+                point.setLocation(point.getX() - 1, point.getY());
+                break;
+        }
+    }
+}
