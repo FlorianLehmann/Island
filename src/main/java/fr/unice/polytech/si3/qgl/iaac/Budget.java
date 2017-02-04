@@ -15,7 +15,7 @@ public class Budget {
      * @throws DeptBudgetException
      */
     public Budget(int budget) throws DeptBudgetException {
-        if (budget < 0)
+        if (budget <= 0)
             throw new DeptBudgetException();
         this.budget = budget;
     }

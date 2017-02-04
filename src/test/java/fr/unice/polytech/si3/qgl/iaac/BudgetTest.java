@@ -23,6 +23,7 @@ public class BudgetTest {
     public void defineBadContext() {
         try {
             new Budget(-100);
+            assertTrue(false);
         }
         catch (DeptBudgetException exception)
         {
@@ -30,6 +31,7 @@ public class BudgetTest {
         }
         try {
             new Budget(0);
+            assertTrue(false);
         }
         catch (DeptBudgetException exception)
         {
@@ -37,6 +39,7 @@ public class BudgetTest {
         }
         try {
             new Budget(1);
+            assertTrue(true);
         }
         catch (DeptBudgetException exception)
         {

@@ -6,6 +6,6 @@ package fr.unice.polytech.si3.qgl.iaac.exceptions;
 public class DeptBudgetException extends Exception {
 
     public DeptBudgetException() {
-        System.out.println("The initial budget cannot be negative");
+        super("The initial budget cannot be negative");
     }
 }
