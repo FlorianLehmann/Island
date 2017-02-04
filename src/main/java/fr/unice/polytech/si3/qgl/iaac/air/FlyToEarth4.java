@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+
 /**
  * Created by sebde on 04/02/2017.
  */
@@ -17,7 +19,7 @@ public class FlyToEarth4 implements State {
         return drone.fly();
     }
 
-    public State wait(String json){
+    public State wait(ReadJSON json){
         if(nbCase>=0){
             FlyToEarth4 next=new FlyToEarth4(nbCase);
             return next;
