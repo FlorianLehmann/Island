@@ -15,8 +15,8 @@ public class Drone {
     private Point coord;
     private EnumOrientation orientation;
 
-    public Drone(Point coord, EnumOrientation orientation) {
-        this.coord = coord;
+    public Drone(EnumOrientation orientation) {
+        this.coord = new Point(0,0);
         this.orientation = orientation;
     }
 
