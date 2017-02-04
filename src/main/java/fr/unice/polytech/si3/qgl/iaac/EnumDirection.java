@@ -8,7 +8,8 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.*;
 public enum EnumDirection {
 
     RIGHT(NORTH,WEST,SOUTH,EST),
-    LEFT(SOUTH,EST,NORTH,WEST);
+    LEFT(SOUTH,EST,NORTH,WEST),
+    FRONT(EST,NORTH,WEST,SOUTH);
 
 
     EnumOrientation directionEst, directionNorth, directionWest, directionSouth;
