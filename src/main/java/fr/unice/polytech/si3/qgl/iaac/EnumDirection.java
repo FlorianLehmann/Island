@@ -20,21 +20,23 @@ public enum EnumDirection {
         this.directionSouth = directionSouth;
     }
 
-    public EnumOrientation getDirectionEst(){
-        return directionEst;
-    }
 
-    public EnumOrientation getDirectionWest() {
-        return directionWest;
-    }
+    public EnumOrientation getDirection(EnumOrientation orientation){
+        switch (orientation) {
+            case NORTH:
+                return directionNorth;
 
-    public EnumOrientation getDirectionNorth() {
-        return directionNorth;
-    }
+            case SOUTH:
+                return directionSouth;
 
-    public EnumOrientation getDirectionSouth() {
-        return directionSouth;
-    }
+            case WEST:
+                return directionWest;
 
+            case EST:
+                return directionEst;
+
+        }
+        return null;
+    }
 
 }
