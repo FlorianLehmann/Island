@@ -22,7 +22,7 @@ public class Drone {
 
 
     public String echo(EnumDirection direction){
-        orientation = direction.getDirection(orientation);
+        changeOrientation(direction);
         return ECHO.toString(orientation.toString());
     }
 
@@ -33,35 +33,47 @@ public class Drone {
 
 
     public String fly(){
-        this.changeCoord();
-        return FLY.toString(orientation.direction());
+        changeCoord();
+        return FLY.toString(orientation.toString());
     }
 
 
     public String heading(EnumDirection direction){
-        this.changeCoord();
-        orientation = direction.getDirection(orientation);
-        this.changeCoord();
-        return HEADING.toString(orientation.direction());
+        changeCoord();
+        changeOrientation(direction);
+        changeCoord();
+        return HEADING.toString(orientation.toString());
     }
 
 
-    public void changeCoord(){
+    private void changeCoord(){
         switch (orientation) {
             case NORTH:
-                coord.setLocation(coord.getX(), coord.getY() + 1);
+                coord.setLocation(coord.x, coord.y + 3);
                 break;
             case SOUTH:
-                coord.setLocation(coord.getX(), coord.getY() - 1);
+                coord.setLocation(coord.x, coord.y - 3);
                 break;
             case WEST:
-                coord.setLocation(coord.getX() - 1, coord.getY());
+                coord.setLocation(coord.x - 3, coord.y);
                 break;
             case EST:
-                coord.setLocation(coord.getX() + 1, coord.getY());
+                coord.setLocation(coord.x + 3, coord.y);
                 break;
             default:
                 break;
+        }
+    }
+
+    private void changeOrientation(EnumDirection direction) {
+        if (direction == EnumDirection.LEFT) {
+            orientation = orientation.left();
+        }
+        else if (direction == EnumDirection.FRONT) {
+            orientation = orientation.front();
+        }
+        else {
+            orientation = orientation.right();
         }
     }
 

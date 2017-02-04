@@ -15,7 +15,7 @@ public enum EnumOrientation {
     WEST("W", "S", "N", "E"),
     EST("E", "N", "S", "W");
 
-    String direction, left, right, back;
+    String front, left, right, back;
     static Map<String, EnumOrientation> map = new HashMap();
 
     /**
@@ -24,19 +24,19 @@ public enum EnumOrientation {
      *
      */
     static {
-        Arrays.asList(EnumOrientation.values()).forEach(cw -> map.put(cw.direction, cw));
+        Arrays.asList(EnumOrientation.values()).forEach(cw -> map.put(cw.front, cw));
     }
 
     /**
      * Constructeur de l'enum
-     * @param direction
+     * @param front
      * @param left
      * @param right
      * @param back
      */
-    EnumOrientation(String direction, String left, String right, String back) {
+    EnumOrientation(String front, String left, String right, String back) {
 
-        this.direction = direction;
+        this.front = front;
         this.left = left;
         this.right = right;
         this.back = back;
@@ -49,14 +49,14 @@ public enum EnumOrientation {
      *
      * @return String left
      */
-    public String left() {
+    public EnumOrientation left() {
 
-        return left;
+        return getEnumDirection(left);
 
     }
 
-    public String back() {
-        return back;
+    public EnumOrientation back() {
+        return getEnumDirection(back);
     }
 
     /**
@@ -64,9 +64,9 @@ public enum EnumOrientation {
      *
      * @return String right
      */
-    public String right() {
+    public EnumOrientation right() {
 
-        return right;
+        return getEnumDirection(right);
     }
 
     /**
@@ -74,9 +74,9 @@ public enum EnumOrientation {
      *
      * @return String direction
      */
-    public String direction() {
+    public EnumOrientation front() {
 
-        return direction;
+        return getEnumDirection(front);
 
     }
 
@@ -90,14 +90,9 @@ public enum EnumOrientation {
 
     }
 
-    /**
-     * Donne la direction opposée
-     * @param direction
-     * @return
-     */
-    public static EnumOrientation getOppose(EnumOrientation direction) {
-        return EnumOrientation.getEnumDirection(direction.back());
+    @Override
+    public String toString() {
+        return front;
     }
-
 
 }
