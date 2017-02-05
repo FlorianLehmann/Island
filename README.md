@@ -50,3 +50,7 @@
 ### Week 02
 
 - Localisation des ressources plus précises
+
+### Week 05
+
+- There are priority for some resources

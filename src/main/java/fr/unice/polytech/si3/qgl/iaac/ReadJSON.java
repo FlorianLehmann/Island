@@ -87,14 +87,50 @@ public class ReadJSON {
 
             }
 
+            int position=0;
+
             for (int i = 0; i < contracts.size(); i++) {
                 if ("FISH".equals(contracts.get(i))) {
-                    int amount1 = amount.get(0);
-                    String tmp1 = contracts.get(0);
-                    contracts.set(0, contracts.get(i));
-                    amount.set(0, amount.get(i));
+                    int amount1 = amount.get(position);
+                    String tmp1 = contracts.get(position);
+                    contracts.set(position, contracts.get(i));
+                    amount.set(position, amount.get(i));
                     contracts.set(i, tmp1);
                     amount.set(i, amount1);
+                    position++;
+                }
+            }
+            for (int i = 0; i < contracts.size(); i++) {
+                if ("WOOD".equals(contracts.get(i))) {
+                    int amount1 = amount.get(position);
+                    String tmp1 = contracts.get(position);
+                    contracts.set(position, contracts.get(i));
+                    amount.set(position, amount.get(i));
+                    contracts.set(i, tmp1);
+                    amount.set(i, amount1);
+                    position++;
+                }
+            }
+            for (int i = 0; i < contracts.size(); i++) {
+                if ("QUARTZ".equals(contracts.get(i))) {
+                    int amount1 = amount.get(position);
+                    String tmp1 = contracts.get(position);
+                    contracts.set(position, contracts.get(i));
+                    amount.set(position, amount.get(i));
+                    contracts.set(i, tmp1);
+                    amount.set(i, amount1);
+                    position++;
+                }
+            }
+            for (int i = 0; i < contracts.size(); i++) {
+                if ("FUR".equals(contracts.get(i))) {
+                    int amount1 = amount.get(position);
+                    String tmp1 = contracts.get(position);
+                    contracts.set(position, contracts.get(i));
+                    amount.set(position, amount.get(i));
+                    contracts.set(i, tmp1);
+                    amount.set(i, amount1);
+                    position++;
                 }
 
             }
