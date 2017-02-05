@@ -77,4 +77,8 @@ public class Drone {
         }
     }
 
+    public Point getCoord() {
+        return coord;
+    }
+
 }
