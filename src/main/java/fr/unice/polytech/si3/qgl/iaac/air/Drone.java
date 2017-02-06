@@ -5,6 +5,7 @@ import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 
 import java.awt.*;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 
 /**
@@ -14,10 +15,12 @@ public class Drone {
 
     private Point coord;
     private EnumOrientation orientation;
+    private EnumDirection lastDirection;
 
     public Drone(EnumOrientation orientation) {
         this.coord = new Point(0,0);
         this.orientation = orientation;
+        this.lastDirection = EnumDirection.RIGHT ;
     }
 
 
@@ -39,6 +42,7 @@ public class Drone {
 
 
     public String heading(EnumDirection direction){
+        lastDirection = direction;
         changeCoord();
         changeOrientation(direction);
         changeCoord();
@@ -66,10 +70,10 @@ public class Drone {
     }
 
     private void changeOrientation(EnumDirection direction) {
-        if (direction == EnumDirection.LEFT) {
+        if (direction == LEFT) {
             orientation = orientation.left();
         }
-        else if (direction == EnumDirection.FRONT) {
+        else if (direction == FRONT) {
             orientation = orientation.front();
         }
         else {
