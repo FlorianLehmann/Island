@@ -3,6 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac.air;
 import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
+import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.RIGHT;
 
@@ -13,7 +15,6 @@ public class AirStrategy {
 
     private State state;
     private Drone drone;
-    private EnumDirection lastDirection;
     private ReadJSON json;
     private Carte carte;
 
@@ -21,24 +22,18 @@ public class AirStrategy {
         this.drone = drone;
         this.json = json;
         this.carte = carte;
-        state = new State0();//todo clean
-        lastDirection = RIGHT;
+        state = new EchoFace();
     }
 
     public String takeAction() {
-        return state.execute(drone);
+        if (!carte.tmp_hasAcrique())
+            return state.execute(drone);
+        return (new Stop().execute(drone));
     }
 
     public void acknowledgeResults() {
         state = state.wait(json);
-    }
-
-    public EnumDirection getLastDirection(){
-        return lastDirection;
-    }
-
-    public void setLastDirection(EnumDirection lastDirection){
-        this.lastDirection=lastDirection;
+        carte.addAirCase(drone.getCoord());
     }
 
 }

@@ -14,7 +14,6 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
 public class DemiTour7 implements State {
 
     private int state=0;
-    private int
     private EnumDirection direction;
 
     public DemiTour7(int etat,EnumDirection direction){

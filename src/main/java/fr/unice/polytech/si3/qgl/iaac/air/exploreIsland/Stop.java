@@ -1,24 +1,20 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 
 /**
- * Created by sebde on 04/02/2017.
+ * Created by lehmann on 09/02/17.
  */
-public class Scan1 implements State {
-
+public class Stop implements State {
     public String execute(Drone drone){
-        return drone.scan();
+        return STOP.toString();
     }
 
     public State wait(ReadJSON json){
-        //todo ajouter cas stop
-        if(json.getGround())
-            return new Fly3();
-        return new Echo2();
-
+        throw new UnsupportedOperationException();
     }
 
     public boolean isOver(){

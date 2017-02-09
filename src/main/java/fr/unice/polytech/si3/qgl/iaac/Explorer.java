@@ -16,6 +16,9 @@ public class Explorer implements IExplorerRaid {
     private Budget budget;
     private AirStrategy air;
     private Carte carte;
+
+    //todo dans airstrategy stopper lorsque le budget est torp faible
+
     /**
      * Initialize attributes with the JSON request
      * @param s
@@ -25,7 +28,7 @@ public class Explorer implements IExplorerRaid {
         readJSON = new ReadJSON(s);
         drone = readJSON.initDrone();
         budget = readJSON.initBudget();
-        carte = new Carte();//todo a un argument
+        carte = new Carte(readJSON);//todo a un argument
         air = new AirStrategy(drone, readJSON, carte);
     }
 
@@ -35,7 +38,7 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String takeDecision() {
-        return null;
+        return air.takeAction();
     }
 
     /**
@@ -44,7 +47,8 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void acknowledgeResults(String s) {
-
+        readJSON.read(s);
+        air.acknowledgeResults();
     }
 
     /**
@@ -53,6 +57,6 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String deliverFinalReport() {
-        return null;
+        return "REPORT";
     }
 }

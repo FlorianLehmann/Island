@@ -18,8 +18,8 @@ public class Case {
     //always use List instead of ArrayList or LinkedList
     private Point coords;
     private List<EnumBiome> biomes;
-    private String idCreek="";
-    private String idPu="";
+    private String idCreek;
+    private String idPu;
     private List<EnumResources> ressources;
     private List<Integer> nbRessources;
 
@@ -58,4 +58,13 @@ public class Case {
         }
     }
 
+    public void update(ReadJSON json) {
+        updateBiomes(json);
+        updateCreek(json);
+        updatePu(json);
+    }
+
+    public boolean hasCreek() {
+        return idCreek != null;
+    }
 }
