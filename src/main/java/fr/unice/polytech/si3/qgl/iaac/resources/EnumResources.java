@@ -5,5 +5,5 @@ package fr.unice.polytech.si3.qgl.iaac.resources;
  */
 public interface EnumResources {
 
-
+    public boolean isPrimary();
 }
