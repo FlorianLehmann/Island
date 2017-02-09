@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
 
 /**
  * Created by lehmann on 04/02/17.
@@ -86,20 +87,23 @@ public class ReadJSON {
             }
             // on ne gère pas le cas ou il y a plusierus crique au même endroit car 3*3 cases
             //todo
-            /*
-            if (bio.has(BIOMES.toString())) {
 
-                biome.clear();
+            if (extras.has(BIOMES.toString())) {
 
-                tab = bio.getJSONArray(BIOMES.toString());
+                biomes.clear();
+
+                tab = extras.getJSONArray(BIOMES.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    biome.add((String) iterator.next());
-
+                    String str = (String) iterator.next();
+                    biomes.add(EnumBiome.getEnumBiome((String) iterator.next()));
+                    if (OCEAN.toString().equals(str)){
+                        found = true;
+                    }
                 }
-            }
+            }/*
             if (bio.has(AMOUNT.toString())) {
                 informations.put(AMOUNT.toString(), bio.getInt(AMOUNT.toString()));
             }
