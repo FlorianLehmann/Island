@@ -101,7 +101,7 @@ public class ReadJSON {
                 while (iterator.hasNext()) {
                     String str = (String) iterator.next();
                     biomes.add(EnumBiome.getEnumBiome((String) iterator.next()));
-                    if (OCEAN.toString().equals(str)){
+                    if (!OCEAN.toString().equals(str)){
                         found = true;
                     }
                 }
