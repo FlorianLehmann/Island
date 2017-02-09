@@ -11,8 +11,7 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  */
 public class EchoOpDirection5 implements State {
     public String execute(Drone drone){
-        AirStrategy strat=new AirStrategy();
-        if(strat.getLastDirection().equals(EnumDirection.LEFT))return drone.echo(EnumDirection.RIGHT);
+        if(drone.getLastDirection().equals(EnumDirection.LEFT))return drone.echo(EnumDirection.RIGHT);
         else{return drone.echo(EnumDirection.LEFT);}
     }
 

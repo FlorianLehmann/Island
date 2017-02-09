@@ -11,36 +11,34 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  */
 public class DemiTour7 implements State {
     private int etat=0;
+    private EnumDirection direction;
 
-    public DemiTour7(int etat){
+    public DemiTour7(int etat,EnumDirection direction){
         this.etat=etat;
+        this.direction=direction;
     }
+    public DemiTour7(int etat){this.etat=etat;}
 
     public String execute(Drone drone){
-        AirStrategy strat=new AirStrategy();
         if(etat==0) {
-            if (strat.getLastDirection().equals(EnumDirection.LEFT)) return drone.heading(EnumDirection.RIGHT);
+            if (drone.getLastDirection().equals(EnumDirection.LEFT)){
+                direction=EnumDirection.LEFT;
+                return drone.heading(EnumDirection.RIGHT);
+            }
             else {
+                direction=EnumDirection.RIGHT;
                 return drone.heading(EnumDirection.LEFT);
             }
         }
         else {
-            if (strat.getLastDirection().equals(EnumDirection.LEFT)){
-                strat.setLastDirection(EnumDirection.RIGHT);
-                return drone.heading(EnumDirection.RIGHT);
-            }
-            else {
-                strat.setLastDirection(EnumDirection.LEFT);
-                return drone.heading(EnumDirection.LEFT);
-
-            }
+            return drone.heading(direction);
         }
 
     }
 
     public State wait(ReadJSON json){
         if(etat==0){
-            DemiTour7 next=new DemiTour7(1);
+            DemiTour7 next=new DemiTour7(1,direction);
             return next;
         }
         else {

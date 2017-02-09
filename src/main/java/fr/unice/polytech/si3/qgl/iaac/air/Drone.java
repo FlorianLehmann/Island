@@ -85,4 +85,8 @@ public class Drone {
         return new Point(coord.x, coord.y);
     }
 
+    public EnumDirection getLastDirection(){
+        return lastDirection;
+    }
+
 }
