@@ -30,7 +30,7 @@ public class Drone {
 
 
     public String scan(){
-        return SCAN.toString();
+        return SCAN.toString("");
     }
 
 
