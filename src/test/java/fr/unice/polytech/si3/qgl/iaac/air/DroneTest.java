@@ -27,7 +27,10 @@ public class DroneTest {
     }
 
     @Test
-    pu
+    public void multipleEchoLeft(){
+        assertEquals(drone.echo(LEFT), ECHO.toString(WEST.toString()));
+        assertEquals(drone.echo(LEFT), ECHO.toString(WEST.toString()));
+    }
 
     @Test
     public void flyTest(){
