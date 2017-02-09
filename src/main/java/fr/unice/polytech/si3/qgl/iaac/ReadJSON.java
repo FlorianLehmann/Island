@@ -58,6 +58,8 @@ public class ReadJSON {
                 range = extras.getInt(RANGE.toString());
             if (extras.has(FOUND.toString()))
                 found = GROUND.toString().equals(extras.getString(FOUND.toString()));
+            else
+                found = false;
 
             JSONArray tab;
 
