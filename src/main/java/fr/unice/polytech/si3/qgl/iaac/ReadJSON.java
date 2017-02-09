@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
@@ -26,6 +27,7 @@ public class ReadJSON {
     private List<EnumBiome> biomes;
 
     public ReadJSON(String json) {
+        biomes = new LinkedList<>();
         jsonObject = new JSONObject(json);
     }
 
