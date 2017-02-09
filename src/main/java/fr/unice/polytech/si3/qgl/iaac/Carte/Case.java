@@ -33,11 +33,13 @@ public class Case {
     }
 
     public void updateBiomes(ReadJSON json){
-        biomes=json.getBiomes();
+        if (json.getBiomes() != null)
+            biomes=json.getBiomes();
     }
 
     public void updateCreek(ReadJSON json){
-        idCreek=json.getCreekID();
+        if (json.getCreekID() != null)
+            idCreek=json.getCreekID();
     }
 
     public void updatePu(ReadJSON json){
