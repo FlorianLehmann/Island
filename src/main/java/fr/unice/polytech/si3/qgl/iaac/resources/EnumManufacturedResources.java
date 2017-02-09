@@ -17,6 +17,10 @@ public enum EnumManufacturedResources implements EnumResources {
         this.name = name;
     }
 
+    public boolean isPrimary() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return name;

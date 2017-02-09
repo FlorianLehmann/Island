@@ -20,6 +20,10 @@ public enum EnumPrimaryResources implements EnumResources {
         this.name = name;
     }
 
+    public boolean isPrimary() {
+        return true;
+    }
+
     @Override
     public String toString() {
         return name;
