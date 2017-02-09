@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,14 +23,14 @@ public class ContractsTest {
     @Test
     public void addTest() {
         assertTrue(contracts.isCompleted());
-        contracts.add(new Contract(EnumResources.WOOD, 1500));
+        contracts.add(new Contract(EnumPrimaryResources.WOOD, 1500));
         assertFalse(contracts.isCompleted());
     }
 
     @Test
     public void removeTest() {
-        contracts.add(new Contract(EnumResources.WOOD, 1500));
-        contracts.remove(EnumResources.WOOD);
+        contracts.add(new Contract(EnumPrimaryResources.WOOD, 1500));
+        contracts.remove(EnumPrimaryResources.WOOD);
         assertTrue(contracts.isCompleted());
     }
 }

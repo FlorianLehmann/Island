@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,13 +18,13 @@ public class ContractTest {
 
     @Before
     public void defineContext() {
-        contract = new Contract(EnumResources.WOOD, 1500);
+        contract = new Contract(EnumPrimaryResources.WOOD, 1500);
     }
 
     @Test
     public void defineBadContextTest() {
         try {
-            new Contract(EnumResources.WOOD, 0);
+            new Contract(EnumPrimaryResources.WOOD, 0);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -31,7 +32,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumResources.WOOD, -10);
+            new Contract(EnumPrimaryResources.WOOD, -10);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -39,7 +40,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumResources.WOOD, 5);
+            new Contract(EnumPrimaryResources.WOOD, 5);
             assertTrue(true);
         }
         catch (NoAmountContractException exception)
