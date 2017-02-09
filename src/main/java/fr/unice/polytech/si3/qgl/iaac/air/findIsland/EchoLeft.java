@@ -18,14 +18,10 @@ public class EchoLeft implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        if(json.getGround()){
-            HeadingLeft next = new HeadingLeft();
-            return next;
-        }
+        if(json.getGround())
+            return new HeadingLeft();
 
-        EchoRight next = new EchoRight();
-        return next;
-
+        return new EchoRight();
     }
 
     @Override

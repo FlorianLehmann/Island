@@ -15,15 +15,9 @@ public class EchoFront8 implements State {
     }
 
     public State wait(ReadJSON json){
-        if(json.getGround()){
-            FlyToEarth4 next=new FlyToEarth4(json.getRange());
-            return next;
-        }
-        else {
-            DemiTour7 next=new DemiTour7(0);
-            return next;
-        }
-
+        if(json.getGround())
+            return new FlyToEarth4(json.getRange());
+        return new DemiTour7(0);
     }
 
     public boolean isOver(){

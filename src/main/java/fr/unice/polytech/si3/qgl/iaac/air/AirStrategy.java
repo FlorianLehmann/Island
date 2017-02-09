@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
+import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
@@ -14,10 +15,12 @@ public class AirStrategy {
     private Drone drone;
     private EnumDirection lastDirection;
     private ReadJSON json;
+    private Carte carte;
 
-    public AirStrategy(Drone drone, ReadJSON json) {
+    public AirStrategy(Drone drone, ReadJSON json, Carte carte) {
         this.drone = drone;
         this.json = json;
+        this.carte = carte;
         state = new State0();//todo clean
         lastDirection = RIGHT;
     }

@@ -14,14 +14,10 @@ public class Scan1 implements State {
     }
 
     public State wait(ReadJSON json){
-        if(json.getGround()){
-            Fly3 next=new Fly3();
-            return next;
-        }
-        else{
-            Echo2 next=new Echo2();
-            return next;
-        }
+        if(json.getGround())
+            return new Fly3();
+        return new Echo2();
+
     }
 
     public boolean isOver(){

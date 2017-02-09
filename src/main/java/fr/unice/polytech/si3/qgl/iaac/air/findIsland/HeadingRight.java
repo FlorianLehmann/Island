@@ -18,8 +18,7 @@ public class HeadingRight implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        EchoFace next = new EchoFace();
-        return next;
+        return new EchoFace();
     }
 
     @Override

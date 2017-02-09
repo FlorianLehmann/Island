@@ -19,14 +19,10 @@ public class EchoFace implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        if(json.getGround()){
-            FlyToEarth4 next = new FlyToEarth4(json.getRange());
-            return next;
-        }
+        if(json.getGround())
+            return new FlyToEarth4(json.getRange());
 
-        EchoLeft next = new EchoLeft();
-        return next;
-
+        return new EchoLeft();
     }
 
     @Override

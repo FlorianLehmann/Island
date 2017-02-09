@@ -41,6 +41,7 @@ public enum EnumBiome {
         }
     }
 
+    //peut-on supprimer l'encapsulation?
     public List<EnumResources> getResources(){
         return resources;
     }

@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
@@ -11,18 +11,13 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
 public class Echo2 implements State {
 
     public String execute(Drone drone){
-        return drone.echo(EnumDirection.FRONT);
+        return drone.echo(FRONT);
     }
 
     public State wait(ReadJSON json){
-        if(json.getGround()){
-            FlyToEarth4 next=new FlyToEarth4(json.getRange());
-            return next;
-        }
-        else{
-            EchoOpDirection5 next=new EchoOpDirection5();
-            return next;
-        }
+        if(json.getGround())
+            return new FlyToEarth4(json.getRange());//todo out of range
+        return new EchoOpDirection5();
     }
 
     public boolean isOver(){

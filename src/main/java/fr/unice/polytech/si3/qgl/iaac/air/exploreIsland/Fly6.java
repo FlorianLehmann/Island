@@ -16,8 +16,7 @@ public class Fly6 implements State {
     }
 
     public State wait(ReadJSON json){
-        EchoOpDirection5 next=new EchoOpDirection5();
-        return next;
+        return new EchoOpDirection5();
     }
 
     public boolean isOver(){

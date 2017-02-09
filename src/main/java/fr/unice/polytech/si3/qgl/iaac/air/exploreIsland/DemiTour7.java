@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
+
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
@@ -10,24 +12,29 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  * Created by sebde on 05/02/2017.
  */
 public class DemiTour7 implements State {
-    private int etat=0;
+
+    private int state=0;
+    private int
     private EnumDirection direction;
 
     public DemiTour7(int etat,EnumDirection direction){
-        this.etat=etat;
+        this.state=etat;
         this.direction=direction;
     }
-    public DemiTour7(int etat){this.etat=etat;}
 
-    public String execute(Drone drone){
-        if(etat==0) {
-            if (drone.getLastDirection().equals(EnumDirection.LEFT)){
-                direction=EnumDirection.LEFT;
-                return drone.heading(EnumDirection.RIGHT);
+    public DemiTour7(int etat){
+        this.state=etat;
+    }
+
+    /*public String execute(Drone drone){
+        if(state==0) {
+            if (LEFT.equals(drone.getLastDirection())){
+                direction=LEFT;
+                return drone.heading(RIGHT);
             }
             else {
-                direction=EnumDirection.RIGHT;
-                return drone.heading(EnumDirection.LEFT);
+                direction=RIGHT;
+                return drone.heading(LEFT);
             }
         }
         else {
@@ -37,7 +44,7 @@ public class DemiTour7 implements State {
     }
 
     public State wait(ReadJSON json){
-        if(etat==0){
+        if(state==0){
             DemiTour7 next=new DemiTour7(1,direction);
             return next;
         }
@@ -45,6 +52,31 @@ public class DemiTour7 implements State {
             EchoFront8 next=new EchoFront8();
             return next;
         }
+    }*/
+
+    public String execute(Drone drone){
+        if(state==0) {
+            if (LEFT.equals(drone.getLastDirection())){
+                direction=LEFT;
+                return drone.heading(RIGHT);
+            }
+            else {
+                direction=RIGHT;
+                return drone.heading(LEFT);
+            }
+        }
+        else {
+            return drone.heading(direction);
+        }
+
+    }
+
+    public State wait(ReadJSON json){
+        if(state==0){
+            state = 1;
+            return this;
+        }
+        return new EchoFront8();
     }
 
     public boolean isOver(){
