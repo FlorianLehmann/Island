@@ -55,7 +55,7 @@ public class DroneTest {
 
     @Test
     public void scanTest(){
-        assertEquals(drone.scan(), SCAN.toString());
+        assertEquals(drone.scan(), SCAN.toString(""));
     }
 
 }
