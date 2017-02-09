@@ -130,10 +130,14 @@ public class ReadJSON {
     }
 
     public String getSiteID() {
+        if (siteID == null)
+            return null;//todo a suppr
         return new String(siteID);
     }
 
     public String getCreekID() {
+        if (siteID == null)
+            return null;//todo a suppr
         return new String(creekID);
     }
 
