@@ -25,8 +25,7 @@ public class Drone {
 
 
     public String echo(EnumDirection direction){
-        changeOrientation(direction);
-        return ECHO.toString(orientation.toString());
+        return ECHO.toString(changeOrientation(direction).toString());
     }
 
 
@@ -44,7 +43,7 @@ public class Drone {
     public String heading(EnumDirection direction){
         lastDirection = direction;
         changeCoord();
-        changeOrientation(direction);
+        orientation = changeOrientation(direction);
         changeCoord();
         return HEADING.toString(orientation.toString());
     }
@@ -69,16 +68,14 @@ public class Drone {
         }
     }
 
-    private void changeOrientation(EnumDirection direction) {
+    private EnumOrientation changeOrientation(EnumDirection direction) {
         if (direction == LEFT) {
-            orientation = orientation.left();
+            return orientation.left();
         }
         else if (direction == FRONT) {
-            orientation = orientation.front();
+            return orientation.front();
         }
-        else {
-            orientation = orientation.right();
-        }
+        return orientation.right();
     }
 
     public Point getCoord() {
