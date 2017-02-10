@@ -70,3 +70,4 @@ public class Case {
         return idCreek != null;
     }
 }
+//le drone s'arrête quand il y a un site et non une crique

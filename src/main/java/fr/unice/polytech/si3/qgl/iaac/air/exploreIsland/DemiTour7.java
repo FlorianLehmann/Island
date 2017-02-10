@@ -21,18 +21,18 @@ public class DemiTour7 implements State {
         this.direction=direction;
     }
 
-    public DemiTour7(int etat){
-        this.state=etat;
+    public DemiTour7(int state){
+        this.state=state;
     }
 
-    /*public String execute(Drone drone){
+    public String execute(Drone drone){
         if(state==0) {
             if (LEFT.equals(drone.getLastDirection())){
-                direction=LEFT;
+                direction=RIGHT;//LEFT
                 return drone.heading(RIGHT);
             }
             else {
-                direction=RIGHT;
+                direction=LEFT;//RIGHT
                 return drone.heading(LEFT);
             }
         }
@@ -51,9 +51,9 @@ public class DemiTour7 implements State {
             EchoFront8 next=new EchoFront8();
             return next;
         }
-    }*/
+    }
 
-    public String execute(Drone drone){
+    /*public String execute(Drone drone){
         if(state==0) {
             if (LEFT.equals(drone.getLastDirection())){
                 direction=LEFT;
@@ -76,7 +76,7 @@ public class DemiTour7 implements State {
             return this;
         }
         return new EchoFront8();
-    }
+    }*/
 
     public boolean isOver(){
         return true;

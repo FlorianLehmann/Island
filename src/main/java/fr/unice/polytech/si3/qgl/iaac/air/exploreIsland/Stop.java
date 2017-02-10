@@ -10,7 +10,7 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  */
 public class Stop implements State {
     public String execute(Drone drone){
-        return STOP.toString();
+        return STOP.toString("");
     }
 
     public State wait(ReadJSON json){

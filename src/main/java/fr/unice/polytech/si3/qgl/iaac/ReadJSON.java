@@ -100,7 +100,7 @@ public class ReadJSON {
 
                 while (iterator.hasNext()) {
                     String str = (String) iterator.next();
-                    biomes.add(EnumBiome.getEnumBiome((String) iterator.next()));
+                    biomes.add(EnumBiome.getEnumBiome(str));
                     if (!OCEAN.toString().equals(str)){
                         found = true;
                     }
@@ -144,7 +144,7 @@ public class ReadJSON {
     }
 
     public String getCreekID() {
-        if (siteID == null)
+        if (creekID == null)
             return null;//todo a suppr
         return new String(creekID);
     }
