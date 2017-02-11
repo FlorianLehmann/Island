@@ -2,6 +2,9 @@ package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoPOIException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,13 +37,13 @@ public class ReadJSON {
     public Budget initBudget() {
         if (jsonObject.has(BUDGET.toString()))
             return new Budget(jsonObject.getInt(BUDGET.toString()));
-        throw new RuntimeException("No field for budget");
+        throw new NoBudgetfield();
     }
 
     public Drone initDrone() {
         if (jsonObject.has(HEADING.toString()))
             return new Drone(EnumOrientation.getEnumDirection(jsonObject.getString(HEADING.toString())));
-        throw new RuntimeException("No field for heading");
+        throw new NoHeadingField();
     }
 
     public Contracts initContracts() {
@@ -139,13 +142,15 @@ public class ReadJSON {
     //todo return null ou exceptuion catch?
     public String getSiteID() {
         if (siteID == null)
-            return null;//todo a suppr
+            return null;
+            //throw new NoPOIException("Site");
         return new String(siteID);
     }
 
     public String getCreekID() {
         if (creekID == null)
-            return null;//todo a suppr
+            return null;
+            //throw new NoPOIException("Creek");
         return new String(creekID);
     }
 

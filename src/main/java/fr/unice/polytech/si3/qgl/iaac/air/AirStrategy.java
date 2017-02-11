@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
+import fr.unice.polytech.si3.qgl.iaac.Budget;
 import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
@@ -15,20 +16,38 @@ public class AirStrategy {
     private Drone drone;
     private ReadJSON json;
     private Carte carte;
+    private Budget budget;
 
-    public AirStrategy(Drone drone, ReadJSON json, Carte carte) {
+    /**
+     * default constructor
+     * @param drone
+     * @param json
+     * @param carte
+     * @param budget
+     */
+    public AirStrategy(Drone drone, ReadJSON json, Carte carte,Budget budget) {
         this.drone = drone;
         this.json = json;
         this.carte = carte;
+        this.budget = budget;
         state = new EchoFace();
     }
 
+    //todo condition d'arrêt
+
+    /**
+     * take an action
+     * @return
+     */
     public String takeAction() {
-        if (!carte.tmp_hasAcrique())
+        if (!carte.tmp_hasAcrique() && budget.hasBudget())
             return state.execute(drone);
         return (new Stop().execute(drone));
     }
 
+    /**
+     * Analyse results
+     */
     public void acknowledgeResults() {
         state = state.wait(json);
         carte.addAirCase(drone.getCoord());

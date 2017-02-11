@@ -28,8 +28,8 @@ public class Explorer implements IExplorerRaid {
         readJSON = new ReadJSON(s);
         drone = readJSON.initDrone();
         budget = readJSON.initBudget();
-        carte = new Carte(readJSON);//todo a un argument
-        air = new AirStrategy(drone, readJSON, carte);
+        carte = new Carte(readJSON);
+        air = new AirStrategy(drone, readJSON, carte, budget);
     }
 
     /**
