@@ -49,6 +49,7 @@ public class AirStrategy {
      * Analyse results
      */
     public void acknowledgeResults() {
+        budget.subBudget(json.getCost());
         state = state.wait(json);
         carte.addAirCase(drone.getCoord());
     }

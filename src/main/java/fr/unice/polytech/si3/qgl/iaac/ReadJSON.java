@@ -158,4 +158,8 @@ public class ReadJSON {
     public List<EnumBiome> getBiomes() {
         return biomes;
     }
+
+    public int getCost() {
+        return cost;
+    }
 }
