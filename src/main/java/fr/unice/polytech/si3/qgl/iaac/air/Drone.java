@@ -36,7 +36,7 @@ public class Drone {
 
     public String fly(){
         changeCoord();
-        return FLY.toString(orientation.toString());
+        return FLY.toString("");
     }
 
 

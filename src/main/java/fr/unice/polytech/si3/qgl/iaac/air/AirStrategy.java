@@ -17,6 +17,7 @@ public class AirStrategy {
     private ReadJSON json;
     private Carte carte;
     private Budget budget;
+    private boolean isOver;
 
     /**
      * default constructor
@@ -31,6 +32,7 @@ public class AirStrategy {
         this.carte = carte;
         this.budget = budget;
         state = new EchoFace();
+        isOver = false;
     }
 
     //todo condition d'arrêt
@@ -40,7 +42,7 @@ public class AirStrategy {
      * @return
      */
     public String takeAction() {
-        if (!carte.tmp_hasAcrique() && budget.hasBudget())
+        if (budget.hasBudget())
             return state.execute(drone);
         return (new Stop().execute(drone));
     }
@@ -52,6 +54,13 @@ public class AirStrategy {
         budget.subBudget(json.getCost());
         state = state.wait(json);
         carte.addAirCase(drone.getCoord());
+
+        if (carte.tmp_hasAcrique())
+            isOver = true;
+    }
+
+    public boolean isOver(){
+        return isOver;
     }
 
 }

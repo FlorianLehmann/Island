@@ -27,7 +27,9 @@ public class Fly3Test {
 
     @Test
     public void executeTest(){
-        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }E");
+        Drone drone=new Drone(EnumOrientation.EST);
+        State state=new Fly3();
+        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }");
 
     }
 

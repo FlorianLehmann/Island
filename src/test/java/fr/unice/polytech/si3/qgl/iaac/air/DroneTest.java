@@ -35,7 +35,7 @@ public class DroneTest {
     @Test
     public void flyTest(){
         Point point = new Point(0,3);
-        assertEquals(drone.fly(), FLY.toString(NORTH.toString()));
+        assertEquals(drone.fly(), FLY.toString(""));
         assertEquals(drone.getCoord(), point);
     }
 

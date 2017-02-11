@@ -16,6 +16,7 @@ public class Explorer implements IExplorerRaid {
     private Budget budget;
     private AirStrategy air;
     private Carte carte;
+    private Contracts contracts;
 
     //todo dans airstrategy stopper lorsque le budget est torp faible
 
@@ -30,6 +31,7 @@ public class Explorer implements IExplorerRaid {
         budget = readJSON.initBudget();
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
+        contracts = readJSON.initContracts();
     }
 
     /**

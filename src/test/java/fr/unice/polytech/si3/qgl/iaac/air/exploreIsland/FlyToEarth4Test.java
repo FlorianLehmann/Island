@@ -27,7 +27,7 @@ public class FlyToEarth4Test {
     }
     @Test
     public void executeTest(){
-        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }E");
+        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }");
     }
 
     @Test

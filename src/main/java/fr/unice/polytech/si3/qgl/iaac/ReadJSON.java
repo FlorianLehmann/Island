@@ -6,6 +6,8 @@ import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoPOIException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -47,7 +49,34 @@ public class ReadJSON {
     }
 
     public Contracts initContracts() {
-        throw new UnsupportedOperationException();
+        Contracts contracts = new Contracts();
+        if (jsonObject.has(CONTRACTS.toString())) {
+
+            JSONObject jsonobject2;
+            JSONArray array = jsonObject.getJSONArray(CONTRACTS.toString());
+            Iterator iterator = array.iterator();
+            Iterator<String> iterator_ressource;
+
+            while (iterator.hasNext()) {
+
+                jsonobject2 = (JSONObject) iterator.next();
+                iterator_ressource = jsonobject2.keys();
+
+                while (iterator_ressource.hasNext()) {
+                    int am = jsonobject2.getInt(iterator_ressource.next());
+                    String re = jsonobject2.getString(iterator_ressource.next());
+                    if (EnumPrimaryResources.isPrimary(re)) {
+                        contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
+                    }
+                    else {
+                        contracts.add(new Contract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
+                    }
+
+                }
+
+            }
+        }
+        return contracts;
     }
 
     public int initNbMen() {

@@ -32,7 +32,7 @@ public class FlyTest {
 
     @Test
     public void executeTest(){
-        assertEquals(fly.execute(drone),FLY.toString(SOUTH.toString()));
+        assertEquals(fly.execute(drone),FLY.toString(""));
     }
 
 
