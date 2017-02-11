@@ -1,0 +1,22 @@
+package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
+
+import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import fr.unice.polytech.si3.qgl.iaac.air.State;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Created by sebde on 11/02/2017.
+ */
+public class Scan1Test {
+    @Test
+    public void executeTest(){
+        Drone drone=new Drone(EnumOrientation.EST);
+        State state=new Scan1();
+        assertEquals(state.execute(drone),"{ \"action\": \"scan\" }");
+
+    }
+
+
+}
