@@ -44,6 +44,7 @@ public class DroneTest {
         Point point = new Point(-3,3);
         assertEquals(drone.heading(LEFT),HEADING.toString(NORTH.left().toString()));
         assertEquals(drone.getCoord(),point);
+        assertEquals(drone.getLastDirection(),LEFT);
     }
 
     @Test
@@ -51,6 +52,7 @@ public class DroneTest {
         Point point = new Point(3,3);
         assertEquals(drone.heading(RIGHT),HEADING.toString(NORTH.right().toString()));
         assertEquals(drone.getCoord(),point);
+        assertEquals(drone.getLastDirection(),RIGHT);
     }
 
     @Test
