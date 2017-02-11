@@ -6,8 +6,6 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.RIGHT;
-
 /**
  * Created by lehmann on 04/02/17.
  */

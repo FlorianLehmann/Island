@@ -45,6 +45,10 @@ public class Carte {
                 return true;
         return false;
     }
+
+    public void addGroundCase(Point coord) {
+        throw new UnsupportedOperationException();
+    }
     /*public Case getCase(Point coords) {
         for (Case i : carte) {
             if (i.getCoords().getLocation().equals(new Point((coords.x) * 3, (coords.y) * 3))) return i;

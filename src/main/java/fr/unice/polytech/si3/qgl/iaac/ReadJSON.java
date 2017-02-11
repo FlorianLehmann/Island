@@ -46,12 +46,11 @@ public class ReadJSON {
     public Contracts initContracts() {
         throw new UnsupportedOperationException();
     }
-    //todo create MEN
-    /*
-    public Men initMen() {
+
+    public int initNbMen() {
         throw new UnsupportedOperationException();
     }
-    */
+
 
     public void read(String json) {
         jsonObject = new JSONObject(json);
@@ -137,6 +136,7 @@ public class ReadJSON {
         return range;
     }
 
+    //todo return null ou exceptuion catch?
     public String getSiteID() {
         if (siteID == null)
             return null;//todo a suppr
