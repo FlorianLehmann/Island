@@ -23,6 +23,7 @@ private int range;
     }
 
     public State wait(ReadJSON json){
+        range=json.getRange();
         if(json.getGround()){
             return new TourComplet1(range);
         }
