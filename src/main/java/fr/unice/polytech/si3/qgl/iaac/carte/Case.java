@@ -79,5 +79,9 @@ public class Case {
         }
         return false;
     }
+
+    public String getIdCreek(){
+        return new String(idCreek);
+    }
 }
 //le drone s'arrête quand il y a un site et non une crique

@@ -38,7 +38,7 @@ public enum EnumManufacturedResources implements EnumResources {
     public boolean isManufactured(String resource) {
         List<EnumManufacturedResources> resources = Arrays.asList(EnumManufacturedResources.values());
         for (int i = 0; i < resources.size(); i++) {
-            if (resources.get(i).name == resource)
+            if (resources.get(i).name.equals(resource))
                 return true;
         }
         return false;

@@ -69,6 +69,13 @@ public class Carte {
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
+    public String getCreekID() {
+        for (Case i : carte)
+            if (i.hasCreek())
+                return i.getIdCreek();
+        throw new RuntimeException("Aucune crique n'est présente");
+    }
+
     public Point getResource(EnumResources name) {
         for (Case i : carte)
             if (i.containsResource(name))

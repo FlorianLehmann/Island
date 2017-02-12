@@ -18,6 +18,13 @@ public class AirStrategy {
     private Budget budget;
     private boolean isOver;
 
+    //temp todo
+    private int demitour;
+
+    public void incDemitour() {
+        this.demitour++;
+    }
+
     /**
      * default constructor
      * @param drone
@@ -32,6 +39,7 @@ public class AirStrategy {
         this.budget = budget;
         state = new EchoFace();
         isOver = false;
+        demitour = 0;
     }
 
     //todo condition d'arrêt
@@ -54,12 +62,14 @@ public class AirStrategy {
         state = state.wait(json);
         carte.addAirCase(drone.getCoord());
 
-        if (carte.tmp_hasAcrique())
+        if (carte.tmp_hasAcrique() && demitour == 2) {
             isOver = true;
+        }
     }
 
     public boolean isOver(){
         return isOver;
     }
+
 
 }

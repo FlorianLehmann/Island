@@ -35,7 +35,7 @@ public class GroundStrategy {
         this.carte = carte;
         this.budget = budget;
         this.contracts = contracts;
-        //state = new State();//todo
+        state = new Land(nbMen);//todo
     }
 
     /**
