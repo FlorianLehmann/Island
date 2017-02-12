@@ -20,12 +20,11 @@ public class StopTest {
     @Before
     public void ini() {
         drone = new Drone(EnumOrientation.EST);
-        state = new Scan1();
+        state = new Stop();
         read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
     @Test
     public void executeTest(){
-        state=new Stop();
         assertEquals(state.execute(drone),"{ \"action\": \"stop\" }");
     }
 }

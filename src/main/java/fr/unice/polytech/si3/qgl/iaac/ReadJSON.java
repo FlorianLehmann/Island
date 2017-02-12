@@ -1,10 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
-import fr.unice.polytech.si3.qgl.iaac.exceptions.NoPOIException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;

@@ -32,7 +32,6 @@ public class FlyToEarth4Test {
 
     @Test
     public void waitTestWithRange1(){
-        state=new FlyToEarth4(1);
         assertTrue(state.wait(read) instanceof FlyToEarth4);
     }
 

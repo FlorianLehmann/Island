@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.Carte;
+package fr.unice.polytech.si3.qgl.iaac.carte;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;

@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.Ground;
+package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
