@@ -21,7 +21,7 @@ public class TourComplet3Test {
     @Before
     public void ini() {
         drone = new Drone(EnumOrientation.NORTH);
-        state = new TourComplet3(1);
+        state = new TourComplet3();
         read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
