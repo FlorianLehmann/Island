@@ -26,8 +26,6 @@ public class Scan1Test {
     }
     @Test
     public void executeTest(){
-        Drone drone=new Drone(EnumOrientation.EST);
-        State state=new Scan1();
         assertEquals(state.execute(drone),"{ \"action\": \"scan\" }");
 
     }

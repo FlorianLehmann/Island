@@ -11,9 +11,9 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by sebde on 11/02/2017.
+ * Created by sebde on 12/02/2017.
  */
-public class Fly3Test {
+public class TourComplet4Test  {
     ReadJSON read ;
     Drone drone;
     State state;
@@ -21,18 +21,17 @@ public class Fly3Test {
     @Before
     public void ini() {
         drone = new Drone(EnumOrientation.EST);
-        state = new Fly3();
+        state = new TourComplet4();
         read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
     @Test
     public void executeTest(){
-        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }");
-
+        assertEquals(state.execute(drone),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"S\" } }");
     }
 
     @Test
     public void waitTest(){
-        assertTrue(state.wait(read) instanceof Scan1);
+        assertTrue(state.wait(read) instanceof TourComplet5);
     }
 }
