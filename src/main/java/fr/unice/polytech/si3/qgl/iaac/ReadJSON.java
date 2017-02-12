@@ -80,7 +80,9 @@ public class ReadJSON {
     }
 
     public int initNbMen() {
-        throw new UnsupportedOperationException();
+        if (jsonObject.has(MEN.toString()))
+            return jsonObject.getInt(MEN.toString());
+        throw new RuntimeException("No field for nbMen");
     }
 
 

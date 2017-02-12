@@ -1,9 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
+import fr.unice.polytech.si3.qgl.iaac.Ground.GroundStrategy;
+import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+
+import java.awt.*;
 
 
 public class Explorer implements IExplorerRaid {
@@ -15,6 +19,8 @@ public class Explorer implements IExplorerRaid {
     private Drone drone;
     private Budget budget;
     private AirStrategy air;
+    private Men men;
+    private GroundStrategy ground;
     private Carte carte;
     private Contracts contracts;
 
@@ -32,6 +38,8 @@ public class Explorer implements IExplorerRaid {
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
         contracts = readJSON.initContracts();
+        men = new Men(carte.getACreek());
+        ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
     }
 
     /**
@@ -40,7 +48,9 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String takeDecision() {
-        return air.takeAction();
+        if (!air.isOver())
+            return air.takeAction();
+        return ground.takeAction();
     }
 
     /**
@@ -50,7 +60,11 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void acknowledgeResults(String s) {
         readJSON.read(s);
-        air.acknowledgeResults();
+        if (!air.isOver())
+             air.acknowledgeResults();
+        else
+            ground.acknowledgeResults();
+
     }
 
     /**
