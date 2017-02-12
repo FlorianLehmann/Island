@@ -19,10 +19,10 @@ public class AirStrategy {
     private boolean isOver;
 
     //temp todo
-    private int demitour;
+    private static int demitour;
 
-    public void incDemitour() {
-        this.demitour++;
+    public static void incDemitour() {
+        demitour++;
     }
 
     /**

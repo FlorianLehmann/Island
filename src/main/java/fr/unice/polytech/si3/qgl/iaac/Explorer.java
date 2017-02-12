@@ -60,14 +60,16 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void acknowledgeResults(String s) {
         readJSON.read(s);
-        if (!air.isOver())
-             air.acknowledgeResults();
+        if (!air.isOver()) {
+            air.acknowledgeResults();
             if (air.isOver()) {
                 men = new Men(carte.getACreek());
-                ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
+                ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts);
             }
-        else
+        }
+        else {
             ground.acknowledgeResults();
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 
@@ -14,7 +15,9 @@ public class TourComplet5 implements State {
     }
 
     public State wait(ReadJSON json){
+        AirStrategy.incDemitour();
         return new EchoFront8();
+
 
     }
 
