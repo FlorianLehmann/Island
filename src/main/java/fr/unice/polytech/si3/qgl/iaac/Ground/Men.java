@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.ground;
+package fr.unice.polytech.si3.qgl.iaac.Ground;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
