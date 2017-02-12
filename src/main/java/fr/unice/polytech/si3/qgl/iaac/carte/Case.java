@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.Carte;
+package fr.unice.polytech.si3.qgl.iaac.carte;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
@@ -7,7 +7,6 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by sebde on 06/02/2017.

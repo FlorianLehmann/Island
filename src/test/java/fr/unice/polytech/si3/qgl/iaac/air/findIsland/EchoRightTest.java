@@ -36,13 +36,13 @@ public class EchoRightTest {
 
 
     @Test
-    public void waitWithOceanFace(){
+    public void waitWithOceanRight(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
         assertTrue(echoRight.wait(read) instanceof Fly);
     }
 
     @Test
-    public void waitWithGroundFace(){
+    public void waitWithGroundRight(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         assertTrue(echoRight.wait(read) instanceof HeadingRight);
     }

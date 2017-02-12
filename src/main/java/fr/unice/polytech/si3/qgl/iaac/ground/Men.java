@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.Ground;
+package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import java.awt.*;
 
