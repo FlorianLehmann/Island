@@ -24,7 +24,7 @@ private int range;
 
     public State wait(ReadJSON json){
         range=json.getRange();
-        if(json.getGround()){
+        if(json.getGround() && range<3){
             return new TourComplet1(range);
         }
         return new TourComplet3(range);
