@@ -27,7 +27,7 @@ public class TourComplet4Test  {
 
     @Test
     public void executeTest(){
-        assertEquals(state.execute(drone),"{ \"action\": \"heading\", \"parameters\": { \"direction\":\"S\" } }");
+        assertEquals(state.execute(drone),"{ \"action\": \"fly\" }");
     }
 
     @Test

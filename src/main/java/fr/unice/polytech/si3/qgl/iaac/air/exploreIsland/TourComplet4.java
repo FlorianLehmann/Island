@@ -9,8 +9,9 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  */
 public class TourComplet4 implements State {
 
+
     public String execute(Drone drone){
-        return drone.heading(drone.getLastDirection());
+        return drone.fly();
 
     }
 
