@@ -9,13 +9,6 @@ import fr.unice.polytech.si3.qgl.iaac.air.State;
  */
 public class TourComplet3 implements State {
 
-    private int range;
-
-    public TourComplet3(){}
-
-    public TourComplet3(int range){
-        this.range=range;
-    }
 
     public String execute(Drone drone){
         return drone.heading(drone.getLastDirection());
@@ -23,10 +16,7 @@ public class TourComplet3 implements State {
     }
 
     public State wait(ReadJSON json){
-        if(range!=0) {
-            return new TourComplet4();
-        }
-        return new TourComplet5();
+        return new TourComplet4();
 
     }
 
