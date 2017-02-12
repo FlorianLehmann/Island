@@ -69,5 +69,16 @@ public class Case {
     public boolean hasCreek() {
         return idCreek != null;
     }
+
+    public boolean containsResource(EnumResources name) {
+        for (int i = 0; i < biomes.size(); i++) {
+            List<EnumResources>  resource = biomes.get(i).getResources();
+            for (int j = 0; j < resource.size(); j++) {
+                if (resource.get(i) == name)
+                    return true;
+            }
+        }
+        return false;
+    }
 }
 //le drone s'arrête quand il y a un site et non une crique

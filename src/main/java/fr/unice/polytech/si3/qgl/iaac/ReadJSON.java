@@ -8,12 +8,11 @@ import fr.unice.polytech.si3.qgl.iaac.exceptions.NoPOIException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
@@ -30,10 +29,13 @@ public class ReadJSON {
     private int range;
     private int cost;
     private List<EnumBiome> biomes;
+    private List<String> resources;
+    private int collect;
 
     public ReadJSON(String json) {
         biomes = new LinkedList<>();
         jsonObject = new JSONObject(json);
+        resources = new ArrayList<>();
     }
 
     public Budget initBudget() {
@@ -136,14 +138,14 @@ public class ReadJSON {
                         found = true;
                     }
                 }
-            }/*
-            if (bio.has(AMOUNT.toString())) {
-                informations.put(AMOUNT.toString(), bio.getInt(AMOUNT.toString()));
             }
-            if (bio.has(RESOURCES.toString())) {
+            if (extras.has(AMOUNT.toString())) {
+                collect = extras.getInt(AMOUNT.toString());
+            }
+            if (extras.has(RESOURCES.toString())) {
 
                 resources.clear();
-                tab = bio.getJSONArray(RESOURCES.toString());
+                tab = extras.getJSONArray(RESOURCES.toString());
 
                 iterator = tab.iterator();
 
@@ -152,7 +154,7 @@ public class ReadJSON {
 
 
                 }
-            }*/
+            }
         }
 
         if (jsonObject.has(COST.toString()))
@@ -190,5 +192,13 @@ public class ReadJSON {
 
     public int getCost() {
         return cost;
+    }
+
+    public int getCollect() {
+        return collect;
+    }
+
+    public List<String> getResources() {
+        return resources;
     }
 }

@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.Ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Budget;
 import fr.unice.polytech.si3.qgl.iaac.Carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.Ground.State;
 
@@ -18,6 +19,7 @@ public class GroundStrategy {
     private ReadJSON json;
     private Carte carte;
     private Budget budget;
+    private Contracts contracts;
 
     /**
      * default constructor
@@ -26,12 +28,13 @@ public class GroundStrategy {
      * @param men
      * @param carte
      */
-    public GroundStrategy(int nbMen, ReadJSON json, Men men, Carte carte, Budget budget){
+    public GroundStrategy(int nbMen, ReadJSON json, Men men, Carte carte, Budget budget, Contracts contracts){
         this.nbMen = nbMen;
         this.men = men;
         this.json = json;
         this.carte = carte;
         this.budget = budget;
+        this.contracts = contracts;
         //state = new State();//todo
     }
 
@@ -41,7 +44,7 @@ public class GroundStrategy {
      */
     public String takeAction() {
         if (budget.hasBudget())
-            return state.execute(men);
+            return state.execute(men, contracts, carte);
         return STOP.toString("");
     }
 

@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.Carte;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -39,6 +40,10 @@ public class Carte {
         }
     }
 
+
+    /* todo
+    TEMPORARY
+     */
     public boolean tmp_hasAcrique() {
         for (Case i : carte)
             if (i.hasCreek())
@@ -49,12 +54,29 @@ public class Carte {
     public void addGroundCase(Point coord) {
         throw new UnsupportedOperationException();
     }
-    /*public Case getCase(Point coords) {
-        for (Case i : carte) {
-            if (i.getCoords().getLocation().equals(new Point((coords.x) * 3, (coords.y) * 3))) return i;
-        }
-        return null;
-    }*/
+
+    public boolean hasResource(EnumResources name) {
+        for (Case i : carte)
+            if (i.containsResource(name))
+                return true;
+        return false;
+    }
+
+    public Point getACreek() {
+        for (Case i : carte)
+            if (i.hasCreek())
+                return i.getCoords();
+        throw new RuntimeException("Aucune crique n'est présente");
+    }
+
+    public Point getResource(EnumResources name) {
+        for (Case i : carte)
+            if (i.containsResource(name))
+                return i.getCoords();
+        throw new RuntimeException("No resources");
+
+    }
+
 
 
 }
