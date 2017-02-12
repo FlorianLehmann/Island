@@ -31,7 +31,7 @@ public enum EnumPrimaryResources implements EnumResources {
     public static boolean isPrimary(String resource) {
         List<EnumPrimaryResources> resources = Arrays.asList(EnumPrimaryResources.values());
         for (int i = 0; i < resources.size(); i++) {
-            if (resources.get(i).name == resource)
+            if (resources.get(i).name.equals(resource))
                 return true;
         }
         return false;
