@@ -24,8 +24,4 @@ public class EchoLeft implements State {
         return new EchoRight();
     }
 
-    @Override
-    public boolean isOver() {
-        return true;
-    }
 }

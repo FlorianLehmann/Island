@@ -42,10 +42,4 @@ public class HeadingRightTest {
         assertTrue(HeadingRight.wait(read) instanceof EchoFace);
     }
 
-
-    @Test
-    public void isOverTest(){
-        HeadingRight.execute(drone);
-        assertEquals(HeadingRight.isOver(),true);
-    }
 }

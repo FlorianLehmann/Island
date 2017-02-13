@@ -48,10 +48,5 @@ public class EchoLeftTest {
         assertTrue(echoLeft.wait(read) instanceof HeadingLeft);
     }
 
-    @Test
-    public void isOverTest(){
-        echoLeft.execute(drone);
-        assertEquals(echoLeft.isOver(),true);
-    }
 }
 

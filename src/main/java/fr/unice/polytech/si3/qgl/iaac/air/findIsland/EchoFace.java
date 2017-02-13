@@ -25,8 +25,5 @@ public class EchoFace implements State {
         return new EchoLeft();
     }
 
-    @Override
-    public boolean isOver() {
-        return true;
-    }
+
 }

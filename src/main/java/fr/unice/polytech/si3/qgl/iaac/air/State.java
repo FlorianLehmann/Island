@@ -12,5 +12,5 @@ public interface State {
 
     public State wait(ReadJSON json);
 
-    public boolean isOver();
+
 }

@@ -21,8 +21,4 @@ public class HeadingRight implements State {
         return new EchoFace();
     }
 
-    @Override
-    public boolean isOver() {
-        return true;
-    }
 }

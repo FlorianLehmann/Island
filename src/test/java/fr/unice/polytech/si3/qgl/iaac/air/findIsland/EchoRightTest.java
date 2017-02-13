@@ -47,9 +47,4 @@ public class EchoRightTest {
         assertTrue(echoRight.wait(read) instanceof HeadingRight);
     }
 
-    @Test
-    public void isOverTest(){
-        echoRight.execute(drone);
-        assertEquals(echoRight.isOver(),true);
-    }
 }
