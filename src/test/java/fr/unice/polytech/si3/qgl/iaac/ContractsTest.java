@@ -60,6 +60,6 @@ public class ContractsTest {
         } catch( NullPointerException e) {
             assertFalse(false);
         }
-
     }
+
 }

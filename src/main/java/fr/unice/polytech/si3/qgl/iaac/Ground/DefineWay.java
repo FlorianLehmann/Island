@@ -26,12 +26,12 @@ public class DefineWay implements State{
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
-        EnumOrientation direction = EnumOrientation.NORTH;
+        EnumOrientation direction;
         String tmp;
         int coordX;
         int coordY;
         Point point;
-        while(!contracts.isCompleted() && !(carte.hasResource(contracts.getContract().getName()/*recevoir un contrat*/))) {
+        while(!contracts.isCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
             contracts.remove(contracts.getContract().getName());
         }
         if (!contracts.isCompleted()) {
@@ -69,7 +69,7 @@ public class DefineWay implements State{
                 return stack.pop();
             }
         } else {
-            return EnumJSON.STOP.toString();
+            return EnumJSON.STOP.toString("");
         }
     }
 

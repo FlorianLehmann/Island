@@ -6,6 +6,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.junit.Before;
 import org.junit.Test;
 
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -69,5 +70,9 @@ public class ContractTest {
         assertTrue(contract.isCompleted());
     }
 
+    @Test
+    public void getNameTest() {
+        assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(FISH, 1500).getName());
+    }
 
 }

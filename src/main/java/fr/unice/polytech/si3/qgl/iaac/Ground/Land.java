@@ -18,7 +18,8 @@ public class Land implements State {
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
-        return EnumJSON.LAND.toString(carte.getCreekID(), nbMen);
+        //todo nbMen
+        return EnumJSON.LAND.toString(carte.getCreekID(), nbMen-1);
     }
 
     @Override

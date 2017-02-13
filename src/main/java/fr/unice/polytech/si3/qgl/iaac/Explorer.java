@@ -23,6 +23,7 @@ public class Explorer implements IExplorerRaid {
     private GroundStrategy ground;
     private Carte carte;
     private Contracts contracts;
+    private int nbMen;
 
     //todo dans airstrategy stopper lorsque le budget est torp faible
 
@@ -38,6 +39,7 @@ public class Explorer implements IExplorerRaid {
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
         contracts = readJSON.initContracts();
+        nbMen = readJSON.initNbMen();
         men = new Men(new Point(0,0));
         ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
     }
@@ -64,7 +66,7 @@ public class Explorer implements IExplorerRaid {
             air.acknowledgeResults();
             if (air.isOver()) {
                 men = new Men(carte.getACreek());
-                ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts);
+                ground = new GroundStrategy(nbMen, readJSON, men, carte, budget, contracts);
             }
         }
         else {

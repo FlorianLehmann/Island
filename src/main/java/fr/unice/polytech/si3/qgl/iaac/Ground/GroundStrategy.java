@@ -54,7 +54,8 @@ public class GroundStrategy {
     public void acknowledgeResults() {
         budget.subBudget(json.getCost());
         state = state.wait(json);
-        carte.addGroundCase(men.getCoord());
+        //todo
+        //carte.addGroundCase(men.getCoord());
     }
 
 }
