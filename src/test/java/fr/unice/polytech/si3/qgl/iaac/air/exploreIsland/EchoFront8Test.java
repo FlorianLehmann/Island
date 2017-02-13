@@ -39,6 +39,6 @@ public class EchoFront8Test {
     @Test
     public void waitWithoutGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(state.wait(read) instanceof TourComplet1);
+        assertTrue(state.wait(read) instanceof TourComplet);
     }
 }

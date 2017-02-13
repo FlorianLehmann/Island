@@ -20,8 +20,5 @@ public class Echo2 implements State {
         return new EchoOpDirection5();
     }
 
-    public boolean isOver(){
-        return true;
-    }
 
 }

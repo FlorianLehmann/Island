@@ -21,7 +21,4 @@ public class Scan1 implements State {
 
     }
 
-    public boolean isOver(){
-        return true;
-    }
 }

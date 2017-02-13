@@ -18,7 +18,4 @@ public class Fly3 implements State {
         return next;
     }
 
-    public boolean isOver(){
-        return true;
-    }
 }

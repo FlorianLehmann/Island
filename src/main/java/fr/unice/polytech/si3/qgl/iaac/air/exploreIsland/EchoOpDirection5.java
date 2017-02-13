@@ -23,7 +23,4 @@ public class EchoOpDirection5 implements State {
         return new DemiTour7(0);
     }
 
-    public boolean isOver(){
-        return true;
-    }
 }
