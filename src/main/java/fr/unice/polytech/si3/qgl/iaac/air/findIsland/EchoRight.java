@@ -22,8 +22,4 @@ public class EchoRight implements State {
         return new Fly();
     }
 
-    @Override
-    public boolean isOver() {
-        return true;
-    }
 }

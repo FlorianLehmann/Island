@@ -48,9 +48,4 @@ public class EchoFaceTest {
         assertTrue(echoFace.wait(read) instanceof FlyToEarth4);
     }
 
-    @Test
-    public void isOverTest(){
-        echoFace.execute(drone);
-        assertEquals(echoFace.isOver(),true);
-    }
 }

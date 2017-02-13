@@ -17,7 +17,4 @@ public class Stop implements State {
         throw new UnsupportedOperationException();
     }
 
-    public boolean isOver(){
-        return true;
-    }
 }

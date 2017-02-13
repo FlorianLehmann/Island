@@ -78,7 +78,5 @@ public class DemiTour7 implements State {
         return new EchoFront8();
     }*/
 
-    public boolean isOver(){
-        return true;
-    }
+
 }

@@ -42,9 +42,4 @@ public class HeadingLeftTest {
     }
 
 
-    @Test
-    public void isOverTest(){
-        HeadingLeft.execute(drone);
-        assertEquals(HeadingLeft.isOver(),true);
-    }
 }

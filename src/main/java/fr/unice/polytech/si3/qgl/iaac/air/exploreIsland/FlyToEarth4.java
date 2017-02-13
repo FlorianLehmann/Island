@@ -26,7 +26,4 @@ public class FlyToEarth4 implements State {
         return new Scan1();
     }
 
-    public boolean isOver(){
-        return true;
-    }
 }

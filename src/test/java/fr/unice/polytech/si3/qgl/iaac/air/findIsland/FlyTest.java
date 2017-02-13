@@ -42,10 +42,5 @@ public class FlyTest {
         assertTrue(fly.wait(read) instanceof EchoLeft);
     }
 
-    @Test
-    public  void isOverTest(){
-        fly.execute(drone);
-        assertEquals(fly.isOver(),true);
-    }
 
 }
