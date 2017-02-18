@@ -118,6 +118,8 @@ public class ReadJSON {
                     creekID = (String) iterator.next();
 
             }
+            else
+                creekID = null;
             if (extras.has(SITES.toString())) {
 
                 tab = extras.getJSONArray(SITES.toString());
@@ -128,6 +130,8 @@ public class ReadJSON {
                     siteID = (String) iterator.next();
 
             }
+            else
+                siteID = null;
             // on ne gère pas le cas ou il y a plusierus crique au même endroit car 3*3 cases
             //todo
 

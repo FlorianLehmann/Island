@@ -25,7 +25,6 @@ public class AirStrategy {
     //temp todo
     private static int demitour;
 
-    private static final Logger logger = LogManager.getLogger(AirStrategy.class);
 
 
     public static void incDemitour() {
@@ -65,14 +64,14 @@ public class AirStrategy {
      * Analyse results
      */
     public void acknowledgeResults() {
-        budget.subBudget(json.getCost());
-        state = state.wait(json);
-        logger.info("coord drone  " + drone.getCoord());
-        carte.addAirCase(drone.getCoord());
+        if (budget.hasBudget())
+            budget.subBudget(json.getCost());
+            state = state.wait(json);
+            carte.addAirCase(drone.getCoord());
 
-        if (carte.tmp_hasAcrique() && demitour == 2) {
-            isOver = true;
-        }
+            if (carte.tmp_hasAcrique() && demitour == 2) {
+               isOver = true;
+            }
     }
 
     public boolean isOver(){

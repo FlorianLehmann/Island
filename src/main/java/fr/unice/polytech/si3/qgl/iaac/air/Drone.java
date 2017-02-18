@@ -20,8 +20,6 @@ public class Drone {
     private EnumOrientation orientation;
     private EnumDirection lastDirection;
 
-    //// TODO: 13/02/2017
-    private static final Logger logger = LogManager.getLogger(Drone.class);
 
     public Drone(EnumOrientation orientation) {
         this.coord = new Point(0,0);

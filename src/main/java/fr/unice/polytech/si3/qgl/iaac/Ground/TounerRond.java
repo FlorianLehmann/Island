@@ -10,13 +10,19 @@ import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
  */
 public class TounerRond implements State {
 
-    private EnumOrientation direction;
-    private int compteurNbMove;
-    private int compteurNbMove2;
-    private int etat;
+    private static EnumOrientation direction = EnumOrientation.EST;
+    private static int compteurNbMove;
+    private static int compteurNbMove2;
+    private static int etat;
 
     public TounerRond() {
-        direction = EnumOrientation.EST;
+        //direction = EnumOrientation.EST;
+        //compteurNbMove = 1;
+        //compteurNbMove2 = 1;
+        //etat = 0;
+    }
+
+    public static void init() {
         compteurNbMove = 1;
         compteurNbMove2 = 1;
         etat = 0;
@@ -52,5 +58,4 @@ public class TounerRond implements State {
     public State wait(ReadJSON json) {
         return new Explore();
     }
-    //todo convol pas fait
 }

@@ -21,9 +21,6 @@ public class DefineWay implements State{
     private boolean wayDefine;
     private Deque<String> stack;
 
-    //// TODO: 13/02/2017
-    private static final Logger logger = LogManager.getLogger(DefineWay.class);
-
     public DefineWay() {
         wayDefine = false;
         stack = new ArrayDeque<>();
@@ -36,29 +33,21 @@ public class DefineWay implements State{
         int coordX;
         int coordY;
         Point point;
-        //logger.info("!contracts.isCompleted()" + !contracts.isCompleted());
-        //logger.info("contracts.getContract().getName()" + contracts.getContract().getName().toString());
-        //logger.info("!(carte.hasResource(contracts.getContract().getName()))" + !(carte.hasResource(contracts.getContract().getName())));
+
         while(!contracts.isCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
             contracts.remove(contracts.getContract().getName());
         }
         if (!contracts.isCompleted()) {
             if(!wayDefine) {
                 tmp = contracts.getContract().getName().toString();
-                logger.info("TMP" + tmp);
                 if ("FISH".equals(tmp)) {
                     point = carte.getACreek();
                 } else {
                     point = carte.getResource(contracts.getContract().getName());
                 }
-                logger.info("point " + point);
-                logger.info("pointMEN " + men.getCoord());
 
                 coordX = point.x - men.getCoord().x;
                 coordY = point.y - men.getCoord().y;
-                //logger.info("coordX" + coordX);
-                //logger.info("coordY" + coordY);
-
 
                 if (coordX < 0)
                     direction = EnumOrientation.WEST;
@@ -77,24 +66,26 @@ public class DefineWay implements State{
                 }
                 wayDefine = true;
             }
+            //// TODO: 18/02/2017
+            TounerRond.init();
             if (stack.size() == 0) {
                 return men.explore();
             }
             else {
                 return stack.pop();
             }
+
         } else {
             return EnumJSON.STOP.toString("");
         }
+
+
     }
 
     @Override
     public State wait(ReadJSON json) {
-        logger.info("stack pop" + stack.size());
         if (stack.size() == 0)
-            return this;
-        //todo
-            //return new Explore();
+            return new Explore();
         return this;
     }
 
