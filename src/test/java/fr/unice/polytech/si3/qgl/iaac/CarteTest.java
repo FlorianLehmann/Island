@@ -29,7 +29,7 @@ public class CarteTest {
 
     @Test
     public void ShouldHasFish() {
-        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\", \"GRASSLAND\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\", \"GRASSLAND\"], \"creeks\": [\"xy\"], \"sites\": []}, \"status\": \"OK\"}");
         assertFalse(carte.hasResource(FISH));
         carte.addAirCase(new Point(1,1));
         assertTrue(carte.hasResource(FISH));

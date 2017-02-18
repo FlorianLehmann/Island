@@ -5,6 +5,10 @@ import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
 
 /**
  * Created by lehmann on 04/02/17.
@@ -20,6 +24,9 @@ public class AirStrategy {
 
     //temp todo
     private static int demitour;
+
+    private static final Logger logger = LogManager.getLogger(AirStrategy.class);
+
 
     public static void incDemitour() {
         demitour++;
@@ -60,6 +67,7 @@ public class AirStrategy {
     public void acknowledgeResults() {
         budget.subBudget(json.getCost());
         state = state.wait(json);
+        logger.info("coord drone  " + drone.getCoord());
         carte.addAirCase(drone.getCoord());
 
         if (carte.tmp_hasAcrique() && demitour == 2) {

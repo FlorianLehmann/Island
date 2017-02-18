@@ -2,6 +2,9 @@ package fr.unice.polytech.si3.qgl.iaac.air;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 
@@ -16,6 +19,9 @@ public class Drone {
     private Point coord;
     private EnumOrientation orientation;
     private EnumDirection lastDirection;
+
+    //// TODO: 13/02/2017
+    private static final Logger logger = LogManager.getLogger(Drone.class);
 
     public Drone(EnumOrientation orientation) {
         this.coord = new Point(0,0);
