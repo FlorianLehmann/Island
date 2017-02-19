@@ -18,7 +18,6 @@ public class DefineWay implements State{
     private boolean wayDefine;
     private Deque<String> stack;
 
-    private static final Logger logger = LogManager.getLogger(DefineWay.class);
 
 
     public DefineWay() {
@@ -47,7 +46,6 @@ public class DefineWay implements State{
                 } else {
                     point = carte.getResource(contracts.getContract().getName());
                 }
-                logger.info("point   " + point);
 
                 coordX = point.x - men.getCoord().x;
                 coordY = point.y - men.getCoord().y;
