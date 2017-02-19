@@ -54,3 +54,11 @@
 ### Week 05
 
 - There are priority for some resources
+
+### Week 06
+
+- There are priority for some resources
+
+### Week 07
+
+- The drone use less budget
