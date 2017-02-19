@@ -67,8 +67,7 @@ public class DefineWay implements State{
                 }
                 wayDefine = true;
             }
-            //// TODO: 18/02/2017
-            TounerRond.init();
+
             if (stack.size() == 0) {
                 return men.explore();
             }
