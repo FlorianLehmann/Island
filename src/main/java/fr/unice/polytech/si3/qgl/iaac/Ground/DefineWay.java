@@ -10,9 +10,6 @@ import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Created by lehmann on 12/02/17.
- */
 public class DefineWay implements State{
 
     private boolean wayDefine;

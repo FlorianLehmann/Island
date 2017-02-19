@@ -3,8 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.carte;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,8 +14,7 @@ import java.util.List;
  */
 public class Case {
 
-    //// TODO: 13/02/2017
-    private static final Logger logger = LogManager.getLogger(Carte.class);
+
     //comment
     //always use List instead of ArrayList or LinkedList
     private Point coords;
@@ -77,10 +75,7 @@ public class Case {
         List<EnumResources>  resource;
         for (int i = 0; i < biomes.size(); i++) {
             resource = biomes.get(i).getResources();
-            logger.info("resource" + biomes.get(i).getResources().size() + biomes.get(i));
             for (int j = 0; j < resource.size(); j++) {
-                logger.info("resource" + resource.size() + biomes.get(i) +"j" + j);
-                //logger.info("Carte: hasResource looking for" +name +" " + true);
                 if (resource.get(j).equals(name))
                     return true;
             }

@@ -7,8 +7,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,10 +20,6 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
  * Created by lehmann on 04/02/17.
  */
 public class ReadJSON {
-
-    //todo supp
-    private static final Logger logger = LogManager.getLogger(ReadJSON.class);
-    //
 
 
     private JSONObject jsonObject;
@@ -72,7 +67,6 @@ public class ReadJSON {
                 while (iterator_ressource.hasNext()) {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
-                    logger.info("Init contracts :  add" + re);
                     if (EnumPrimaryResources.isPrimary(re)) {
                         contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
                     }

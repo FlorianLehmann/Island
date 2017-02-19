@@ -1,0 +1,49 @@
+package fr.unice.polytech.si3.qgl.iaac.ground;
+
+import fr.unice.polytech.si3.qgl.iaac.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
+import fr.unice.polytech.si3.qgl.iaac.Ground.Land;
+import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
+import fr.unice.polytech.si3.qgl.iaac.Ground.State;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.awt.*;
+
+import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.LAND;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ * Created by florian on 19/02/2017.
+ */
+public class LandTest {
+
+    private State land;
+
+
+    @Before
+    public void defineContext() {
+        land = new Land(9);
+    }
+
+    @Test
+    public void shouldLandWith7Men() {
+        Carte carte = mock(Carte.class);
+        when(carte.getCreekID()).thenReturn("ID");
+        assertEquals(LAND.toString("ID", 7), land.execute(new Men(new Point(0,0)), new Contracts(), carte ));
+    }
+
+    @Test
+    public void shouldReturnDefineWayState() {
+        ReadJSON json = mock(ReadJSON.class);
+        assertTrue(land.wait(json) instanceof DefineWay);
+    }
+
+
+}

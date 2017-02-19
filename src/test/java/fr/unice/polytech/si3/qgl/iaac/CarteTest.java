@@ -35,5 +35,20 @@ public class CarteTest {
         assertTrue(carte.hasResource(FISH));
     }
 
+    @Test
+    public void ShouldHasCreekID() {
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\", \"GRASSLAND\"], \"creeks\": [\"xy\"], \"sites\": []}, \"status\": \"OK\"}");
+        carte.addAirCase(new Point(1,1));
+        assertEquals("xy", carte.getCreekID());
+    }
+
+    @Test
+    public void ShouldHasCreek() {
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\", \"GRASSLAND\"], \"creeks\": [\"xy\"], \"sites\": []}, \"status\": \"OK\"}");
+        carte.addAirCase(new Point(1,1));
+        assertTrue(carte.tmp_hasAcrique());
+        assertEquals(new Point(1,1), carte.getACreek());
+    }
+
 
 }
