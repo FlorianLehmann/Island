@@ -1,5 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
+/**
+ * Created by Quentin on 03/02/2017.
+ */
 public enum EnumJSON {
 
     SCAN("{ \"action\": \"scan\" }", "", ""),
@@ -49,6 +52,5 @@ public enum EnumJSON {
     public String toString(String parametre1, int parametre2) {
         return debut + parametre1 + milieu + parametre2 + fin;
     }
-
 
 }

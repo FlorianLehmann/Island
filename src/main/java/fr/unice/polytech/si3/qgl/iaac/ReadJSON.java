@@ -1,72 +1,66 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.ressource.EnumSecondaire;
+import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
-
 import java.util.*;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
+
+/**
+ * Created by lehmann on 04/02/17.
+ */
 public class ReadJSON {
 
-    /**
-     * Attributes
-     */
-    private static Map<String, Object> informations;
-    private static List<String> contracts;
-    private static List<String> resources;
-    private static List<Integer> amount;
+    //todo supp
+    private static final Logger logger = LogManager.getLogger(ReadJSON.class);
+    //
 
-    private static List<String> biome;
-    private JSONObject jsonobject;
 
-    /**
-     * Constructeur par défaut
-     */
-    public ReadJSON() {
+    private JSONObject jsonObject;
+    private String siteID;
+    private String creekID;
+    private boolean found;
+    private int range;
+    private int cost;
+    private List<EnumBiome> biomes;
+    private List<String> resources;
+    private int collect;
 
-        informations = new HashMap();
-        contracts = new ArrayList();
-        amount = new ArrayList();
-        resources = new ArrayList();
-        biome = new ArrayList();
-
+    public ReadJSON(String json) {
+        biomes = new LinkedList<>();
+        jsonObject = new JSONObject(json);
+        resources = new ArrayList<>();
     }
 
-    public static List getContracts() {
-        return contracts;
+    public Budget initBudget() {
+        if (jsonObject.has(BUDGET.toString()))
+            return new Budget(jsonObject.getInt(BUDGET.toString()));
+        throw new NoBudgetfield();
     }
 
-    public static List<Integer> getAmount() {
-        return amount;
+    public Drone initDrone() {
+        if (jsonObject.has(HEADING.toString()))
+            return new Drone(EnumOrientation.getEnumDirection(jsonObject.getString(HEADING.toString())));
+        throw new NoHeadingField();
     }
 
-    public static int getCollect() {
-        return (int) informations.get("amount");
-    }
-
-    /**
-     * Lit une requete JSON et stocke les valeurs associees
-     */
-    public void read(String s) {
-        if (!informations.isEmpty())
-            informations.clear();
-        jsonobject = new JSONObject(s);
-
-        if (jsonobject.has(MEN.toString()))
-            informations.put(MEN.toString(), jsonobject.getInt(MEN.toString()));
-
-        if (jsonobject.has(BUDGET.toString()))
-            informations.put(BUDGET.toString(), jsonobject.getInt(BUDGET.toString()));
-
-        if (jsonobject.has(HEADING.toString()))
-            informations.put(HEADING.toString(), jsonobject.getString(HEADING.toString()));
-
-        if (jsonobject.has(CONTRACTS.toString())) {
+    public Contracts initContracts() {
+        Contracts contracts = new Contracts();
+        if (jsonObject.has(CONTRACTS.toString())) {
 
             JSONObject jsonobject2;
-            JSONArray array = jsonobject.getJSONArray(CONTRACTS.toString());
+            JSONArray array = jsonObject.getJSONArray(CONTRACTS.toString());
             Iterator iterator = array.iterator();
             Iterator<String> iterator_ressource;
 
@@ -78,159 +72,147 @@ public class ReadJSON {
                 while (iterator_ressource.hasNext()) {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
-                    if (!EnumSecondaire.isSecond(re)) {
-                        amount.add(am);
-                        contracts.add(re);
+                    logger.info("Init contracts :  add" + re);
+                    if (EnumPrimaryResources.isPrimary(re)) {
+                        contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
+                    }
+                    else {
+                        contracts.add(new Contract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
                     }
 
                 }
 
             }
-
-            int position=0;
-
-            for (int i = 0; i < contracts.size(); i++) {
-                if ("FISH".equals(contracts.get(i))) {
-                    int amount1 = amount.get(position);
-                    String tmp1 = contracts.get(position);
-                    contracts.set(position, contracts.get(i));
-                    amount.set(position, amount.get(i));
-                    contracts.set(i, tmp1);
-                    amount.set(i, amount1);
-                    position++;
-                }
-            }
-            for (int i = 0; i < contracts.size(); i++) {
-                if ("WOOD".equals(contracts.get(i))) {
-                    int amount1 = amount.get(position);
-                    String tmp1 = contracts.get(position);
-                    contracts.set(position, contracts.get(i));
-                    amount.set(position, amount.get(i));
-                    contracts.set(i, tmp1);
-                    amount.set(i, amount1);
-                    position++;
-                }
-            }
-            for (int i = 0; i < contracts.size(); i++) {
-                if ("QUARTZ".equals(contracts.get(i))) {
-                    int amount1 = amount.get(position);
-                    String tmp1 = contracts.get(position);
-                    contracts.set(position, contracts.get(i));
-                    amount.set(position, amount.get(i));
-                    contracts.set(i, tmp1);
-                    amount.set(i, amount1);
-                    position++;
-                }
-            }
-            for (int i = 0; i < contracts.size(); i++) {
-                if ("FUR".equals(contracts.get(i))) {
-                    int amount1 = amount.get(position);
-                    String tmp1 = contracts.get(position);
-                    contracts.set(position, contracts.get(i));
-                    amount.set(position, amount.get(i));
-                    contracts.set(i, tmp1);
-                    amount.set(i, amount1);
-                    position++;
-                }
-
-            }
-
-
         }
-        if (jsonobject.has(EXTRAS.toString())) {
-            JSONObject bio = jsonobject.getJSONObject(EXTRAS.toString());
-            if (bio.has(RANGE.toString()))
-                informations.put(RANGE.toString(), bio.getInt(RANGE.toString()));
-            if (bio.has(FOUND.toString()))
-                informations.put(FOUND.toString(), bio.getString(FOUND.toString()));
+        return contracts;
+    }
+
+    public int initNbMen() {
+        if (jsonObject.has(MEN.toString()))
+            return jsonObject.getInt(MEN.toString());
+        throw new RuntimeException("No field for nbMen");
+    }
+
+
+    public void read(String json) {
+        jsonObject = new JSONObject(json);
+        if (jsonObject.has(EXTRAS.toString())) {
+            JSONObject extras = jsonObject.getJSONObject(EXTRAS.toString());
+            if (extras.has(RANGE.toString()))
+                range = extras.getInt(RANGE.toString());
+            if (extras.has(FOUND.toString()))
+                found = GROUND.toString().equals(extras.getString(FOUND.toString()));
+            else
+                found = false;
+
             JSONArray tab;
+
             Iterator iterator;
-            if (bio.has(CREEKS.toString())) {
-                tab = bio.getJSONArray(CREEKS.toString());
+
+            if (extras.has(CREEKS.toString())) {
+                tab = extras.getJSONArray(CREEKS.toString());
+
+                iterator = tab.iterator();
+
+                while (iterator.hasNext())
+                    creekID = (String) iterator.next();
+
+            }
+            else
+                creekID = null;
+            if (extras.has(SITES.toString())) {
+
+                tab = extras.getJSONArray(SITES.toString());
+
+                iterator = tab.iterator();
+
+                while (iterator.hasNext())
+                    siteID = (String) iterator.next();
+
+            }
+            else
+                siteID = null;
+            // on ne gère pas le cas ou il y a plusierus crique au même endroit car 3*3 cases
+            //todo
+
+            if (extras.has(BIOMES.toString())) {
+
+                biomes.clear();
+
+                tab = extras.getJSONArray(BIOMES.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
-                    informations.put(CREEKS.toString(), iterator.next());
+                    String str = (String) iterator.next();
+                    biomes.add(EnumBiome.getEnumBiome(str));
+                    if (!OCEAN.toString().equals(str)){
+                        found = true;
+                    }
                 }
             }
-            if (bio.has(SITES.toString())) {
-
-
-                tab = bio.getJSONArray(SITES.toString());
-
-                iterator = tab.iterator();
-
-                while (iterator.hasNext()) {
-                    informations.put(SITES.toString(), iterator.next());
-
-                }
+            if (extras.has(AMOUNT.toString())) {
+                collect = extras.getInt(AMOUNT.toString());
             }
-            if (bio.has(BIOMES.toString())) {
-
-                biome.clear();
-
-                tab = bio.getJSONArray(BIOMES.toString());
-
-                iterator = tab.iterator();
-
-                while (iterator.hasNext()) {
-                    biome.add((String) iterator.next());
-
-                }
-            }
-            if (bio.has(AMOUNT.toString())) {
-                informations.put(AMOUNT.toString(), bio.getInt(AMOUNT.toString()));
-            }
-            if (bio.has(RESOURCES.toString())) {
+            if (extras.has(RESOURCES.toString())) {
 
                 resources.clear();
-                tab = bio.getJSONArray(RESOURCES.toString());
+                tab = extras.getJSONArray(RESOURCES.toString());
 
                 iterator = tab.iterator();
 
                 while (iterator.hasNext()) {
                     resources.add(( ((JSONObject) iterator.next()).getString("resource")));
-
-
                 }
             }
         }
 
-        if (jsonobject.has(COST.toString())) {
-            informations.put(COST.toString(), jsonobject.getInt(COST.toString()));
+        if (jsonObject.has(COST.toString()))
+            cost = jsonObject.getInt(COST.toString());
+
+    }
+
+    public boolean getGround(){
+        return found;
+    }
+
+    public int getRange(){
+        return range;
+    }
+
+    //todo return null ou exceptuion catch?
+    public String getSiteID() {
+        if (siteID == null)
+            return null;
+            //throw new NoPOIException("Site");
+        return new String(siteID);
+    }
+
+    public String getCreekID() {
+        if (creekID == null)
+            return null;
+            //throw new NoPOIException("Creek");
+        return new String(creekID);
+    }
+
+    //todo non secure et ne fonctionne pas
+    public List<EnumBiome> getBiomes() {
+        List<EnumBiome> bio = new ArrayList<>();
+        for (int i = 0; i < biomes.size(); i++) {
+            bio.add(biomes.get(i));
         }
-
-
+        return bio;
     }
 
-    /**
-     * @return informations
-     */
-    static public Map<String, Object> getInformations() {
-
-        return informations;
-
+    public int getCost() {
+        return cost;
     }
 
-    /**
-     *
-     * @return
-     */
-    static public List<String> getBiome() {
-
-        return biome;
-
+    public int getCollect() {
+        return collect;
     }
 
-    /**
-     *
-     * @return
-     */
-    static public List<String> getResources() {
-
+    public List<String> getResources() {
         return resources;
-
     }
-
 }

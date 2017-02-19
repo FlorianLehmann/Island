@@ -1,23 +1,31 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
+import fr.unice.polytech.si3.qgl.iaac.Ground.GroundStrategy;
+import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.drone.Drone;
-import fr.unice.polytech.si3.qgl.iaac.men.Men;
+import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
+import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 
 import java.awt.*;
+
 
 public class Explorer implements IExplorerRaid {
 
     /**
      * Attributes
      */
-    private Carte carte;
-    private Men men;
-    private ReadJSON json;
-    private int budget;
-    private EnumDirection direction;
+    private ReadJSON readJSON;
     private Drone drone;
+    private Budget budget;
+    private AirStrategy air;
+    private Men men;
+    private GroundStrategy ground;
+    private Carte carte;
+    private Contracts contracts;
+    private int nbMen;
+
+    //todo dans airstrategy stopper lorsque le budget est torp faible
 
     /**
      * Initialize attributes with the JSON request
@@ -25,21 +33,15 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void initialize(String s) {
-        carte = new Carte();
-
-        json = new ReadJSON();
-        json.read(s);
-
-
-        budget = (int) json.getInformations().get("budget");
-
-
-        direction = EnumDirection.getEnumDirection((String) json.getInformations().get("heading"));
-
-        drone = new Drone(direction, carte);
-        men = new Men(carte, new Point(0, 0));
-        men.setBudget(drone.getBudget());
-
+        readJSON = new ReadJSON(s);
+        drone = readJSON.initDrone();
+        budget = readJSON.initBudget();
+        carte = new Carte(readJSON);
+        air = new AirStrategy(drone, readJSON, carte, budget);
+        contracts = readJSON.initContracts();
+        nbMen = readJSON.initNbMen();
+        men = new Men(new Point(0,0));
+        ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
     }
 
     /**
@@ -48,21 +50,9 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String takeDecision() {
-        if (!drone.getEnd()) {
-            drone.getState().wait(drone);
-            drone.getState().execute(drone);
-            if (drone.getEnd()) {
-                men = new Men(carte, new Point((int) drone.getPoint().getX() * 3, (int) drone.getPoint().getY() * 3));
-                men.setBudget(drone.getBudget());
-            }
-            return drone.getAction();
-        } else {
-            men.getState().wait(men);
-            men.getState().execute(men);
-
-
-        }
-        return men.getAction();
+        if (!air.isOver())
+            return air.takeAction();
+        return ground.takeAction();
     }
 
     /**
@@ -71,7 +61,18 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void acknowledgeResults(String s) {
-        json.read(s);
+        readJSON.read(s);
+        if (!air.isOver()) {
+            air.acknowledgeResults();
+            if (air.isOver()) {
+                men = new Men(carte.getACreek());
+                ground = new GroundStrategy(nbMen, readJSON, men, carte, budget, contracts);
+            }
+        }
+        else {
+            ground.acknowledgeResults();
+        }
+
     }
 
     /**
@@ -80,6 +81,6 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String deliverFinalReport() {
-        return "Report";
+        return "REPORT";
     }
 }

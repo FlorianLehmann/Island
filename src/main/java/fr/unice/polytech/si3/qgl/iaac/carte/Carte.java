@@ -1,147 +1,112 @@
 package fr.unice.polytech.si3.qgl.iaac.carte;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.poi.POI;
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by sebde on 06/02/2017.
+ */
 public class Carte {
 
-    private List<Case> cases;
+    //// TODO: 13/02/2017
+    private static final Logger logger = LogManager.getLogger(Carte.class);
 
 
-    /**
-     * default constructor
-     */
-    public Carte() {
-        cases = new LinkedList();
+    private List<Case> carte;
+    private ReadJSON json;
+
+
+    public Carte(ReadJSON readJSON) {
+        json = readJSON;
+        carte = new ArrayList<>();
     }
 
-    /**
-     * Add case to the map
-     *
-     * @param point
-     */
-    public void addCase(Point point) {
-        cases.add(new Case(new Point((int) point.getX(), (int) point.getY())));//
-    }
+    public void addAirCase(Point coords) {
 
-    /**
-     * Set a new POI
-     *
-     * @param poi
-     * @param point
-     */
-    public void setPOI(POI poi, Point point) {
-        int i = 0;
-        while (!cases.get(i).getCoords().equals(point))
-            i++;
-        cases.get(i).setPOI(poi);
-    }
-
-    /**
-     * @return boolean
-     * true if there is a PU
-     */
-    public boolean hasPU() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU())
-                return true;
-        return false;
-    }
-
-    /**
-     * @return boolean
-     * true if there is a Creek
-     */
-    public boolean hasCreek() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek())
-                return true;
-        return false;
-    }
-
-    /**
-     * @return POI pu
-     */
-    public Case getCasePU() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU())
-                return cases.get(i);
-        return null;
-    }
-
-    /**
-     * @return POI creek
-     */
-    public String getCaseCreek() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek())
-                return cases.get(i).getCreek().toString();
-        return null;
-    }
-
-
-    /**
-     *
-     * @return coord of the first creek stored
-     */
-    public Point getCoordCreek() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek())
-                return cases.get(i).getCoords();
-        return null;
-    }
-
-    /**
-     * @return String id of pu
-     */
-    public String getPU() {
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasPU())
-                return cases.get(i).getPU().toString();
-        return null;
-    }
-
-    /**
-     * get nearest creek from PU
-     */
-    public String getNearestCreekPU() {
-        Point pu = getCasePU().getCoords();
-        String id = "";
-        double normeMin = Integer.MAX_VALUE;
-        double norme;
-
-        for (int i = 0; i < cases.size(); i++) {
-            if (cases.get(i).hasCreek()) {
-                norme = Point2D.distance(cases.get(i).getCoords().getX(), cases.get(i).getCoords().getY(), pu.getX(), pu.getY());
-                if (norme < normeMin) {
-                    normeMin = norme;
-                    id = cases.get(i).getCreek().toString();// + "N:" +norme + "\n";
-                }
+        for (Case i : carte) {
+            if (coords.x == i.getCoords().x && coords.y == i.getCoords().y) {
+                i.update(json);
+                return;
             }
         }
-        return id;
 
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Case square = new Case(new Point(coords.x + i, coords.y  + j));
+                square.update(json);
+                carte.add(square);
+            }
+        }
     }
 
-    /**
-     * get the number of Creeks
-     *
-     * @return int
+
+    /* todo
+    TEMPORARY
      */
-    public int getNbCreek() {
-        int j = 0;
-        for (int i = 0; i < cases.size(); i++)
-            if (cases.get(i).hasCreek())
-                j++;
-        return j;
+    public boolean tmp_hasAcrique() {
+        for (Case i : carte)
+            if (i.hasCreek())
+                return true;
+        return false;
+    }
+
+    public void addGroundCase(Point coord) {
+        throw new UnsupportedOperationException();
+    }
+
+    public boolean hasResource(EnumResources name) {
+        for (Case i : carte)
+            if (i.containsResource(name)) {
+                logger.info("Carte: hasResource looking for" +name +" " + true);
+
+                return true;
+            }
+        logger.info("Carte: hasResource looking for" +name +" " + false + carte.size());
+
+        return false;
+    }
+
+    public Point getACreek() {
+        for (int i = 0; i < carte.size(); i++) {
+            if (carte.get(i).hasCreek())
+                return carte.get(i).getCoords();
+        }
+        throw new RuntimeException("Aucune crique n'est présente");
+        /*for (Case i : carte)
+            if (i.hasCreek())
+                return i.getCoords();*/
 
     }
+
+    public String getCreekID() {
+        for (int i = 0; i < carte.size(); i++) {
+            if (carte.get(i).hasCreek())
+                return carte.get(i).getIdCreek();
+        }
+        throw new RuntimeException("Aucune crique n'est présente");
+    }
+
+    public Point getResource(EnumResources name) {
+        for (int i = 0; i < carte.size(); i++) {
+            if (carte.get(i).containsResource(name)) {
+                Case tile = carte.get(i);
+                logger.info("REMOVE");
+
+                carte.remove(carte.get(i));
+                return tile.getCoords();
+            }
+        }
+        throw new RuntimeException("No resources");
+
+    }
+
+
 
 }
-
-
-		   
