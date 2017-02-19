@@ -5,9 +5,6 @@ import fr.unice.polytech.si3.qgl.iaac.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayDeque;
