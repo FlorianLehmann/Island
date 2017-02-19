@@ -19,6 +19,8 @@ public class Land implements State {
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
         //todo nbMen
+        if (nbMen > 8)
+            nbMen = 8;
         return EnumJSON.LAND.toString(carte.getCreekID(), nbMen-1);
     }
 

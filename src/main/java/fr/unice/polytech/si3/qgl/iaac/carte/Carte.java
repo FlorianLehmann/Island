@@ -95,8 +95,13 @@ public class Carte {
 
     public Point getResource(EnumResources name) {
         for (int i = 0; i < carte.size(); i++) {
-            if (carte.get(i).containsResource(name))
-                return carte.get(i).getCoords();
+            if (carte.get(i).containsResource(name)) {
+                Case tile = carte.get(i);
+                logger.info("REMOVE");
+
+                carte.remove(carte.get(i));
+                return tile.getCoords();
+            }
         }
         throw new RuntimeException("No resources");
 

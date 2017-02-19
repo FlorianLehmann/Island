@@ -52,9 +52,10 @@ public class GroundStrategy {
      * Analyse results
      */
     public void acknowledgeResults() {
-        if (budget.hasBudget())
+        if (budget.hasBudget()) {
             budget.subBudget(json.getCost());
             state = state.wait(json);
+        }
         //todo
         //carte.addGroundCase(men.getCoord());
     }

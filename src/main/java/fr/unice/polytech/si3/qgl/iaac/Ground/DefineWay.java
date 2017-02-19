@@ -21,6 +21,9 @@ public class DefineWay implements State{
     private boolean wayDefine;
     private Deque<String> stack;
 
+    private static final Logger logger = LogManager.getLogger(DefineWay.class);
+
+
     public DefineWay() {
         wayDefine = false;
         stack = new ArrayDeque<>();
@@ -41,10 +44,13 @@ public class DefineWay implements State{
             if(!wayDefine) {
                 tmp = contracts.getContract().getName().toString();
                 if ("FISH".equals(tmp)) {
-                    point = carte.getACreek();
+                    //point = carte.getACreek();
+                    point = carte.getResource(contracts.getContract().getName());
+
                 } else {
                     point = carte.getResource(contracts.getContract().getName());
                 }
+                logger.info("point   " + point);
 
                 coordX = point.x - men.getCoord().x;
                 coordY = point.y - men.getCoord().y;

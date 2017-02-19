@@ -64,7 +64,7 @@ public class AirStrategy {
      * Analyse results
      */
     public void acknowledgeResults() {
-        if (budget.hasBudget())
+        if (budget.hasBudget()){
             budget.subBudget(json.getCost());
             state = state.wait(json);
             carte.addAirCase(drone.getCoord());
@@ -72,6 +72,7 @@ public class AirStrategy {
             if (carte.tmp_hasAcrique() && demitour == 2) {
                isOver = true;
             }
+        }
     }
 
     public boolean isOver(){

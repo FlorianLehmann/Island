@@ -31,6 +31,7 @@ public class Explore implements State {
         if (resource)
             return new Exploit();
         else
-            return new TounerRond();
+            return new DefineWay();
+            //return new TounerRond();
     }
 }
