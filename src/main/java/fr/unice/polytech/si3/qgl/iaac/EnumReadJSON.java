@@ -18,7 +18,8 @@ public enum EnumReadJSON {
     COST("cost"),
     RESOURCES("resources"),
     GROUND("GROUND"),
-    MEN("men");
+    MEN("men"),
+    PRODUCTION("production");
 
     String word;
 

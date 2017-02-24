@@ -5,6 +5,8 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.LEATHER;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.PLANK;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.QUARTZ;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
@@ -62,6 +64,14 @@ public class Contracts {
         // ;
     }
 
+    public boolean isPrimaryCompleted(){
+        return primaryContracts.isEmpty();
+    }
+
+    public boolean isSecondaryCompleted(){
+        return secondaryContracts.isEmpty();
+    }
+
     /**
      * Primary contracts are sorted
      */
@@ -94,8 +104,31 @@ public class Contracts {
         primaryContracts = primaryContractsSorted;
 
     }
+
+    public void sortSecondaryContracts(){
+        List<Contract> secondaryContractsSorted = new ArrayList();
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (PLANK == secondaryContracts.get(i).getName()) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (LEATHER == secondaryContracts.get(i).getName()) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+        }
+        secondaryContracts=secondaryContractsSorted;
+
+
+    }
     //todo si il n'y a rien nullpointer
     public Contract getContract() {
         return primaryContracts.get(0);
+    }
+
+    public Contract getSecondaryContract(){
+        return secondaryContracts.get(0);
     }
 }

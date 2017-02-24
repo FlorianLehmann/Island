@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.Ground;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.awt.*;
@@ -44,6 +45,10 @@ public class Men {
 
     public String exploit(EnumResources resource) {
         return EnumJSON.EXPLOIT.toString(resource.toString());
+    }
+
+    public String transform(EnumPrimaryResources resources,int nb){
+        return EnumJSON.TRANSFORM.toString(resources.toString(),nb);
     }
 
 

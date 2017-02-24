@@ -1,23 +1,28 @@
 package fr.unice.polytech.si3.qgl.iaac.Ground;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.Contract;
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 
 /**
- * Created by lehmann on 12/02/17.
+ * Created by sebde on 24/02/2017.
  */
-public class Exploit implements State {
-
+public class TransformSecond implements State {
     private Contract contract;
     private Contracts contracts;
+    private int collect;
+
+    public TransformSecond(int collect){
+        this.collect=collect;
+    }
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
         this.contracts = contracts;
-        contract =  contracts.getContract();
-        return men.exploit(contracts.getContract().getName());
+        contract =  contracts.getSecondaryContract();
+        return men.transform(((EnumManufacturedResources)contract.getName()).getNeeded().get(0),collect);
     }
 
     @Override
@@ -25,15 +30,10 @@ public class Exploit implements State {
         contract.sub(json.getCollect());
         if (contract.isCompleted()) {
             contracts.remove(contract.getName());
-            if(contracts.isPrimaryCompleted()){
-                contracts.sortSecondaryContracts();
-                return new DefineWaySecond();
-            }
-            return new DefineWay();
+            return new DefineWaySecond();
         } else {
-            return new DefineWay();
+            return new DefineWaySecond();
             //return new TounerRond();
         }
     }
-
 }

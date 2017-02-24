@@ -154,6 +154,9 @@ public class ReadJSON {
             if (extras.has(AMOUNT.toString())) {
                 collect = extras.getInt(AMOUNT.toString());
             }
+            if (extras.has(PRODUCTION.toString())){
+                collect = extras.getInt(PRODUCTION.toString());
+            }
             if (extras.has(RESOURCES.toString())) {
 
                 resources.clear();
