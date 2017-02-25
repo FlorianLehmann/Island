@@ -59,29 +59,22 @@ public class Carte {
 
     public boolean hasResource(EnumResources name) {
         for (Case i : carte)
-            if (i.containsResource(name)) {
+            if (i.containsResource(name))
                 return true;
-            }
         return false;
     }
 
     public Point getACreek() {
-        for (int i = 0; i < carte.size(); i++) {
-            if (carte.get(i).hasCreek())
-                return carte.get(i).getCoords();
-        }
-        throw new RuntimeException("Aucune crique n'est présente");
-        /*for (Case i : carte)
+        for (Case i : carte)
             if (i.hasCreek())
-                return i.getCoords();*/
-
+                return i.getCoords();
+        throw new RuntimeException("Aucune crique n'est présente");
     }
 
     public String getCreekID() {
-        for (int i = 0; i < carte.size(); i++) {
-            if (carte.get(i).hasCreek())
-                return carte.get(i).getIdCreek();
-        }
+        for (Case i : carte)
+            if (i.hasCreek())
+                return i.getIdCreek();
         throw new RuntimeException("Aucune crique n'est présente");
     }
 

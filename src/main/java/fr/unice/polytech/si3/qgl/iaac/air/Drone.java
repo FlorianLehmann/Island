@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.air;
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
+import fr.unice.polytech.si3.qgl.iaac.Player;
 
 
 import java.awt.*;
@@ -13,16 +14,13 @@ import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
 /**
  * Created by Quentin on 03/02/2017.
  */
-public class Drone {
+public class Drone extends Player {
 
-    private Point coord;
-    private EnumOrientation orientation;
+
     private EnumDirection lastDirection;
 
-
     public Drone(EnumOrientation orientation) {
-        this.coord = new Point(0,0);
-        this.orientation = orientation;
+        super(new Point(0,0), orientation, 3);
         this.lastDirection = EnumDirection.RIGHT ;
     }
 
@@ -51,26 +49,6 @@ public class Drone {
         return HEADING.toString(orientation.toString());
     }
 
-
-    private void changeCoord(){
-        switch (orientation) {
-            case NORTH:
-                coord.setLocation(coord.x, coord.y + 3);
-                break;
-            case SOUTH:
-                coord.setLocation(coord.x, coord.y - 3);
-                break;
-            case WEST:
-                coord.setLocation(coord.x - 3, coord.y);
-                break;
-            case EST:
-                coord.setLocation(coord.x + 3, coord.y);
-                break;
-            default:
-                break;
-        }
-    }
-
     private EnumOrientation changeOrientation(EnumDirection direction) {
         if (direction == LEFT) {
             return orientation.left();
@@ -79,10 +57,6 @@ public class Drone {
             return orientation.front();
         }
         return orientation.right();
-    }
-
-    public Point getCoord() {
-        return new Point(coord.x, coord.y);
     }
 
     public EnumDirection getLastDirection(){
