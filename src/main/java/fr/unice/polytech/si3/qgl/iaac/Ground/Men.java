@@ -8,6 +8,9 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.awt.*;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.FRONT;
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.LEFT;
+
 /**
  * Created by lehmann on 11/02/17.
  */
@@ -37,6 +40,14 @@ public class Men {
         this.orientation = orientation;
         changeCoord();
         return EnumJSON.MOVETO.toString(orientation.toString());
+    }
+
+    public String glimpse(EnumDirection direction, int nbCase){
+        return EnumJSON.GLIMPSE.toString(changeOrientation(direction).toString(),nbCase);
+    }
+
+    public String scout(EnumDirection direction){
+        return EnumJSON.SCOUT.toString(changeOrientation(direction).toString());
     }
 
     public String explore() {
@@ -69,6 +80,16 @@ public class Men {
             default:
                 break;
         }
+    }
+
+    private EnumOrientation changeOrientation(EnumDirection direction) {
+        if (direction == LEFT) {
+            return orientation.left();
+        }
+        else if (direction == FRONT) {
+            return orientation.front();
+        }
+        return orientation.right();
     }
 
 }
