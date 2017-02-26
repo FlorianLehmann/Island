@@ -32,10 +32,10 @@ public class DefineWaySecond implements State{
         int coordX;
         int coordY;
         Point point;
-/*
-        while(!contracts.isSecondaryCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
-            contracts.remove(contracts.getContract().getName());
-        }*/
+
+        while(!contracts.isSecondaryCompleted() && !(carte.hasResource(((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0)))) {
+            contracts.remove(contracts.getSecondaryContract().getName());
+        }
         if (!contracts.isSecondaryCompleted()) {
             if(!wayDefine) {
                 tmp = ((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0).toString();
