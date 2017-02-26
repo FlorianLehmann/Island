@@ -1,10 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
-import fr.unice.polytech.si3.qgl.iaac.Ground.Land;
-import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
-import fr.unice.polytech.si3.qgl.iaac.Ground.State;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.Before;

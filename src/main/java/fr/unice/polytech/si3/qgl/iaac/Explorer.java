@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
-import fr.unice.polytech.si3.qgl.iaac.Ground.GroundStrategy;
-import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
+import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
+import fr.unice.polytech.si3.qgl.iaac.ground.Men;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;

@@ -15,7 +15,8 @@ public enum EnumJSON {
     SCOUT("{ \"action\": \"scout\", \"parameters\": { \"direction\": \"", "", "\" } }"),
     GLIMPSE("{ \"action\": \"glimpse\", \"parameters\": { \"direction\": \"", "\", \"range\": ", " } }"),
     EXPLORE("{ \"action\": \"explore\" }", "", ""),
-    EXPLOIT("{ \"action\": \"exploit\", \"parameters\": { \"resource\": \"", "", "\" }}");
+    EXPLOIT("{ \"action\": \"exploit\", \"parameters\": { \"resource\": \"", "", "\" }}"),
+    TRANSFORM("{ \"action\": \"transform\", \"parameters\": { \"","\": "," }}");
 
     String debut, milieu, fin;
 

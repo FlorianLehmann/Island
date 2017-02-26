@@ -7,5 +7,6 @@ package fr.unice.polytech.si3.qgl.iaac;
 public enum EnumDirection {
     RIGHT,
     LEFT,
-    FRONT
+    FRONT,
+    BACK;
 }
