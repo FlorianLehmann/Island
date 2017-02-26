@@ -2,8 +2,6 @@ package fr.unice.polytech.si3.qgl.iaac.carte;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,9 +11,6 @@ import java.util.List;
  * Created by sebde on 06/02/2017.
  */
 public class Carte {
-
-    //// TODO: 13/02/2017
-    private static final Logger logger = LogManager.getLogger(Carte.class);
 
 
     private List<Case> carte;
@@ -64,11 +59,9 @@ public class Carte {
     public boolean hasResource(EnumResources name) {
         for (Case i : carte)
             if (i.containsResource(name)) {
-                logger.info("Carte: hasResource looking for" +name +" " + true);
 
                 return true;
             }
-        logger.info("Carte: hasResource looking for" +name +" " + false + carte.size());
 
         return false;
     }
@@ -97,7 +90,6 @@ public class Carte {
         for (int i = 0; i < carte.size(); i++) {
             if (carte.get(i).containsResource(name)) {
                 Case tile = carte.get(i);
-                logger.info("REMOVE");
 
                 carte.remove(carte.get(i));
                 return tile.getCoords();

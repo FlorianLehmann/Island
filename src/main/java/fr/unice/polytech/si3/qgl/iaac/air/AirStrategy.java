@@ -5,11 +5,6 @@ import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
-
 /**
  * Created by lehmann on 04/02/17.
  */
