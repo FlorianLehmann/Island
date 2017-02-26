@@ -43,12 +43,12 @@ public class Men {
         return EnumJSON.MOVETO.toString(orientation.toString());
     }
 
-    public String glimpse(EnumDirection direction, int nbCase){
-        return EnumJSON.GLIMPSE.toString(changeOrientation(direction).toString(),nbCase);
+    public String glimpse(EnumOrientation orientation, int nbCase){
+        return EnumJSON.GLIMPSE.toString(orientation.toString(),nbCase);
     }
 
-    public String scout(EnumDirection direction){
-        return EnumJSON.SCOUT.toString(changeOrientation(direction).toString());
+    public String scout(EnumOrientation orientation){
+        return EnumJSON.SCOUT.toString(orientation.toString());
     }
 
     public String explore() {
@@ -82,18 +82,4 @@ public class Men {
                 break;
         }
     }
-
-    private EnumOrientation changeOrientation(EnumDirection direction) {
-        if (direction == LEFT) {
-            return orientation.left();
-        }
-        else if (direction == FRONT) {
-            return orientation.front();
-        }
-        else if (direction == BACK){
-            return orientation.back();
-        }
-        return orientation.right();
-    }
-
 }
