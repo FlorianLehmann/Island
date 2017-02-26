@@ -2,9 +2,6 @@ package fr.unice.polytech.si3.qgl.iaac.air;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 

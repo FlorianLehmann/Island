@@ -1,20 +1,20 @@
-package fr.unice.polytech.si3.qgl.iaac.Ground;
+package fr.unice.polytech.si3.qgl.iaac.ground;
 
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.Contract;
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 
 /**
- * Created by sebde on 24/02/2017.
+ * Created by lehmann on 12/02/17.
  */
-public class ExploreSecond implements State {
+public class Explore implements State {
+
     private Contract contract;
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
-        contract =  contracts.getSecondaryContract();
+        contract =  contracts.getContract();
         return men.explore();
     }
 
@@ -24,13 +24,14 @@ public class ExploreSecond implements State {
         boolean resource;
         resource = false;
         for (int i = 0; i < json.getResources().size() ; i++) {
-            if(json.getResources().get(i).equals(((EnumManufacturedResources)contract.getName()).getNeeded().get(0).toString()))
+            if(json.getResources().get(i).equals(contract.getName().toString()))
                 resource = true;
         }
 
         if (resource)
-            return new ExploitSecond();
+            return new Exploit();
         else
-            return new DefineWaySecond();
+            return new DefineWay();
+            //return new TounerRond();
     }
 }

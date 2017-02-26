@@ -1,26 +1,26 @@
-package fr.unice.polytech.si3.qgl.iaac.Ground;
+package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 
 import java.awt.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * Created by lehmann on 12/02/17.
+ * Created by sebde on 19/02/2017.
  */
-public class DefineWay implements State{
-
+public class DefineWaySecond implements State{
     private boolean wayDefine;
     private Deque<String> stack;
 
 
 
-    public DefineWay() {
+    public DefineWaySecond() {
         wayDefine = false;
         stack = new ArrayDeque<>();
     }
@@ -32,19 +32,19 @@ public class DefineWay implements State{
         int coordX;
         int coordY;
         Point point;
-
-        while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
+/*
+        while(!contracts.isSecondaryCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
             contracts.remove(contracts.getContract().getName());
-        }
-        if (!contracts.isPrimaryCompleted()) {
+        }*/
+        if (!contracts.isSecondaryCompleted()) {
             if(!wayDefine) {
-                tmp = contracts.getContract().getName().toString();
+                tmp = ((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0).toString();
                 if ("FISH".equals(tmp)) {
                     //point = carte.getACreek();
-                    point = carte.getResource(contracts.getContract().getName());
+                    point = carte.getResource(((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0));
 
                 } else {
-                    point = carte.getResource(contracts.getContract().getName());
+                    point = carte.getResource(((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0));
                 }
 
                 coordX = point.x - men.getCoord().x;
@@ -86,8 +86,7 @@ public class DefineWay implements State{
     @Override
     public State wait(ReadJSON json) {
         if (stack.size() == 0)
-            return new Explore();
+            return new ExploreSecond();
         return this;
     }
-
 }
