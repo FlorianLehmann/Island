@@ -23,34 +23,25 @@ public class TransformSecondTest {
     private Carte map;
 
     @Before
-    public void init(){
-        json=new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
-        men=new Men(new Point(0,0));
-        contracts=new Contracts();
-        contracts.add(new Contract(EnumManufacturedResources.PLANK,5));
-        map=new Carte(json);
+    public void init() {
+        json = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
+        men = new Men(new Point(0, 0));
+        contracts = new Contracts();
+        contracts.add(new Contract(EnumManufacturedResources.PLANK, 5));
+        map = new Carte(json);
     }
 
     @Test
-    public void executeTest(){
-        State state=new TransformSecond(10);
-        assertEquals(state.execute(men,contracts,map),"{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 10 }}");
+    public void executeTest() {
+        State state = new TransformSecond(10);
+        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 10 }}");
     }
 
     @Test
-    public void waitTestWithContractNotCompleted(){
-        State state=new TransformSecond(10);
-        state.execute(men,contracts,map);
+    public void waitTestWithContractNotCompleted() {
+        State state = new TransformSecond(10);
+        state.execute(men, contracts, map);
         json.read("{ \"cost\": 5, \"extras\": { \"production\": 5, \"kind\": \"PLANK\" },\"status\": \"OK\" }");
         assertTrue(state.wait(json) instanceof DefineWaySecond);
-    }
-
-    @Test
-    public void waitTestWithContractCompleted(){
-        State state=new TransformSecond(10);
-        state.execute(men,contracts,map);
-        json.read("{ \"cost\": 5, \"extras\": { \"production\": 10, \"kind\": \"PLANK\" },\"status\": \"OK\" }");
-        state.wait(json);
-        assertTrue(contracts.isSecondaryCompleted());
     }
 }

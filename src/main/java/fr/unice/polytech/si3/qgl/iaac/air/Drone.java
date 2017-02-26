@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.iaac.air;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.Ground.DefineWay;
 
 
 import java.awt.*;

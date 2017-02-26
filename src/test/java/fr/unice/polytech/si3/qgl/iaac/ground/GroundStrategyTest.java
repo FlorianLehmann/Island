@@ -2,8 +2,8 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Budget;
 import fr.unice.polytech.si3.qgl.iaac.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.Ground.GroundStrategy;
-import fr.unice.polytech.si3.qgl.iaac.Ground.Men;
+import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
+import fr.unice.polytech.si3.qgl.iaac.ground.Men;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
@@ -12,10 +12,10 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
+
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.LAND;
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.EST;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
