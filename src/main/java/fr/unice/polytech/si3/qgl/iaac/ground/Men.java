@@ -8,6 +8,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.awt.*;
 
+import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.BACK;
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.FRONT;
 import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.LEFT;
 
@@ -88,6 +89,9 @@ public class Men {
         }
         else if (direction == FRONT) {
             return orientation.front();
+        }
+        else if (direction == BACK){
+            return orientation.back();
         }
         return orientation.right();
     }
