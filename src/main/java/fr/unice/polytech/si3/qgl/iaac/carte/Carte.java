@@ -88,7 +88,6 @@ public class Carte {
             }
         }
         throw new RuntimeException("No resources");
-
     }
 
 
