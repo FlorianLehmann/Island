@@ -29,6 +29,15 @@ public class Case {
         biomes=new ArrayList<>();
     }
 
+    public Case(Case tile){
+        this.coords = tile.coords;
+        this.biomes = tile.biomes;
+        this.idCreek = tile.idCreek;
+        this.idPu = tile.idPu;
+        this.ressources = tile.ressources;
+        this.nbRessources = tile.nbRessources;
+    }
+
     public Point getCoords(){
         return new Point(coords.x,coords.y);
     }
@@ -57,7 +66,17 @@ public class Case {
 
     public void removeNbRessource(EnumResources item, int nb){
         for(int i=0;i<ressources.size();i++){
-            if(ressources.get(i).equals(item))nbRessources.set(i,nbRessources.get(i)-nb);
+            if(ressources.get(i).equals(item))
+                nbRessources.set(i,nbRessources.get(i)-nb);
+        }
+    }
+
+    public void removeResource(EnumResources resource){
+        for(int i=0;i<ressources.size();i++){
+            if(ressources.get(i).equals(resource)) {
+                nbRessources.remove(i);
+                break;
+            }
         }
     }
 
