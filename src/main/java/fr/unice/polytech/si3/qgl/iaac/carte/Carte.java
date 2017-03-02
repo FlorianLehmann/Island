@@ -14,29 +14,32 @@ import java.util.List;
 public class Carte {
 
 
-    private Array2D map;
+    private List<Case> carte;
     private ReadJSON json;
 
 
     public Carte(ReadJSON readJSON) {
         json = readJSON;
-        map = new Array2D();
+        carte = new ArrayList<>();
     }
 
     public void addAirCase(Point coords) {
 
-        try {
-            map.get(coords.x,coords.y).update(json);
-        } catch (IndexOutOfBoundsException exception) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    Case tile = new Case(new Point(coords.x + i, coords.y  + j));
-                    tile.update(json);
-                    map.add(tile);
-                }
+        for (Case i : carte) {
+            if (coords.x == i.getCoords().x && coords.y == i.getCoords().y) {
+                i.update(json);
+                return;
             }
         }
 
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                Case square = new Case(new Point(coords.x + i, coords.y + j));
+                square.update(json);
+                carte.add(square);
+            }
+        }
     }
 
 
@@ -44,10 +47,9 @@ public class Carte {
     TEMPORARY
      */
     public boolean tmp_hasAcrique() {
-        for (int i = 0; i < map.getSize(); i++)
-            for (int j = 0; j < map.getSize(); j++)
-                if (map.get(i,j).hasCreek())
-                    return true;
+        for (Case i : carte)
+            if (i.hasCreek())
+                return true;
         return false;
     }
 
@@ -56,42 +58,36 @@ public class Carte {
     }
 
     public boolean hasResource(EnumResources name) {
-        for (int i = 0; i < map.getSize(); i++)
-            for (int j = 0; j < map.getSize(); j++)
-                if (map.get(i,j).containsResource(name))
-                    return true;
+        for (Case i : carte)
+            if (i.containsResource(name))
+                return true;
         return false;
     }
 
     public Point getACreek() {
-        for (int i = 0; i < map.getSize(); i++)
-            for (int j = 0; j < map.getSize(); j++)
-                if (map.get(i,j).hasCreek())
-                    return map.get(i,j).getCoords();
+        for (Case i : carte)
+            if (i.hasCreek())
+                return i.getCoords();
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
     public String getCreekID() {
-        for (int i = 0; i < map.getSize(); i++)
-            for (int j = 0; j < map.getSize(); j++)
-                if (map.get(i,j).hasCreek())
-                    return map.get(i,j).getIdCreek();
+        for (Case i : carte)
+            if (i.hasCreek())
+                return i.getIdCreek();
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
     public Point getResource(EnumResources name) {
-        for (int i = 0; i < map.getSize(); i++) {
-            for (int j = 0; j < map.getSize(); j++) {
-                if (map.get(i, j).containsResource(name)) {
-                    Case tile = map.get(i,j);
-                    tile.removeResource(name);
-                    return tile.getCoords();
-                }
+        for (int i = 0; i < carte.size(); i++) {
+            if (carte.get(i).containsResource(name)) {
+                Case tile = carte.get(i);
+
+                carte.remove(carte.get(i));
+                return tile.getCoords();
             }
         }
         throw new RuntimeException("No resources");
+
     }
-
-
-
 }
