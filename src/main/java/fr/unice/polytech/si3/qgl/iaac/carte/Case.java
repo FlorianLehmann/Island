@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
+
 /**
  * Created by sebde on 06/02/2017.
  */
@@ -104,6 +106,22 @@ public class Case {
 
     public String getIdCreek(){
         return new String(idCreek);
+    }
+
+    public int containsGround() {
+        for (int i = 0; i < biomes.size(); i++) {
+            if (biomes.get(i) != OCEAN)
+                return 1;
+        }
+        return 0;
+    }
+
+    public boolean containOcean() {
+        for (int i = 0; i < biomes.size(); i++) {
+            if (biomes.get(i) != OCEAN)
+                return false;
+        }
+        return true;
     }
 }
 //le drone s'arrête quand il y a un site et non une crique

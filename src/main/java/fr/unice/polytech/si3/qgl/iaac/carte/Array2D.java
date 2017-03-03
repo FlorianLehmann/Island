@@ -34,6 +34,7 @@ public class Array2D {
         }
     }
 
+    //TODO  RETOURNER UN NULL OU UN TRY CATCH?
     /**
      *
      * @param x
@@ -124,6 +125,14 @@ public class Array2D {
 
     public int getSize() {
         return size;
+    }
+
+    public int getOriginX(){
+        return originX;
+    }
+
+    public int getOriginY(){
+        return originY;
     }
 
 }
