@@ -75,46 +75,50 @@ public class Contracts {
     /**
      * Primary contracts are sorted
      */
-    public void sortPrimaryContracts() {
+    public void sortPrimaryContracts(int budget) {
         List<Contract> primaryContractsSorted = new ArrayList();
+        int amountMax = budget / 2;
         for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (FISH == primaryContracts.get(i).getName()) {
+            if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax ) {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (WOOD == primaryContracts.get(i).getName()) {
+            if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax) {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (QUARTZ == primaryContracts.get(i).getName()) {
+            if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax) {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++)
-            primaryContractsSorted.add(primaryContracts.get(i));
+            if(primaryContracts.get(i).getAmount() <= amountMax) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+            }
 
         primaryContracts = primaryContractsSorted;
 
     }
 
-    public void sortSecondaryContracts(){
+    public void sortSecondaryContracts(int budget){
         List<Contract> secondaryContractsSorted = new ArrayList();
+        int amountMax = budget / 2;
         for (int i = 0; i < secondaryContracts.size() ; i++) {
-            if (PLANK == secondaryContracts.get(i).getName()) {
+            if (PLANK == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
-            if (LEATHER == secondaryContracts.get(i).getName()) {
+            if (LEATHER == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
