@@ -86,14 +86,14 @@ public class ArrayMap {
         }
 
         //pas besoin de gérer le cas ou on sort de l carte car il est imossible d'avoir une edge au bord de la carte
-        for (int i = 0; i < size ; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 1; i < size - 1 ; i++) {
+            for (int j = 1; j < size - 2; j++) {
                 if (!edge[i-1][j]) {
                     //on obtient le point le plus à gauche
                     for (int k = 0; k < size; k++) {
                         if (edge[k][j+2]) {
                             //ici on interpole
-                            edgeTmp[][j+1] = true;
+                            edgeTmp[k + (int)((i-k)/2.)][j+1] = true;
                             break;
                         }
                     }
@@ -104,7 +104,7 @@ public class ArrayMap {
                     for (int k = size-1; k >= 0; k--) {
                         if (edge[k][j+2]) {
                             //on interpole
-                            edgeTmp[][j+1] = true;
+                            edgeTmp[k - (int)((k-i)/2.)][j+1] = true;
                             break;
                         }
                     }

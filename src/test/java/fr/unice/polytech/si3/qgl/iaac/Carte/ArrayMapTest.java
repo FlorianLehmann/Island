@@ -99,11 +99,13 @@ public class ArrayMapTest {
     @Test
     public void ShouldBeAnEdge() {
         assertTrue(map.isEdge(2,2));
+        assertTrue(map.isEdge(2,7));
     }
 
     @Test
     public void ShouldNotBeAnEdge() {
         assertFalse(map.isEdge(1,2));
         assertFalse(map.isEdge(3,3));
+        assertFalse(map.isEdge(8,9));
     }
 }
