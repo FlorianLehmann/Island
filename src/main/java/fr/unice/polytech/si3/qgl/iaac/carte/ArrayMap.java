@@ -77,11 +77,42 @@ public class ArrayMap {
             }
         }
 
+        boolean [][] edgeTmp = new boolean[size][size];
+
         for (int i = 0; i < size ; i++) {
             for (int j = 0; j < size; j++) {
-                //edge[i][j] = isAnEdge(i - originX,j - originY);
+                edgeTmp[i][j] = false;
             }
         }
+
+        //pas besoin de gérer le cas ou on sort de l carte car il est imossible d'avoir une edge au bord de la carte
+        for (int i = 0; i < size ; i++) {
+            for (int j = 0; j < size; j++) {
+                if (!edge[i-1][j]) {
+                    //on obtient le point le plus à gauche
+                    for (int k = 0; k < size; k++) {
+                        if (edge[k][j+2]) {
+                            //ici on interpole
+                            edgeTmp[][j+1] = true;
+                            break;
+                        }
+                    }
+                }
+                if (!edge[i+1][j])
+                {
+                    //on obtient le point le plus à droite
+                    for (int k = size-1; k >= 0; k--) {
+                        if (edge[k][j+2]) {
+                            //on interpole
+                            edgeTmp[][j+1] = true;
+                            break;
+                        }
+                    }
+                }
+                //et si il n'y a pas de points en dessous? ça fait rien
+            }
+        }
+        //TODO on fait un ou logique sur les deux tableau
     }
 
     public boolean isEdge(int x, int y) {
