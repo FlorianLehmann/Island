@@ -75,11 +75,6 @@ public class ContractsTest {
         }
     }
 
-
-
-
-
-
     @Test
     public void SortSecondaryContractsTest() {
         contracts.add(new Contract(LEATHER, 1500));
