@@ -35,4 +35,9 @@ public class Budget {
     public boolean hasBudget() {
         return budget>700;
     }
+
+    public int getBudget() {
+        return budget;
+    }
+
 }

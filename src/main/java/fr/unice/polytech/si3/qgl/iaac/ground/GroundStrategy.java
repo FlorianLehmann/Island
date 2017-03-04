@@ -42,8 +42,11 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        if (budget.hasBudget())
+        if (budget.hasBudget()) {
+            contracts.sortPrimaryContracts(budget.getBudget());
+            contracts.sortSecondaryContracts(budget.getBudget());
             return state.execute(men, contracts, carte);
+        }
         return STOP.toString("");
     }
 
