@@ -3,6 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.SecondaryContract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
@@ -69,10 +71,10 @@ public class ReadJSON {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
                     if (EnumPrimaryResources.isPrimary(re)) {
-                        contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
+                        contracts.add(new PrimaryContract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
                     }
                     else {
-                        contracts.add(new Contract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
+                        contracts.add(new SecondaryContract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
                     }
 
                 }

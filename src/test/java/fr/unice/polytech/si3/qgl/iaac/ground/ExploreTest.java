@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class ExploreTest {
         json=new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
         men=new Men(new Point(0,0));
         contracts=new Contracts();
-        contracts.add(new Contract(EnumPrimaryResources.WOOD,5));
+        contracts.add(new PrimaryContract(EnumPrimaryResources.WOOD,5));
         map=new Carte(json);
     }
 

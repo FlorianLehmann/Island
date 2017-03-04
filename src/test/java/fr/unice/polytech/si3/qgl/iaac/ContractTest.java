@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import org.junit.Before;
@@ -19,13 +20,13 @@ public class ContractTest {
 
     @Before
     public void defineContext() {
-        contract = new Contract(EnumPrimaryResources.WOOD, 1500);
+        contract = new PrimaryContract(EnumPrimaryResources.WOOD, 1500);
     }
 
     @Test
     public void defineBadContextTest() {
         try {
-            new Contract(EnumPrimaryResources.WOOD, 0);
+            new PrimaryContract(EnumPrimaryResources.WOOD, 0);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -33,7 +34,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumPrimaryResources.WOOD, -10);
+            new PrimaryContract(EnumPrimaryResources.WOOD, -10);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -41,7 +42,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumPrimaryResources.WOOD, 5);
+            new PrimaryContract(EnumPrimaryResources.WOOD, 5);
             assertTrue(true);
         }
         catch (NoAmountContractException exception)
@@ -72,7 +73,7 @@ public class ContractTest {
 
     @Test
     public void getNameTest() {
-        assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(FISH, 1500).getName());
+        assertEquals(EnumPrimaryResources.valueOf("FISH"), new PrimaryContract(FISH, 1500).getName());
     }
 
 }
