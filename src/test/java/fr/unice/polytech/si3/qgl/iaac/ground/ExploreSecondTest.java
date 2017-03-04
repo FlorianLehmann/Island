@@ -34,19 +34,19 @@ public class ExploreSecondTest {
 
     @Test
     public void executeTest(){
-        State state=new ExploreSecond();
+        State state=new ExploreSecond(0);
         assertEquals(state.execute(men,contracts,map),"{ \"action\": \"explore\" }");
     }
 
     @Test
     public void waitTest(){
-        State state=new ExploreSecond();
+        State state=new ExploreSecond(0);
         assertTrue(state.wait(json) instanceof DefineWaySecond);
     }
 
     @Test
     public void waitTestWithRessource(){
-        State state=new ExploreSecond();
+        State state=new ExploreSecond(0);
         state.execute(men,contracts,map);
         json.read("{\n" +
                 "  \"cost\": 5,\n" +

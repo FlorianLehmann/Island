@@ -5,11 +5,8 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.LEATHER;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.PLANK;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.QUARTZ;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.*;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 
 /**
  * Created by lehmann on 04/02/17.
@@ -115,6 +112,24 @@ public class Contracts {
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
             if (LEATHER == secondaryContracts.get(i).getName()) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (GLASS == secondaryContracts.get(i).getName()) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (RUM == secondaryContracts.get(i).getName()) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (ORE == secondaryContracts.get(i).getName()) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }

@@ -34,15 +34,8 @@ public class TransformSecondTest {
 
     @Test
     public void executeTest() {
-        State state = new TransformSecond(10);
-        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 10 }}");
+        State state = new TransformSecond();
+        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 0 }}");
     }
 
-    @Test
-    public void waitTestWithContractNotCompleted() {
-        State state = new TransformSecond(10);
-        state.execute(men, contracts, map);
-        json.read("{ \"cost\": 5, \"extras\": { \"production\": 5, \"kind\": \"PLANK\" },\"status\": \"OK\" }");
-        assertTrue(state.wait(json) instanceof DefineWaySecond);
-    }
 }
