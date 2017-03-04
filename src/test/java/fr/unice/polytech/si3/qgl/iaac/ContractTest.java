@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.junit.Before;
 import org.junit.Test;
 

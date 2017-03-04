@@ -1,12 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
