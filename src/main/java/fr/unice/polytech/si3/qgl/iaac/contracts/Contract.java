@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.contracts;
 
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
@@ -6,10 +6,10 @@ import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 /**
  * Created by lehmann on 04/02/17.
  */
-public class Contract {
+public abstract class Contract {
 
-    private EnumResources name;
-    private int amount;
+    protected EnumResources name;
+    protected int amount;
 
     /**
      * default constructor
@@ -17,6 +17,9 @@ public class Contract {
      * @param amount
      * @throws NoAmountContractException
      */
+
+    public Contract(){}
+
     public Contract(EnumResources name, int amount) throws NoAmountContractException {
             this.name =  name;
             if (amount <= 0)

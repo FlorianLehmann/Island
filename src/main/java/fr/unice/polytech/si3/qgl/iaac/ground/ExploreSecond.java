@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.Contract;
-import fr.unice.polytech.si3.qgl.iaac.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
@@ -11,6 +11,11 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
  */
 public class ExploreSecond implements State {
     private Contract contract;
+    private int numeroRessource=0;
+
+    public ExploreSecond(int numeroRessource){
+        this. numeroRessource=numeroRessource;
+    }
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
@@ -24,13 +29,13 @@ public class ExploreSecond implements State {
         boolean resource;
         resource = false;
         for (int i = 0; i < json.getResources().size() ; i++) {
-            if(json.getResources().get(i).equals(((EnumManufacturedResources)contract.getName()).getNeeded().get(0).toString()))
+            if(json.getResources().get(i).equals(((EnumManufacturedResources)contract.getName()).getNeeded().get(numeroRessource).toString()))
                 resource = true;
         }
 
         if (resource)
-            return new ExploitSecond();
+            return new ExploitSecond(numeroRessource);
         else
-            return new DefineWaySecond();
+            return new DefineWaySecond(numeroRessource);
     }
 }

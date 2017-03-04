@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import org.junit.Before;

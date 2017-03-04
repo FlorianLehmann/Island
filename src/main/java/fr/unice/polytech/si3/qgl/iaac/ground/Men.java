@@ -55,6 +55,9 @@ public class Men extends Player{
     public String transform(EnumPrimaryResources resources,int nb){
         return EnumJSON.TRANSFORM.toString(resources.toString(),nb);
     }
+    public String transform(EnumPrimaryResources resources1,EnumPrimaryResources ressource2,int nbRessource1,int nbRessource2){
+        return EnumJSON.TRANSFORM.toStringTranform(resources1.toString(),ressource2.toString(),nbRessource1,nbRessource2);
+    }
 
 
 
