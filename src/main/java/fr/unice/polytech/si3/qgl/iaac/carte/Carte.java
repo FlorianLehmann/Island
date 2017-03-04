@@ -35,7 +35,7 @@ public class Carte {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                Case square = new Case(new Point(coords.x + i, coords.y  + j));
+                Case square = new Case(new Point(coords.x + i, coords.y + j));
                 square.update(json);
                 carte.add(square);
             }
@@ -88,8 +88,6 @@ public class Carte {
             }
         }
         throw new RuntimeException("No resources");
+
     }
-
-
-
 }
