@@ -116,6 +116,8 @@ public class ArrayMap {
     }
 
     public boolean isEdge(int x, int y) {
+        if (x - originX < 0 || y - originY<0 || x - originX >size - 1 || y - originY > size-1)
+            return false;
         return edge[x - originX][y - originY];
     }
 }

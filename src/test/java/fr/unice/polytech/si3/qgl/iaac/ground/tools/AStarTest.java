@@ -94,9 +94,68 @@ public class AStarTest {
         aStar.compute();
         Deque<Point> way = aStar.getWay();
         assertEquals(3, way.size());
-        /*for (int i = 3; i < 6; i++) {
+        for (int i = 4; i < 6; i++) {
             assertEquals(new Point(i,3),way.pop());
-        }*/
+        }
+    }
+
+    @Test
+    public void ShouldReachTile2(){
+        location = new Point(2,4);
+        target = new Point(6,3);
+        createAnIsland2();
+        map = new ArrayMap(list);
+        aStar = new AStar(location, target, map );
+        aStar.compute();
+        Deque<Point> way = aStar.getWay();
+        assertEquals(11, way.size());
+
+    }
+
+
+    private void createAnIsland2() {
+
+        list.clear();
+        json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
+
+
+            for (int j =  border; j < size-border; j++) {
+                Case tile = new Case(new Point(4,j));
+                tile.update(json);
+                list.add(tile);
+            }
+
+
+        json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"BEACH\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
+
+        for (int j =  0; j < border; j++) {
+            Case tile = new Case(new Point(4,j));
+            tile.update(json);
+            list.add(tile);
+        }
+
+        for (int j =  size-border; j < size; j++) {
+            Case tile = new Case(new Point(4,j));
+            tile.update(json);
+            list.add(tile);
+        }
+
+        for (int i = 0; i < 4 ; i++) {
+            for (int j = 0; j < size ; j++) {
+                Case tile = new Case(new Point(i,j));
+                tile.update(json);
+                list.add(tile);
+            }
+        }
+
+        for (int i = 5; i < size ; i++) {
+            for (int j = 0; j < size; j++) {
+                Case tile = new Case(new Point(i,j));
+                tile.update(json);
+                list.add(tile);
+            }
+        }
+
     }
 }
 

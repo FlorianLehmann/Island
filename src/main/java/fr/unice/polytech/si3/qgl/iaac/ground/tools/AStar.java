@@ -98,9 +98,10 @@ public class AStar {
             indexOpen = 0;
             for (int i = 0; i < open.size(); i++) {
                 open.get(i).currentToTarget = distanceManathan(open.get(i).location, target);//rajouter tardivement
+                open.get(i).locationToCurrent = distanceManathan(location, open.get(i).location);
                 int totalCost = open.get(i).currentToTarget + open.get(i).locationToCurrent;
 
-                if (min > totalCost){
+                if (min >= totalCost){
                     min = totalCost;
                     indexOpen = i;
                 }
@@ -109,11 +110,15 @@ public class AStar {
             close.add(parent);
         }
 
+        while(parent.location.x != location.x || parent.location.y!= location.y ){
+            way.push(parent.location);
+            parent = parent.parent;
+        }
         //On ne tient pas compte de la case initiale
-        for (int i = close.size()-1; i > 0; i--) {
+        /*for (int i = close.size()-1; i > 0; i--) {
             way.push(close.get(i).location);
             //close.remove(i);
-        }
+        }*/
 
     }
 
