@@ -28,14 +28,33 @@ public class TransformSecondTest {
         json = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
         men = new Men(new Point(0, 0));
         contracts = new Contracts();
-        contracts.add(new SecondaryContract(EnumManufacturedResources.PLANK, 5));
         map = new Carte(json);
     }
 
     @Test
-    public void executeTest() {
+    public void executeTestWithManufacturedRessourceNeededOneRessource() {
+        contracts.add(new SecondaryContract(EnumManufacturedResources.PLANK, 5));
+        ((SecondaryContract)contracts.getSecondaryContract()).addFirstRessource(30);
         State state = new TransformSecond();
-        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 0 }}");
+        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 30 }}");
+    }
+
+    @Test
+    public void executeTestWithManufacturedRessourceNeededTwoRessource() {
+        contracts.add(new SecondaryContract(EnumManufacturedResources.INGOT, 5));
+        ((SecondaryContract)contracts.getSecondaryContract()).addFirstRessource(30);
+        ((SecondaryContract)contracts.getSecondaryContract()).addSecondaryRessource(30);
+        State state = new TransformSecond();
+        assertEquals(state.execute(men, contracts, map), "{ \"action\": \"transform\", \"parameters\": { \"ORE\": 30, \"WOOD\": 30 }}");
+    }
+
+    @Test
+    public void waitTestWichPassToAnotherManufacturedRessource(){
+        contracts.add(new SecondaryContract(EnumManufacturedResources.GLASS, 100));
+        State state=new TransformSecond();
+        state.execute(men,contracts,map);
+        json.read("{ \"cost\": 5, \"extras\": { \"production\": 103, \"kind\": \"GLASS\" },\"status\": \"OK\" }");
+        assertTrue(state.wait(json) instanceof DefineWaySecond);
     }
 
 }
