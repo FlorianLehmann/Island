@@ -2,7 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Budget;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
@@ -42,8 +42,11 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        if (budget.hasBudget())
+        if (budget.hasBudget()) {
+            contracts.sortPrimaryContracts(budget.getBudget());
+            contracts.sortSecondaryContracts(budget.getBudget());
             return state.execute(men, contracts, carte);
+        }
         return STOP.toString("");
     }
 

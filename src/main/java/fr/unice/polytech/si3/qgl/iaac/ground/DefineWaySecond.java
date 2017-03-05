@@ -1,11 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 
 import java.awt.*;
 import java.util.ArrayDeque;
@@ -17,12 +18,18 @@ import java.util.Deque;
 public class DefineWaySecond implements State{
     private boolean wayDefine;
     private Deque<String> stack;
+    private int numeroRessource=0;
 
 
 
     public DefineWaySecond() {
         wayDefine = false;
         stack = new ArrayDeque<>();
+    }
+    public DefineWaySecond(int numeroRessource){
+        wayDefine=false;
+        stack = new ArrayDeque<>();
+        this.numeroRessource=numeroRessource;
     }
 
     @Override
@@ -32,13 +39,24 @@ public class DefineWaySecond implements State{
         int coordX;
         int coordY;
         Point point;
+        int possibleContrat=0;
 
-        while(!contracts.isSecondaryCompleted() && !(carte.hasResource(((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0)))) {
-            contracts.remove(contracts.getSecondaryContract().getName());
+        while(possibleContrat!=1 && !contracts.isSecondaryCompleted()) {
+            if (!contracts.isSecondaryCompleted()) {
+                for (EnumPrimaryResources ressource : ((EnumManufacturedResources) contracts.getSecondaryContract().getName()).getNeeded()) {
+                    if (!(carte.hasResource(ressource))) {
+                        contracts.remove(contracts.getSecondaryContract().getName());
+                        possibleContrat=0;
+                        break;
+                    }
+                    else possibleContrat=1;
+                }
+            }
         }
+
         if (!contracts.isSecondaryCompleted()) {
             if(!wayDefine) {
-                tmp = ((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0).toString();
+                tmp = ((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(numeroRessource).toString();
                 if ("FISH".equals(tmp)) {
                     //point = carte.getACreek();
                     point = carte.getResource(((EnumManufacturedResources)contracts.getSecondaryContract().getName()).getNeeded().get(0));
@@ -86,7 +104,8 @@ public class DefineWaySecond implements State{
     @Override
     public State wait(ReadJSON json) {
         if (stack.size() == 0)
-            return new ExploreSecond();
+            return new ExploreSecond(numeroRessource);
         return this;
     }
+
 }

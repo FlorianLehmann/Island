@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 import eu.ace_design.island.bot.IExplorerRaid;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import fr.unice.polytech.si3.qgl.iaac.ground.Men;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
