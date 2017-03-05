@@ -6,7 +6,6 @@ import fr.unice.polytech.si3.qgl.iaac.ground.Men;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
-
 import java.awt.*;
 
 
@@ -25,14 +24,14 @@ public class Explorer implements IExplorerRaid {
     private Contracts contracts;
     private int nbMen;
 
-    //todo dans airstrategy stopper lorsque le budget est torp faible
-
     /**
      * Initialize attributes with the JSON request
      * @param s
      */
     @Override
     public void initialize(String s) {
+
+
         readJSON = new ReadJSON(s);
         drone = readJSON.initDrone();
         budget = readJSON.initBudget();
