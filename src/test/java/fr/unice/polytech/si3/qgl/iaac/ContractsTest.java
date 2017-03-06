@@ -133,7 +133,7 @@ public class ContractsTest {
     public void getPrimaryContractTestToFindAContractFromARessource(){
         contracts.add(new PrimaryContract(WOOD,60));
         contracts.add(new PrimaryContract(FRUITS,100));
-        assertEquals(WOOD,contracts.getPrimaryContract().getName());
+        assertEquals(FRUITS,contracts.getPrimaryContract(FRUITS).getName());
     }
 
 }
