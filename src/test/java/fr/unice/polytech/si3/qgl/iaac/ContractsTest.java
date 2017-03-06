@@ -129,4 +129,11 @@ public class ContractsTest {
         assertFalse(contracts.containRessource(WOOD));
     }
 
+    @Test
+    public void getPrimaryContractTestToFindAContractFromARessource(){
+        contracts.add(new PrimaryContract(WOOD,60));
+        contracts.add(new PrimaryContract(FRUITS,100));
+        assertEquals(WOOD,contracts.getPrimaryContract().getName());
+    }
+
 }

@@ -156,4 +156,11 @@ public class Contracts {
     public Contract getSecondaryContract(){
         return secondaryContracts.get(0);
     }
+
+    public Contract getPrimaryContract(EnumPrimaryResources ressource){
+        for(Contract contract:primaryContracts){
+            if(contract.getName().equals(ressource))return contract;
+        }
+        return null;
+    }
 }
