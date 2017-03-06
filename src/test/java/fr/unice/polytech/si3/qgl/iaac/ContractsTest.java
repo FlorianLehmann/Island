@@ -3,13 +3,14 @@ package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.SecondaryContract;
 import org.junit.Before;
 import org.junit.Test;
 
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.LEATHER;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.PLANK;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  * Created by lehmann on 04/02/17.
  */
 public class ContractsTest {
-/*
+
     private Contracts contracts;
 
     @Before
@@ -29,15 +30,15 @@ public class ContractsTest {
     @Test
     public void addTest() {
         assertTrue(contracts.isCompleted());
-        contracts.add(new Contract(WOOD, 1500));
-        contracts.add(new Contract(PLANK, 1500));
+        contracts.add(new PrimaryContract(WOOD, 1500));
+        contracts.add(new SecondaryContract(PLANK, 1500));
         assertFalse(contracts.isCompleted());
     }
 
     @Test
     public void removeTest() {
-        contracts.add(new Contract(WOOD, 1500));
-        contracts.add(new Contract(PLANK, 1500));
+        contracts.add(new PrimaryContract(WOOD, 1500));
+        contracts.add(new SecondaryContract(PLANK, 1500));
         contracts.remove(WOOD);
         contracts.remove(PLANK);
         assertTrue(contracts.isCompleted());
@@ -45,24 +46,24 @@ public class ContractsTest {
 
     @Test
     public void SortContractsTest() {
-        contracts.add(new Contract(WOOD, 1500));
-        contracts.add(new Contract(FISH, 1500));
+        contracts.add(new PrimaryContract(WOOD, 1500));
+        contracts.add(new PrimaryContract(FISH, 1500));
         contracts.sortPrimaryContracts(10000);
         assertEquals(FISH, contracts.getContract().getName());
     }
 
     @Test
     public void SortContractsSmallBudgetTest() {
-        contracts.add(new Contract(WOOD, 1000));
-        contracts.add(new Contract(FISH, 5000));
+        contracts.add(new PrimaryContract(WOOD, 1000));
+        contracts.add(new PrimaryContract(FISH, 5000));
         contracts.sortPrimaryContracts(8000);
         assertEquals(WOOD, contracts.getContract().getName());
     }
 
     @Test
     public void SortContractsOrderTest() {
-        contracts.add(new Contract(FISH, 1500));
-        contracts.add(new Contract(WOOD, 1500));
+        contracts.add(new PrimaryContract(FISH, 1500));
+        contracts.add(new PrimaryContract(WOOD, 1500));
         contracts.sortPrimaryContracts(10000);
         assertEquals(FISH, contracts.getContract().getName());
     }
@@ -79,24 +80,24 @@ public class ContractsTest {
 
     @Test
     public void SortSecondaryContractsTest() {
-        contracts.add(new Contract(LEATHER, 1500));
-        contracts.add(new Contract(PLANK, 1500));
+        contracts.add(new SecondaryContract(LEATHER, 1500));
+        contracts.add(new SecondaryContract(PLANK, 1500));
         contracts.sortSecondaryContracts(10000);
         assertEquals(PLANK, contracts.getSecondaryContract().getName());
     }
 
     @Test
     public void SortSecondaryContractsSmallBudgetTest() {
-        contracts.add(new Contract(LEATHER, 1000));
-        contracts.add(new Contract(PLANK, 5000));
+        contracts.add(new SecondaryContract(LEATHER, 1000));
+        contracts.add(new SecondaryContract(PLANK, 5000));
         contracts.sortSecondaryContracts(8000);
         assertEquals(LEATHER, contracts.getSecondaryContract().getName());
     }
 
     @Test
     public void SortSecondaryContractsOrderTest() {
-        contracts.add(new Contract(PLANK, 1500));
-        contracts.add(new Contract(LEATHER, 1500));
+        contracts.add(new SecondaryContract(PLANK, 1500));
+        contracts.add(new SecondaryContract(LEATHER, 1500));
         contracts.sortSecondaryContracts(10000);
         assertEquals(PLANK, contracts.getSecondaryContract().getName());
     }
@@ -110,5 +111,23 @@ public class ContractsTest {
             assertFalse(false);
         }
     }
-*/
+
+    @Test
+    public void containRessource(){
+        contracts.add(new PrimaryContract(FRUITS,50));
+        assertTrue(contracts.containRessource(FRUITS));
+    }
+    @Test
+    public void notContainRessource(){
+        contracts.add(new PrimaryContract(WOOD,50));
+        assertFalse(contracts.containRessource(QUARTZ));
+    }
+
+    @Test
+    public void containRessourceWichIsCompleted(){
+        contracts.add(new PrimaryContract(WOOD,50));
+        contracts.getContract().sub(100);
+        assertFalse(contracts.containRessource(WOOD));
+    }
+
 }
