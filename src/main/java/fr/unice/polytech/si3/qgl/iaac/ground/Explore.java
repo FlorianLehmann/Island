@@ -14,7 +14,7 @@ public class Explore implements State {
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
-        contract =  contracts.getContract();
+        contract =  contracts.getPrimaryContract();
         return men.explore();
     }
 

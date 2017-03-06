@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
 
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.SecondaryContract;
@@ -49,7 +48,7 @@ public class ContractsTest {
         contracts.add(new PrimaryContract(WOOD, 1500));
         contracts.add(new PrimaryContract(FISH, 1500));
         contracts.sortPrimaryContracts(10000);
-        assertEquals(FISH, contracts.getContract().getName());
+        assertEquals(FISH, contracts.getPrimaryContract().getName());
     }
 
     @Test
@@ -57,7 +56,7 @@ public class ContractsTest {
         contracts.add(new PrimaryContract(WOOD, 1000));
         contracts.add(new PrimaryContract(FISH, 5000));
         contracts.sortPrimaryContracts(8000);
-        assertEquals(WOOD, contracts.getContract().getName());
+        assertEquals(WOOD, contracts.getPrimaryContract().getName());
     }
 
     @Test
@@ -65,7 +64,7 @@ public class ContractsTest {
         contracts.add(new PrimaryContract(FISH, 1500));
         contracts.add(new PrimaryContract(WOOD, 1500));
         contracts.sortPrimaryContracts(10000);
-        assertEquals(FISH, contracts.getContract().getName());
+        assertEquals(FISH, contracts.getPrimaryContract().getName());
     }
 
     @Test
@@ -126,7 +125,7 @@ public class ContractsTest {
     @Test
     public void containRessourceWichIsCompleted(){
         contracts.add(new PrimaryContract(WOOD,50));
-        contracts.getContract().sub(100);
+        contracts.getPrimaryContract().sub(100);
         assertFalse(contracts.containRessource(WOOD));
     }
 

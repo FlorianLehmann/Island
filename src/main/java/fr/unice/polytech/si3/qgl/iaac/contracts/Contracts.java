@@ -149,7 +149,7 @@ public class Contracts {
         return false;
     }
     //todo si il n'y a rien nullpointer
-    public Contract getContract() {
+    public Contract getPrimaryContract() {
         return primaryContracts.get(0);
     }
 
