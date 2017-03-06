@@ -111,7 +111,7 @@ public class AStar {
         }
 
         while(parent.location.x != location.x || parent.location.y!= location.y ){
-            way.push(parent.location);
+            way.push(new Point(parent.location.x, parent.location.y));
             parent = parent.parent;
         }
         //On ne tient pas compte de la case initiale

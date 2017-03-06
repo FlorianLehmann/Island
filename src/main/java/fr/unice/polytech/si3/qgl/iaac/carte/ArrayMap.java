@@ -120,4 +120,12 @@ public class ArrayMap {
             return false;
         return edge[x - originX][y - originY];
     }
+
+    public int getOriginX() {
+        return originX;
+    }
+
+    public int getOriginY(){
+        return originY;
+    }
 }
