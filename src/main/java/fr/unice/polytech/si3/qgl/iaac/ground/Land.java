@@ -10,6 +10,7 @@ import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
  */
 public class Land implements State {
 
+    private Carte carte;
     private int nbMen;
 
     public Land(int nbMen) {
@@ -18,6 +19,7 @@ public class Land implements State {
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
+        this.carte = carte;
         if (nbMen > 8)
             nbMen = 8;
         return EnumJSON.LAND.toString(carte.getCreekID(), nbMen-1);
@@ -25,7 +27,7 @@ public class Land implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        return new DefineWay();
+        return new ReachResources(carte);
     }
 
 }

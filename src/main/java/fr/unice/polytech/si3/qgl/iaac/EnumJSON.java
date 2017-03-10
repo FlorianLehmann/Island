@@ -54,6 +54,7 @@ public enum EnumJSON {
         return debut + parametre1 + milieu + parametre2 + fin;
     }
 
+    //TODO
     public String toStringTranform(String ressource1,String ressource2,int nbRessource1,int nbRessource2){
         return debut+ressource1+milieu+nbRessource1+", \""+ressource2+milieu+nbRessource2+fin;
     }

@@ -90,4 +90,9 @@ public class Carte {
         throw new RuntimeException("No resources");
 
     }
+
+    //TODO
+    public List<Case> getCases() {
+        return carte;
+    }
 }

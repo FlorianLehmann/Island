@@ -91,7 +91,6 @@ public class AStar {
                 }
             }
             neighbours.clear();
-            //todo peut être mettre ce qui a au dessus au dessus de la boucle
 
             //prendre la case qui a le cout le moins important
             int min = Integer.MAX_VALUE;

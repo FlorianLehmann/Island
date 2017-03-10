@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.carte;
 
+
 import java.awt.*;
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class ArrayMap {
                 originY = map.get(i).getCoords().y;
         }
 
-        arrayMap = new Case[size][size];
+        //todo juste size pas 2*size
+        arrayMap = new Case[2*size][2*size];
 
         for (int i = originX; i < size - originX; i++) {
             for (int j = originY; j < size - originY; j++) {

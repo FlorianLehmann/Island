@@ -18,7 +18,7 @@ public class Explore implements State {
         return men.explore();
     }
 
-
+    //TODO ne gère que la ressource en cours
     @Override
     public State wait(ReadJSON json) {
         boolean resource;
