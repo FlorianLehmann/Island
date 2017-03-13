@@ -148,6 +148,16 @@ public class Contracts {
         }
         return false;
     }
+
+    public void verifyContractCompleted(Contract contract){
+        if(contract.isCompleted()){
+            remove(contract.getName());
+        }
+    }
+
+
+
+
     //todo si il n'y a rien nullpointer
     public Contract getPrimaryContract() {
         return primaryContracts.get(0);
