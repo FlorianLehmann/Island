@@ -75,6 +75,36 @@ public class ArrayMap {
         for (Map.Entry<Point, Boolean> tile: edge.entrySet())
             logger.info(tile.getKey());
 
+        for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
+            if (left(edge, tile.getKey()) && !right(edge, tile.getKey())) {
+
+            }
+            else if (right(edge, tile.getKey()) && !left(edge, tile.getKey())) {
+
+            }
+            else if (up(edge, tile.getKey()) && !down(edge, tile.getKey())) {
+
+            }
+            else if (down(edge, tile.getKey()) && !up(edge, tile.getKey())){
+
+            }
+        }
+
+    }
+
+    private boolean up(Map<Point, Boolean> edge, Point key) {
+
+    }
+
+    private boolean down(Map<Point, Boolean> edge, Point key) {
+
+    }
+
+    private boolean left(Map<Point, Boolean> edge, Point key) {
+
+    }
+
+    private boolean right(Map<Point, Boolean> edge, Point key) {
 
     }
 
