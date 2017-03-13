@@ -68,7 +68,7 @@ public class AirStrategy {
             state = state.wait(json);
             carte.addAirCase(drone.getCoord());
 
-            if (carte.tmp_hasAcrique() && demitour == 1) {
+            if (carte.tmp_hasAcrique() && demitour == 2) {
                isOver = true;
             }
         }

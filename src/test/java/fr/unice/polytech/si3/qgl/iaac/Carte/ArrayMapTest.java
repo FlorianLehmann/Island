@@ -5,11 +5,14 @@ import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.carte.Case;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,7 +25,7 @@ import static org.mockito.Mockito.when;
  */
 public class ArrayMapTest {
 
-    private List<Case> list;
+    private Map<Point, Case> list;
     private ArrayMap map;
     private ReadJSON json;
 
@@ -31,7 +34,7 @@ public class ArrayMapTest {
 
     @Before
     public void defineContext() {
-        list = new ArrayList<>();
+        list = new HashMap<>();
         json = new ReadJSON("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();
@@ -42,35 +45,11 @@ public class ArrayMapTest {
 
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
 
-        for (int i = 0; i < border ; i++) {
-            for (int j = 0; j < border; j++) {
-                Case tile = new Case(new Point(i,j));
-                tile.update(json);
-                list.add(tile);
-            }
-        }
-
-        for (int i = border; i < size - border ; i++) {
-            for (int j = border; j < border; j++) {
-                Case tile = new Case(new Point(i,j));
-                tile.update(json);
-                list.add(tile);
-            }
-        }
-
-        for (int i = size - border; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
-            }
-        }
-
-        for (int i = border; i < size - border ; i++) {
-            for (int j = size - border; j < size; j++) {
-                Case tile = new Case(new Point(i,j));
-                tile.update(json);
-                list.add(tile);
+                list.put(new Point(i,j),tile);
             }
         }
 
@@ -81,7 +60,7 @@ public class ArrayMapTest {
             for (int j = border; j < size - border; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i,j),tile);
             }
         }
 
@@ -91,21 +70,86 @@ public class ArrayMapTest {
     public void ShouldGetGroundCase() {
         for (int i = border; i < size - border ; i++) {
             for (int j = border; j < size - border; j++) {
-                assertTrue(!map.get(i,j).containOcean());
+                assertTrue(!map.get(new Point(i,j)).containOcean());
             }
         }
     }
 
     @Test
     public void ShouldBeAnEdge() {
-        assertTrue(map.isEdge(2,2));
-        assertTrue(map.isEdge(2,7));
+        assertTrue(map.isEdge(new Point(2,2)));
+        assertTrue(map.isEdge(new Point(2,3)));
+        assertTrue(map.isEdge(new Point(3,7)));
+        assertTrue(map.isEdge(new Point(4,7)));
+        assertTrue(map.isEdge(new Point(5,7)));
+        assertTrue(map.isEdge(new Point(2,7)));
     }
 
     @Test
     public void ShouldNotBeAnEdge() {
-        assertFalse(map.isEdge(1,2));
-        assertFalse(map.isEdge(3,3));
-        assertFalse(map.isEdge(8,9));
+        assertFalse(map.isEdge(new Point(1,2)));
+        assertFalse(map.isEdge(new Point(3,3)));
+        assertFalse(map.isEdge(new Point(8,9)));
+        /*for (int i = 0; i < size - border; i++) {
+            for (int j = 0; j < ; j++) {
+
+            }
+        }*/
+    }
+
+
+    private void createAnIsland2() {
+
+        json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Case tile = new Case(new Point(i,j));
+                tile.update(json);
+                list.put(new Point(i,j),tile);
+            }
+        }
+
+        json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"BEACH\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
+
+
+        for (int i = border; i < size - border ; i++) {
+            for (int j = border; j < size - border; j++) {
+                Case tile = new Case(new Point(i,j));
+                tile.update(json);
+                list.put(new Point(i,j),tile);
+            }
+        }
+
+        Map<Point, Case> list2= new HashMap<>();
+
+        for (int i = 0; i < size ; i+=2) {
+            for (int j = 0; j < size ; j++) {
+                list2.put(new Point(i,j),list.get(new Point(i,j)));
+            }
+        }
+
+
+        list = list2;
+
+    }
+    @Ignore
+    @Test
+    public void ShouldBeAnEdge2() {
+        createAnIsland2();
+        map = new ArrayMap(list);
+        for (int i = 0; i < size ; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(" " +map.isEdge(new Point(j,i)));
+            }
+            System.out.println(" ");
+        }
+
+        assertTrue(map.isEdge(new Point(2,2)));
+        assertTrue(map.isEdge(new Point(2,3)));
+        assertTrue(map.isEdge(new Point(3,7)));
+        assertTrue(map.isEdge(new Point(4,7)));
+        assertTrue(map.isEdge(new Point(5,7)));
+        assertTrue(map.isEdge(new Point(2,7)));
     }
 }

@@ -76,7 +76,8 @@ public class AStar {
             for (int i = 0; i < neighbours.size(); i++) {
                 int x = neighbours.get(i).location.x;
                 int y = neighbours.get(i).location.y;
-                if (!edge.isEdge(x,y) && !isInList(close, neighbours.get(i).location)) {
+                if (!edge.isEdgeG(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
+                //if (!edge.isEdge(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
                     if (!isInList(open, neighbours.get(i).location)){
                         neighbours.get(i).parent = parent;
                         open.add(neighbours.get(i));
@@ -110,7 +111,7 @@ public class AStar {
         }
 
         while(parent.location.x != location.x || parent.location.y!= location.y ){
-            way.push(new Point(parent.location.x, parent.location.y));
+            way.push(parent.location);
             parent = parent.parent;
         }
         //On ne tient pas compte de la case initiale
