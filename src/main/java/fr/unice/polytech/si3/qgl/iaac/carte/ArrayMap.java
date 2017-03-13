@@ -60,6 +60,8 @@ public class ArrayMap {
             if ((up.containOcean() || down.containOcean()))
                 return true;
 
+
+
         return false;
 
     }
@@ -70,7 +72,8 @@ public class ArrayMap {
             if (!tile.getValue().containOcean())
                 edge.put(tile.getValue().getCoords() ,isAnEdge(tile.getValue().getCoords()));
 
-
+        for (Map.Entry<Point, Boolean> tile: edge.entrySet())
+            logger.info(tile.getKey());
 
 
     }
