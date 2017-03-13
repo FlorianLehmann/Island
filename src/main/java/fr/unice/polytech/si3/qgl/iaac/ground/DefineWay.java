@@ -14,6 +14,7 @@ public class DefineWay implements State {
 
     private boolean wayDefine;
     private Deque<String> stack;
+    private Contracts contracts;
 
 
 
@@ -24,6 +25,7 @@ public class DefineWay implements State {
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
+        this.contracts=contracts;
         EnumOrientation direction;
         String tmp;
         int coordX;
@@ -73,7 +75,7 @@ public class DefineWay implements State {
             }
 
         } else {
-            return EnumJSON.STOP.toString("");
+            return men.explore();
         }
 
 
@@ -81,6 +83,7 @@ public class DefineWay implements State {
 
     @Override
     public State wait(ReadJSON json) {
+        if(contracts.isPrimaryCompleted())return new DefineWaySecond();
         if (stack.size() == 0)
             return new Explore();
         return this;
