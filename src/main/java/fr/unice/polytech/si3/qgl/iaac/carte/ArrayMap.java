@@ -25,6 +25,11 @@ public class ArrayMap {
     private Map<Point, Boolean> edge;
     private List<Point> listeY;
 
+    private int xMax;
+    private int xMin;
+    private int yMax;
+    private int yMin;
+
 
     private int size;
 
@@ -34,6 +39,10 @@ public class ArrayMap {
         this.map = map;
         edge = new HashMap<>();
         listeY = new LinkedList<>();
+        xMax = Integer.MIN_VALUE;
+        xMin = Integer.MAX_VALUE;
+        yMax = Integer.MIN_VALUE;
+        yMin = Integer.MAX_VALUE;
         computeEdge();
     }
 
@@ -66,6 +75,19 @@ public class ArrayMap {
 
     }
 
+    private void defineMapSize() {
+        for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
+            if (tile.getKey().x < xMin)
+                xMin = tile.getKey().x;
+            if (tile.getKey().x > xMax)
+                xMax = tile.getKey().y;
+            if (tile.getKey().y > yMax)
+                yMax = tile.getKey().y;
+            if (tile.getKey().y < yMin)
+                yMin = tile.getKey().y;
+        }
+    }
+
     private void computeEdge() {
 
         for (Map.Entry<Point, Case> tile: map.entrySet())
@@ -75,8 +97,32 @@ public class ArrayMap {
         for (Map.Entry<Point, Boolean> tile: edge.entrySet())
             logger.info(tile.getKey());
 
+        defineMapSize();
+
         for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
             if (left(edge, tile.getKey()) && !right(edge, tile.getKey())) {
+                // droite + 3
+                Point point = new Point(tile.getKey().x + 3, tile.getKey().y);
+                // on passe sur toute la ligne
+                if (hasEdgeMinusY(tile.getKey())) {
+                    for (int i = yMax; i >= yMin ; i--) {
+                        //si on trouve on relie
+                        if (edge.get(new Point(point.x, i))) {
+                            connect(new Point(point.x, i), point);
+                        }
+                        //si on trouve on relie
+                    }
+                }
+                else {
+                    for (int i = yMin; i <= yMax ; i++) {
+                        //si on trouve on relie
+                        if (edge.get(new Point(point.x, i))) {
+                            connect(new Point(point.x, i), point);
+                        }
+
+                    }
+                }
+
 
             }
             else if (right(edge, tile.getKey()) && !left(edge, tile.getKey())) {
@@ -92,20 +138,32 @@ public class ArrayMap {
 
     }
 
-    private boolean up(Map<Point, Boolean> edge, Point key) {
+    private void connect(Point point, Point point1) {
+    }
 
+    private boolean hasEdgeMinusY(Point key) {
+        for (int i = key.y -1 ; i >= yMin ; i--) {
+            if (edge.get(new Point(key.x,i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean up(Map<Point, Boolean> edge, Point key) {
+        return edge.get(new Point(key.x, key.y + 1));
     }
 
     private boolean down(Map<Point, Boolean> edge, Point key) {
-
+        return edge.get(new Point(key.x, key.y - 1));
     }
 
     private boolean left(Map<Point, Boolean> edge, Point key) {
-
+        return edge.get(new Point(key.x - 1, key.y));
     }
 
     private boolean right(Map<Point, Boolean> edge, Point key) {
-
+        return edge.get(new Point(key.x + 1, key.y));
     }
 
     public boolean isEdge(Point point) {
