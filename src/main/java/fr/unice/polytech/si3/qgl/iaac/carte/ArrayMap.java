@@ -213,11 +213,14 @@ public class ArrayMap {
 
             }
         }
-
-        for (Map.Entry<Point, Boolean> tile: edge_tmp.entrySet())
-            edge.put(tile.getKey(), tile.getValue());
-
         logger.info(strto());
+
+        for (Map.Entry<Point, Boolean> tile: edge_tmp.entrySet()) {
+
+            edge.put(tile.getKey(), tile.getValue());
+        }
+
+//        logger.info(strto());
 
     }
 
@@ -238,13 +241,17 @@ public class ArrayMap {
         int c = -a*point.x + b * point.y;
 
         if (point.x < point1.x) {
+            logger.info("TESTTEST");
             for (int x = point.x; x < point1.x; x++) {
+                logger.info("TESTTEST");
                 Point p = new Point(x, (int) ((a * x + c) / b));
                 edge_tmp.put(p, true);
             }
         }
         else {
+            logger.info("TESTTEST");
             for (int x = point1.x; x < point.x; x++) {
+                logger.info("TESTTEST");
                 Point p = new Point(x, (int) ((a * x + c) / b));
                 edge_tmp.put(p, true);
             }
@@ -260,6 +267,7 @@ public class ArrayMap {
         int c = -a*point.x + b * point.y;
 
         if (point.y < point1.y) {
+
             for (int y = point.y; y < point1.y; y++) {
                 Point p = new Point((int) ((b*y-c)/a), y);
                 edge_tmp.put(p, true);
