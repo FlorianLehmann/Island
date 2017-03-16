@@ -78,8 +78,47 @@ public class ArrayMap {
 
     }
 
+    public boolean isGround(Point point) {
+
+        Case current = map.get(point);
+        Case up = map.get(new Point(point.x, point.y + 3));
+        Case down = map.get(new Point(point.x, point.y - 3));
+
+        if (current != null && !current.containOcean())
+            return true;
+
+        if (up != null && !up.containOcean() && down != null && !down.containOcean())
+            return true;
+
+        return false;
+
+
+    }
+
+    public boolean isGround2(Point point) {
+
+        Case current = map.get(point);
+        Case up = map.get(new Point(point.x , point.y +3 ));
+        Case down = map.get(new Point(point.x , point.y-3 ));
+        Case left = map.get(new Point(point.x + 3, point.y ));
+        Case right = map.get(new Point(point.x - 3, point.y ));
+
+        /*if (current != null && !current.containOcean())
+            return true;*/
+
+        if (up != null && !up.containOcean() && down != null && !down.containOcean() && current == null)
+            return true;
+
+        if (left != null && !left.containOcean() && right != null && !right.containOcean() && current == null)
+            return true;
+
+        return false;
+
+
+    }
+
     private void defineMapSize() {
-        for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
+        /*for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
             if (tile.getKey().x < xMin)
                 xMin = tile.getKey().x;
             if (tile.getKey().x > xMax)
@@ -88,21 +127,59 @@ public class ArrayMap {
                 yMax = tile.getKey().y;
             if (tile.getKey().y < yMin)
                 yMin = tile.getKey().y;
+        }*/
+
+        for (Point point1 : edge.keySet()) {
+            Point point = new Point(point1);
+            if (point.x < xMin)
+                xMin = point.x;
+            if (point.x > xMax)
+                xMax = point.x;
+            if (point.y > yMax)
+                yMax = point.y;
+            if (point.y < yMin)
+                yMin = point.y;
         }
     }
 
     private void computeEdge() {
 
-        for (Map.Entry<Point, Case> tile: map.entrySet())
+
+        /*logger.info("Xmin :" + xMin + "Xmax " + xMax);
+        for (int i = xMin; i <= xMax ; i++) {
+            for (int j = yMin; j < yMax ; j++) {
+                edge.put(new Point(i,j) ,isGround(new Point(i,j)));
+                logger.info("test :" + isGround(new Point(i,j)));
+            }
+        }*/
+
+        /*for (int i = xMin; i <= xMax ; i++) {
+            for (int j = yMin; j < yMax ; j++) {
+                edge.put(new Point(i,j) ,isGround(new Point(i,j)));
+            }
+        }*/
+
+        for (Map.Entry<Point, Case> tile: map.entrySet()) {
             if (!tile.getValue().containOcean())
-                edge.put(tile.getValue().getCoords() ,isAnEdge(tile.getValue().getCoords()));
+                edge.put(tile.getValue().getCoords(), true);
+        }
+
+        defineMapSize();
+
+        logger.info("Xmin :" + xMin + "Xmax " + xMax);
+        for (int i = xMin; i <= xMax ; i++) {
+            for (int j = yMin; j < yMax ; j++) {
+                edge_tmp.put(new Point(i,j) ,isGround2(new Point(i,j)));
+                logger.info("test :" + isGround2(new Point(i,j)));
+            }
+        }
 
         //for (Map.Entry<Point, Boolean> tile: edge.entrySet())
 //            logger.info(strto());
 
-        defineMapSize();
 
-        for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
+
+        /*for (Map.Entry<Point, Boolean> tile: edge.entrySet()) {
             if (left(edge, tile.getKey()) && !right(edge, tile.getKey())) {
                 // droite + 3
                 Point point = new Point(tile.getKey().x + 4, tile.getKey().y);
@@ -113,9 +190,10 @@ public class ArrayMap {
                         //si on trouve on relie
 
                         if (edge.getOrDefault(new Point(point.x, i), false)) {
-                            logger.info("OKOKOKOKOKOKOKOK");
+                            //logger.info("OKOKOKOKOKOKOKOK");
+                            logger.info("connect " + tile.getKey() + "to " + new Point(point.x, i));
 
-                            connectX(new Point(point.x, i), point);//TODO
+                            connectX(new Point(point.x, i), tile.getKey());//TODO avant point.x au lieu de get.x
                             //TODO METTRE UN BREAK
                             //TODO METTRE UN BREAK
                             //TODO METTRE UN BREAK
@@ -132,7 +210,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(point.x, i), false)) {
 
-                            connectX(new Point(point.x, i), point);
+                            connectX(new Point(point.x, i), tile.getKey());
                         }
 
                     }
@@ -148,7 +226,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(point.x, i), false)) {
 
-                            connectX(new Point(point.x, i), point);
+                            connectX(new Point(point.x, i), tile.getKey());
                         }
                         //si on trouve on relie
                     }
@@ -158,7 +236,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(point.x, i), false)) {
 
-                            connectX(new Point(point.x, i), point);
+                            connectX(new Point(point.x, i), tile.getKey());
                         }
 
                     }
@@ -172,7 +250,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(i, point.y), false)) {
 
-                            connectY(new Point(i, point.y), point);
+                            connectY(new Point(i, point.y), tile.getKey());
                         }
                         //si on trouve on relie
                     }
@@ -182,7 +260,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(i, point.y), false)) {
 
-                            connectY(new Point(i, point.y), point);
+                            connectY(new Point(i, point.y), tile.getKey());
                         }
                     }
                 }
@@ -195,7 +273,7 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(i, point.y), false)) {
 
-                            connectY(new Point(i, point.y), point);
+                            connectY(new Point(i, point.y), tile.getKey());
                         }
                         //si on trouve on relie
                     }
@@ -205,20 +283,19 @@ public class ArrayMap {
                         //si on trouve on relie
                         if (edge.getOrDefault(new Point(i, point.y), false)) {
 
-                            connectY(new Point(i, point.y), point);
+                            connectY(new Point(i, point.y), tile.getKey());
                         }
                     }
                 }
 
 
             }
-        }
+        }*/
         logger.info(strto());
 
-        for (Map.Entry<Point, Boolean> tile: edge_tmp.entrySet()) {
-
-            edge.put(tile.getKey(), tile.getValue());
-        }
+        /*for (Map.Entry<Point, Boolean> tile: edge_tmp.entrySet()) {
+            edge.put(tile.getKey(), true);
+        }*/
 
 //        logger.info(strto());
 
@@ -238,24 +315,29 @@ public class ArrayMap {
         //vecteur
         int a = point.x - point1.x;
         int b = point.y - point1.y;
+
+
         int c = -a*point.x + b * point.y;
 
         if (point.x < point1.x) {
-            logger.info("TESTTEST");
+            //logger.info("TESTTEST");
             for (int x = point.x; x < point1.x; x++) {
-                logger.info("TESTTEST");
-                Point p = new Point(x, (int) ((a * x + c) / b));
+                //logger.info("TESTTEST");
+                Point p = new Point(x, b==0?point.y:point.y);
                 edge_tmp.put(p, true);
             }
         }
-        else {
-            logger.info("TESTTEST");
+        else  {//todo
+            //logger.info("TESTTEST");
             for (int x = point1.x; x < point.x; x++) {
-                logger.info("TESTTEST");
-                Point p = new Point(x, (int) ((a * x + c) / b));
+                //logger.info("TESTTEST");
+                Point p = new Point(x, b==0?point.y:point.y);//((int) ((a * x + c) / b)));
                 edge_tmp.put(p, true);
             }
         }
+
+        //a*x - b*y +c =0
+        //
 
     }
 
@@ -269,13 +351,13 @@ public class ArrayMap {
         if (point.y < point1.y) {
 
             for (int y = point.y; y < point1.y; y++) {
-                Point p = new Point((int) ((b*y-c)/a), y);
+                Point p = new Point(point.x/*(int) ((b*y-c)/a)*/, y);
                 edge_tmp.put(p, true);
             }
         }
         else {
             for (int y = point1.y; y < point.y; y++) {
-                Point p = new Point((int) ((b*y-c)/a), y);
+                Point p = new Point(point.x/*(int) ((b*y-c)/a)*/, y);
                 edge_tmp.put(p, true);
             }
         }
@@ -316,9 +398,9 @@ public class ArrayMap {
     public String strto() {
         StringBuilder str = new StringBuilder();
         str.append("\n");
-        for (int i = 0; i < 100; i++) {
-            for (int j = -125; j < 0; j++) {
-                if (isEdge(new Point(i,j)))
+        for (int i = xMin; i < xMax ; i++) {
+            for (int j = yMin; j < yMax + 30 ; j++) {
+                if (edge.getOrDefault(new Point(i,j), false) || edge_tmp.getOrDefault(new Point(i,j), false) )
                     str.append("1");
                 else
                     str.append("0");
@@ -329,12 +411,13 @@ public class ArrayMap {
     }
 
     public boolean isEdgeG(Point point) {
-        Case tile =  map.get(point);
+        return !(edge.getOrDefault(point, false) || edge_tmp.getOrDefault(point, false));
+        /*Case tile =  map.get(point);
         if (tile == null)
             return false;
         if (tile.containOcean())
             return true;
-        return false;
+        return false;*/
 
     }
 }
