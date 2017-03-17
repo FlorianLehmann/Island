@@ -1,16 +1,9 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Budget;
-import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.ground.tools.AStar;
-
-import java.awt.*;
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
 
@@ -69,7 +62,7 @@ public class GroundStrategy {
             state = state.wait(json);
         }
         //todo
-        //carte.addGroundCase(men.getCoord());
+        //map.addGroundCase(men.getCoord());
     }
 
 }

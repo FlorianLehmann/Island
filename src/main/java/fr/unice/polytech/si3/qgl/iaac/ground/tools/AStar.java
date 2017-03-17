@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
+import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
 
 import java.awt.*;
 import java.util.ArrayDeque;

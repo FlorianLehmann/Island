@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
@@ -37,7 +37,7 @@ public class DefineWay implements State {
             if(!wayDefine) {
                 tmp = contracts.getPrimaryContract().getName().toString();
                 if ("FISH".equals(tmp)) {
-                    //point = carte.getACreek();
+                    //point = map.getACreek();
                     point = carte.getResource(contracts.getPrimaryContract().getName());
 
                 } else {

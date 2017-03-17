@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.carte.Case;
+import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
+import fr.unice.polytech.si3.qgl.iaac.map.Case;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

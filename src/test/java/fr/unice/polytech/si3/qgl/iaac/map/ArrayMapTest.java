@@ -1,24 +1,18 @@
-package fr.unice.polytech.si3.qgl.iaac.Carte;
+package fr.unice.polytech.si3.qgl.iaac.map;
 
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.carte.Case;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by florian on 03/03/2017.

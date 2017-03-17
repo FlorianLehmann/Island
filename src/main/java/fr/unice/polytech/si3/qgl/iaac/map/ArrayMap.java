@@ -1,9 +1,7 @@
-package fr.unice.polytech.si3.qgl.iaac.carte;
+package fr.unice.polytech.si3.qgl.iaac.map;
 
 
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,7 +51,7 @@ public class ArrayMap {
         return map.get(point);
     }
 
-    //todo crash si carte au bord de la carte
+    //todo crash si map au bord de la map
     public boolean isAnEdge(Point point) {
 
 

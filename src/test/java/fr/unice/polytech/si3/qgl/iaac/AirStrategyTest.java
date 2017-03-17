@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import org.junit.Before;

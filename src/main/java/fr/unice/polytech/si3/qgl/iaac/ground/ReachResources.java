@@ -2,8 +2,8 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ground.tools.AStar;
@@ -40,9 +40,9 @@ public class ReachResources implements State {
         way = new ArrayDeque<>();
         resourcesToCollect = new ArrayDeque<>();
         //TODO A SUPPR
-        /*way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));
-        way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));
-        way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));*/
+        /*way.add(new Point(map.getACreek().x , map.getACreek().y +1));
+        way.add(new Point(map.getACreek().x , map.getACreek().y +1));
+        way.add(new Point(map.getACreek().x , map.getACreek().y +1));*/
         //TODO incapable d'aller chercher des poissons
     }
 
@@ -77,7 +77,7 @@ public class ReachResources implements State {
         Point target = new Point(0,0);
         //TODO TANT QUE LA RESSOURCES N'EST PAS PRÉSENTE SUR LA CARTE
         //TODO ON SUPPRIME LA RESSOURCE
-        /*while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getPrimaryContract().getName()))) {
+        /*while(!contracts.isPrimaryCompleted() && !(map.hasResource(contracts.getPrimaryContract().getName()))) {
             contracts.remove(contracts.getPrimaryContract().getName());
         }*/
         if (carte.hasResource(resource)) {
