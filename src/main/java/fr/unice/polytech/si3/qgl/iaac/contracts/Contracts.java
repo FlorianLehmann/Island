@@ -16,6 +16,8 @@ public class Contracts {
 
     private List<Contract> primaryContracts;
     private List<Contract> secondaryContracts;
+    private List<Contract> temporaryPrimaryContracts;
+    private List<Contract> temporarySecondaryContracts;
 
     /**
      * default constructor
@@ -81,6 +83,7 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
+            else notAPriorityPrimaryContract(i);
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
@@ -88,6 +91,7 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
+            else notAPriorityPrimaryContract(i);
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
@@ -95,12 +99,15 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
+            else notAPriorityPrimaryContract(i);
         }
 
-        for (int i = 0; i < primaryContracts.size() ; i++)
-            if(primaryContracts.get(i).getAmount() <= amountMax) {
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (primaryContracts.get(i).getAmount() <= amountMax) {
                 primaryContractsSorted.add(primaryContracts.get(i));
             }
+            else notAPriorityPrimaryContract(i);
+        }
 
         primaryContracts = primaryContractsSorted;
 
@@ -114,30 +121,35 @@ public class Contracts {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
+            else notAPrioritySecondaryContract(i);
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
             if (LEATHER == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
+            else notAPrioritySecondaryContract(i);
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
             if (GLASS == secondaryContracts.get(i).getName()) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
+            else notAPrioritySecondaryContract(i);
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
             if (RUM == secondaryContracts.get(i).getName()) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
+            else notAPrioritySecondaryContract(i);
         }
         for (int i = 0; i < secondaryContracts.size() ; i++) {
             if (ORE == secondaryContracts.get(i).getName()) {
                 secondaryContractsSorted.add(secondaryContracts.get(i));
                 secondaryContracts.remove(i);
             }
+            else notAPrioritySecondaryContract(i);
         }
         secondaryContracts=secondaryContractsSorted;
     }
@@ -172,5 +184,12 @@ public class Contracts {
             if(contract.getName().equals(ressource))return contract;
         }
         return null;
+    }
+
+    private void notAPriorityPrimaryContract(int ressource){
+        temporaryPrimaryContracts.add(primaryContracts.get(ressource));
+    }
+    private void notAPrioritySecondaryContract(int ressource){
+        temporarySecondaryContracts.add(secondaryContracts.get(ressource));
     }
 }
