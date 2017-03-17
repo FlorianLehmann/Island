@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import java.awt.*;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.*;
+import java.awt.*;
 
 /**
  * Created by florian on 24/02/2017.

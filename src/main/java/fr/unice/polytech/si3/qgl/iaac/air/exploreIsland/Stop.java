@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.*;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 

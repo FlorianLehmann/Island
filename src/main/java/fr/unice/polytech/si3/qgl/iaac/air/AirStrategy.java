@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
-import fr.unice.polytech.si3.qgl.iaac.Budget;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
 

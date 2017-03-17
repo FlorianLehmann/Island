@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
 /**
  * Created by sebde on 04/02/2017.

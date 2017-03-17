@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.json;
 
 /**
  * Created by Quentin on 03/02/2017.

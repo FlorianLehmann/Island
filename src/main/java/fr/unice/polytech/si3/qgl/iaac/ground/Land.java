@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 
 /**

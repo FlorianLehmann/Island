@@ -1,7 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.json;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.SecondaryContract;
@@ -16,7 +17,6 @@ import org.json.JSONObject;
 
 import java.util.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumReadJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
 
 /**
@@ -42,23 +42,23 @@ public class ReadJSON {
     }
 
     public Budget initBudget() {
-        if (jsonObject.has(BUDGET.toString()))
-            return new Budget(jsonObject.getInt(BUDGET.toString()));
+        if (jsonObject.has(EnumReadJSON.BUDGET.toString()))
+            return new Budget(jsonObject.getInt(EnumReadJSON.BUDGET.toString()));
         throw new NoBudgetfield();
     }
 
     public Drone initDrone() {
-        if (jsonObject.has(HEADING.toString()))
-            return new Drone(EnumOrientation.getEnumDirection(jsonObject.getString(HEADING.toString())));
+        if (jsonObject.has(EnumReadJSON.HEADING.toString()))
+            return new Drone(EnumOrientation.getEnumDirection(jsonObject.getString(EnumReadJSON.HEADING.toString())));
         throw new NoHeadingField();
     }
 
     public Contracts initContracts() {
         Contracts contracts = new Contracts();
-        if (jsonObject.has(CONTRACTS.toString())) {
+        if (jsonObject.has(EnumReadJSON.CONTRACTS.toString())) {
 
             JSONObject jsonobject2;
-            JSONArray array = jsonObject.getJSONArray(CONTRACTS.toString());
+            JSONArray array = jsonObject.getJSONArray(EnumReadJSON.CONTRACTS.toString());
             Iterator iterator = array.iterator();
             Iterator<String> iterator_ressource;
 
@@ -85,20 +85,20 @@ public class ReadJSON {
     }
 
     public int initNbMen() {
-        if (jsonObject.has(MEN.toString()))
-            return jsonObject.getInt(MEN.toString());
+        if (jsonObject.has(EnumReadJSON.MEN.toString()))
+            return jsonObject.getInt(EnumReadJSON.MEN.toString());
         throw new RuntimeException("No field for nbMen");
     }
 
 
     public void read(String json) {
         jsonObject = new JSONObject(json);
-        if (jsonObject.has(EXTRAS.toString())) {
-            JSONObject extras = jsonObject.getJSONObject(EXTRAS.toString());
-            if (extras.has(RANGE.toString()))
-                range = extras.getInt(RANGE.toString());
-            if (extras.has(FOUND.toString()))
-                found = GROUND.toString().equals(extras.getString(FOUND.toString()));
+        if (jsonObject.has(EnumReadJSON.EXTRAS.toString())) {
+            JSONObject extras = jsonObject.getJSONObject(EnumReadJSON.EXTRAS.toString());
+            if (extras.has(EnumReadJSON.RANGE.toString()))
+                range = extras.getInt(EnumReadJSON.RANGE.toString());
+            if (extras.has(EnumReadJSON.FOUND.toString()))
+                found = EnumReadJSON.GROUND.toString().equals(extras.getString(EnumReadJSON.FOUND.toString()));
             else
                 found = false;
 
@@ -106,8 +106,8 @@ public class ReadJSON {
 
             Iterator iterator;
 
-            if (extras.has(CREEKS.toString())) {
-                tab = extras.getJSONArray(CREEKS.toString());
+            if (extras.has(EnumReadJSON.CREEKS.toString())) {
+                tab = extras.getJSONArray(EnumReadJSON.CREEKS.toString());
 
                 iterator = tab.iterator();
 
@@ -117,9 +117,9 @@ public class ReadJSON {
             }
             else
                 creekID = null;
-            if (extras.has(SITES.toString())) {
+            if (extras.has(EnumReadJSON.SITES.toString())) {
 
-                tab = extras.getJSONArray(SITES.toString());
+                tab = extras.getJSONArray(EnumReadJSON.SITES.toString());
 
                 iterator = tab.iterator();
 
@@ -132,11 +132,11 @@ public class ReadJSON {
             // on ne gère pas le cas ou il y a plusierus crique au même endroit car 3*3 cases
             //todo
 
-            if (extras.has(BIOMES.toString())) {
+            if (extras.has(EnumReadJSON.BIOMES.toString())) {
 
                 biomes.clear();
 
-                tab = extras.getJSONArray(BIOMES.toString());
+                tab = extras.getJSONArray(EnumReadJSON.BIOMES.toString());
 
                 iterator = tab.iterator();
 
@@ -148,13 +148,13 @@ public class ReadJSON {
                     }
                 }
             }
-            if (extras.has(AMOUNT.toString())) {
-                collect = extras.getInt(AMOUNT.toString());
+            if (extras.has(EnumReadJSON.AMOUNT.toString())) {
+                collect = extras.getInt(EnumReadJSON.AMOUNT.toString());
             }
-            if (extras.has(RESOURCES.toString())) {
+            if (extras.has(EnumReadJSON.RESOURCES.toString())) {
 
                 resources.clear();
-                tab = extras.getJSONArray(RESOURCES.toString());
+                tab = extras.getJSONArray(EnumReadJSON.RESOURCES.toString());
 
                 iterator = tab.iterator();
 
@@ -164,8 +164,8 @@ public class ReadJSON {
             }
         }
 
-        if (jsonObject.has(COST.toString()))
-            cost = jsonObject.getInt(COST.toString());
+        if (jsonObject.has(EnumReadJSON.COST.toString()))
+            cost = jsonObject.getInt(EnumReadJSON.COST.toString());
 
     }
 
