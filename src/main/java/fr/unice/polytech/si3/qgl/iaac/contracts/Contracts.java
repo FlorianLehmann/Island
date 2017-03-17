@@ -186,6 +186,11 @@ public class Contracts {
         return null;
     }
 
+    public void switchToRestOfContratc(){
+        primaryContracts=temporaryPrimaryContracts;
+        secondaryContracts=temporarySecondaryContracts;
+    }
+
     private void notAPriorityPrimaryContract(int ressource){
         temporaryPrimaryContracts.add(primaryContracts.get(ressource));
     }
