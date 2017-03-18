@@ -108,13 +108,14 @@ public class Contracts {
                 contract.sub(collect);
         }
     }
-//
+
     public void allocateContracts() {
-        for (Contract secondaryContract: secondaryContracts)
+        throw new UnsupportedOperationException();
+        /*for (Contract secondaryContract: secondaryContracts)
             for (EnumPrimaryResources primaryResource: ((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
                 for (Contract primaryContract: primaryContracts)
                     if (primaryContract.getName() == primaryResource)
-                        primaryContract.add(//TODO);
+                        primaryContract.add(//TODO);*/
     }
 
     public boolean couldCompleteAnotherContract() {
