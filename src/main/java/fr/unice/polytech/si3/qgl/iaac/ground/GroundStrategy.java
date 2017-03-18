@@ -4,6 +4,8 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
 
@@ -19,6 +21,8 @@ public class GroundStrategy {
     private Carte carte;
     private Budget budget;
     private Contracts contracts;
+
+    private static final Logger logger = LogManager.getLogger(GroundStrategy.class);
 
 
     /**
@@ -44,10 +48,12 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
+        logger.info("contracts.couldCompleteAnotherContract()" + contracts.couldCompleteAnotherContract());
         if (budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract() ) {
-            return new Factory().execute(men, contracts, carte);
+            state =  new Factory();
+            return state.execute(men, contracts, carte);
         }
-        if (budget.hasBudget()) {
+        if (budget.hasBudget() && budget.getBudget() >= 1700) {
             return state.execute(men, contracts, carte);
         }
         return STOP.toString("");

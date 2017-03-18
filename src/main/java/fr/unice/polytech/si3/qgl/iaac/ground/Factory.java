@@ -7,6 +7,8 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
  * Created by florian on 18/03/2017.
  */
 public class Factory implements State {
+
+    private static final Logger logger = LogManager.getLogger(Factory.class);
 
 
     private Contract contract;
@@ -36,6 +40,7 @@ public class Factory implements State {
     @Override
     public State wait(ReadJSON json) {
         contract.sub(json.getProduction());
+        logger.info("TEST " + contract.isCompleted() + " amount" + contract.getAmount());
         return this;
     }
 }
