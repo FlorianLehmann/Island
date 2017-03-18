@@ -44,9 +44,8 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        if (budget.getBudget() > 700 && budget.getBudget() < 1700 ) {
-            //todo manufactured ressource
-            return state.execute(men, contracts, carte);
+        if (budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract() ) {
+            return new Factory().execute(men, contracts, carte);
         }
         if (budget.hasBudget()) {
             return state.execute(men, contracts, carte);

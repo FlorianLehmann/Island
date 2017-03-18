@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.contracts;
+/*package fr.unice.polytech.si3.qgl.iaac.contracts;
 
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
@@ -7,6 +7,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 /**
  * Created by sebde on 27/02/2017.
  */
+/*
 public class SecondaryContract extends Contract{
     private boolean isFirstPrimaryCompleted=false;
     private boolean isSecondaryPrimaryCompleted=false;
@@ -57,4 +58,4 @@ public class SecondaryContract extends Contract{
         }
     }
 
-}
+}*/

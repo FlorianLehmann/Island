@@ -3,6 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.contracts;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,16 +111,28 @@ public class Contracts {
     }
 
     public void allocateContracts() {
-        throw new UnsupportedOperationException();
-        /*for (Contract secondaryContract: secondaryContracts)
-            for (EnumPrimaryResources primaryResource: ((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
-                for (Contract primaryContract: primaryContracts)
-                    if (primaryContract.getName() == primaryResource)
-                        primaryContract.add(//TODO);*/
+        for (Contract secondaryContract: secondaryContracts) {
+            EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getName();
+            for (Ingredient ingredient : manufacturedResource.getIngredients()) {
+                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount());
+            }
+        }
+    }
+
+    private void primaryContractsAdd(EnumPrimaryResources ingredient, int amount) {
+        for (Contract contract : primaryContracts) {
+            if (contract.getName() == ingredient) {
+                contract.add(amount);
+                return;
+            }
+        }
+
+        add(new Contract(ingredient, amount));
+
     }
 
     public boolean couldCompleteAnotherContract() {
-        throw new UnsupportedOperationException();
+
     }
 }
 

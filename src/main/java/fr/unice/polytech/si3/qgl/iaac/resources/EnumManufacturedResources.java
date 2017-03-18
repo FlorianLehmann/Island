@@ -12,22 +12,33 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
  */
 public enum EnumManufacturedResources implements EnumResources {
 
-    GLASS(new ArrayList<EnumPrimaryResources>(Arrays.asList(EnumPrimaryResources.QUARTZ,EnumPrimaryResources.WOOD)),new ArrayList<Integer>(Arrays.asList(10,5)),1),
-    INGOT(new ArrayList<EnumPrimaryResources>(Arrays.asList(EnumPrimaryResources.ORE,EnumPrimaryResources.WOOD)),new ArrayList<Integer>(Arrays.asList(5,5)),1),
-    LEATHER(new ArrayList<EnumPrimaryResources>(Arrays.asList(EnumPrimaryResources.FUR)),new ArrayList<Integer>(Arrays.asList(3)),1),
-    PLANK(new ArrayList<EnumPrimaryResources>(Arrays.asList(EnumPrimaryResources.WOOD)),new ArrayList<Integer>(Arrays.asList(1)),4),
-    RUM(new ArrayList<EnumPrimaryResources>(Arrays.asList(EnumPrimaryResources.SUGAR_CANE,EnumPrimaryResources.FRUITS)),new ArrayList<Integer>(Arrays.asList(10,1)),1);
+    GLASS(1, new Ingredient(QUARTZ, 10), new Ingredient(WOOD, 5)),
+    INGOT(1, new Ingredient(ORE, 5), new Ingredient(WOOD, 5)),
+    LEATHER(1, new Ingredient(FUR, 3)),
+    PLANK(4, new Ingredient(WOOD, 1)),
+    RUM(1, new Ingredient(SUGAR_CANE, 10), new Ingredient(FRUITS, 1));
 
-    List<EnumPrimaryResources> needed;
-    List<Integer> nbNeeded;
-    int nbCreated;
+    /**
+     * attributes
+     */
+    private List<Ingredient> ingredients;
+    private int amountManufactured;
 
-    EnumManufacturedResources(List<EnumPrimaryResources> needed,List<Integer> nbNeeded,int nbCreated) {
-        this.needed=needed;
-        this.nbNeeded=nbNeeded;
-        this.nbCreated=nbCreated;
+    /**
+     * default constructor
+     * @param amountManufactured
+     * @param ingredients
+     */
+    EnumManufacturedResources(int amountManufactured, Ingredient ... ingredients) {
+        for (Ingredient ingredient : ingredients)
+            this.ingredients.add(ingredient);
+        this.amountManufactured = amountManufactured;
     }
 
+    /**
+     *
+     * @return false
+     */
     public boolean isPrimary() {
         return false;
     }
@@ -37,10 +48,20 @@ public enum EnumManufacturedResources implements EnumResources {
         return name();
     }
 
+    /**
+     *
+     * @param resource
+     * @return the enum name's associated
+     */
     public static EnumResources getEnumManufacturedResources(String resource) {
         return EnumManufacturedResources.valueOf(resource);
     }
 
+    /**
+     *
+     * @param resource
+     * @return true if the resource is a manufactured resource
+     */
     public boolean isManufactured(String resource) {
         List<EnumManufacturedResources> resources = Arrays.asList(EnumManufacturedResources.values());
         for (int i = 0; i < resources.size(); i++)
@@ -49,13 +70,20 @@ public enum EnumManufacturedResources implements EnumResources {
         return false;
     }
 
-    public List<EnumPrimaryResources> getNeeded(){
-        return needed;
+    /**
+     *
+     * @return the list of ingredients
+     */
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
-    public List<Integer> getNbNeeded(){
-        return nbNeeded;
+
+    /**
+     *
+     * @return the amount which can be manufactured with these ingredients
+     */
+    public int getAmountManufactured() {
+        return amountManufactured;
     }
-    public int getNbCreated(){
-        return nbCreated;
-    }
+
 }
