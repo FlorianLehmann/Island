@@ -102,6 +102,8 @@ public class Contracts {
         throw new RuntimeException("There are not primary contracts");
     }
 
+    //
+
     public void addColectedContract(int collect, EnumPrimaryResources resource) {
         for(Contract contract:primaryContracts){
             if(contract.getName() == resource)
