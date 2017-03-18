@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
@@ -17,6 +16,8 @@ public class Contracts {
 
     private List<Contract> primaryContracts;
     private List<Contract> secondaryContracts;
+    private List<Contract> temporaryPrimaryContracts;
+    private List<Contract> temporarySecondaryContracts;
 
     /**
      * default constructor
@@ -24,6 +25,8 @@ public class Contracts {
     public Contracts() {
         primaryContracts = new ArrayList<>();
         secondaryContracts = new ArrayList<>();
+        temporaryPrimaryContracts = new ArrayList<>();
+        temporarySecondaryContracts = new ArrayList<>();
     }
 
     /**
@@ -31,12 +34,10 @@ public class Contracts {
      * @param contract
      */
     public void add(Contract contract)  {
-        if (contract.getName().isPrimary()) {
+        if (contract.getName().isPrimary())
             primaryContracts.add(contract);
-        }
-        else {
+        else
             secondaryContracts.add(contract);
-        }
     }
 
     /**
@@ -73,6 +74,121 @@ public class Contracts {
         return secondaryContracts.isEmpty();
     }
 
+    /**
+     * Primary contracts are sorted
+     */
+    public void sortPrimaryContracts(int budget) {
+        List<Contract> primaryContractsSorted = new ArrayList();
+        int amountMax = budget / 2;
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax ) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
+            }
+            else if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() >= amountMax ){
+                notAPriorityPrimaryContract(i);
+                primaryContracts.remove(i);
+            }
+        }
+
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
+            }
+            else if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() >= amountMax ){
+                notAPriorityPrimaryContract(i);
+                primaryContracts.remove(i);
+            }
+
+        }
+
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() <= amountMax) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
+            }
+            else if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getAmount() >= amountMax ){
+                notAPriorityPrimaryContract(i);
+                primaryContracts.remove(i);
+            }
+
+
+        }
+
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (primaryContracts.get(i).getAmount() <= amountMax) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
+            }
+            else {
+                notAPriorityPrimaryContract(i);
+                primaryContracts.remove(i);
+            }
+
+        }
+
+        primaryContracts = primaryContractsSorted;
+
+    }
+
+    public void sortSecondaryContracts(int budget){
+        List<Contract> secondaryContractsSorted = new ArrayList();
+        int amountMax = budget / 2;
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (PLANK == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+            else if(PLANK == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() >= amountMax){
+                notAPrioritySecondaryContract(i);
+                secondaryContracts.remove(i);
+            }
+
+
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (LEATHER == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+            else if(LEATHER == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() >= amountMax){
+                notAPrioritySecondaryContract(i);
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (GLASS == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+            else if(GLASS == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() >= amountMax) {
+                notAPrioritySecondaryContract(i);
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (RUM == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+            else if(RUM == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() >= amountMax) {
+                notAPrioritySecondaryContract(i);
+                secondaryContracts.remove(i);
+            }
+        }
+        for (int i = 0; i < secondaryContracts.size() ; i++) {
+            if (ORE == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() <= amountMax) {
+                secondaryContractsSorted.add(secondaryContracts.get(i));
+                secondaryContracts.remove(i);
+            }
+            else if(ORE == secondaryContracts.get(i).getName() && secondaryContracts.get(i).getAmount() >= amountMax){
+                notAPrioritySecondaryContract(i);
+                secondaryContracts.remove(i);
+            }
+        }
+        secondaryContracts=secondaryContractsSorted;
+    }
 
     public boolean containRessource(EnumPrimaryResources ressource){
         for(Contract contract:primaryContracts){
@@ -87,6 +203,10 @@ public class Contracts {
         }
     }
 
+
+
+
+    //todo si il n'y a rien nullpointer
     public Contract getPrimaryContract() {
         return primaryContracts.get(0);
     }
@@ -99,30 +219,18 @@ public class Contracts {
         for(Contract contract:primaryContracts){
             if(contract.getName().equals(ressource))return contract;
         }
-        throw new RuntimeException("There are not primary contracts");
+        return null;
     }
 
-    public void addColectedContract(int collect, EnumPrimaryResources resource) {
-        for(Contract contract:primaryContracts){
-            if(contract.getName() == resource)
-                contract.sub(collect);
-        }
+    public void switchToRestOfContratc(){
+        primaryContracts=temporaryPrimaryContracts;
+        secondaryContracts=temporarySecondaryContracts;
     }
 
-    public void allocateContracts() {
-        throw new UnsupportedOperationException();
-        /*for (Contract secondaryContract: secondaryContracts)
-            for (EnumPrimaryResources primaryResource: ((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
-                for (Contract primaryContract: primaryContracts)
-                    if (primaryContract.getName() == primaryResource)
-                        primaryContract.add(//TODO);*/
+    private void notAPriorityPrimaryContract(int ressource){
+        temporaryPrimaryContracts.add(primaryContracts.get(ressource));
     }
-
-    public boolean couldCompleteAnotherContract() {
-        throw new UnsupportedOperationException();
+    private void notAPrioritySecondaryContract(int ressource){
+        temporarySecondaryContracts.add(secondaryContracts.get(ressource));
     }
 }
-
-//on ajoute les ressources nescessaire aux contrats secondaire dans les contrats primaires
-//regarde si on a assez de budget pour fabriquer les contrats secondaires
-//on regarde
