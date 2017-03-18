@@ -108,13 +108,13 @@ public class Contracts {
                 contract.sub(collect);
         }
     }
-
+//
     public void allocateContracts() {
         for (Contract secondaryContract: secondaryContracts)
             for (EnumPrimaryResources primaryResource: ((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
                 for (Contract primaryContract: primaryContracts)
                     if (primaryContract.getName() == primaryResource)
-                        primaryContract.add(100);
+                        primaryContract.add(//TODO);
     }
 
     public boolean couldCompleteAnotherContract() {
