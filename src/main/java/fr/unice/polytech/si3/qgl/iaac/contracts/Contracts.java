@@ -134,6 +134,10 @@ public class Contracts {
     public boolean couldCompleteAnotherContract() {
 
     }
+
+    public Contract getManufacturedContract(){
+        throw new UnsupportedOperationException();
+    }
 }
 
 //on ajoute les ressources nescessaire aux contrats secondaire dans les contrats primaires
