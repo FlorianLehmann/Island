@@ -1,18 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
-import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.json.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.Player;
 
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.awt.*;
-
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.BACK;
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.FRONT;
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.LEFT;
 
 /**
  * Created by lehmann on 11/02/17.

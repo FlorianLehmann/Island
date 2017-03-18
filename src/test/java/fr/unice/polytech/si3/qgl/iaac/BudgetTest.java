@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.DeptBudgetException;
 import org.junit.Before;
 import org.junit.Test;

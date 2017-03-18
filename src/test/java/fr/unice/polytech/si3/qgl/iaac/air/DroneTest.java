@@ -5,9 +5,9 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.*;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.*;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.*;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.*;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.*;
 import static junit.framework.TestCase.assertEquals;
 
 /**

@@ -1,14 +1,14 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 import org.junit.Before;
 import org.junit.Test;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.SOUTH;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.WEST;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.ECHO;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.SOUTH;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.WEST;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 

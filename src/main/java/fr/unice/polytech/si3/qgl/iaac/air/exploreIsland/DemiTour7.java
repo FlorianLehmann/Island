@@ -1,10 +1,9 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.*;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.*;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumDirection;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 

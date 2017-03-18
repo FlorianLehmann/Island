@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.compass;
 
 import java.util.Arrays;
 import java.util.HashMap;

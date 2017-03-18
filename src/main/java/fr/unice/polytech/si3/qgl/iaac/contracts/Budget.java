@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.contracts;
 
 import fr.unice.polytech.si3.qgl.iaac.exceptions.DeptBudgetException;
 
