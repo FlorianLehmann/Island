@@ -1,9 +1,14 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+
+import java.util.List;
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
 
@@ -13,16 +18,24 @@ import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
 public class Factory implements State {
 
 
+    private Contract contract;
+
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
-        throw new UnsupportedOperationException();
-        /*if (!contracts.couldCompleteAnotherContract())
-            return STOP.toString("");*/
-
+        contract = contracts.getManufacturedContract();
+        int amount = contract.getAmount();
+        List<Ingredient> ingredients = ((EnumManufacturedResources)contract.getName()).getIngredients();
+        int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();
+        if (ingredients.size() == 1)
+            return men.transform(ingredients.get(0).getIngredient(),
+                    (ingredients.get(0).getAmount())*(amount + ((int) amount/10)));
+        return men.transform(ingredients.get(0).getIngredient(), ingredients.get(1).getIngredient(),
+                (ingredients.get(0).getAmount())*(amount + ((int) amount/10)), (ingredients.get(1).getAmount())*(amount + ((int) amount/10)));
     }
 
     @Override
     public State wait(ReadJSON json) {
+        contract.sub(json.getProduction());
         return this;
     }
 }

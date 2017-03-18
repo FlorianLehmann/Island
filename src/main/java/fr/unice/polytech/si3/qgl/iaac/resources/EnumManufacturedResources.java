@@ -30,6 +30,7 @@ public enum EnumManufacturedResources implements EnumResources {
      * @param ingredients
      */
     EnumManufacturedResources(int amountManufactured, Ingredient ... ingredients) {
+        this.ingredients = new ArrayList<>();
         for (Ingredient ingredient : ingredients)
             this.ingredients.add(ingredient);
         this.amountManufactured = amountManufactured;
