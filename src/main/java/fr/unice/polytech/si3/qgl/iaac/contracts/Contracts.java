@@ -102,8 +102,6 @@ public class Contracts {
         throw new RuntimeException("There are not primary contracts");
     }
 
-    //
-
     public void addColectedContract(int collect, EnumPrimaryResources resource) {
         for(Contract contract:primaryContracts){
             if(contract.getName() == resource)
@@ -113,8 +111,10 @@ public class Contracts {
 
     public void allocateContracts() {
         for (Contract secondaryContract: secondaryContracts)
-            for (Contract primaryContract: primaryContracts)
-                if (((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
+            for (EnumPrimaryResources primaryResource: ((EnumManufacturedResources)secondaryContract.getName()).getNeeded())
+                for (Contract primaryContract: primaryContracts)
+                    if (primaryContract.getName() == primaryResource)
+                        primaryContract.add(100);
     }
 
     public boolean couldCompleteAnotherContract() {
