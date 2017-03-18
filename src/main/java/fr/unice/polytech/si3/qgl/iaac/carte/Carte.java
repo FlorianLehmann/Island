@@ -85,8 +85,9 @@ public class Carte {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
             if (tile.getValue().containsResource(name)) {
+                Point point = new Point(tile.getValue().getCoords());
                 carte.remove(tile.getKey());
-                return tile.getValue().getCoords();
+                return point;
             }
 
         throw new RuntimeException("No resources");

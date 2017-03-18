@@ -47,12 +47,12 @@ public class AStar {
 
     public AStar(Point location, Point target, ArrayMap edge){
         this.location = location;
-        this.target = target;
         open = new ArrayList<>();
         close = new ArrayList<>();
         neighbours = new ArrayList<>();
         this.edge = edge;
         way = new ArrayDeque<>();
+        this.target = target;
         open.add(new Node(new Point(location)));
     }
 
@@ -61,7 +61,6 @@ public class AStar {
     }
 
     public void compute() {
-        //First node
         int indexOpen = 0;
         Node parent = open.get(indexOpen);
         parent.currentToTarget = distanceManathan(parent.location, target);
@@ -115,11 +114,6 @@ public class AStar {
             parent = parent.parent;
         }
         //On ne tient pas compte de la case initiale
-        /*for (int i = close.size()-1; i > 0; i--) {
-            way.push(close.get(i).location);
-            //close.remove(i);
-        }*/
-
     }
 
     private boolean isInList(List<Node> list, Point point) {

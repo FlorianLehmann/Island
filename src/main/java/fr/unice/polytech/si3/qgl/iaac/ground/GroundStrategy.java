@@ -43,7 +43,7 @@ public class GroundStrategy {
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
-
+        contracts.allocateContracts();
     }
 
     /**
@@ -51,10 +51,11 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        contracts.sortPrimaryContracts(budget.getBudget());
+        if (budget.getBudget() > 700 && budget.getBudget() < 1700 ) {
+            //todo manufactured ressource
+            return state.execute(men, contracts, carte);
+        }
         if (budget.hasBudget()) {
-            contracts.sortPrimaryContracts(budget.getBudget());
-            contracts.sortSecondaryContracts(budget.getBudget());
             return state.execute(men, contracts, carte);
         }
         return STOP.toString("");
@@ -68,8 +69,6 @@ public class GroundStrategy {
             budget.subBudget(json.getCost());
             state = state.wait(json);
         }
-        //todo
-        //carte.addGroundCase(men.getCoord());
     }
 
 }

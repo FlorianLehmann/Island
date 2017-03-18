@@ -90,6 +90,7 @@ public class AStarTest {
 
     }
 
+    @Ignore
     @Test
     public void ShouldReachTile(){
         aStar.compute();
@@ -99,7 +100,7 @@ public class AStarTest {
             assertEquals(new Point(i,3),way.pop());
         }
     }
-    @Ignore
+
     @Test
     public void ShouldReachTile2(){
         location = new Point(2,4);

@@ -35,12 +35,11 @@ public class LandTest {
         assertEquals(LAND.toString("ID", 7), land.execute(new Men(new Point(0,0)), new Contracts(), carte ));
     }
 
-    @Ignore
-    @Test
-    public void shouldReturnDefineWayState() {
+    /*@Test
+    public void shouldReturnReachResourcesState() {
         ReadJSON json = mock(ReadJSON.class);
-        assertTrue(land.wait(json) instanceof DefineWay);
-    }
+        assertTrue(land.wait(json) instanceof ReachResources);
+    }*/
 
 
 }

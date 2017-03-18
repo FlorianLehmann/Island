@@ -24,6 +24,7 @@ public class ReachResources implements State {
     private int state;
     private ArrayMap map;
     private AStar aStar;
+    private Contracts contracts;
     private Deque<Point> way;
     private Deque<EnumPrimaryResources> resourcesToCollect;
 
@@ -39,15 +40,12 @@ public class ReachResources implements State {
         map = new ArrayMap(carte.getCases());
         way = new ArrayDeque<>();
         resourcesToCollect = new ArrayDeque<>();
-        //TODO A SUPPR
-        /*way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));
-        way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));
-        way.add(new Point(carte.getACreek().x , carte.getACreek().y +1));*/
         //TODO incapable d'aller chercher des poissons
     }
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
+        this.contracts = contracts;
         switch (state) {
             case MOVE:
                 if (way.isEmpty()) {
@@ -57,7 +55,7 @@ public class ReachResources implements State {
             case EXPLORE:
                 return men.explore();
             case EXPLOIT:
-                return men.exploit(resourcesToCollect.pop());
+                return men.exploit(resourcesToCollect.peek());
         }
         throw new UnsupportedOperationException("execute");
     }
@@ -68,24 +66,8 @@ public class ReachResources implements State {
         way = aStar.getWay();
     }
 
-    private Point chooseTarget(Men men, Contracts contracts, Carte carte) {//TODO
-        //TODO faux
-        //si il n'y a plus de contrat choisir un contrat aléatoire
-        Contract contract  = contracts.getPrimaryContract();
-        EnumResources resource = contract.getName();
-
-        Point target = new Point(0,0);
-        //TODO TANT QUE LA RESSOURCES N'EST PAS PRÉSENTE SUR LA CARTE
-        //TODO ON SUPPRIME LA RESSOURCE
-        /*while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getPrimaryContract().getName()))) {
-            contracts.remove(contracts.getPrimaryContract().getName());
-        }*/
-        if (carte.hasResource(resource)) {
-            target = carte.getResource(resource);
-        }
-        logger.info("MEN" + men.getCoord());
-        logger.info("TARGET" + target);
-        return target;
+    private Point chooseTarget(Men men, Contracts contracts, Carte carte) {
+        return map.getRandomTarget();
     }
 
     private EnumOrientation findOrientation(Men men) {
@@ -114,15 +96,20 @@ public class ReachResources implements State {
                 state = EXPLORE;
                 break;
             case EXPLORE: //TODO
-                if (json.getResources()) {
+                for (String resource: json.getResources())
+                    if (contracts.containRessource(((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource))))
+                        resourcesToCollect.add((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource));
 
+                if (!resourcesToCollect.isEmpty()) {
                     state = EXPLOIT;
                 }
-                else {//si il y a un contrat qui nous intéresse, on passe à exploit
+                else {
                     state = MOVE;
                 }
                 break;
             case EXPLOIT:
+                contracts.addColectedContract(json.getCollect(), resourcesToCollect.pop());
+
                 if (resourcesToCollect.isEmpty()) {
                     state = MOVE;
                 }

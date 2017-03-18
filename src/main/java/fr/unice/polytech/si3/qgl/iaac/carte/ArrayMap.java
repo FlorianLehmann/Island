@@ -175,4 +175,18 @@ public class ArrayMap {
     public boolean isEdgeG(Point point) {
         return !(edge.getOrDefault(point, false) || edge_tmp.getOrDefault(point, false));
     }
+
+    public Point getRandomTarget() {
+        Random random = new Random();
+        Point point;
+        do {
+            random = new Random();
+            int xRandom = xMin + random.nextInt(xMax - xMin);
+            random = new Random();
+            int yRandom = yMin + random.nextInt(yMax - yMin);
+            point = new Point(xRandom, yRandom);
+        } while (isEdgeG(point));
+
+        return point;
+    }
 }
