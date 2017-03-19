@@ -60,8 +60,7 @@ public class Contracts {
      * @return true if all contracts are completed
      */
     public boolean isCompleted() {
-        return primaryContracts.isEmpty();/* && secondaryContracts.isEmpty(); //todo /*&& secondaryContracts.isEmpty()*/
-        // ;
+        return isPrimaryCompleted() && isSecondaryCompleted();
     }
 
     public boolean isPrimaryCompleted() {

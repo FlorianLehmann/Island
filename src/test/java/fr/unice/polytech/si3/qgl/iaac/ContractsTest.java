@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.LEATHER;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.PLANK;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.RUM;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -59,6 +60,9 @@ public class ContractsTest {
         contracts.add(new Contract(WOOD,50));
         contracts.getPrimaryContract().sub(100);
         assertFalse(contracts.containRessource(WOOD));
+        contracts.verifyContractCompleted(contracts.getPrimaryContract());
+        assertTrue(contracts.isPrimaryCompleted());
+        assertTrue(contracts.isCompleted());
     }
 
     @Test
@@ -66,6 +70,34 @@ public class ContractsTest {
         contracts.add(new Contract(WOOD,60));
         contracts.add(new Contract(FRUITS,100));
         assertEquals(FRUITS,contracts.getPrimaryContract(FRUITS).getName());
+    }
+
+   @Test
+   public void secondaryContractCompleted(){
+       contracts.add(new Contract(PLANK,10));
+       contracts.getSecondaryContract().sub(10);
+       contracts.verifyContractCompleted(contracts.getSecondaryContract());
+       assertTrue(contracts.isSecondaryCompleted());
+       assertTrue(contracts.isCompleted());
+   }
+
+    @Test
+    public void onlyPrimaryContractCompleted(){
+        contracts.add(new Contract(WOOD,60));
+        contracts.add(new Contract(PLANK,100));
+        contracts.addColectedContract(120,WOOD);
+        contracts.verifyContractCompleted(contracts.getPrimaryContract());
+        assertFalse(contracts.isSecondaryCompleted());
+        assertTrue(contracts.isPrimaryCompleted());
+        assertFalse(contracts.isCompleted());
+    }
+
+    @Test
+    public void transformSecondaryContractToPrimaryContract(){
+        contracts.add(new Contract(RUM,20));
+        contracts.allocateContracts();
+        assertTrue(contracts.containRessource(SUGAR_CANE));
+        assertTrue(contracts.containRessource(FRUITS));
     }
 
 }
