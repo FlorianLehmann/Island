@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.LEATHER;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.PLANK;
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.RUM;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -99,6 +97,35 @@ public class ContractsTest {
         contracts.allocateContracts();
         assertTrue(contracts.containRessource(SUGAR_CANE));
         assertTrue(contracts.containRessource(FRUITS));
+    }
+
+    @Test
+    public void couldCompleteAnotherContratsWithOneSecondary(){
+        contracts.add(new Contract(PLANK,10));
+        contracts.add(new Contract(WOOD,20));
+        contracts.getPrimaryContract().sub(50);
+        assertTrue(contracts.couldCompleteAnotherContract());
+    }
+
+    @Test
+    public void couldCompleteAnotherContratsWithoutPrimaryRessource(){
+        contracts.add(new Contract(GLASS,10));
+        assertFalse(contracts.couldCompleteAnotherContract());
+    }
+
+    @Test
+    public void couldCompleteAnotherContratsWithoutSecondary(){
+        contracts.add(new Contract(FRUITS,100));
+        assertFalse(contracts.couldCompleteAnotherContract());
+    }
+
+    @Test
+    public void getManufacturedContractWichIsPossible(){
+        Contract contract=new Contract(PLANK,10);
+        contracts.add(new Contract(WOOD,10));
+        contracts.getPrimaryContract().sub(20);
+        contracts.add(contract);
+        assertEquals(contracts.getManufacturedContract(),contract);
     }
 
 }
