@@ -53,20 +53,21 @@ public class ContractTest {
     @Test
     public void addAmountTest() {
         contract.add(15);
-        assertEquals(1515, contract.getAmount());
+        assertEquals(15, contract.getAmount());
     }
 
     @Test
     public void subAmountTest() {
+        contract.add(150);
         contract.sub(15);
-        assertEquals(1485, contract.getAmount());
+        assertEquals(135, contract.getAmount());
         contract.sub(1500);
         assertEquals(0, contract.getAmount());
     }
 
     @Test
     public void isCompletedTest(){
-        contract.sub(1500);
+        contract.add(1500);
         assertTrue(contract.isCompleted());
     }
 

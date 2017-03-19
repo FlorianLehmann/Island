@@ -49,6 +49,7 @@ public class ContractsTest {
         contracts.add(new Contract(FRUITS,50));
         assertTrue(contracts.containRessource(FRUITS));
     }
+
     @Test
     public void notContainRessource(){
         contracts.add(new Contract(WOOD,50));
@@ -58,7 +59,7 @@ public class ContractsTest {
     @Test
     public void containRessourceWichIsCompleted(){
         contracts.add(new Contract(WOOD,50));
-        contracts.getPrimaryContract().sub(100);
+        contracts.getPrimaryContract().add(100);
         assertFalse(contracts.containRessource(WOOD));
         contracts.verifyContractCompleted(contracts.getPrimaryContract());
         assertTrue(contracts.isPrimaryCompleted());
@@ -75,7 +76,7 @@ public class ContractsTest {
    @Test
    public void secondaryContractCompleted(){
        contracts.add(new Contract(PLANK,10));
-       contracts.getSecondaryContract().sub(10);
+       contracts.getSecondaryContract().add(10);
        contracts.verifyContractCompleted(contracts.getSecondaryContract());
        assertTrue(contracts.isSecondaryCompleted());
        assertTrue(contracts.isCompleted());

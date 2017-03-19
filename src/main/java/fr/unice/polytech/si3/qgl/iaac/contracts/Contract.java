@@ -22,7 +22,7 @@ public class Contract {
             this.name =  name;
             if (amount <= 0)
                 throw new NoAmountContractException();
-            this.amount = amount;
+            this.amount = 0;
             need = amount;
     }
 
@@ -65,7 +65,7 @@ public class Contract {
      * @return true if the contract is completed
      */
     public boolean isCompleted() {
-        return amount >= ;
+        return amount >= need;
     }
 
 }

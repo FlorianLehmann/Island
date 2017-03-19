@@ -39,7 +39,7 @@ public class Factory implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        contract.sub(json.getProduction());
+        contract.add(json.getProduction());
         logger.info("TEST " + contract.isCompleted() + " amount" + contract.getAmount());
         return this;
     }

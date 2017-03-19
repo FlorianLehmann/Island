@@ -103,7 +103,7 @@ public class Contracts {
     public void addColectedContract(int collect, EnumPrimaryResources resource) {
         for (Contract contract : primaryContracts) {
             if (contract.getName() == resource)
-                contract.sub(collect);
+                contract.add(collect);
         }
     }
 
@@ -147,8 +147,8 @@ public class Contracts {
             int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
             //logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
             for (int i = 0; i < primaryContracts.size() ; i++) {
-                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).isCompleted() ) {
-                    primaryContracts.get(i).add(necessaryAmount);
+                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getAmount() >= necessaryAmount ) {
+                    primaryContracts.get(i).sub(necessaryAmount);
                     numberOfIngredients--;
                 }
             }
