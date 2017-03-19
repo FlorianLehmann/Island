@@ -12,7 +12,7 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
  */
 public enum EnumManufacturedResources implements EnumResources {
 
-    GLASS(1, new Ingredient(QUARTZ, 10), new Ingredient(WOOD, 5)),
+    GLASS(1, new Ingredient(QUARTZ, 10), new Ingredient(WOOD, 5)), //10 et 5
     INGOT(1, new Ingredient(ORE, 5), new Ingredient(WOOD, 5)),
     LEATHER(1, new Ingredient(FUR, 3)),
     PLANK(4, new Ingredient(WOOD, 1)),

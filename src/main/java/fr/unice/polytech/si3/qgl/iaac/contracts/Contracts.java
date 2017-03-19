@@ -1,9 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
+import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,9 @@ public class Contracts {
 
     private List<Contract> primaryContracts;
     private List<Contract> secondaryContracts;
+
+    private static final Logger logger = LogManager.getLogger(Contracts.class);
+
 
     /**
      * default constructor
@@ -140,8 +146,9 @@ public class Contracts {
         for (Ingredient ingredient :
                 ingredients) {
             int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
+            //logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
             for (int i = 0; i < primaryContracts.size() ; i++) {
-                if (primaryContracts.get(i).getName() == ingredient.getIngredient()) {
+                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).isCompleted() ) {
                     numberOfIngredients--;
                 }
             }
@@ -155,8 +162,11 @@ public class Contracts {
             if (!secondaryContract.isCompleted()) {
                 int amount = secondaryContract.getAmount();
                 List<Ingredient> ingredients = ((EnumManufacturedResources) secondaryContract.getName()).getIngredients();
-                if (hasEnoughToMakeManufacturedContract(ingredients, amount))
-                    return secondaryContract;
+                if (hasEnoughToMakeManufacturedContract(ingredients, amount)) {
+                    Contract secContract = secondaryContract;
+                    secondaryContracts.remove(secondaryContract);
+                    return secContract;
+                }
             }
         }
         throw new RuntimeException("no Manufactured contract");
