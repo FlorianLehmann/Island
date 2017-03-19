@@ -27,7 +27,7 @@ public class Factory implements State {
     @Override
     public String execute(Men men, Contracts contracts, Carte carte) {
         contract = contracts.getManufacturedContract();
-        int amount = contract.getAmount();
+        int amount = contract.getNeed();
         List<Ingredient> ingredients = ((EnumManufacturedResources)contract.getName()).getIngredients();
         int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();
         if (ingredients.size() == 1)
@@ -39,7 +39,7 @@ public class Factory implements State {
 
     @Override
     public State wait(ReadJSON json) {
-        contract.add(json.getProduction());
+        contract.sub(json.getProduction());
         logger.info("TEST " + contract.isCompleted() + " amount" + contract.getAmount());
         return this;
     }

@@ -10,7 +10,7 @@ public class Contract {
 
     private EnumResources name;
     private int amount;
-    private final int need;
+    private int need;
 
     /**
      * default constructor
@@ -68,4 +68,11 @@ public class Contract {
         return amount >= need;
     }
 
+    public int getNeed() {
+        return need;
+    }
+
+    public void addNeed(int amount) {
+        need += amount;
+    }
 }

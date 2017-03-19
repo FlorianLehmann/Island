@@ -48,12 +48,11 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        logger.info("contracts.couldCompleteAnotherContract()" + contracts.couldCompleteAnotherContract());
-        if (budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract() ) {
-            state =  new Factory();
+        if (budget.hasBudget() && budget.getBudget() >= 1700) {
             return state.execute(men, contracts, carte);
         }
-        if (budget.hasBudget() && budget.getBudget() >= 1700) {
+        if (budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract() ) {
+            state =  new Factory();
             return state.execute(men, contracts, carte);
         }
         return STOP.toString("");

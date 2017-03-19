@@ -74,7 +74,11 @@ public class Contracts {
 
     public boolean containRessource(EnumPrimaryResources ressource) {
         for (Contract contract : primaryContracts) {
-            if (!contract.isCompleted() && contract.getName().equals(ressource)) return true;
+            if (!contract.isCompleted() && contract.getName().equals(ressource)) {
+                logger.info("truenb " + contract.getName() + contract.getAmount());
+
+                return true;
+            }
         }
         return false;
     }
@@ -111,7 +115,7 @@ public class Contracts {
         for (Contract secondaryContract : secondaryContracts) {
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount());
+                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() + (secondaryContract.getNeed() + ((int) secondaryContract.getNeed()/10)));
             }
         }
     }
@@ -119,7 +123,7 @@ public class Contracts {
     private void primaryContractsAdd(EnumPrimaryResources ingredient, int amount) {
         for (Contract contract : primaryContracts) {
             if (contract.getName() == ingredient) {
-                contract.add(amount);
+                contract.addNeed(amount);
                 return;
             }
         }
@@ -131,7 +135,7 @@ public class Contracts {
     public boolean couldCompleteAnotherContract() {
         for (Contract secondaryContract : secondaryContracts) {
             if (!secondaryContract.isCompleted()) {
-                int amount = secondaryContract.getAmount();
+                int amount = secondaryContract.getNeed();
                 List<Ingredient> ingredients = ((EnumManufacturedResources) secondaryContract.getName()).getIngredients();
                 if (hasEnoughToMakeManufacturedContract(ingredients, amount))
                     return true;
@@ -145,10 +149,9 @@ public class Contracts {
         for (Ingredient ingredient :
                 ingredients) {
             int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
-            //logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
             for (int i = 0; i < primaryContracts.size() ; i++) {
                 if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getAmount() >= necessaryAmount ) {
-                    primaryContracts.get(i).sub(necessaryAmount);
+                    logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
                     numberOfIngredients--;
                 }
             }
@@ -160,9 +163,9 @@ public class Contracts {
     public Contract getManufacturedContract() {
         for (Contract secondaryContract : secondaryContracts) {
             if (!secondaryContract.isCompleted()) {
-                int amount = secondaryContract.getAmount();
+                int amount = secondaryContract.getNeed();
                 List<Ingredient> ingredients = ((EnumManufacturedResources) secondaryContract.getName()).getIngredients();
-                if (hasEnoughToMakeManufacturedContract(ingredients, amount)) {
+                if (hasEnoughToMakeManufacturedContract2(ingredients, amount)) {
                     Contract secContract = secondaryContract;
                     secondaryContracts.remove(secondaryContract);
                     return secContract;
@@ -170,5 +173,21 @@ public class Contracts {
             }
         }
         throw new RuntimeException("no Manufactured contract");
+    }
+
+    private boolean hasEnoughToMakeManufacturedContract2(List<Ingredient> ingredients, int amount) {
+        int numberOfIngredients = ingredients.size();
+        for (Ingredient ingredient :
+                ingredients) {
+            int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
+            for (int i = 0; i < primaryContracts.size() ; i++) {
+                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getAmount() >= necessaryAmount ) {
+                    logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
+                    primaryContracts.get(i).sub(necessaryAmount);
+                    numberOfIngredients--;
+                }
+            }
+        }
+        return numberOfIngredients == 0;
     }
 }
