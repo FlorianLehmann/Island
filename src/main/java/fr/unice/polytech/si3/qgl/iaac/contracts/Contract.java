@@ -8,8 +8,9 @@ import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
  */
 public class Contract {
 
-    protected EnumResources name;
-    protected int amount;
+    private EnumResources name;
+    private int amount;
+    private final int need;
 
     /**
      * default constructor
@@ -22,6 +23,7 @@ public class Contract {
             if (amount <= 0)
                 throw new NoAmountContractException();
             this.amount = amount;
+            need = amount;
     }
 
     /**
@@ -63,7 +65,7 @@ public class Contract {
      * @return true if the contract is completed
      */
     public boolean isCompleted() {
-        return amount == 0;
+        return amount >= ;
     }
 
 }

@@ -148,6 +148,7 @@ public class Contracts {
             //logger.info("ingredient : " + ingredient.getIngredient() + " nb: " + necessaryAmount + "truenb " + primaryContracts.get(i).getAmount() );
             for (int i = 0; i < primaryContracts.size() ; i++) {
                 if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).isCompleted() ) {
+                    primaryContracts.get(i).add(necessaryAmount);
                     numberOfIngredients--;
                 }
             }
