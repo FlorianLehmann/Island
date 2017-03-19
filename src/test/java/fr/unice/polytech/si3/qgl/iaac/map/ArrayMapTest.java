@@ -69,7 +69,6 @@ public class ArrayMapTest {
         }
     }
 
-    @Ignore
     @Test
     public void ShouldBeAnEdge() {
         assertTrue(map.isEdge(new Point(2,2)));
@@ -82,21 +81,11 @@ public class ArrayMapTest {
 
     @Test
     public void ShouldNotBeAnEdge() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(map.isEdge(new Point(i,j)) + " ");
-            }
-            System.out.println();
-        }
+
         assertFalse(map.isEdge(new Point(1,2)));
         //assertFalse(map.isEdge(new Point(3,3)));
         assertFalse(map.isEdge(new Point(8,9)));
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(map.isEdge(new Point(i,j)) + " ");
-            }
-            System.out.println();
-        }
+
     }
 
 
@@ -136,18 +125,9 @@ public class ArrayMapTest {
 
     }
 
-    @Ignore
     @Test
     public void ShouldBeAnEdge2() {
         createAnIsland2();
-        map = new ArrayMap(list);
-        for (int i = 0; i < size ; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(" " +map.isEdge(new Point(i,j)));
-            }
-            System.out.println(" ");
-        }
-
         assertTrue(map.isEdge(new Point(2,2)));
         assertTrue(map.isEdge(new Point(2,3)));
         assertTrue(map.isEdge(new Point(3,7)));

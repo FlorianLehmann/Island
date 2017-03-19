@@ -90,7 +90,6 @@ public class AStarTest {
 
     }
 
-    @Ignore
     @Test
     public void ShouldReachTile(){
         aStar.compute();
@@ -110,7 +109,7 @@ public class AStarTest {
         aStar = new AStar(location, target, map );
         aStar.compute();
         Deque<Point> way = aStar.getWay();
-        assertEquals(11, way.size());
+        assertEquals(9, way.size());
 
     }
 

@@ -3,9 +3,8 @@ package fr.unice.polytech.si3.qgl.iaac.json;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
-import fr.unice.polytech.si3.qgl.iaac.contracts.SecondaryContract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
@@ -34,6 +33,7 @@ public class ReadJSON {
     private List<EnumBiome> biomes;
     private List<String> resources;
     private int collect;
+    private int production;
 
     public ReadJSON(String json) {
         biomes = new LinkedList<>();
@@ -71,10 +71,10 @@ public class ReadJSON {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
                     if (EnumPrimaryResources.isPrimary(re)) {
-                        contracts.add(new PrimaryContract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
+                        contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
                     }
                     else {
-                        contracts.add(new SecondaryContract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
+                        contracts.add(new Contract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
                     }
 
                 }
@@ -151,6 +151,9 @@ public class ReadJSON {
             if (extras.has(EnumReadJSON.AMOUNT.toString())) {
                 collect = extras.getInt(EnumReadJSON.AMOUNT.toString());
             }
+            if (extras.has(EnumReadJSON.PRODUCTION.toString())) {
+                production = extras.getInt(EnumReadJSON.PRODUCTION.toString());
+            }
             if (extras.has(EnumReadJSON.RESOURCES.toString())) {
 
                 resources.clear();
@@ -211,5 +214,9 @@ public class ReadJSON {
 
     public List<String> getResources() {
         return resources;
+    }
+
+    public int getProduction() {
+        return production;
     }
 }
