@@ -69,7 +69,7 @@ public class Contracts {
 
     public boolean isPrimaryCompleted() {
         for (Contract contract: primaryContracts) {
-            if(contract.getAmount()>0){
+            if(!contract.isCompleted()){
                 return false;
             }
         }
