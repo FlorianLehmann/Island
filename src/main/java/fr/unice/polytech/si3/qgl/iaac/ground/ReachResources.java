@@ -67,7 +67,28 @@ public class ReachResources implements State {
     }
 
     private Point chooseTarget(Men men, Contracts contracts, Carte carte) {
-        return map.getRandomTarget();
+        //return map.getRandomTarget();
+        //TODO faux
+        //si il n'y a plus de contrat choisir un contrat aléatoire
+        Contract contract;
+        do {
+            contract  = contracts.getPrimaryContract();
+        } while (contract.isCompleted());
+        EnumResources resource = contract.getName();
+
+        Point target = new Point(30,-90);
+        //TODO TANT QUE LA RESSOURCES N'EST PAS PRÉSENTE SUR LA CARTE
+        //TODO ON SUPPRIME LA RESSOURCE
+        /*while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getPrimaryContract().getName()))) {
+        /*while(!contracts.isPrimaryCompleted() && !(map.hasResource(contracts.getPrimaryContract().getName()))) {
+            contracts.remove(contracts.getPrimaryContract().getName());
+        }*/
+        if (carte.hasResource(resource)) {
+            target = carte.getResource(resource);
+        }
+        logger.info("MEN" + men.getCoord());
+        logger.info("TARGET" + target);
+        return target;
     }
 
     private EnumOrientation findOrientation(Men men) {
@@ -95,7 +116,7 @@ public class ReachResources implements State {
             case MOVE:
                 state = EXPLORE;
                 break;
-            case EXPLORE: //TODO
+            case EXPLORE:
                 for (String resource: json.getResources())
                     if (contracts.containRessource(((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource))))
                         resourcesToCollect.add((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource));

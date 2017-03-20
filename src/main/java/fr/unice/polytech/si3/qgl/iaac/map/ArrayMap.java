@@ -147,7 +147,6 @@ public class ArrayMap {
 
         logger.info(strto());
 
-
     }
 
     public boolean isEdge(Point point) {

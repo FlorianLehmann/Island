@@ -1,6 +1,9 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
+import fr.unice.polytech.si3.qgl.iaac.ground.ReachResources;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayDeque;
@@ -23,6 +26,9 @@ public class AStar {
     private List<Node> close;
     private List<Node> neighbours;
     private ArrayMap edge;
+
+    private static final Logger logger = LogManager.getLogger(AStar.class);
+
 
     private class Node {
         private Node parent;
@@ -75,7 +81,6 @@ public class AStar {
                 int x = neighbours.get(i).location.x;
                 int y = neighbours.get(i).location.y;
                 if (!edge.isEdgeG(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
-                //if (!edge.isEdge(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
                     if (!isInList(open, neighbours.get(i).location)){
                         neighbours.get(i).parent = parent;
                         open.add(neighbours.get(i));
@@ -95,11 +100,11 @@ public class AStar {
             int min = Integer.MAX_VALUE;
             indexOpen = 0;
             for (int i = 0; i < open.size(); i++) {
-                open.get(i).currentToTarget = distanceManathan(open.get(i).location, target);//rajouter tardivement
+                open.get(i).currentToTarget = distanceManathan(open.get(i).location, target);
                 open.get(i).locationToCurrent = distanceManathan(location, open.get(i).location);
                 int totalCost = open.get(i).currentToTarget + open.get(i).locationToCurrent;
 
-                if (min >= totalCost){
+                if (min > totalCost){//>=
                     min = totalCost;
                     indexOpen = i;
                 }
@@ -108,10 +113,20 @@ public class AStar {
             close.add(parent);
         }
 
+        for (int i = 0; i < close.size(); i++)
+            if (close.get(i).location.equals(target))
+                parent = close.get(i);
+
+
+
         while(parent.location.x != location.x || parent.location.y!= location.y ){
+
             way.push(parent.location);
+            logger.info(parent.parent.location);
             parent = parent.parent;
         }
+
+        logger.info(way.size());
         //On ne tient pas compte de la case initiale
     }
 

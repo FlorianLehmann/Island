@@ -100,6 +100,17 @@ public class AStarTest {
         }
     }
 
+    @Ignore
+    @Test
+    public void ShouldReachTile3(){
+        location = new Point(2,1);
+        target = new Point(7,4);
+        aStar = new AStar(location, target, map );
+        aStar.compute();
+        Deque<Point> way = aStar.getWay();
+        assertEquals(12, way.size());
+    }
+
     @Test
     public void ShouldReachTile2(){
         location = new Point(2,4);
@@ -109,8 +120,8 @@ public class AStarTest {
         aStar = new AStar(location, target, map );
         aStar.compute();
         Deque<Point> way = aStar.getWay();
-        assertEquals(9, way.size());
 
+        assertEquals(9, way.size());
     }
 
 
