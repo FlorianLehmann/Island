@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FRUITS;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.SUGAR_CANE;
 
 /**
  * Created by lehmann on 11/02/17.
@@ -49,7 +51,11 @@ public class GroundStrategy {
      */
     public String takeAction() {
         //contracts.sortSecondaryContracts(budget.getBudget());
+        logger.info("contain" +contracts.contain(FRUITS));
+        logger.info("contain" +contracts.contain(SUGAR_CANE));
         contracts.sortPrimaryContracts(budget.getBudget());
+        logger.info("contain" +contracts.contain(FRUITS));
+        logger.info("contain" +contracts.contain(SUGAR_CANE));
         if (budget.hasBudget() && budget.getBudget() >= 1700) {
             return state.execute(men, contracts, carte);
         }
