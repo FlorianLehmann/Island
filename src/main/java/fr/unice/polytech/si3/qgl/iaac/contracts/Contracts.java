@@ -325,7 +325,7 @@ public class Contracts {
 
     public Contract getContract(){
         for (Contract contract: primaryContracts) {
-            if(contract.getAmount()>0){
+            if(!contract.isCompleted()){
                 return contract;
             }
         }
