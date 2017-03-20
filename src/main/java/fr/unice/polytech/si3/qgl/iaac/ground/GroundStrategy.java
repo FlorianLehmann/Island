@@ -48,6 +48,8 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
+        //contracts.sortSecondaryContracts(budget.getBudget());
+        contracts.sortPrimaryContracts(budget.getBudget());
         if (budget.hasBudget() && budget.getBudget() >= 1700) {
             return state.execute(men, contracts, carte);
         }

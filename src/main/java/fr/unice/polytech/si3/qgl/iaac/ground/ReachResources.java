@@ -71,21 +71,26 @@ public class ReachResources implements State {
         //TODO faux
         //si il n'y a plus de contrat choisir un contrat aléatoire
         Contract contract;
-        do {
-            contract  = contracts.getPrimaryContract();
-        } while (contract.isCompleted());
-        EnumResources resource = contract.getName();
+        Point target = new Point(men.getCoord());
+        if(!contracts.isPrimaryCompleted()){
+            contract = contracts.getContract();
+            EnumResources resource = contract.getName();
+            if (carte.hasResource(resource)) {
+                target = carte.getResource(resource);
+            }
+            else {
+                contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
+            }
 
-        Point target = new Point(30,-90);
+        }
+
         //TODO TANT QUE LA RESSOURCES N'EST PAS PRÉSENTE SUR LA CARTE
         //TODO ON SUPPRIME LA RESSOURCE
         /*while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getPrimaryContract().getName()))) {
         /*while(!contracts.isPrimaryCompleted() && !(map.hasResource(contracts.getPrimaryContract().getName()))) {
             contracts.remove(contracts.getPrimaryContract().getName());
         }*/
-        if (carte.hasResource(resource)) {
-            target = carte.getResource(resource);
-        }
+
         logger.info("MEN" + men.getCoord());
         logger.info("TARGET" + target);
         return target;
