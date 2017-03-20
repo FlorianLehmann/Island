@@ -2,9 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -86,7 +84,7 @@ public class ReadJSONTest {
 
     @Test
     public void initContractsTest() {
-        assertEquals(EnumPrimaryResources.WOOD, json.initContracts().getContract().getName());
+        assertEquals(EnumPrimaryResources.WOOD, json.initContracts().getPrimaryContract().getName());
     }
 
 

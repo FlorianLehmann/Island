@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 import java.util.ArrayList;
@@ -139,15 +140,37 @@ public class Contracts {
             }
         }
         secondaryContracts=secondaryContractsSorted;
-
-
     }
+
+    public boolean containRessource(EnumPrimaryResources ressource){
+        for(Contract contract:primaryContracts){
+            if(!contract.isCompleted() && contract.getName().equals(ressource))return true;
+        }
+        return false;
+    }
+
+    public void verifyContractCompleted(Contract contract){
+        if(contract.isCompleted()){
+            remove(contract.getName());
+        }
+    }
+
+
+
+
     //todo si il n'y a rien nullpointer
-    public Contract getContract() {
+    public Contract getPrimaryContract() {
         return primaryContracts.get(0);
     }
 
     public Contract getSecondaryContract(){
         return secondaryContracts.get(0);
+    }
+
+    public Contract getPrimaryContract(EnumPrimaryResources ressource){
+        for(Contract contract:primaryContracts){
+            if(contract.getName().equals(ressource))return contract;
+        }
+        return null;
     }
 }

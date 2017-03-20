@@ -32,18 +32,18 @@ public class DefineWay implements State {
         int coordY;
         Point point;
 
-        while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getContract().getName()))) {
-            contracts.remove(contracts.getContract().getName());
+        while(!contracts.isPrimaryCompleted() && !(carte.hasResource(contracts.getPrimaryContract().getName()))) {
+            contracts.remove(contracts.getPrimaryContract().getName());
         }
         if (!contracts.isPrimaryCompleted()) {
             if(!wayDefine) {
-                tmp = contracts.getContract().getName().toString();
+                tmp = contracts.getPrimaryContract().getName().toString();
                 if ("FISH".equals(tmp)) {
                     //point = carte.getACreek();
-                    point = carte.getResource(contracts.getContract().getName());
+                    point = carte.getResource(contracts.getPrimaryContract().getName());
 
                 } else {
-                    point = carte.getResource(contracts.getContract().getName());
+                    point = carte.getResource(contracts.getPrimaryContract().getName());
                 }
 
                 coordX = point.x - men.getCoord().x;

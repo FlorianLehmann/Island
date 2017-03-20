@@ -76,7 +76,8 @@ public class AStar {
             for (int i = 0; i < neighbours.size(); i++) {
                 int x = neighbours.get(i).location.x;
                 int y = neighbours.get(i).location.y;
-                if (!edge.isEdge(x,y) && !isInList(close, neighbours.get(i).location)) {
+                if (!edge.isEdgeG(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
+                //if (!edge.isEdge(new Point(x,y)) && !isInList(close, neighbours.get(i).location)) {
                     if (!isInList(open, neighbours.get(i).location)){
                         neighbours.get(i).parent = parent;
                         open.add(neighbours.get(i));
@@ -91,7 +92,6 @@ public class AStar {
                 }
             }
             neighbours.clear();
-            //todo peut être mettre ce qui a au dessus au dessus de la boucle
 
             //prendre la case qui a le cout le moins important
             int min = Integer.MAX_VALUE;

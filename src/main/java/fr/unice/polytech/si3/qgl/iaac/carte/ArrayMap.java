@@ -1,6 +1,14 @@
 package fr.unice.polytech.si3.qgl.iaac.carte;
 
+
+
+import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.*;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -11,113 +19,92 @@ public class ArrayMap {
     /**
      * attributes
      */
-    private Case [][] arrayMap;
-    private int originX;
-    private int originY;
+
+
+    private Map<Point, Case> map;
+    private Map<Point, Boolean> edge;
+    private List<Point> listeY;
+
+
     private int size;
 
-    private boolean [][] edge;
+    private static final Logger logger = LogManager.getLogger(ArrayMap.class);
 
-    public ArrayMap(List<Case> map) {
-        size = map.size();
-        edge = new boolean[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                edge[i][j] = false;
-            }
-        }
-        for (int i = 0; i < map.size(); i++) {
-            if ( map.get(i).getCoords().x < originX)
-                originX = map.get(i).getCoords().x;
-            if (map.get(i).getCoords().y < originY)
-                originY = map.get(i).getCoords().y;
-        }
-
-        arrayMap = new Case[size][size];
-
-        for (int i = originX; i < size - originX; i++) {
-            for (int j = originY; j < size - originY; j++) {
-                arrayMap[i - originX][j - originY] = new Case(new Point(i,j));
-            }
-        }
-
-        for (int i = 0; i < map.size(); i++) {
-            int x = map.get(i).getCoords().x - originX;
-            int y = map.get(i).getCoords().y - originY;
-            arrayMap[x][y] = map.get(i);
-        }
-
+    public ArrayMap(Map<Point, Case> map) {
+        this.map = map;
+        edge = new HashMap<>();
+        listeY = new LinkedList<>();
         computeEdge();
     }
 
-    public Case get(int x, int y) {
-        return arrayMap[x - originX][y - originX];
+    public Case get(Point point) {
+        return map.get(point);
     }
 
-    public void add(Case tile){
-        arrayMap[tile.getCoords().x - originX][tile.getCoords().y - originY] = tile;
-    }
+    //todo crash si carte au bord de la carte
+    public boolean isAnEdge(Point point) {
 
-    private boolean isAnEdge(int x, int y) {
-        //si on sort de la carte
-        if (x - originX - 1 < 0 || x-originX + 1 > size || y-originY - 1 < 0 || y-originY + 1>size)
-            return false;
-        //sinon
-        if (!arrayMap[x - originX][y - originX].containOcean() && (arrayMap[x - originX - 1][y - originX].containOcean() ||
-                arrayMap[x - originX][y - originX - 1].containOcean() || arrayMap[x - originX][y - originX + 1].containOcean() ||
-                arrayMap[x - originX + 1][y - originX].containOcean()))
-            return true;
+
+        Case left = map.get(new Point(point.x - 1, point.y));
+        Case right = map.get(new Point(point.x + 1, point.y));
+        Case current = map.get(point);
+
+        if (left != null && right != null)
+            if ((left.containOcean() || right.containOcean()))
+                return true;
+
+        Case up = map.get(new Point(point.x , point.y + 1));
+        Case down = map.get(new Point(point.x , point.y - 1));
+
+        if (up != null && down != null)
+            if ((up.containOcean() || down.containOcean()))
+                return true;
+
+
+
         return false;
+
     }
 
     private void computeEdge() {
-        for (int i = 0; i < size ; i++) {
-            for (int j = 0; j < size; j++) {
-                edge[i][j] = isAnEdge(i - originX,j - originY);
-            }
-        }
 
-        boolean [][] edgeTmp = new boolean[size][size];
+        for (Map.Entry<Point, Case> tile: map.entrySet())
+            if (!tile.getValue().containOcean())
+                edge.put(tile.getValue().getCoords() ,isAnEdge(tile.getValue().getCoords()));
 
-        for (int i = 0; i < size ; i++) {
-            for (int j = 0; j < size; j++) {
-                edgeTmp[i][j] = false;
-            }
-        }
+        for (Map.Entry<Point, Boolean> tile: edge.entrySet())
+            logger.info(tile.getKey());
 
-        //pas besoin de gérer le cas ou on sort de l carte car il est imossible d'avoir une edge au bord de la carte
-        for (int i = 1; i < size - 1 ; i++) {
-            for (int j = 1; j < size - 2; j++) {
-                if (!edge[i-1][j]) {
-                    //on obtient le point le plus à gauche
-                    for (int k = 0; k < size; k++) {
-                        if (edge[k][j+2]) {
-                            //ici on interpole
-                            edgeTmp[k + (int)((i-k)/2.)][j+1] = true;
-                            break;
-                        }
-                    }
-                }
-                if (!edge[i+1][j])
-                {
-                    //on obtient le point le plus à droite
-                    for (int k = size-1; k >= 0; k--) {
-                        if (edge[k][j+2]) {
-                            //on interpole
-                            edgeTmp[k - (int)((k-i)/2.)][j+1] = true;
-                            break;
-                        }
-                    }
-                }
-                //et si il n'y a pas de points en dessous? ça fait rien
-            }
-        }
-        //TODO on fait un ou logique sur les deux tableau
+
     }
 
-    public boolean isEdge(int x, int y) {
-        if (x - originX < 0 || y - originY<0 || x - originX >size - 1 || y - originY > size-1)
+    public boolean isEdge(Point point) {
+        return edge.getOrDefault(point, false);
+    }
+
+
+    public String strto() {
+        StringBuilder str = new StringBuilder();
+        str.append("\n");
+        for (int i = 0; i < 100; i++) {
+            for (int j = -125; j < 0; j++) {
+                if (isEdge(new Point(i,j)))
+                    str.append("1");
+                else
+                    str.append("0");
+            }
+            str.append("\n");
+        }
+        return str.toString();
+    }
+
+    public boolean isEdgeG(Point point) {
+        Case tile =  map.get(point);
+        if (tile == null)
             return false;
-        return edge[x - originX][y - originY];
+        if (tile.containOcean())
+            return true;
+        return false;
+
     }
 }

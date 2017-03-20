@@ -1,9 +1,16 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.Budget;
+import fr.unice.polytech.si3.qgl.iaac.EnumJSON;
+import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
 import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.ground.tools.AStar;
+
+import java.awt.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
 
@@ -20,6 +27,7 @@ public class GroundStrategy {
     private Budget budget;
     private Contracts contracts;
 
+
     /**
      * default constructor
      * @param nbMen
@@ -35,6 +43,7 @@ public class GroundStrategy {
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
+
     }
 
     /**
@@ -42,6 +51,7 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
+        contracts.sortPrimaryContracts(budget.getBudget());
         if (budget.hasBudget()) {
             contracts.sortPrimaryContracts(budget.getBudget());
             contracts.sortSecondaryContracts(budget.getBudget());
