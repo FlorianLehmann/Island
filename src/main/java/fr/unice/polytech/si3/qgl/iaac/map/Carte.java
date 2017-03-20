@@ -92,6 +92,28 @@ public class Carte {
 
     }
 
+
+    public Point getNearestResource(EnumResources name, Point location) {
+        int distanceMin = Integer.MAX_VALUE;
+        Case tile = null;
+        for (Map.Entry<Point, Case> nearestTile: carte.entrySet())
+            if (nearestTile.getValue().containsResource(name) && distance(nearestTile.getValue().getCoords(), location) < distanceMin && distance(nearestTile.getValue().getCoords(), location) > 0) {
+                distanceMin = distance(nearestTile.getValue().getCoords(), location);
+                tile = nearestTile.getValue() ;
+            }
+
+        if (tile == null)
+            throw new RuntimeException();
+
+        carte.remove(tile.getCoords());
+        return tile.getCoords();
+        //throw new RuntimeException("No resources");
+    }
+
+    private int distance(Point coords, Point location) {
+        return Math.abs(location.x - coords.x) + Math.abs(location.y - coords.y);
+    }
+
     //TODO
     public Map<Point, Case> getCases() {
         return carte;

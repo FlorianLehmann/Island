@@ -32,6 +32,8 @@ public class Contracts {
     public Contracts() {
         primaryContracts = new ArrayList<>();
         secondaryContracts = new ArrayList<>();
+        notAPriorityPrimaryContract = new ArrayList<>();
+        notAPrioritySecondaryContract = new ArrayList<>();
     }
 
     /**
