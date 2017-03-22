@@ -14,7 +14,7 @@ public class Stop implements State {
     }
 
     public State wait(ReadJSON json){
-        throw new UnsupportedOperationException();
+        return this;
     }
 
 }
