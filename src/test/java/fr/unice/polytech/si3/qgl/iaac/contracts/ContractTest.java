@@ -18,13 +18,13 @@ public class ContractTest {
 
     @Before
     public void defineContext() {
-        contract = new Contract(EnumPrimaryResources.WOOD, 1500);
+        contract = new Contract(1500, EnumPrimaryResources.WOOD);
     }
 
     @Test
     public void defineBadContextTest() {
         try {
-            new Contract(EnumPrimaryResources.WOOD, 0);
+            new Contract(0, EnumPrimaryResources.WOOD);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -32,7 +32,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumPrimaryResources.WOOD, -10);
+            new Contract(-10, EnumPrimaryResources.WOOD);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -40,7 +40,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new Contract(EnumPrimaryResources.WOOD, 5);
+            new Contract(5, EnumPrimaryResources.WOOD);
             assertTrue(true);
         }
         catch (NoAmountContractException exception)
@@ -72,7 +72,7 @@ public class ContractTest {
 
     @Test
     public void getNameTest() {
-        assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(FISH, 1500).getName());
+        assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(1500, FISH).getName());
     }
 
     @Test

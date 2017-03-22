@@ -28,15 +28,15 @@ public class ContractsTest {
     @Test
     public void addTest() {
         assertTrue(contracts.isCompleted());
-        contracts.add(new Contract(WOOD, 1500));
-        contracts.add(new Contract(PLANK, 1500));
+        contracts.add(new Contract(1500, WOOD));
+        contracts.add(new Contract(1500, PLANK));
         assertFalse(contracts.isCompleted());
     }
 
     @Test
     public void removeTest() {
-        contracts.add(new Contract(WOOD, 1500));
-        contracts.add(new Contract(PLANK, 1500));
+        contracts.add(new Contract(1500, WOOD));
+        contracts.add(new Contract(1500, PLANK));
         contracts.remove(WOOD);
         contracts.remove(PLANK);
         assertTrue(contracts.isCompleted());
@@ -44,19 +44,19 @@ public class ContractsTest {
 
     @Test
     public void containRessource(){
-        contracts.add(new Contract(FRUITS,50));
+        contracts.add(new Contract(50,FRUITS));
         assertTrue(contracts.containRessource(FRUITS));
     }
 
     @Test
     public void notContainRessource(){
-        contracts.add(new Contract(WOOD,50));
+        contracts.add(new Contract(50,WOOD));
         assertFalse(contracts.containRessource(QUARTZ));
     }
 
     @Test
     public void containRessourceWichIsCompleted(){
-        contracts.add(new Contract(WOOD,50));
+        contracts.add(new Contract(50,WOOD));
         contracts.getPrimaryContract().add(100);
         assertFalse(contracts.containRessource(WOOD));
         contracts.verifyContractCompleted(contracts.getPrimaryContract());
@@ -66,8 +66,8 @@ public class ContractsTest {
 
     @Test
     public void getPrimaryContractTestToFindAContractFromARessource(){
-        contracts.add(new Contract(WOOD,60));
-        contracts.add(new Contract(FRUITS,100));
+        contracts.add(new Contract(60,WOOD));
+        contracts.add(new Contract(100,FRUITS));
         assertEquals(FRUITS,contracts.getPrimaryContract(FRUITS).getName());
         contracts.addColectedContract(100,FRUITS);
         assertEquals(WOOD,contracts.getContract().getName());
@@ -75,7 +75,7 @@ public class ContractsTest {
 
    @Test
    public void secondaryContractCompleted(){
-       contracts.add(new Contract(PLANK,10));
+       contracts.add(new Contract(10,PLANK));
        contracts.getSecondaryContract().add(10);
        contracts.verifyContractCompleted(contracts.getSecondaryContract());
        assertTrue(contracts.isSecondaryCompleted());
@@ -84,8 +84,8 @@ public class ContractsTest {
 
     @Test
     public void onlyPrimaryContractCompleted(){
-        contracts.add(new Contract(WOOD,60));
-        contracts.add(new Contract(PLANK,100));
+        contracts.add(new Contract(60,WOOD));
+        contracts.add(new Contract(100,FRUITS));
         contracts.addColectedContract(120,WOOD);
         contracts.verifyContractCompleted(contracts.getPrimaryContract());
         assertFalse(contracts.isSecondaryCompleted());
@@ -95,7 +95,7 @@ public class ContractsTest {
 
     @Test
     public void transformSecondaryContractToPrimaryContract(){
-        contracts.add(new Contract(RUM,20));
+        contracts.add(new Contract(20,RUM));
         contracts.allocateContracts();
         assertTrue(contracts.containRessource(SUGAR_CANE));
         assertTrue(contracts.containRessource(FRUITS));
@@ -111,13 +111,13 @@ public class ContractsTest {
 
     @Test
     public void couldCompleteAnotherContratsWithoutPrimaryRessource(){
-        contracts.add(new Contract(GLASS,10));
+        contracts.add(new Contract(10,GLASS));
         assertFalse(contracts.couldCompleteAnotherContract());
     }
 
     @Test
     public void couldCompleteAnotherContratsWithoutSecondary(){
-        contracts.add(new Contract(FRUITS,100));
+        contracts.add(new Contract(100,FRUITS));
         assertFalse(contracts.couldCompleteAnotherContract());
     }
 
@@ -132,10 +132,10 @@ public class ContractsTest {
 
     @Test
     public void priorityPrimaryContactToNotPriority(){
-        contracts.add(new Contract(WOOD,60));
-        contracts.add(new Contract(PLANK,100));
-        contracts.add(new Contract(FUR,500));
-        Contract contract = new Contract(FUR,500);
+        contracts.add(new Contract(60,WOOD));
+        contracts.add(new Contract(100,PLANK));
+        contracts.add(new Contract(500,FUR));
+        Contract contract = new Contract(500,FUR);
         contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
         assertFalse(contracts.contain(FUR));
 

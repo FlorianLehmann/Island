@@ -1,5 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
+
 /**
  * Created by florian on 15/01/2017.
  */
@@ -30,6 +33,8 @@ public enum EnumReadJSON {
     EnumReadJSON(String word) {
         this.word = word;
     }
+
+
 
     @Override
     public String toString() {

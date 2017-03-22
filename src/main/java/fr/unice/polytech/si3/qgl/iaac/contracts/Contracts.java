@@ -140,7 +140,7 @@ public class Contracts {
             }
         }
 
-        add(new Contract(ingredient, amount));
+        add(new Contract(amount, ingredient));
 
     }
 

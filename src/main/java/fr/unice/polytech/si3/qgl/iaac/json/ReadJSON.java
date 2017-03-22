@@ -74,10 +74,10 @@ public class ReadJSON {
                     int am = jsonobject2.getInt(iterator_ressource.next());
                     String re = jsonobject2.getString(iterator_ressource.next());
                     if (EnumPrimaryResources.isPrimary(re)) {
-                        contracts.add(new Contract(EnumPrimaryResources.getEnumPrimaryResources(re),am));
+                        contracts.add(new Contract(am, EnumPrimaryResources.getEnumPrimaryResources(re)));
                     }
                     else {
-                        contracts.add(new Contract(EnumManufacturedResources.getEnumManufacturedResources(re),am));
+                        contracts.add(new Contract(am, EnumPrimaryResources.getEnumPrimaryResources(re)));
                     }
 
                 }

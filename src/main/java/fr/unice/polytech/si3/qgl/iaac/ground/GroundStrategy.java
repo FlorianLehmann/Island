@@ -17,7 +17,6 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.SUGA
 public class GroundStrategy {
 
     private State state;
-    private int nbMen;
     private Men men;
     private ReadJSON json;
     private Carte carte;
@@ -35,7 +34,6 @@ public class GroundStrategy {
      * @param carte
      */
     public GroundStrategy(int nbMen, ReadJSON json, Men men, Carte carte, Budget budget, Contracts contracts){
-        this.nbMen = nbMen;
         this.men = men;
         this.json = json;
         this.carte = carte;
@@ -50,16 +48,11 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        //contracts.sortSecondaryContracts(budget.getBudget());
-        logger.info("contain" +contracts.contain(FRUITS));
-        logger.info("contain" +contracts.contain(SUGAR_CANE));
         contracts.sortPrimaryContracts(budget.getBudget());
-        logger.info("contain" +contracts.contain(FRUITS));
-        logger.info("contain" +contracts.contain(SUGAR_CANE));
         if (budget.hasBudget() && budget.getBudget() >= 1700) {
             return state.execute(men, contracts, carte);
         }
-        if (budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract() ) {
+        if ((budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract()) ) {
             state =  new Factory();
             return state.execute(men, contracts, carte);
         }
@@ -68,7 +61,7 @@ public class GroundStrategy {
 
     /**
      * Analyse results
-     *///
+     */
     public void acknowledgeResults() {
         if (budget.hasBudget()) {
             budget.subBudget(json.getCost());

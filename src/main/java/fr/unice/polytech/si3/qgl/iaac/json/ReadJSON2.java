@@ -1,8 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -10,90 +15,38 @@ import java.util.List;
  */
 public class ReadJSON2 {
 
-    private int men;
-    private int budget;
-    //private List<Contract> contracts;
-    private EnumOrientation heading;
-    private int cost;
-    private String status;
-    private int range;
-    private String found;
-    private List<String> biomes;
-    private List<String> creeks;
-    private List<String> sites;
-    private int altitude;
-    private List<String> resources;
+    /**
+     * attributes
+     */
+    private String json;
+    private ObjectMapper mapper;
+    private Answer answer;
 
-    private int amount;
-    private int production;
-    private String kind;
-
-    public int getMen() {
-        return men;
+    /**
+     * default constructor
+     */
+    public ReadJSON2() {
+        mapper = new ObjectMapper();
     }
 
-    public int getBudget() {
-        return budget;
+    /**
+     *
+     * @param json
+     * @return
+     * @throws IOException
+     */
+    public Answer read(String json) throws IOException {
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
+        answer = mapper.readValue(json, Answer.class);
+        return answer;
     }
 
-    /*public List<Contract> getContracts() {
-        return contracts;
-    }*/
-
-    public EnumOrientation getHeading() {
-        return heading;
+    /**
+     *
+     * @return the answer
+     */
+    public Answer getAnswer() {
+        return answer;
     }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getRange() {
-        return range;
-    }
-
-    public String getFound() {
-        return found;
-    }
-
-    public List<String> getBiomes() {
-        return biomes;
-    }
-
-    public List<String> getCreeks() {
-        return creeks;
-    }
-
-    public List<String> getSites() {
-        return sites;
-    }
-
-    public int getAltitude() {
-        return altitude;
-    }
-
-    public List<String> getResources() {
-        return resources;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getProduction() {
-        return production;
-    }
-
-    public String getKind() {
-        return kind;
-    }
-
-
-
-
-
 }

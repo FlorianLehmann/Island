@@ -1,5 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 
@@ -17,12 +19,13 @@ public class Contract {
 
     /**
      * default constructor
-     * @param name
      * @param amount
+     * @param resource
      * @throws NoAmountContractException
      */
-    public Contract(EnumResources name, int amount) throws NoAmountContractException {
-            this.name =  name;
+    @JsonCreator
+    public Contract(@JsonProperty("amount") int amount, @JsonProperty("resource") EnumResources resource) throws NoAmountContractException {
+            this.name =  resource;
             if (amount <= 0)
                 throw new NoAmountContractException();
             this.debt = 0;
