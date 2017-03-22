@@ -5,13 +5,14 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import fr.unice.polytech.si3.qgl.iaac.ground.Men;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
-import org.checkerframework.checker.nullness.qual.NonNull;
+
 
 import java.awt.*;
+import java.io.IOException;
 
 
 public class Explorer implements IExplorerRaid {
@@ -19,7 +20,7 @@ public class Explorer implements IExplorerRaid {
     /**
      * Attributes
      */
-    private ReadJSON readJSON;
+    private ReadJSON2 readJSON;
     private Drone drone;
     private Budget budget;
     private AirStrategy air;
@@ -35,15 +36,20 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void initialize(String s) {
-        readJSON = new ReadJSON(s);
-        drone = readJSON.initDrone();
-        budget = readJSON.initBudget();
+        readJSON = new ReadJSON2();
+        try {
+            readJSON.read(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        drone = new Drone(readJSON.getAnswer().getHeading());
+        budget = new Budget(readJSON.getAnswer().getBudget());
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
-        contracts = readJSON.initContracts();
-        nbMen = readJSON.initNbMen();
+        contracts = new Contracts(readJSON.getAnswer().getContracts());
+        nbMen = readJSON.getAnswer().getMen();
         men = new Men(new Point(0,0));
-        ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
+        ground = new GroundStrategy(nbMen, readJSON, men, carte, budget, contracts );
     }
 
     /**
@@ -63,7 +69,11 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void acknowledgeResults(String s) {
-        readJSON.read(s);
+        try {
+            readJSON.read(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (!air.isOver()) {
             air.acknowledgeResults();
             if (air.isOver()) {

@@ -1,10 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
@@ -37,7 +35,7 @@ public class LandTest {
 
     /*@Test
     public void shouldReturnReachResourcesState() {
-        ReadJSON json = mock(ReadJSON.class);
+        ReadJSON2 json = mock(ReadJSON2.class);
         assertTrue(land.wait(json) instanceof ReachResources);
     }*/
 

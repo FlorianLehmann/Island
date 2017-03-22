@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
 import fr.unice.polytech.si3.qgl.iaac.map.Case;
 import org.junit.Before;
@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -24,24 +25,25 @@ public class AStarTest {
     private ArrayMap map;
 
     private Map<Point, Case> list;
-    private ReadJSON json;
+    private ReadJSON2 json;
 
     public static final int size = 10;
     public static final int border = 2;
 
     @Before
-    public void defineWay() {
+    public void defineWay() throws IOException {
         location = new Point(3,3);
         target = new Point(6,3);
         list = new HashMap<>();
-        json = new ReadJSON("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
+        json = new ReadJSON2();
+        json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();
         map = new ArrayMap(list);
         aStar = new AStar(location, target, map );
     }
 
-    private void createAnIsland() {
+    private void createAnIsland() throws IOException {
 
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
 
@@ -112,7 +114,7 @@ public class AStarTest {
     }
 
     @Test
-    public void ShouldReachTile2(){
+    public void ShouldReachTile2() throws IOException {
         location = new Point(2,4);
         target = new Point(6,3);
         createAnIsland2();
@@ -125,7 +127,7 @@ public class AStarTest {
     }
 
 
-    private void createAnIsland2() {
+    private void createAnIsland2() throws IOException {
 
         list.clear();
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");

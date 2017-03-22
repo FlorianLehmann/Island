@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
@@ -109,16 +109,16 @@ public class ReachResources implements State {
     }
 
     @Override
-    public State changeState(ReadJSON json) {
+    public State changeState(ReadJSON2 json) {
 
         switch (state) {
             case MOVE:
                 state = EXPLORE;
                 break;
             case EXPLORE:
-                for (String resource: json.getResources())
-                    if (contracts.containRessource(((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource))))
-                        resourcesToCollect.add((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource));
+                for (EnumResources resource: json.getAnswer().getResources())
+                    if (contracts.containRessource((EnumPrimaryResources) resource))
+                        resourcesToCollect.add((EnumPrimaryResources) resource);
 
                 if (!resourcesToCollect.isEmpty()) {
                     state = EXPLOIT;
@@ -128,7 +128,7 @@ public class ReachResources implements State {
                 }
                 break;
             case EXPLOIT:
-                contracts.addColectedContract(json.getCollect(), resourcesToCollect.pop());
+                contracts.addColectedContract(json.getAnswer().getAmount(), resourcesToCollect.pop());
 
                 if (resourcesToCollect.isEmpty()) {
                     state = MOVE;

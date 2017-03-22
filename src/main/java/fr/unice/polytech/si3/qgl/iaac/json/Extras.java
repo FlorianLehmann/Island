@@ -25,14 +25,17 @@ public class Extras {
 
     public Extras() {
         resources = new ArrayList<>();
+        creeks = new ArrayList<>();
+        sites = new ArrayList<>();
+        biomes = new ArrayList<>();
     }
 
     public int getRange() {
         return range;
     }
 
-    public String getFound() {
-        return found;
+    public boolean getFound() {
+        return "GROUND".equals(found);
     }
 
     public List<EnumBiome> getBiomes() {

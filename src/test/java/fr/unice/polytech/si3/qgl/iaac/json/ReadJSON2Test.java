@@ -76,7 +76,7 @@ public class ReadJSON2Test {
                 "\"status\": \"OK\" }");
         assertEquals(1, answer.getCost());
         assertEquals(1, answer.getRange());
-        assertEquals("OUT_OF_RANGE", answer.getFound());
+        assertEquals(false, answer.getFound());
         assertEquals("OK", answer.getStatus());
     }
 
@@ -85,8 +85,8 @@ public class ReadJSON2Test {
         answer = readJSON2.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"GLACIER\", \"ALPINE\"], \"creeks\": [\"creeks\"], \"sites\": [\"sites\"]}, \"status\": \"OK\"}");
         assertEquals(2, answer.getCost());
         assertEquals(GLACIER, answer.getBiomes().get(0));
-        assertEquals("creeks", answer.getCreeks().get(0));
-        assertEquals("sites", answer.getSites().get(0));
+        assertEquals("creeks", answer.getCreeks());
+        assertEquals("sites", answer.getSites());
         assertEquals("OK", answer.getStatus());
     }
 

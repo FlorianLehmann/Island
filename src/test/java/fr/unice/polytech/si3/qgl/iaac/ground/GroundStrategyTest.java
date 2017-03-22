@@ -3,13 +3,14 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.IOException;
 
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.LAND;
@@ -27,15 +28,16 @@ public class GroundStrategyTest {
 
     private GroundStrategy strategy;
     private Men men;
-    private ReadJSON json;
+    private ReadJSON2 json;
     private Carte carte;
     private Budget budget;
 
 
     @Before
-    public void defineContext() {
+    public void defineContext() throws IOException {
         men = new Men(new Point(0,0));
-        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+        json = new ReadJSON2();
+        json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         Carte carte = mock(Carte.class);
         when(carte.getCreekID()).thenReturn("ID");
         budget = new Budget(2000);

@@ -55,7 +55,7 @@ public class Answer {
         return extras.getRange();
     }
 
-    public String getFound() {
+    public boolean getFound() {
         return extras.getFound();
     }
 
@@ -63,12 +63,16 @@ public class Answer {
         return extras.getBiomes();
     }
 
-    public List<String> getCreeks() {
-        return extras.getCreeks();
+    public String getCreeks() {
+        if (extras.getCreeks().size() >= 1)
+            return extras.getCreeks().get(0);
+        return null;
     }
 
-    public List<String> getSites() {
-        return extras.getSites();
+    public String getSites() {
+        if (extras.getSites().size() >= 1)
+            return extras.getSites().get(0);
+        return null;
     }
 
     public int getAltitude() {

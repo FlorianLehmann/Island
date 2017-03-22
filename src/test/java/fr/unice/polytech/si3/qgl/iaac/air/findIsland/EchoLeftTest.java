@@ -1,10 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.ECHO;
 import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.EST;
@@ -19,13 +21,13 @@ public class EchoLeftTest {
 
     private Drone drone;
     private State echoLeft;
-    private ReadJSON read;
+    private ReadJSON2 read;
 
     @Before
-    public void ini(){
+    public void ini() throws IOException {
         drone = new Drone(SOUTH);
         echoLeft = new EchoLeft();
-        read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
+        read = new ReadJSON2();
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
@@ -36,13 +38,13 @@ public class EchoLeftTest {
 
 
     @Test
-    public void waitWithOceanFly(){
+    public void waitWithOceanFly() throws IOException {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
         assertTrue(echoLeft.nextState(read) instanceof EchoRight);
     }
 
     @Test
-    public void waitWithGroundLeft(){
+    public void waitWithGroundLeft() throws IOException {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         assertTrue(echoLeft.nextState(read) instanceof HeadingLeft);
     }

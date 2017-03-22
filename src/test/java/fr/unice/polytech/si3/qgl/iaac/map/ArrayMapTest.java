@@ -1,11 +1,11 @@
 package fr.unice.polytech.si3.qgl.iaac.map;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,21 +21,22 @@ public class ArrayMapTest {
 
     private Map<Point, Case> list;
     private ArrayMap map;
-    private ReadJSON json;
+    private ReadJSON2 json;
 
     public static final int size = 10;
     public static final int border = 2;
 
     @Before
-    public void defineContext() {
+    public void defineContext() throws IOException {
         list = new HashMap<>();
-        json = new ReadJSON("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
+        json = new ReadJSON2();
+        json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();
         map = new ArrayMap(list);
     }
 
-    private void createAnIsland() {
+    private void createAnIsland() throws IOException {
 
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
 
@@ -89,7 +90,7 @@ public class ArrayMapTest {
     }
 
 
-    private void createAnIsland2() {
+    private void createAnIsland2() throws IOException {
 
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
 
@@ -126,7 +127,7 @@ public class ArrayMapTest {
     }
 
     @Test
-    public void ShouldBeAnEdge2() {
+    public void ShouldBeAnEdge2() throws IOException {
         createAnIsland2();
         assertTrue(map.isEdge(new Point(2,2)));
         assertTrue(map.isEdge(new Point(2,3)));

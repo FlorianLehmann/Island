@@ -19,14 +19,23 @@ public class Contracts {
     private List<Contract> notAPriorityPrimaryContract;
     private List<Contract> notAPrioritySecondaryContract;
 
-    /**
-     * default constructor
-     */
     public Contracts() {
         primaryContracts = new ArrayList<>();
         secondaryContracts = new ArrayList<>();
         notAPriorityPrimaryContract = new ArrayList<>();
         notAPrioritySecondaryContract = new ArrayList<>();
+    }
+
+    /**
+     * default constructor
+     */
+    public Contracts(List<Contract> contracts) {
+        primaryContracts = new ArrayList<>();
+        secondaryContracts = new ArrayList<>();
+        notAPriorityPrimaryContract = new ArrayList<>();
+        notAPrioritySecondaryContract = new ArrayList<>();
+        for (Contract contract: contracts)
+            add(contract);
     }
 
     /**

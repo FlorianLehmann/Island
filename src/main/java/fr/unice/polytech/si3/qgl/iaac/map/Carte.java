@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.map;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 
@@ -17,13 +17,13 @@ public class Carte {
      * attributes
      */
     private Map<Point, Case> carte;
-    private ReadJSON json;
+    private ReadJSON2 json;
 
     /**
      * default constructor
      * @param readJSON
      */
-    public Carte(ReadJSON readJSON) {
+    public Carte(ReadJSON2 readJSON) {
         json = readJSON;
         carte = new HashMap<>();
     }

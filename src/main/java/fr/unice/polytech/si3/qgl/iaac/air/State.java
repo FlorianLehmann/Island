@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 
 /**
  * Created by sebde on 04/02/2017.
@@ -10,7 +10,7 @@ public interface State {
 
     public String execute(Drone drone);
 
-    public State nextState(ReadJSON json);
+    public State nextState(ReadJSON2 json);
 
 
 }

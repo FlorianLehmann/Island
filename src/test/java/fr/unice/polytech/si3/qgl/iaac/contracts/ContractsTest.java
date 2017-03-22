@@ -85,7 +85,7 @@ public class ContractsTest {
     @Test
     public void onlyPrimaryContractCompleted(){
         contracts.add(new Contract(60,WOOD));
-        contracts.add(new Contract(100,FRUITS));
+        contracts.add(new Contract(100,PLANK));
         contracts.addColectedContract(120,WOOD);
         contracts.verifyContractCompleted(contracts.getPrimaryContract());
         assertFalse(contracts.isSecondaryCompleted());

@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
 
@@ -13,7 +13,7 @@ public class AirStrategy {
 
     private State state;
     private Drone drone;
-    private ReadJSON json;
+    private ReadJSON2 json;
     private Carte carte;
     private Budget budget;
     private boolean isOver;
@@ -27,7 +27,7 @@ public class AirStrategy {
      * @param carte
      * @param budget
      */
-    public AirStrategy(Drone drone, ReadJSON json, Carte carte,Budget budget) {
+    public AirStrategy(Drone drone, ReadJSON2 json, Carte carte, Budget budget) {
         this.drone = drone;
         this.json = json;
         this.carte = carte;
@@ -52,7 +52,7 @@ public class AirStrategy {
      */
     public void acknowledgeResults() {
         if (budget.hasBudget()){
-            budget.subBudget(json.getCost());
+            budget.subBudget(json.getAnswer().getCost());
             state = state.nextState(json);
             carte.addAirCase(drone.getCoord());
 
