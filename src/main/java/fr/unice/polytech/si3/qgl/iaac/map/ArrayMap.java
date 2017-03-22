@@ -41,23 +41,6 @@ public class ArrayMap {
         return map.get(point);
     }
 
-    public boolean isGround(Point point) {
-
-        Case current = map.get(point);
-        Case up = map.get(new Point(point.x, point.y + 3));
-        Case down = map.get(new Point(point.x, point.y - 3));
-
-        if (current != null && !current.containOcean())
-            return true;
-
-        if (up != null && !up.containOcean() && down != null && !down.containOcean())
-            return true;
-
-        return false;
-
-
-    }
-
     public boolean isGround2(Point point) {
 
         Case current = map.get(point);
@@ -66,15 +49,21 @@ public class ArrayMap {
         Case left = map.get(new Point(point.x + 3, point.y ));
         Case right = map.get(new Point(point.x - 3, point.y ));
 
-        if (up != null && !up.containOcean() && down != null && !down.containOcean() && current == null)
-            return true;
+        if (current == null) {
 
-        if (left != null && !left.containOcean() && right != null && !right.containOcean() && current == null)
-            return true;
+            if (containNoOcean(up) && containNoOcean(down))
+                return true;
+
+            if (containNoOcean(left) && containNoOcean(right))
+                return true;
+        }
 
         return false;
 
+    }
 
+    private boolean containNoOcean(Case tile) {
+        return tile != null && !tile.containOcean();
     }
 
     private void defineMapSize() {
@@ -118,7 +107,7 @@ public class ArrayMap {
     }
 
     public Point getRandomTarget() {
-        Random random = new Random();
+        Random random;
         Point point;
         do {
             random = new Random();

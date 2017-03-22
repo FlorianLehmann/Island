@@ -16,8 +16,6 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
 public class Case {
 
 
-    //comment
-    //always use List instead of ArrayList or LinkedList
     private Point coords;
     private List<EnumBiome> biomes;
     private String idCreek;
@@ -58,30 +56,6 @@ public class Case {
             idPu=json.getAnswer().getSites();
     }
 
-    /*public void updateRessources(ReadJSON json){
-        ressources=json.getResources();
-    }
-
-    public void updateNbRessources(ReadJSON json){
-        nbRessources=json.getNbRessources();
-    }*/
-
-    public void removeNbRessource(EnumResources item, int nb){
-        for(int i=0;i<ressources.size();i++){
-            if(ressources.get(i).equals(item))
-                nbRessources.set(i,nbRessources.get(i)-nb);
-        }
-    }
-
-    public void removeResource(EnumResources resource){
-        for(int i=0;i<ressources.size();i++){
-            if(ressources.get(i).equals(resource)) {
-                nbRessources.remove(i);
-                break;
-            }
-        }
-    }
-
     public void update(ReadJSON json) {
         updateBiomes(json);
         updateCreek(json);
@@ -108,14 +82,6 @@ public class Case {
         return new String(idCreek);
     }
 
-    public int containsGround() {
-        for (int i = 0; i < biomes.size(); i++) {
-            if (biomes.get(i) != OCEAN)
-                return 1;
-        }
-        return 0;
-    }
-
     public boolean containOcean() {
         for (int i = 0; i < biomes.size(); i++) {
             if (biomes.get(i) != OCEAN)
@@ -124,4 +90,3 @@ public class Case {
         return true;
     }
 }
-//le drone s'arrête quand il y a un site et non une crique

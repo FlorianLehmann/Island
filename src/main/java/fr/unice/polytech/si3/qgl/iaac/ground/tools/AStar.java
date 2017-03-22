@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class AStar {
 
-    //TODO on ne gère pas le cas des coord negatives
-    //si on en démarre pas dans la bonne zone ça plante
-
     private Deque<Point> way;
     private Point location;
     private Point target;
@@ -25,9 +22,6 @@ public class AStar {
     private List<Node> close;
     private List<Node> neighbours;
     private ArrayMap edge;
-
-    private static final Logger logger = LogManager.getLogger(AStar.class);
-
 
     private class Node {
         private Node parent;
@@ -121,11 +115,9 @@ public class AStar {
         while(parent.location.x != location.x || parent.location.y!= location.y ){
 
             way.push(parent.location);
-            logger.info(parent.parent.location);
             parent = parent.parent;
         }
 
-        logger.info(way.size());
         //On ne tient pas compte de la case initiale
     }
 
