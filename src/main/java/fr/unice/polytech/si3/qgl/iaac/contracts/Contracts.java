@@ -89,9 +89,10 @@ public class Contracts {
     }
 
     public List<Contract> changeNotAPrimaryContractToPriorityPrimaryContract(List<Contract> primaryContracts){
-        for (Contract contract: notAPriorityPrimaryContract){
-            if(!contract.isCompleted()) {
-                primaryContracts.add(contract);
+        for (int i=0; i<notAPriorityPrimaryContract.size();i++){
+            if(!notAPriorityPrimaryContract.get(i).isCompleted()) {
+                primaryContracts.add(notAPriorityPrimaryContract.get(i));
+                notAPriorityPrimaryContract.remove(i);
             }
         }
         return primaryContracts;
