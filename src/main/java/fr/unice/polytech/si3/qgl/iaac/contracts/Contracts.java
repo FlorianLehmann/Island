@@ -139,9 +139,9 @@ public class Contracts {
             logger.info("AFFICHAGE DU NOM : " + secondaryContract.getName());
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                logger.info("AFFICHAGE DU NOM : " + ingredient.getIngredient()+ ingredient.getAmount() + (secondaryContract.getNeed() + ((int) secondaryContract.getNeed()/10)));
+                logger.info("AFFICHAGE DU NOM : " + ingredient.getIngredient()+ (ingredient.getAmount() * (secondaryContract.getNeed() + ((int) secondaryContract.getNeed()/10))));
 
-                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() + (secondaryContract.getNeed() + ((int) secondaryContract.getNeed()/10)));
+                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() * (secondaryContract.getNeed() + ((int) secondaryContract.getNeed()/10)));
             }
         }
     }
