@@ -67,21 +67,7 @@ public class Case {
         nbRessources=json.getNbRessources();
     }*/
 
-    public void removeNbRessource(EnumResources item, int nb){
-        for(int i=0;i<ressources.size();i++){
-            if(ressources.get(i).equals(item))
-                nbRessources.set(i,nbRessources.get(i)-nb);
-        }
-    }
 
-    public void removeResource(EnumResources resource){
-        for(int i=0;i<ressources.size();i++){
-            if(ressources.get(i).equals(resource)) {
-                nbRessources.remove(i);
-                break;
-            }
-        }
-    }
 
     public void update(ReadJSON json) {
         updateBiomes(json);
