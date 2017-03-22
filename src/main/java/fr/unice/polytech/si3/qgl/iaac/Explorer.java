@@ -31,7 +31,7 @@ public class Explorer implements IExplorerRaid {
 
     /**
      * Initialize attributes with the JSON request
-     * @param s
+     * @param string
      */
     @Override
     public void initialize(String s) {
