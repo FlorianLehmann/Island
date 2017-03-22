@@ -4,11 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by florian on 22/03/2017.

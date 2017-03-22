@@ -1,8 +1,8 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
 import org.junit.Test;

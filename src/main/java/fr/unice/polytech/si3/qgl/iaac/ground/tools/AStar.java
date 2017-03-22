@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
-import fr.unice.polytech.si3.qgl.iaac.ground.ReachResources;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

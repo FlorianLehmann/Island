@@ -2,7 +2,6 @@ package fr.unice.polytech.si3.qgl.iaac.json;
 
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 

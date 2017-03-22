@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 

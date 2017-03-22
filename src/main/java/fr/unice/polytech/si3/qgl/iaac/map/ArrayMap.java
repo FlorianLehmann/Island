@@ -1,13 +1,10 @@
 package fr.unice.polytech.si3.qgl.iaac.map;
 
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.awt.*;
-import java.util.*;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by florian on 03/03/2017.
@@ -19,25 +16,20 @@ public class ArrayMap {
      */
     private Map<Point, Case> map;
     private Map<Point, Boolean> edge;
-    private List<Point> listeY;
     private Map<Point, Boolean> edge_tmp;
-
-
     private int xMax;
     private int xMin;
     private int yMax;
     private int yMin;
 
-
-    private int size;
-
-    private static final Logger logger = LogManager.getLogger(ArrayMap.class);
-
+    /**
+     * default constructor
+     * @param map
+     */
     public ArrayMap(Map<Point, Case> map) {
         edge_tmp = new HashMap<>();
         this.map = map;
         edge = new HashMap<>();
-        listeY = new LinkedList<>();
         xMax = Integer.MIN_VALUE;
         xMin = Integer.MAX_VALUE;
         yMax = Integer.MIN_VALUE;
@@ -47,31 +39,6 @@ public class ArrayMap {
 
     public Case get(Point point) {
         return map.get(point);
-    }
-
-    //todo crash si map au bord de la map
-    public boolean isAnEdge(Point point) {
-
-
-        Case left = map.get(new Point(point.x - 1, point.y));
-        Case right = map.get(new Point(point.x + 1, point.y));
-        Case current = map.get(point);
-
-        if (left != null && right != null)
-            if ((left.containOcean() || right.containOcean()))
-                return true;
-
-        Case up = map.get(new Point(point.x , point.y + 1));
-        Case down = map.get(new Point(point.x , point.y - 1));
-
-        if (up != null && down != null)
-            if ((up.containOcean() || down.containOcean()))
-                return true;
-
-
-
-        return false;
-
     }
 
     public boolean isGround(Point point) {
@@ -134,37 +101,16 @@ public class ArrayMap {
 
         defineMapSize();
 
-        logger.info("Xmin :" + xMin + "Xmax " + xMax);
         for (int i = xMin; i <= xMax ; i++) {
             for (int j = yMin; j < yMax ; j++) {
                 edge_tmp.put(new Point(i,j) ,isGround2(new Point(i,j)));
-                logger.info("test :" + isGround2(new Point(i,j)));
             }
         }
-
-
-        logger.info(strto());
 
     }
 
     public boolean isEdge(Point point) {
         return edge.getOrDefault(point, false);
-    }
-
-
-    public String strto() {
-        StringBuilder str = new StringBuilder();
-        str.append("\n");
-        for (int i = xMin; i < xMax ; i++) {
-            for (int j = yMin; j < yMax + 30 ; j++) {
-                if (edge.getOrDefault(new Point(i,j), false) || edge_tmp.getOrDefault(new Point(i,j), false) )
-                    str.append("1");
-                else
-                    str.append("0");
-            }
-            str.append("\n");
-        }
-        return str.toString();
     }
 
     public boolean isEdgeG(Point point) {

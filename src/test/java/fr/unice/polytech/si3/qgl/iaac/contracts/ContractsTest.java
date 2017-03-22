@@ -1,17 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
 
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by lehmann on 04/02/17.

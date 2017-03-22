@@ -1,7 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.resources;
 
-import java.util.List;
-
 /**
  * Created by florian on 27/02/2017.
  */

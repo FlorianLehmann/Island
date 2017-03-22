@@ -9,9 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by florian on 13/02/2017.

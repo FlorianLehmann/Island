@@ -1,15 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
+import fr.unice.polytech.si3.qgl.iaac.Player;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 
-import fr.unice.polytech.si3.qgl.iaac.Player;
-
-
-
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.*;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.FRONT;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.LEFT;
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.*;
 
 /**

@@ -4,7 +4,6 @@ import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

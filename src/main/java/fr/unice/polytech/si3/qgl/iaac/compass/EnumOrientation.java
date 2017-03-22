@@ -1,7 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.compass;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,12 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ground.tools.AStar;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import org.apache.logging.log4j.LogManager;

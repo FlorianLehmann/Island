@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.*;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
 import static junit.framework.TestCase.assertEquals;
 

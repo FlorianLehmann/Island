@@ -9,10 +9,11 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by florian on 03/03/2017.

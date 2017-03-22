@@ -4,6 +4,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+
 import java.util.ArrayList;
 import java.util.List;
 

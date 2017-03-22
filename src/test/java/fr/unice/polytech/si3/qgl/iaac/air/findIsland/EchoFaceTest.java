@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.SOUTH;
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.ECHO;
-import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.*;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 

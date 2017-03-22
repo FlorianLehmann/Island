@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 
 /**
