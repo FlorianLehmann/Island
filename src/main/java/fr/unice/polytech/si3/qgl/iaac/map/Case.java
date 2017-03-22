@@ -95,13 +95,7 @@ public class Case {
         return new String(idCreek);
     }
 
-    public int containsGround() {
-        for (int i = 0; i < biomes.size(); i++) {
-            if (biomes.get(i) != OCEAN)
-                return 1;
-        }
-        return 0;
-    }
+
 
     public boolean containOcean() {
         for (int i = 0; i < biomes.size(); i++) {
