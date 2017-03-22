@@ -68,10 +68,10 @@ public class Contracts {
                 return false;
             }
         }
-        if(!notAPriorityPrimaryContract()){
+        /*if(!notAPriorityPrimaryContract()){
             primaryContracts = changeNotAPrimaryContractToPriorityPrimaryContract(primaryContracts);
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -234,10 +234,10 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
-            else if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
+            /*else if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
                 notAPriorityPrimaryContract(i);
                 primaryContracts.remove(i);
-            }
+            }*/
         }
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
@@ -245,10 +245,10 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
-            else if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
+            /*else if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
                 notAPriorityPrimaryContract(i);
                 primaryContracts.remove(i);
-            }
+            }*/
 
         }
 
@@ -257,10 +257,10 @@ public class Contracts {
                 primaryContractsSorted.add(primaryContracts.get(i));
                 primaryContracts.remove(i);
             }
-            else if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
+            /*else if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
                 notAPriorityPrimaryContract(i);
                 primaryContracts.remove(i);
-            }
+            }*/
 
 
         }
@@ -269,10 +269,14 @@ public class Contracts {
             if (primaryContracts.get(i).getNeed() <= amountMax) {
                 primaryContractsSorted.add(primaryContracts.get(i));
             }
-            else {
+            /*else {
                 notAPriorityPrimaryContract(i);
-            }
+            }*/
 
+        }
+
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            primaryContractsSorted.add(primaryContracts.get(i));
         }
 
         primaryContracts = primaryContractsSorted;
