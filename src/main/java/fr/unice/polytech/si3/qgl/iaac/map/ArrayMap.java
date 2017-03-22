@@ -22,7 +22,7 @@ public class ArrayMap {
     private Map<Point, Case> map;
     private Map<Point, Boolean> edge;
     private List<Point> listeY;
-    Map<Point, Boolean> edge_tmp;
+    private Map<Point, Boolean> edge_tmp;
 
 
     private int xMax;

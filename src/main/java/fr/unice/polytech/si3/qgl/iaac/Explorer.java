@@ -9,6 +9,7 @@ import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.awt.*;
 
@@ -27,8 +28,6 @@ public class Explorer implements IExplorerRaid {
     private Carte carte;
     private Contracts contracts;
     private int nbMen;
-
-    //todo dans airstrategy stopper lorsque le budget est torp faible
 
     /**
      * Initialize attributes with the JSON request

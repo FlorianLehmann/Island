@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
@@ -11,6 +12,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,6 +23,7 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
 /**
  * Created by lehmann on 04/02/17.
  */
+
 public class ReadJSON {
 
 
