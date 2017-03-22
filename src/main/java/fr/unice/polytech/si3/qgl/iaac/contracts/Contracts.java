@@ -69,14 +69,14 @@ public class Contracts {
             }
         }
         if(!notAPriorityPrimaryContract()){
-            primaryContracts = notAPriorityPrimaryContract;
+            primaryContracts = changeNotAPrimaryContractToPriorityPrimaryContract(primaryContracts);
             return false;
         }
         return true;
     }
 
     public boolean notAPriorityPrimaryContract() {
-        for (Contract contract: primaryContracts) {
+        for (Contract contract: notAPriorityPrimaryContract) {
             if(!contract.isCompleted()){
                 return false;
             }
@@ -88,6 +88,14 @@ public class Contracts {
         return secondaryContracts.isEmpty();
     }
 
+    public List<Contract> changeNotAPrimaryContractToPriorityPrimaryContract(List<Contract> primaryContracts){
+        for (Contract contract: notAPriorityPrimaryContract){
+            if(!contract.isCompleted()) {
+                primaryContracts.add(contract);
+            }
+        }
+        return primaryContracts;
+    }
 
     public boolean containRessource(EnumPrimaryResources ressource) {
         for (Contract contract : primaryContracts) {
