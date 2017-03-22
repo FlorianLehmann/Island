@@ -13,8 +13,7 @@ public class Scan1 implements State {
         return drone.scan();
     }
 
-    public State wait(ReadJSON json){
-        //todo ajouter cas stop
+    public State nextState(ReadJSON json){
         if(json.getGround())
             return new Fly3();
         return new Echo2();

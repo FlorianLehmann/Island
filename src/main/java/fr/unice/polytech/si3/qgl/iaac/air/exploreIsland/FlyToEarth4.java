@@ -20,7 +20,7 @@ public class FlyToEarth4 implements State {
         return drone.fly();
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(nbCase>0)
             return this;
         return new Scan1();

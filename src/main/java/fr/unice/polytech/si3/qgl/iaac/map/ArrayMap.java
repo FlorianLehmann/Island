@@ -17,8 +17,6 @@ public class ArrayMap {
     /**
      * attributes
      */
-
-
     private Map<Point, Case> map;
     private Map<Point, Boolean> edge;
     private List<Point> listeY;

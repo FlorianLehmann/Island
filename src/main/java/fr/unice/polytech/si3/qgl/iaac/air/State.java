@@ -10,7 +10,7 @@ public interface State {
 
     public String execute(Drone drone);
 
-    public State wait(ReadJSON json);
+    public State nextState(ReadJSON json);
 
 
 }

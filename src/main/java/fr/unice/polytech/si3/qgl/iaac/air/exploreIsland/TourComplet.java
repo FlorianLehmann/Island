@@ -29,7 +29,7 @@ public class TourComplet implements State {
 
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(etat==0) return new TourComplet(1,range);
         if(etat==1){
             range=json.getRange();
@@ -40,7 +40,7 @@ public class TourComplet implements State {
         }
         if(etat==2){return new TourComplet(3);}
         if(etat==3){return new TourComplet(4);}
-        AirStrategy.incDemitour();
+        AirStrategy.incHalfTurn();
         return new EchoFront8();
 
     }

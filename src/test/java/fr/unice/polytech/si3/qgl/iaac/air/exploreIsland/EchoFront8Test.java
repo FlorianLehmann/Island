@@ -33,12 +33,12 @@ public class EchoFront8Test {
     @Test
     public void waitWithGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(state.wait(read) instanceof FlyToEarth4);
+        assertTrue(state.nextState(read) instanceof FlyToEarth4);
     }
 
     @Test
     public void waitWithoutGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(state.wait(read) instanceof TourComplet);
+        assertTrue(state.nextState(read) instanceof TourComplet);
     }
 }

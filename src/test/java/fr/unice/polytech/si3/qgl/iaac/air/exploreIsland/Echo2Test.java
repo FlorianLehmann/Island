@@ -34,11 +34,11 @@ public class Echo2Test {
     @Test
     public void waitWithGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(state.wait(read) instanceof FlyToEarth4);
+        assertTrue(state.nextState(read) instanceof FlyToEarth4);
     }
     @Test
     public void waitWithoutGroung(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(state.wait(read) instanceof EchoOpDirection5);
+        assertTrue(state.nextState(read) instanceof EchoOpDirection5);
     }
 }

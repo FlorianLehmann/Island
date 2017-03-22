@@ -31,12 +31,12 @@ public class FlyToEarth4Test {
 
     @Test
     public void waitTestWithRange1(){
-        assertTrue(state.wait(read) instanceof FlyToEarth4);
+        assertTrue(state.nextState(read) instanceof FlyToEarth4);
     }
 
     @Test
     public void waitTestWithRange0(){
         state=new FlyToEarth4(0);
-        assertTrue(state.wait(read) instanceof Scan1);
+        assertTrue(state.nextState(read) instanceof Scan1);
     }
 }

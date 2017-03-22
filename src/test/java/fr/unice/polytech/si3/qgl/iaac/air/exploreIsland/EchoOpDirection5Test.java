@@ -33,17 +33,17 @@ public class EchoOpDirection5Test {
     @Test
     public void waitWithGroudRange2(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(state.wait(read) instanceof Fly6);
+        assertTrue(state.nextState(read) instanceof Fly6);
     }
 
     @Test
     public void waitWithGroundRange4(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 4, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(state.wait(read) instanceof DemiTour7);
+        assertTrue(state.nextState(read) instanceof DemiTour7);
     }
     @Test
     public void waitWithoutGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(state.wait(read) instanceof DemiTour7);
+        assertTrue(state.nextState(read) instanceof DemiTour7);
     }
 }

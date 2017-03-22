@@ -37,7 +37,7 @@ public class FlyTest {
     @Test
     public void waitTest(){
         read.read("{ \"action\": \"fly\" }");
-        assertTrue(fly.wait(read) instanceof EchoLeft);
+        assertTrue(fly.nextState(read) instanceof EchoLeft);
     }
 
 

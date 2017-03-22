@@ -13,7 +13,7 @@ public class Stop implements State {
         return STOP.toString("");
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         return this;
     }
 

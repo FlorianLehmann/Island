@@ -18,14 +18,7 @@ public class AirStrategy {
     private Budget budget;
     private boolean isOver;
 
-    //temp todo
-    private static int demitour;
-
-
-
-    public static void incDemitour() {
-        demitour++;
-    }
+    private static int halfTurn;
 
     /**
      * default constructor
@@ -41,10 +34,8 @@ public class AirStrategy {
         this.budget = budget;
         state = new EchoFace();
         isOver = false;
-        demitour = 0;
+        halfTurn = 0;
     }
-
-    //todo condition d'arrêt
 
     /**
      * take an action
@@ -62,15 +53,25 @@ public class AirStrategy {
     public void acknowledgeResults() {
         if (budget.hasBudget()){
             budget.subBudget(json.getCost());
-            state = state.wait(json);
+            state = state.nextState(json);
             carte.addAirCase(drone.getCoord());
 
-            if (carte.tmp_hasAcrique() && demitour == 1) {
+            if (carte.hasAcrique() && halfTurn == 1) {
                isOver = true;
             }
         }
     }
 
+    /**
+     * increase the number of halfTurn
+     */
+    public static void incHalfTurn() {
+        halfTurn++;
+    }
+
+    /**
+     * @return true if air exploration is over
+     */
     public boolean isOver(){
         return isOver;
     }

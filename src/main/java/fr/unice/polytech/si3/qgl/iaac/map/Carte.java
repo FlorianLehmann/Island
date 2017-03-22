@@ -13,15 +13,25 @@ import java.util.Map;
  */
 public class Carte {
 
+    /**
+     * attributes
+     */
     private Map<Point, Case> carte;
     private ReadJSON json;
 
-
+    /**
+     * default constructor
+     * @param readJSON
+     */
     public Carte(ReadJSON readJSON) {
         json = readJSON;
         carte = new HashMap<>();
     }
 
+    /**
+     * create 9 tile
+     * @param coords
+     */
     public void addAirCase(Point coords) {
 
         for (int i = 0; i < 3; i++) {
@@ -35,11 +45,19 @@ public class Carte {
 
     }
 
-
-    /* todo
-    TEMPORARY
+    /**
+     * add a tile
+     * @param coord
      */
-    public boolean tmp_hasAcrique() {
+    public void addGroundCase(Point coord) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     *
+     * @return true if there is a creek on the map
+     */
+    public boolean hasAcrique() {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
             if (tile.getValue().hasCreek())
@@ -48,10 +66,11 @@ public class Carte {
 
     }
 
-    public void addGroundCase(Point coord) {
-        throw new UnsupportedOperationException();
-    }
-
+    /**
+     *
+     * @param name
+     * @return true if the resource is present on the map
+     */
     public boolean hasResource(EnumResources name) {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
@@ -61,6 +80,10 @@ public class Carte {
 
     }
 
+    /**
+     *
+     * @return the coord of a creek
+     */
     public Point getACreek() {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
@@ -70,6 +93,10 @@ public class Carte {
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
+    /**
+     * return the ID of a creek
+     * @return
+     */
     public String getCreekID() {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
@@ -79,6 +106,11 @@ public class Carte {
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
+    /**
+     *
+     * @param name
+     * @return the coord of a biome containning a resource
+     */
     public Point getResource(EnumResources name) {
 
         for (Map.Entry<Point, Case> tile: carte.entrySet())
@@ -93,6 +125,11 @@ public class Carte {
     }
 
 
+    /**
+     *
+     * @param name
+     * @return the coord of the nearest biome containning a resource
+     */
     public Point getNearestResource(EnumResources name, Point location) {
         int distanceMin = Integer.MAX_VALUE;
         Case tile = null;
@@ -110,11 +147,19 @@ public class Carte {
         //throw new RuntimeException("No resources");
     }
 
+    /**
+     *
+     * @param coords
+     * @param location
+     * @return the Manathan distance between coords and location
+     */
     private int distance(Point coords, Point location) {
         return Math.abs(location.x - coords.x) + Math.abs(location.y - coords.y);
     }
 
-    //TODO
+    /**
+     * @return the map
+     */
     public Map<Point, Case> getCases() {
         return carte;
     }

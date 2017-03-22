@@ -17,7 +17,7 @@ public class EchoLeft implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State nextState(ReadJSON json) {
         if(json.getGround())
             return new HeadingLeft();
 

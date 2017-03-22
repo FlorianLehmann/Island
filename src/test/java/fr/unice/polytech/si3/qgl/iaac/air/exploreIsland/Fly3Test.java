@@ -33,6 +33,6 @@ public class Fly3Test {
 
     @Test
     public void waitTest(){
-        assertTrue(state.wait(read) instanceof Scan1);
+        assertTrue(state.nextState(read) instanceof Scan1);
     }
 }

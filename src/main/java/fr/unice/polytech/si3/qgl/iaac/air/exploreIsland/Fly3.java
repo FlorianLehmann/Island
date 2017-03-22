@@ -13,9 +13,8 @@ public class Fly3 implements State {
         return drone.fly();
     }
 
-    public State wait(ReadJSON json){
-       Scan1 next=new Scan1();
-        return next;
+    public State nextState(ReadJSON json){
+        return new Scan1();
     }
 
 }

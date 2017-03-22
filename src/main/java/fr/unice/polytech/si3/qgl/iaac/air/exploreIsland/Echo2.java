@@ -14,9 +14,9 @@ public class Echo2 implements State {
         return drone.echo(FRONT);
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(json.getGround())
-            return new FlyToEarth4(json.getRange());//todo out of range
+            return new FlyToEarth4(json.getRange());
         return new EchoOpDirection5();
     }
 

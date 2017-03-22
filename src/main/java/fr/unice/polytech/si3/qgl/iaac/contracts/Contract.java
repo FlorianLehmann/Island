@@ -8,9 +8,12 @@ import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
  */
 public class Contract {
 
+    /**
+     * attributes
+     */
     private EnumResources name;
-    private int amount;
-    private int need;
+    private int debt;
+    private int required;
 
     /**
      * default constructor
@@ -22,26 +25,26 @@ public class Contract {
             this.name =  name;
             if (amount <= 0)
                 throw new NoAmountContractException();
-            this.amount = 0;
-            need = amount;
+            this.debt = 0;
+            required = amount;
     }
 
     /**
-     *
+     * reduce the debt with quantity collected
      * @param amount
      */
     public void add(int amount){
-        this.amount += amount;
+        this.debt += amount;
     }
 
     /**
-     *
+     * increase the debt
      * @param amount
      */
     public void sub(int amount){
-        this.amount -= amount;
-        if (this.amount < 0)
-            this.amount = 0;
+        this.debt -= amount;
+        if (this.debt < 0)
+            this.debt = 0;
     }
 
     /**
@@ -53,11 +56,11 @@ public class Contract {
     }
 
     /**
-     * return the amount of resource
+     * return the debt of resource
      * @return
      */
-    public int getAmount() {
-        return amount;
+    public int getDebt() {
+        return debt;
     }
 
     /**
@@ -65,14 +68,22 @@ public class Contract {
      * @return true if the contract is completed
      */
     public boolean isCompleted() {
-        return amount >= need;
+        return debt >= required;
     }
 
-    public int getNeed() {
-        return need;
+    /**
+     *
+     * @return the total amount of resource required to complete this contract
+     */
+    public int getRequired() {
+        return required;
     }
 
-    public void addNeed(int amount) {
-        need += amount;
+    /**
+     * increase the total amount of resource required to complete this contract
+     * @param amount
+     */
+    public void addRequired(int amount) {
+        required += amount;
     }
 }

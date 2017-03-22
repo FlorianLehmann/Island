@@ -33,7 +33,7 @@ public class Fly6Test {
 }
     @Test
     public void waitTest(){
-        assertTrue(state.wait(read) instanceof EchoOpDirection5);
+        assertTrue(state.nextState(read) instanceof EchoOpDirection5);
     }
 
 }

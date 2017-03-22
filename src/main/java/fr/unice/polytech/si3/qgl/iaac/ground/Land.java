@@ -26,7 +26,7 @@ public class Land implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State changeState(ReadJSON json) {
         return new ReachResources(carte);
     }
 

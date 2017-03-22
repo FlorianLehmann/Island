@@ -15,7 +15,7 @@ public class Fly implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State nextState(ReadJSON json) {
         return new EchoLeft();
     }
 

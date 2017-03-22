@@ -41,7 +41,7 @@ public class DemiTour7 implements State {
 
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(state==0){
             DemiTour7 next=new DemiTour7(1,direction);
             return next;

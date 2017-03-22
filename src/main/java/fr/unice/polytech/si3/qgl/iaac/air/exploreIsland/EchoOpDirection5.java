@@ -16,7 +16,7 @@ public class EchoOpDirection5 implements State {
         return drone.echo(LEFT);
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(json.getGround() && json.getRange()<3)
             return new Fly6();
         return new DemiTour7(0);

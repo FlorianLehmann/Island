@@ -15,7 +15,7 @@ public class EchoFront8 implements State {
         return drone.echo(EnumDirection.FRONT);
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         if(json.getGround())
             return new FlyToEarth4(json.getRange());
         return new TourComplet(0);

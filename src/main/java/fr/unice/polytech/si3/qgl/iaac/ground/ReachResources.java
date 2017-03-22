@@ -109,7 +109,7 @@ public class ReachResources implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State changeState(ReadJSON json) {
 
         switch (state) {
             case MOVE:

@@ -33,13 +33,13 @@ public class Scan1Test {
     @Test
     public void waitWithGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(state.wait(read) instanceof Fly3);
+        assertTrue(state.nextState(read) instanceof Fly3);
 
     }
     @Test
     public void wateWithoutGround(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(state.wait(read) instanceof Echo2);
+        assertTrue(state.nextState(read) instanceof Echo2);
     }
 
 

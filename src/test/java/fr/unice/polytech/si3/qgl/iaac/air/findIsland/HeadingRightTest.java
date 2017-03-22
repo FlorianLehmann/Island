@@ -38,7 +38,7 @@ public class HeadingRightTest {
     @Test
     public void waitTest(){
         read.read("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"E\" } }");
-        assertTrue(HeadingRight.wait(read) instanceof EchoFace);
+        assertTrue(HeadingRight.nextState(read) instanceof EchoFace);
     }
 
 }

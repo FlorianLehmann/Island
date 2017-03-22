@@ -38,13 +38,13 @@ public class EchoLeftTest {
     @Test
     public void waitWithOceanFly(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(echoLeft.wait(read) instanceof EchoRight);
+        assertTrue(echoLeft.nextState(read) instanceof EchoRight);
     }
 
     @Test
     public void waitWithGroundLeft(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(echoLeft.wait(read) instanceof HeadingLeft);
+        assertTrue(echoLeft.nextState(read) instanceof HeadingLeft);
     }
 
 }

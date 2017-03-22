@@ -16,7 +16,7 @@ public class EchoRight implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State nextState(ReadJSON json) {
         if(json.getGround())
             return new HeadingRight();
         return new Fly();

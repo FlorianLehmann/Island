@@ -13,7 +13,7 @@ public class Fly6 implements State {
         return drone.fly();
     }
 
-    public State wait(ReadJSON json){
+    public State nextState(ReadJSON json){
         return new EchoOpDirection5();
     }
 

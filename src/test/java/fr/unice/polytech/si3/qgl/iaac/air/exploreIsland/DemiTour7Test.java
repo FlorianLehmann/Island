@@ -35,12 +35,12 @@ public class DemiTour7Test {
 
     @Test
     public void waitTestWithState0(){
-        assertTrue(state.wait(read) instanceof DemiTour7);
+        assertTrue(state.nextState(read) instanceof DemiTour7);
     }
 
     @Test
     public void waitTestWithState1(){
         state=new DemiTour7(1);
-        assertTrue(state.wait(read) instanceof EchoFront8);
+        assertTrue(state.nextState(read) instanceof EchoFront8);
     }
 }

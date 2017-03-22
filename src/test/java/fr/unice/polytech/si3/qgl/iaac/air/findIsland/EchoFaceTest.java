@@ -39,13 +39,13 @@ public class EchoFaceTest {
     @Test
     public void waitWithOceanFace(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(echoFace.wait(read) instanceof EchoLeft);
+        assertTrue(echoFace.nextState(read) instanceof EchoLeft);
     }
 
     @Test
     public void waitWithGroundFace(){
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(echoFace.wait(read) instanceof FlyToEarth4);
+        assertTrue(echoFace.nextState(read) instanceof FlyToEarth4);
     }
 
 }

@@ -58,10 +58,10 @@ public class TourCompletTest {
 
     @Test
     public void waitTest(){
-        assertTrue(state.wait(read) instanceof TourComplet);
+        assertTrue(state.nextState(read) instanceof TourComplet);
         for(int i=0;i<5;i++) {
             state.execute(drone);
-            state = state.wait(read);
+            state = state.nextState(read);
         }
         assertTrue(state instanceof EchoFront8);
     }

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by sebde on 11/02/2017.
@@ -23,8 +24,14 @@ public class StopTest {
         state = new Stop();
         read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
+
     @Test
     public void executeTest(){
         assertEquals(state.execute(drone),"{ \"action\": \"stop\" }");
+    }
+
+    @Test
+    public void ShouldNotChangeState(){
+        assertTrue(state.nextState(read) instanceof Stop);
     }
 }

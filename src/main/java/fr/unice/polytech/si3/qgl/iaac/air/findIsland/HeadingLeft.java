@@ -17,7 +17,7 @@ public class HeadingLeft implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
+    public State nextState(ReadJSON json) {
         return new EchoFace();
     }
 

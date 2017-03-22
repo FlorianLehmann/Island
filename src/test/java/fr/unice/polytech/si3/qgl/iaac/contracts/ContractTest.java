@@ -1,6 +1,5 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import org.junit.Before;
@@ -53,16 +52,16 @@ public class ContractTest {
     @Test
     public void addAmountTest() {
         contract.add(15);
-        assertEquals(15, contract.getAmount());
+        assertEquals(15, contract.getDebt());
     }
 
     @Test
     public void subAmountTest() {
         contract.add(150);
         contract.sub(15);
-        assertEquals(135, contract.getAmount());
+        assertEquals(135, contract.getDebt());
         contract.sub(1500);
-        assertEquals(0, contract.getAmount());
+        assertEquals(0, contract.getDebt());
     }
 
     @Test
@@ -74,6 +73,12 @@ public class ContractTest {
     @Test
     public void getNameTest() {
         assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(FISH, 1500).getName());
+    }
+
+    @Test
+    public void shouldIncreaseNumberOfResourcesRequired() {
+        contract.addRequired(500);
+        assertEquals(2000, contract.getRequired());
     }
 
 }

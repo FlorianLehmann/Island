@@ -11,6 +11,6 @@ public interface State {
 
     public String execute(Men men, Contracts contracts, Carte carte);
 
-    public State wait(ReadJSON json);
+    public State changeState(ReadJSON json);
 
 }
