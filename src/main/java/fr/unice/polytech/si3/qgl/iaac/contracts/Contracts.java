@@ -1,17 +1,12 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.*;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 
 /**
@@ -68,6 +63,19 @@ public class Contracts {
     }
 
     public boolean isPrimaryCompleted() {
+        for (Contract contract: primaryContracts) {
+            if(!contract.isCompleted()){
+                return false;
+            }
+        }
+        if(!notAPriorityPrimaryContract()){
+            primaryContracts = notAPriorityPrimaryContract;
+            return false;
+        }
+        return true;
+    }
+
+    public boolean notAPriorityPrimaryContract() {
         for (Contract contract: primaryContracts) {
             if(!contract.isCompleted()){
                 return false;
