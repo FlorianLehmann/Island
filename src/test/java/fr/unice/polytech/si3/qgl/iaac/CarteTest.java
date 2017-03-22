@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FISH;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -51,6 +52,20 @@ public class CarteTest {
         carte.addAirCase(new Point(1,1));
         assertTrue(carte.hasAcrique());
         assertEquals(new Point(1,1), carte.getACreek());
+    }
+
+    @Test
+    public void getNearestResourceTest() throws IOException{
+        carte.addAirCase(new Point(4,4));
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"GLACIER\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+        carte.getCases().get(new Point(4,4)).update(readJSON);
+        carte.addAirCase(new Point(5,5));
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"LAKE\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+        carte.getCases().get(new Point(5,5)).update(readJSON);
+        carte.addAirCase(new Point(6,6));
+        readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"TROPICAL_RAIN_FOREST\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
+        carte.getCases().get(new Point(6,6)).update(readJSON);
+        assertEquals(carte.getNearestResource(WOOD,new Point(0,0)),new Point(6,6));
     }
 
 
