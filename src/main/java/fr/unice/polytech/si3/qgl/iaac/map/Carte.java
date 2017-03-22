@@ -106,23 +106,6 @@ public class Carte {
         throw new RuntimeException("Aucune crique n'est présente");
     }
 
-    /**
-     *
-     * @param name
-     * @return the coord of a biome containning a resource
-     */
-    public Point getResource(EnumResources name) {
-
-        for (Map.Entry<Point, Case> tile: carte.entrySet())
-            if (tile.getValue().containsResource(name)) {
-                Point point = new Point(tile.getValue().getCoords());
-                carte.remove(tile.getKey());
-                return point;
-            }
-
-        throw new RuntimeException("No resources");
-
-    }
 
 
     /**
