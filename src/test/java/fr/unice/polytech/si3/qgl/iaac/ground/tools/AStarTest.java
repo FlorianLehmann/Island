@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
 import fr.unice.polytech.si3.qgl.iaac.map.Case;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class AStarTest {
     private ArrayMap map;
 
     private Map<Point, Case> list;
-    private ReadJSON2 json;
+    private ReadJSON json;
 
     public static final int size = 10;
     public static final int border = 2;
@@ -35,7 +35,7 @@ public class AStarTest {
         location = new Point(3,3);
         target = new Point(6,3);
         list = new HashMap<>();
-        json = new ReadJSON2();
+        json = new ReadJSON();
         json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();

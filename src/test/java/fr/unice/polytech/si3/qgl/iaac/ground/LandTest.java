@@ -35,7 +35,7 @@ public class LandTest {
 
     /*@Test
     public void shouldReturnReachResourcesState() {
-        ReadJSON2 json = mock(ReadJSON2.class);
+        ReadJSON json = mock(ReadJSON.class);
         assertTrue(land.wait(json) instanceof ReachResources);
     }*/
 

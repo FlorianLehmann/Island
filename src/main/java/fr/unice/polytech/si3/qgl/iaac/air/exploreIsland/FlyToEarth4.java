@@ -2,7 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
 /**
  * Created by sebde on 04/02/2017.
@@ -20,7 +20,7 @@ public class FlyToEarth4 implements State {
         return drone.fly();
     }
 
-    public State nextState(ReadJSON2 json){
+    public State nextState(ReadJSON json){
         if(nbCase>0)
             return this;
         return new Scan1();

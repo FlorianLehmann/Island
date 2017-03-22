@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.map;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class ArrayMapTest {
 
     private Map<Point, Case> list;
     private ArrayMap map;
-    private ReadJSON2 json;
+    private ReadJSON json;
 
     public static final int size = 10;
     public static final int border = 2;
@@ -29,7 +29,7 @@ public class ArrayMapTest {
     @Before
     public void defineContext() throws IOException {
         list = new HashMap<>();
-        json = new ReadJSON2();
+        json = new ReadJSON();
         json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();

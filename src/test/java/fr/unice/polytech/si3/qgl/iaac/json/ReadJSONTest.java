@@ -1,15 +1,10 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.SOUTH;
 import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.WEST;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.GLACIER;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.GLASS;
@@ -20,14 +15,14 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by florian on 22/03/2017.
  */
-public class ReadJSON2Test {
+public class ReadJSONTest {
 
-    private ReadJSON2 readJSON2;
+    private ReadJSON readJSON2;
     private Answer answer;
 
     @Before
     public void defineContext() throws IOException {
-        readJSON2 = new ReadJSON2();
+        readJSON2 = new ReadJSON();
         answer = readJSON2.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
     }

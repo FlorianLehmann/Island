@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by florian on 22/03/2017.
  */
-public class ReadJSON2 {
+public class ReadJSON {
 
     /**
      * attributes
@@ -25,7 +25,7 @@ public class ReadJSON2 {
     /**
      * default constructor
      */
-    public ReadJSON2() {
+    public ReadJSON() {
         mapper = new ObjectMapper();
     }
 

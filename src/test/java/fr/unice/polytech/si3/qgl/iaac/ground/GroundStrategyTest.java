@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,7 +28,7 @@ public class GroundStrategyTest {
 
     private GroundStrategy strategy;
     private Men men;
-    private ReadJSON2 json;
+    private ReadJSON json;
     private Carte carte;
     private Budget budget;
 
@@ -36,7 +36,7 @@ public class GroundStrategyTest {
     @Before
     public void defineContext() throws IOException {
         men = new Men(new Point(0,0));
-        json = new ReadJSON2();
+        json = new ReadJSON();
         json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         Carte carte = mock(Carte.class);
         when(carte.getCreekID()).thenReturn("ID");

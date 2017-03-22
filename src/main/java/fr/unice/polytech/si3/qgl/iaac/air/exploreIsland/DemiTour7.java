@@ -5,7 +5,7 @@ import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.*;
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
 /**
  * Created by sebde on 05/02/2017.
@@ -41,7 +41,7 @@ public class DemiTour7 implements State {
 
     }
 
-    public State nextState(ReadJSON2 json){
+    public State nextState(ReadJSON json){
         if(state==0){
             DemiTour7 next=new DemiTour7(1,direction);
             return next;
@@ -69,7 +69,7 @@ public class DemiTour7 implements State {
 
     }
 
-    public State wait(ReadJSON2 json){
+    public State wait(ReadJSON json){
         if(state==0){
             state = 1;
             return this;

@@ -5,7 +5,7 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.ground.GroundStrategy;
 import fr.unice.polytech.si3.qgl.iaac.ground.Men;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
@@ -20,7 +20,7 @@ public class Explorer implements IExplorerRaid {
     /**
      * Attributes
      */
-    private ReadJSON2 readJSON;
+    private ReadJSON readJSON;
     private Drone drone;
     private Budget budget;
     private AirStrategy air;
@@ -36,7 +36,7 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void initialize(String s) {
-        readJSON = new ReadJSON2();
+        readJSON = new ReadJSON();
         try {
             readJSON.read(s);
         } catch (IOException e) {

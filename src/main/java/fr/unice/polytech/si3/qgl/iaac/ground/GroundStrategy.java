@@ -1,7 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +16,7 @@ public class GroundStrategy {
 
     private State state;
     private Men men;
-    private ReadJSON2 json;
+    private ReadJSON json;
     private Carte carte;
     private Budget budget;
     private Contracts contracts;
@@ -31,7 +31,7 @@ public class GroundStrategy {
      * @param men
      * @param carte
      */
-    public GroundStrategy(int nbMen, ReadJSON2 json, Men men, Carte carte, Budget budget, Contracts contracts){
+    public GroundStrategy(int nbMen, ReadJSON json, Men men, Carte carte, Budget budget, Contracts contracts){
         this.men = men;
         this.json = json;
         this.carte = carte;

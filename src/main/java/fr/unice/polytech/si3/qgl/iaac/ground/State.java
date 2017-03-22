@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 
@@ -11,6 +11,6 @@ public interface State {
 
     public String execute(Men men, Contracts contracts, Carte carte);
 
-    public State changeState(ReadJSON2 json);
+    public State changeState(ReadJSON json);
 
 }

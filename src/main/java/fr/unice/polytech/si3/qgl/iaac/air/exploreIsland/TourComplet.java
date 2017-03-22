@@ -3,7 +3,7 @@ package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 import fr.unice.polytech.si3.qgl.iaac.air.AirStrategy;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
 /**
  * Created by sebde on 12/02/2017.
@@ -29,7 +29,7 @@ public class TourComplet implements State {
 
     }
 
-    public State nextState(ReadJSON2 json){
+    public State nextState(ReadJSON json){
         if(etat==0) return new TourComplet(1,range);
         if(etat==1){
             range=json.getAnswer().getRange();

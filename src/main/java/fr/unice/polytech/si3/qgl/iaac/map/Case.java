@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.map;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
@@ -44,26 +44,26 @@ public class Case {
         return new Point(coords.x,coords.y);
     }
 
-    public void updateBiomes(ReadJSON2 json){
+    public void updateBiomes(ReadJSON json){
         if (json.getAnswer().getBiomes() != null)
             biomes=json.getAnswer().getBiomes();
     }
 
-    public void updateCreek(ReadJSON2 json){
+    public void updateCreek(ReadJSON json){
         if (json.getAnswer().getCreeks() != null)
             idCreek=json.getAnswer().getCreeks();
     }
 
-    public void updatePu(ReadJSON2 json){
+    public void updatePu(ReadJSON json){
         if (json.getAnswer().getSites() != null)
             idPu=json.getAnswer().getSites();
     }
 
-    /*public void updateRessources(ReadJSON2 json){
+    /*public void updateRessources(ReadJSON json){
         ressources=json.getResources();
     }
 
-    public void updateNbRessources(ReadJSON2 json){
+    public void updateNbRessources(ReadJSON json){
         nbRessources=json.getNbRessources();
     }*/
 
@@ -83,7 +83,7 @@ public class Case {
         }
     }
 
-    public void update(ReadJSON2 json) {
+    public void update(ReadJSON json) {
         updateBiomes(json);
         updateCreek(json);
         updatePu(json);

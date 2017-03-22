@@ -1,6 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON2;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +19,11 @@ import static org.junit.Assert.assertTrue;
 public class CarteTest {
 
     private Carte carte;
-    private ReadJSON2 readJSON;
+    private ReadJSON readJSON;
 
     @Before
     public void defineContext() throws IOException {
-        readJSON = new ReadJSON2();
+        readJSON = new ReadJSON();
         readJSON.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte(readJSON);
