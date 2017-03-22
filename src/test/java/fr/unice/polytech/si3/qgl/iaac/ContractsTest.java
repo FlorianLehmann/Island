@@ -69,6 +69,8 @@ public class ContractsTest {
         contracts.add(new Contract(WOOD,60));
         contracts.add(new Contract(FRUITS,100));
         assertEquals(FRUITS,contracts.getPrimaryContract(FRUITS).getName());
+        contracts.addColectedContract(100,FRUITS);
+        assertEquals(WOOD,contracts.getContract().getName());
     }
 
    @Test
@@ -128,4 +130,14 @@ public class ContractsTest {
         assertEquals(contracts.getManufacturedContract(),contract);
     }*/
 
+    @Test
+    public void priorityPrimaryContactToNotPriority(){
+        contracts.add(new Contract(WOOD,60));
+        contracts.add(new Contract(PLANK,100));
+        contracts.add(new Contract(FUR,500));
+        Contract contract = new Contract(FUR,500);
+        contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
+        assertFalse(contracts.contain(FUR));
+
+    }
 }

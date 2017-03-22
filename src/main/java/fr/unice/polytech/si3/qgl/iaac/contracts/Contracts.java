@@ -68,19 +68,6 @@ public class Contracts {
                 return false;
             }
         }
-        /*if(!notAPriorityPrimaryContract()){
-            primaryContracts = changeNotAPrimaryContractToPriorityPrimaryContract(primaryContracts);
-            return false;
-        }*/
-        return true;
-    }
-
-    public boolean notAPriorityPrimaryContract() {
-        for (Contract contract: notAPriorityPrimaryContract) {
-            if(!contract.isCompleted()){
-                return false;
-            }
-        }
         return true;
     }
 
@@ -88,15 +75,6 @@ public class Contracts {
         return secondaryContracts.isEmpty();
     }
 
-    public List<Contract> changeNotAPrimaryContractToPriorityPrimaryContract(List<Contract> primaryContracts){
-        for (int i=0; i<notAPriorityPrimaryContract.size();i++){
-            if(!notAPriorityPrimaryContract.get(i).isCompleted()) {
-                primaryContracts.add(notAPriorityPrimaryContract.get(i));
-                notAPriorityPrimaryContract.remove(i);
-            }
-        }
-        return primaryContracts;
-    }
 
     public boolean containRessource(EnumPrimaryResources ressource) {
         for (Contract contract : primaryContracts) {
@@ -229,49 +207,15 @@ public class Contracts {
         List<Contract> primaryContractsSorted = new ArrayList();
         int amountMax = budget / 2;
 
-        for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() <= amountMax ) {
-                primaryContractsSorted.add(primaryContracts.get(i));
-                primaryContracts.remove(i);
-            }
-            /*else if (FISH == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
-                notAPriorityPrimaryContract(i);
-                primaryContracts.remove(i);
-            }*/
-        }
-
-        for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() <= amountMax) {
-                primaryContractsSorted.add(primaryContracts.get(i));
-                primaryContracts.remove(i);
-            }
-            /*else if (WOOD == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
-                notAPriorityPrimaryContract(i);
-                primaryContracts.remove(i);
-            }*/
-
-        }
-
-        for (int i = 0; i < primaryContracts.size() ; i++) {
-            if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() <= amountMax) {
-                primaryContractsSorted.add(primaryContracts.get(i));
-                primaryContracts.remove(i);
-            }
-            /*else if (QUARTZ == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() >= amountMax ){
-                notAPriorityPrimaryContract(i);
-                primaryContracts.remove(i);
-            }*/
-
-
-        }
+        primaryContractsSorted = addToPrimaryContractsSorted(FISH,primaryContractsSorted,amountMax);
+        primaryContractsSorted = addToPrimaryContractsSorted(WOOD,primaryContractsSorted,amountMax);
+        primaryContractsSorted = addToPrimaryContractsSorted(QUARTZ,primaryContractsSorted,amountMax);
 
         for (int i = 0; i < primaryContracts.size() ; i++) {
             if (primaryContracts.get(i).getNeed() <= amountMax) {
                 primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
             }
-            /*else {
-                notAPriorityPrimaryContract(i);
-            }*/
 
         }
 
@@ -283,12 +227,14 @@ public class Contracts {
 
     }
 
-    private void notAPriorityPrimaryContract(int i){
-        notAPriorityPrimaryContract.add(primaryContracts.get(i));
-    }
-
-    private void notAPrioritySecondaryContract(int i){
-        notAPrioritySecondaryContract.add(secondaryContracts.get(i));
+    private List<Contract> addToPrimaryContractsSorted(EnumResources resources, List<Contract> primaryContractsSorted,int amountMax){
+        for (int i = 0; i < primaryContracts.size() ; i++) {
+            if (resources == primaryContracts.get(i).getName() && primaryContracts.get(i).getNeed() <= amountMax) {
+                primaryContractsSorted.add(primaryContracts.get(i));
+                primaryContracts.remove(i);
+            }
+        }
+        return primaryContractsSorted;
     }
 
     public Contract getContract(){
