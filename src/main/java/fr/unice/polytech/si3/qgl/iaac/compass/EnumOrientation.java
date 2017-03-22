@@ -69,7 +69,6 @@ public enum EnumOrientation {
      * @return right direction
      */
     public EnumOrientation right() {
-
         return getEnumDirection(right);
     }
 
