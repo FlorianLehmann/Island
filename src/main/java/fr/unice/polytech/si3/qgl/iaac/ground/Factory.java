@@ -1,7 +1,9 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.ContractsStrategy;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
@@ -22,10 +24,13 @@ public class Factory implements State {
 
 
     private Contract contract;
+    private ContractsStrategy contractsStrategy;
 
     @Override
-    public String execute(Men men, Contracts contracts, Carte carte) {
-        contract = contracts.getManufacturedContract();
+    public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
+
+        contractsStrategy = new ContractsStrategy(contracts);
+        contract = contractsStrategy.getManufacturedContract();
         int amount = contract.getRequired();
         List<Ingredient> ingredients = ((EnumManufacturedResources)contract.getName()).getIngredients();
         int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();

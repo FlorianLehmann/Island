@@ -2,6 +2,7 @@ package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.ContractsStrategy;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +21,7 @@ public class GroundStrategy {
     private Carte carte;
     private Budget budget;
     private Contracts contracts;
+    private ContractsStrategy contractsStrategy;
 
     private static final Logger logger = LogManager.getLogger(GroundStrategy.class);
 
@@ -38,6 +40,7 @@ public class GroundStrategy {
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
+        contractsStrategy = new ContractsStrategy(contracts);
         //contracts.allocateContracts();
     }
 
@@ -46,13 +49,13 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        contracts.sortPrimaryContracts(budget.getBudget());
+        //contracts.sortPrimaryContracts(budget.getBudget());
         if (budget.hasBudget() && budget.getBudget() >= 1700) {
-            return state.execute(men, contracts, carte);
+            return state.execute(men, contracts, carte, budget);
         }
-        if ((budget.getBudget() > 700 && budget.getBudget() < 1700 && contracts.couldCompleteAnotherContract()) ) {
+        if ((budget.getBudget() > 700 && budget.getBudget() < 1700 && contractsStrategy.couldCompleteAnotherContract()) ) {
             state =  new Factory();
-            return state.execute(men, contracts, carte);
+            return state.execute(men, contracts, carte, budget);
         }
         return STOP.toString("");
     }

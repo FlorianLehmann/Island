@@ -38,7 +38,7 @@ public class FactoryTest {
 
     }
 
-    @Test
+    /*@Test
     public void executeFactoryWithARessourceComposedOfOnePrimaryResources(){
         contracts.add(new Contract(20,EnumPrimaryResources.WOOD));
         contracts.getPrimaryContract().add(50);
@@ -54,5 +54,5 @@ public class FactoryTest {
         contracts.getContract().add(50);
         contracts.add(new Contract(3,EnumManufacturedResources.RUM));
         assertEquals(state.execute(men,contracts,carte),"{ \"action\": \"transform\", \"parameters\": { \"SUGAR_CANE\": 30, \"FRUITS\": 3 }}");
-    }
+    }*/
 }

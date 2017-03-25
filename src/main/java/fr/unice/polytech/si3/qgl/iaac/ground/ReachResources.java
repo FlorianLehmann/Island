@@ -1,8 +1,10 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.contracts.ContractsStrategy;
 import fr.unice.polytech.si3.qgl.iaac.ground.tools.AStar;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
@@ -25,6 +27,7 @@ public class ReachResources implements State {
     private ArrayMap map;
     private AStar aStar;
     private Contracts contracts;
+    private ContractsStrategy contractsStrategy;
     private Deque<Point> way;
     private Deque<EnumPrimaryResources> resourcesToCollect;
 
@@ -44,12 +47,13 @@ public class ReachResources implements State {
     }
 
     @Override
-    public String execute(Men men, Contracts contracts, Carte carte) {
+    public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
         this.contracts = contracts;
+        contractsStrategy = new ContractsStrategy(contracts);
         switch (state) {
             case MOVE:
                 if (way.isEmpty()) {
-                    computeWay(men, contracts, carte);
+                    computeWay(men, contracts, carte, budget);
                 }
                 return men.moveTo(findOrientation(men));
             case EXPLORE:
@@ -60,31 +64,33 @@ public class ReachResources implements State {
         throw new UnsupportedOperationException("execute");
     }
 
-    private void computeWay(Men men, Contracts contracts, Carte carte) {
-        aStar = new AStar(men.getCoord(), chooseTarget(men,contracts, carte), map);
+    private void computeWay(Men men, Contracts contracts, Carte carte, Budget budget) {
+        aStar = new AStar(men.getCoord(), chooseTarget(men,contracts, carte, budget), map);
         aStar.compute();
         way = aStar.getWay();
     }
 
-    private Point chooseTarget(Men men, Contracts contracts, Carte carte) {
+    private Point chooseTarget(Men men, Contracts contracts, Carte carte, Budget budget) {
         Contract contract;
         Point target = new Point(men.getCoord());
         if(!contracts.isPrimaryCompleted()){
-            contract = contracts.getContract();
-            EnumResources resource = contract.getName();
-            logger.info("TESTTTTTTTTTTTT");
+            //contract = contracts.getContract();
+            EnumResources resource = contractsStrategy.nextContract(budget.getBudget());
+            //contract.getName();
+            logger.info(resource);
 
             if (carte.hasResource(resource)) {
                 logger.info("TESTTTTTTTTTTTT");
                 target = carte.getNearestResource(resource, men.getCoord());
             }
-            else {
+            /*else {
                 contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
-            }
+            }*/
 
         }
         logger.info("MEN" + men.getCoord());
         logger.info("TARGET" + target);
+        //TODO ici on peut crasher
         if (target.equals(men.getCoord()))
             target = map.getRandomTarget();
         return target;
@@ -92,6 +98,8 @@ public class ReachResources implements State {
 
     private EnumOrientation findOrientation(Men men) {
         EnumOrientation orientation;
+        logger.info("ICI :" + way.peek());
+        men.getCoord();
         if (men.getCoord().x - way.peek().x > 0) {
             orientation = EnumOrientation.WEST;
         }
@@ -117,7 +125,7 @@ public class ReachResources implements State {
                 break;
             case EXPLORE:
                 for (EnumResources resource: json.getAnswer().getResources())
-                    if (contracts.containRessource((EnumPrimaryResources) resource))
+                    if (contracts.needResource((EnumPrimaryResources) resource))
                         resourcesToCollect.add((EnumPrimaryResources) resource);
 
                 if (!resourcesToCollect.isEmpty()) {

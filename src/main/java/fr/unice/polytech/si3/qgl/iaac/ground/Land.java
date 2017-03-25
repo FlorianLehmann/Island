@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.json.EnumJSON;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
@@ -18,7 +19,7 @@ public class Land implements State {
     }
 
     @Override
-    public String execute(Men men, Contracts contracts, Carte carte) {
+    public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
         this.carte = carte;
         if (nbMen > 8)
             nbMen = 8;

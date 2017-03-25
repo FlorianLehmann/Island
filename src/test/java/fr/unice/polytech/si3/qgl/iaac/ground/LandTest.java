@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
@@ -29,7 +30,7 @@ public class LandTest {
     public void shouldLandWith7Men() {
         Carte carte = mock(Carte.class);
         when(carte.getCreekID()).thenReturn("ID");
-        assertEquals(LAND.toString("ID", 7), land.execute(new Men(new Point(0,0)), new Contracts(), carte ));
+        assertEquals(LAND.toString("ID", 7), land.execute(new Men(new Point(0,0)), new Contracts(), carte, new Budget(1000)));
     }
 
     /*@Test

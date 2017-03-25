@@ -66,10 +66,10 @@ public class ArrayMap {
         return tile != null && !tile.containOcean();
     }
 
-    private void defineMapSize() {
+    private void defineMapSize(Point point) {
 
-        for (Point point1 : edge.keySet()) {
-            Point point = new Point(point1);
+        //for (Point point1 : edge.keySet()) {
+            //Point point = new Point(point1);
             if (point.x < xMin)
                 xMin = point.x;
             if (point.x > xMax)
@@ -78,17 +78,19 @@ public class ArrayMap {
                 yMax = point.y;
             if (point.y < yMin)
                 yMin = point.y;
-        }
+        //}
     }
 
     private void computeEdge() {
 
         for (Map.Entry<Point, Case> tile: map.entrySet()) {
-            if (!tile.getValue().containOcean())
+            if (!tile.getValue().containOcean()) {
                 edge.put(tile.getValue().getCoords(), true);
+                defineMapSize(tile.getKey());
+            }
         }
 
-        defineMapSize();
+        //defineMapSize();
 
         for (int i = xMin; i <= xMax ; i++) {
             for (int j = yMin; j < yMax ; j++) {
