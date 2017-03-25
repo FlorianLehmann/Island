@@ -108,7 +108,7 @@ public class Contracts {
      * @return true if all contracts contained in contracts are completed
      */
     private boolean isCompleted(List<Contract> contracts) {
-        for (Contract contract: primaryContracts)
+        for (Contract contract: contracts)
             if(!contract.isCompleted())
                 return false;
         return true;
@@ -196,7 +196,7 @@ public class Contracts {
                 ingredients) {
             int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
             for (int i = 0; i < primaryContracts.size() ; i++) {
-                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getDebt() >= necessaryAmount ) {
+                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getCollected() >= necessaryAmount ) {
                     numberOfIngredients--;
                 }
             }

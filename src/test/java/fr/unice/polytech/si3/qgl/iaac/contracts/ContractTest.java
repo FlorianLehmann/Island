@@ -52,16 +52,16 @@ public class ContractTest {
     @Test
     public void addAmountTest() {
         contract.add(15);
-        assertEquals(15, contract.getDebt());
+        assertEquals(15, contract.getCollected());
     }
 
     @Test
     public void subAmountTest() {
         contract.add(150);
         contract.sub(15);
-        assertEquals(135, contract.getDebt());
+        assertEquals(135, contract.getCollected());
         contract.sub(1500);
-        assertEquals(0, contract.getDebt());
+        assertEquals(0, contract.getCollected());
     }
 
     @Test

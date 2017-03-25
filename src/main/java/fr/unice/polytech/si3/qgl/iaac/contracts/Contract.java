@@ -14,7 +14,7 @@ public class Contract {
      * attributes
      */
     private EnumResources name;
-    private int debt;
+    private int collected;
     private int required;
 
     /**
@@ -28,26 +28,26 @@ public class Contract {
             this.name =  resource;
             if (amount <= 0)
                 throw new NoAmountContractException();
-            this.debt = 0;
+            this.collected = 0;
             required = amount;
     }
 
     /**
-     * reduce the debt with quantity collected
+     * reduce the collected with quantity collected
      * @param amount
      */
     public void add(int amount){
-        this.debt += amount;
+        this.collected += amount;
     }
 
     /**
-     * increase the debt
+     * increase the collected
      * @param amount
      */
     public void sub(int amount){
-        this.debt -= amount;
-        if (this.debt < 0)
-            this.debt = 0;
+        this.collected -= amount;
+        if (this.collected < 0)
+            this.collected = 0;
     }
 
     /**
@@ -59,11 +59,11 @@ public class Contract {
     }
 
     /**
-     * return the debt of resource
+     * return the collected of resource
      * @return
      */
-    public int getDebt() {
-        return debt;
+    public int getCollected() {
+        return collected;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Contract {
      * @return true if the contract is completed
      */
     public boolean isCompleted() {
-        return debt >= required;
+        return collected >= required;
     }
 
     /**
