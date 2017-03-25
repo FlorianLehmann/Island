@@ -8,6 +8,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.SECURITY_MARGIN;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 
 /**
@@ -52,6 +53,10 @@ public class Contracts {
             primaryContracts.add(contract);
         } else {
             secondaryContracts.add(contract);
+            EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) contract.getName();
+            for (Ingredient ingredient : manufacturedResource.getIngredients()) {
+                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + (contract.getRequired()/SECURITY_MARGIN)));
+            }
         }
     }
 
@@ -98,8 +103,7 @@ public class Contracts {
      * @return true if all secondary contracts are completed
      */
     public boolean isSecondaryCompleted() {
-        return /*secondaryContracts.isEmpty()*/ isCompleted(secondaryContracts);
-        //pas vide donc return false
+        return isCompleted(secondaryContracts);
     }
 
     /**
@@ -124,17 +128,7 @@ public class Contracts {
         return false;
     }
 
-
-    /**
-     * TODO
-     * @param contract
-     */
-    public void verifyContractCompleted(Contract contract) {
-        if (contract.isCompleted()) {
-            remove(contract.getName());
-        }
-    }
-
+//TODO
     public Contract getPrimaryContract() {
         return primaryContracts.get(0);
     }
@@ -157,25 +151,14 @@ public class Contracts {
         }
     }
 
-    public void allocateContracts() {
-        for (Contract secondaryContract : secondaryContracts) {
-            EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getName();
-            for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() * (secondaryContract.getRequired() + ((int) secondaryContract.getRequired()/10)));
-            }
-        }
-    }
-
-    private void primaryContractsAdd(EnumPrimaryResources ingredient, int amount) {
+    private void primaryContractAddRequired(EnumPrimaryResources ingredient, int amount) {
         for (Contract contract : primaryContracts) {
             if (contract.getName() == ingredient) {
                 contract.addRequired(amount);
                 return;
             }
         }
-
         add(new Contract(amount, ingredient));
-
     }
 
     public boolean couldCompleteAnotherContract() {
@@ -194,7 +177,7 @@ public class Contracts {
         int numberOfIngredients = ingredients.size();
         for (Ingredient ingredient :
                 ingredients) {
-            int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
+            int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/SECURITY_MARGIN));
             for (int i = 0; i < primaryContracts.size() ; i++) {
                 if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getCollected() >= necessaryAmount ) {
                     numberOfIngredients--;

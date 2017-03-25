@@ -11,6 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources.SECURITY_MARGIN;
+
 /**
  * Created by florian on 18/03/2017.
  */
@@ -29,9 +31,9 @@ public class Factory implements State {
         int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();
         if (ingredients.size() == 1)
             return men.transform(ingredients.get(0).getIngredient(),
-                    (ingredients.get(0).getAmount())*(amount + ((int) amount/10)));
+                    (ingredients.get(0).getAmount())*(amount + (amount/SECURITY_MARGIN)));
         return men.transform(ingredients.get(0).getIngredient(), ingredients.get(1).getIngredient(),
-                (ingredients.get(0).getAmount())*(amount + ((int) amount/10)), (ingredients.get(1).getAmount())*(amount + ((int) amount/10)));
+                (ingredients.get(0).getAmount())*(amount + (amount/SECURITY_MARGIN)), (ingredients.get(1).getAmount())*(amount + (amount/SECURITY_MARGIN)));
     }
 
     @Override

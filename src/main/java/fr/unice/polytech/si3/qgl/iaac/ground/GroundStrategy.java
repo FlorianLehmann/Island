@@ -38,7 +38,7 @@ public class GroundStrategy {
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
-        contracts.allocateContracts();
+        //contracts.allocateContracts();
     }
 
     /**
