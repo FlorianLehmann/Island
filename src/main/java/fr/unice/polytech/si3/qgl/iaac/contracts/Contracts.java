@@ -15,6 +15,9 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
  */
 public class Contracts {
 
+    /**
+     * attributes
+     */
     private List<Contract> primaryContracts;
     private List<Contract> secondaryContracts;
     private List<Contract> notAPriorityPrimaryContract;
@@ -31,7 +34,7 @@ public class Contracts {
     }
 
     /**
-     * second constructor
+     * overloaded constructor
      * @param contracts
      */
     public Contracts(List<Contract> contracts) {
@@ -41,6 +44,7 @@ public class Contracts {
     }
 
     /**
+     * add a contract
      * @param contract
      */
     public void add(Contract contract) {
@@ -52,18 +56,26 @@ public class Contracts {
     }
 
     /**
+     * remove the resource's contract
      * @param resource
      */
     public void remove(EnumResources resource) {
         if (resource.isPrimary()) {
-            for (int i = 0; i < primaryContracts.size(); i++)
-                if (primaryContracts.get(i).getName() == resource)
-                    primaryContracts.remove(i);
+            remove(resource, primaryContracts);
         } else {
-            for (int i = 0; i < secondaryContracts.size(); i++)
-                if (secondaryContracts.get(i).getName() == resource)
-                    secondaryContracts.remove(i);
+            remove(resource, secondaryContracts);
         }
+    }
+
+    /**
+     * remove resource in the list contracts
+     * @param resource
+     * @param contracts
+     */
+    private void remove(EnumResources resource, List<Contract> contracts) {
+        for (int i = 0; i < contracts.size(); i++)
+            if (contracts.get(i).getName() == resource)
+                contracts.remove(i);
     }
 
     /**
@@ -73,20 +85,36 @@ public class Contracts {
         return isPrimaryCompleted() && isSecondaryCompleted();
     }
 
+    /**
+     *
+     * @return true if all primary contracts are completed
+     */
     public boolean isPrimaryCompleted() {
-        for (Contract contract: primaryContracts) {
-            if(!contract.isCompleted()){
+        return isCompleted(primaryContracts);
+    }
+
+    /**
+     *
+     * @return true if all secondary contracts are completed
+     */
+    public boolean isSecondaryCompleted() {
+        return /*secondaryContracts.isEmpty()*/ isCompleted(secondaryContracts);
+        //pas vide donc return false
+    }
+
+    /**
+     *
+     * @param contracts
+     * @return true if all contracts contained in contracts are completed
+     */
+    private boolean isCompleted(List<Contract> contracts) {
+        for (Contract contract: primaryContracts)
+            if(!contract.isCompleted())
                 return false;
-            }
-        }
         return true;
     }
 
-    public boolean isSecondaryCompleted() {
-        return secondaryContracts.isEmpty();
-    }
-
-
+    //get contract ???
     public boolean containRessource(EnumPrimaryResources ressource) {
         for (Contract contract : primaryContracts) {
             if (!contract.isCompleted() && contract.getName().equals(ressource)) {
@@ -96,16 +124,11 @@ public class Contracts {
         return false;
     }
 
-    public boolean contain(EnumPrimaryResources ressource) {
-        for (Contract contract : primaryContracts) {
-            if (contract.getName().equals(ressource)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-
+    /**
+     * TODO
+     * @param contract
+     */
     public void verifyContractCompleted(Contract contract) {
         if (contract.isCompleted()) {
             remove(contract.getName());
@@ -187,7 +210,7 @@ public class Contracts {
             if (!secondaryContract.isCompleted()) {
                 int amount = secondaryContract.getRequired();
                 List<Ingredient> ingredients = ((EnumManufacturedResources) secondaryContract.getName()).getIngredients();
-                if (hasEnoughToMakeManufacturedContract2(ingredients, amount)) {
+                if (hasEnoughToMakeManufacturedContract(ingredients, amount)) {
                     Contract secContract = secondaryContract;
                     secondaryContracts.remove(secondaryContract);
                     return secContract;
@@ -196,23 +219,6 @@ public class Contracts {
         }
         throw new RuntimeException("no Manufactured contract");
     }
-
-    private boolean hasEnoughToMakeManufacturedContract2(List<Ingredient> ingredients, int amount) {
-        int numberOfIngredients = ingredients.size();
-        for (Ingredient ingredient :
-                ingredients) {
-            int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/10));
-            for (int i = 0; i < primaryContracts.size() ; i++) {
-                if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getDebt() >= necessaryAmount ) {
-                    primaryContracts.get(i).sub(necessaryAmount);
-                    numberOfIngredients--;
-                }
-            }
-        }
-        return numberOfIngredients == 0;
-    }
-
-
 
     public void sortPrimaryContracts(int budget) {
         List<Contract> primaryContractsSorted = new ArrayList();

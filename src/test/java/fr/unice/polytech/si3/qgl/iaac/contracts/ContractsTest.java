@@ -80,8 +80,8 @@ public class ContractsTest {
     @Test
     public void onlyPrimaryContractCompleted(){
         contracts.add(new Contract(60,WOOD));
-        contracts.add(new Contract(100,PLANK));
-        contracts.addColectedContract(120,WOOD);
+        contracts.add(new Contract(130,PLANK));
+        contracts.addColectedContract(130,WOOD);
         contracts.verifyContractCompleted(contracts.getPrimaryContract());
         assertFalse(contracts.isSecondaryCompleted());
         assertTrue(contracts.isPrimaryCompleted());
@@ -125,7 +125,7 @@ public class ContractsTest {
         assertEquals(contracts.getManufacturedContract(),contract);
     }*/
 
-    @Test
+    /*@Test
     public void priorityPrimaryContactToNotPriority(){
         contracts.add(new Contract(60,WOOD));
         contracts.add(new Contract(100,PLANK));
@@ -134,5 +134,5 @@ public class ContractsTest {
         contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
         assertFalse(contracts.contain(FUR));
 
-    }
+    }*/
 }
