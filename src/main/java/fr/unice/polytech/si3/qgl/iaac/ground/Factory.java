@@ -31,9 +31,9 @@ public class Factory implements State {
         int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();
         if (ingredients.size() == 1)
             return men.transform(ingredients.get(0).getIngredient(),
-                    (ingredients.get(0).getAmount())*(amount + (amount/SECURITY_MARGIN)));
+                    (ingredients.get(0).getAmount())*(amount + ((int)(amount*SECURITY_MARGIN))));
         return men.transform(ingredients.get(0).getIngredient(), ingredients.get(1).getIngredient(),
-                (ingredients.get(0).getAmount())*(amount + (amount/SECURITY_MARGIN)), (ingredients.get(1).getAmount())*(amount + (amount/SECURITY_MARGIN)));
+                (ingredients.get(0).getAmount())*(amount + ((int)(amount*SECURITY_MARGIN))), (ingredients.get(1).getAmount())*(amount + ((int)(amount*SECURITY_MARGIN))));
     }
 
     @Override

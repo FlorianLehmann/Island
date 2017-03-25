@@ -20,7 +20,7 @@ public enum EnumManufacturedResources implements EnumResources {
     /**
      * attributes
      */
-    public static final int SECURITY_MARGIN = 20;
+    public static final double SECURITY_MARGIN = .20;
     private List<Ingredient> ingredients;
     private int amountManufactured;
 

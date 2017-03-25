@@ -43,7 +43,7 @@ public class FactoryTest {
         contracts.add(new Contract(20,EnumPrimaryResources.WOOD));
         contracts.getPrimaryContract().add(50);
         contracts.add(new Contract(10,EnumManufacturedResources.PLANK));
-        assertEquals(state.execute(men,contracts,carte),"{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 11 }}");
+        assertEquals("{ \"action\": \"transform\", \"parameters\": { \"WOOD\": 12 }}", state.execute(men,contracts,carte));
     }
 
     @Test

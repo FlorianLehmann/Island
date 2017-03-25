@@ -55,7 +55,7 @@ public class Contracts {
             secondaryContracts.add(contract);
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) contract.getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + (contract.getRequired()/SECURITY_MARGIN)));
+                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + ((int)(contract.getRequired()/SECURITY_MARGIN))));
             }
         }
     }
@@ -177,7 +177,7 @@ public class Contracts {
         int numberOfIngredients = ingredients.size();
         for (Ingredient ingredient :
                 ingredients) {
-            int necessaryAmount = ingredient.getAmount()*(amount + ((int) amount/SECURITY_MARGIN));
+            int necessaryAmount = ingredient.getAmount()*(amount + ((int)(amount*SECURITY_MARGIN)));
             for (int i = 0; i < primaryContracts.size() ; i++) {
                 if (primaryContracts.get(i).getName() == ingredient.getIngredient() && primaryContracts.get(i).getCollected() >= necessaryAmount ) {
                     numberOfIngredients--;
