@@ -17,7 +17,7 @@ public class EchoRight implements State {
 
     @Override
     public State nextState(ReadJSON json) {
-        if(json.getAnswer().getFound())
+        if(json.getFound())
             return new HeadingRight();
         return new Fly();
     }

@@ -19,7 +19,7 @@ public class EchoOpDirection5 implements State {
     }
 
     public State nextState(ReadJSON json){
-        if(json.getAnswer().getFound() && json.getAnswer().getRange()<3)
+        if(json.getFound() && json.getRange()<3)
             return new Fly6();
         return new DemiTour7(0);
     }

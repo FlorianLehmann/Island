@@ -19,8 +19,8 @@ public class EchoFace implements State {
 
     @Override
     public State nextState(ReadJSON json) {
-        if(json.getAnswer().getFound())
-            return new FlyToEarth4(json.getAnswer().getRange());
+        if(json.getFound())
+            return new FlyToEarth4(json.getRange());
 
         return new EchoLeft();
     }

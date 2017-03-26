@@ -25,7 +25,7 @@ public class DemiTour7Test {
     public void ini() throws IOException {
         drone = new Drone(EnumOrientation.EST);
         state = new DemiTour7(0);
-        read = new ReadJSON();
+        read = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
     @Test

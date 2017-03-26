@@ -16,8 +16,8 @@ public class Echo2 implements State {
     }
 
     public State nextState(ReadJSON json){
-        if(json.getAnswer().getFound())
-            return new FlyToEarth4(json.getAnswer().getRange());
+        if(json.getFound())
+            return new FlyToEarth4(json.getRange());
         return new EchoOpDirection5();
     }
 

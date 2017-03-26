@@ -14,7 +14,7 @@ public class Scan1 implements State {
     }
 
     public State nextState(ReadJSON json){
-        if(json.getAnswer().getFound())
+        if(json.getFound())
             return new Fly3();
         return new Echo2();
 

@@ -32,8 +32,8 @@ public class TourComplet implements State {
     public State nextState(ReadJSON json){
         if(etat==0) return new TourComplet(1,range);
         if(etat==1){
-            range=json.getAnswer().getRange();
-            if(json.getAnswer().getFound() && range<=3){
+            range=json.getRange();
+            if(json.getFound() && range<=3){
                 return new TourComplet(0,range);
             }
             return new TourComplet(2);
