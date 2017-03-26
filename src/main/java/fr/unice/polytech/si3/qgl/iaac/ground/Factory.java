@@ -30,7 +30,7 @@ public class Factory implements State {
     @Override
     public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
         this.contracts = contracts;
-        contractsStrategy = new ContractsStrategy(contracts);
+        contractsStrategy = new ContractsStrategy(contracts, carte);
         contract = contractsStrategy.getManufacturedContract();
         int amount = contract.getRequired();
         List<Ingredient> ingredients = ((EnumManufacturedResources)contract.getName()).getIngredients();

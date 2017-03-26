@@ -15,6 +15,7 @@ import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
  */
 public class GroundStrategy {
 
+    private static final Logger logger = LogManager.getLogger(GroundStrategy.class);
     private State state;
     private Men men;
     private ReadJSON json;
@@ -22,8 +23,6 @@ public class GroundStrategy {
     private Budget budget;
     private Contracts contracts;
     private ContractsStrategy contractsStrategy;
-
-    private static final Logger logger = LogManager.getLogger(GroundStrategy.class);
 
 
     /**
@@ -40,9 +39,8 @@ public class GroundStrategy {
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
-        contractsStrategy = new ContractsStrategy(contracts);
-        //contracts.allocateContracts();
-        //contracts.allocateContracts();
+        contractsStrategy = new ContractsStrategy(contracts, carte);
+
     }
 
     /**

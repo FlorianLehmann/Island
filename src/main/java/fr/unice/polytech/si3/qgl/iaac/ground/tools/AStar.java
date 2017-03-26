@@ -1,8 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
 import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayDeque;
@@ -22,26 +20,6 @@ public class AStar {
     private List<Node> close;
     private List<Node> neighbours;
     private ArrayMap edge;
-
-    private class Node {
-        private Node parent;
-        private Point location;
-        private int locationToCurrent;
-        private int currentToTarget;
-
-        private Node(Point location){
-            this.location = location;
-            currentToTarget = 0;
-            locationToCurrent = 0;
-        }
-
-        private Node(Node parent, Point location){
-            this.location = location;
-            this.parent = parent;
-            currentToTarget = 0;
-            locationToCurrent = parent.locationToCurrent;
-        }
-    }
 
     public AStar(Point location, Point target, ArrayMap edge){
         this.location = location;
@@ -66,7 +44,7 @@ public class AStar {
 
         while(!open.isEmpty() && distanceManathan(parent.location, target)!=0) {
 
-            //Ajout des nouveaux voisons
+            //Ajout des nouveaux voisins
             addNeighbours(parent);
             open.remove(indexOpen);
             //On vérifie les cases
@@ -148,6 +126,26 @@ public class AStar {
 
     public Deque<Point> getWay() {
         return way;
+    }
+
+    private class Node {
+        private Node parent;
+        private Point location;
+        private int locationToCurrent;
+        private int currentToTarget;
+
+        private Node(Point location) {
+            this.location = location;
+            currentToTarget = 0;
+            locationToCurrent = 0;
+        }
+
+        private Node(Node parent, Point location) {
+            this.location = location;
+            this.parent = parent;
+            currentToTarget = 0;
+            locationToCurrent = parent.locationToCurrent;
+        }
     }
 
 }

@@ -23,6 +23,10 @@ import java.util.Deque;
  */
 public class ReachResources implements State {
 
+    private static final int MOVE = 0;
+    private static final int EXPLORE = 1;
+    private static final int EXPLOIT = 2;
+    private static final Logger logger = LogManager.getLogger(ReachResources.class);
     private int state;
     private ArrayMap map;
     private AStar aStar;
@@ -31,26 +35,18 @@ public class ReachResources implements State {
     private Deque<Point> way;
     private Deque<EnumPrimaryResources> resourcesToCollect;
 
-    private static final int MOVE = 0;
-    private static final int EXPLORE = 1;
-    private static final int EXPLOIT = 2;
-
-    private static final Logger logger = LogManager.getLogger(ReachResources.class);
-
 
     public ReachResources(Carte carte) {
         state = MOVE;
         map = new ArrayMap(carte.getCases());
         way = new ArrayDeque<>();
         resourcesToCollect = new ArrayDeque<>();
-
-        //TODO incapable d'aller chercher des poissons
     }
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
         this.contracts = contracts;
-        contractsStrategy = new ContractsStrategy(contracts);
+        contractsStrategy = new ContractsStrategy(contracts, carte);
         switch (state) {
             case MOVE:
                 if (way.isEmpty()) {
@@ -75,19 +71,10 @@ public class ReachResources implements State {
         Contract contract;
         Point target = new Point(men.getCoord());
         if(!contracts.isPrimaryCompleted()){
-            //contract = contracts.getContract();
             EnumResources resource = contractsStrategy.nextContract(budget.getBudget());
-            //contract.getName();
-            logger.info(resource);
-
             if (carte.hasResource(resource)) {
-                logger.info("TESTTTTTTTTTTTT");
                 target = carte.getNearestResource(resource, men.getCoord());
             }
-            /*else {
-                contracts.changePrimaryContractToNotAPriorityPrimaryContract(contract);
-            }*/
-
         }
         logger.info("MEN" + men.getCoord());
         logger.info("TARGET" + target);

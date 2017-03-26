@@ -84,7 +84,7 @@ public class ArrayMap {
     private void computeEdge() {
 
         for (Map.Entry<Point, Case> tile: map.entrySet()) {
-            if (!tile.getValue().containOcean()) {
+            if (!tile.getValue().containOcean() || tile.getValue().hasCreek()) {
                 edge.put(tile.getValue().getCoords(), true);
                 defineMapSize(tile.getKey());
             }

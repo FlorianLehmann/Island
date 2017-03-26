@@ -7,7 +7,6 @@ import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +18,12 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources
  */
 public class Contracts {
 
+    private static final Logger logger = LogManager.getLogger(Contracts.class);
     /**
      * attributes
      */
-    /*private List<Contract> primaryContracts;
-    private List<Contract> secondaryContracts;*/
-
     private Map<EnumResources, Contract> primaryContracts;
     private Map<EnumResources, Contract> secondaryContracts;
-
-    private static final Logger logger = LogManager.getLogger(Contracts.class);
 
     /**
      * default constructor
@@ -75,7 +70,6 @@ public class Contracts {
         for (Map.Entry<EnumResources, Contract> secondaryContract: secondaryContracts.entrySet()) {
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getValue().getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                //logger.info("ingre" + ingredient.getIngredient() + " nb " + ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
                 primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
             }
         }
@@ -164,18 +158,6 @@ public class Contracts {
      */
     public void addColectedContract(int collect, EnumPrimaryResources resource) {
         primaryContracts.get(resource).add(collect);
-    }
-
-    /**
-     *
-     * @param ingredient
-     * @param amount
-     */
-    private void primaryContractAddRequired(EnumPrimaryResources ingredient, int amount) {
-        if (primaryContracts.containsKey(ingredient))
-            primaryContracts.get(ingredient).addRequired(amount);
-        else
-            add(new Contract(amount, ingredient));
     }
 
     public Map<EnumResources, Contract> getPrimaryContracts() {

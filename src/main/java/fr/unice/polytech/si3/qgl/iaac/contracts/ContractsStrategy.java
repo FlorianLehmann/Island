@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
@@ -18,13 +19,14 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
  */
 public class ContractsStrategy {
 
-    private Contracts contracts;
-
     private static final Logger logger = LogManager.getLogger(ContractsStrategy.class);
+    private Contracts contracts;
+    private Carte carte;
 
 
-    public ContractsStrategy(Contracts contracts) {
+    public ContractsStrategy(Contracts contracts, Carte carte) {
         this.contracts = contracts;
+        this.carte = carte;
     }
 
 
@@ -74,13 +76,13 @@ public class ContractsStrategy {
     }
 
     private boolean couldBeRecolted(EnumPrimaryResources resource, int amountMax) {
-        if (contracts.needResource(resource) && contracts.getPrimaryContracts(resource).getRequired() <= amountMax)
+        if (contracts.needResource(resource) && carte.hasResource(resource) && contracts.getPrimaryContracts(resource).getRequired() <= amountMax)
             return true;
         return false;
     }
 
     private boolean mayBeRecolted(EnumPrimaryResources resource) {
-        if (contracts.needResource(resource))
+        if (contracts.needResource(resource) && carte.hasResource(resource))
             return true;
         return false;
     }

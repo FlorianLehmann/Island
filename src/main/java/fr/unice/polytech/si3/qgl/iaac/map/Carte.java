@@ -71,9 +71,9 @@ public class Carte {
      * @return true if the resource is present on the map
      */
     public boolean hasResource(EnumResources name) {
-
+        ArrayMap arrayMap = new ArrayMap(carte);
         for (Map.Entry<Point, Case> tile: carte.entrySet())
-            if (tile.getValue().containsResource(name))
+            if (tile.getValue().containsResource(name) && !arrayMap.isEdgeG(tile.getKey()))
                 return true;
         return false;
 
@@ -113,10 +113,11 @@ public class Carte {
      * @return the coord of the nearest biome containning a resource
      */
     public Point getNearestResource(EnumResources name, Point location) {
+        ArrayMap arrayMap = new ArrayMap(carte);
         int distanceMin = Integer.MAX_VALUE;
         Case tile = null;
         for (Map.Entry<Point, Case> nearestTile: carte.entrySet())
-            if (nearestTile.getValue().containsResource(name) && distance(nearestTile.getValue().getCoords(), location) < distanceMin && distance(nearestTile.getValue().getCoords(), location) > 0) {
+            if (nearestTile.getValue().containsResource(name) && !arrayMap.isEdgeG(nearestTile.getKey()) && distance(nearestTile.getValue().getCoords(), location) < distanceMin && distance(nearestTile.getValue().getCoords(), location) > 0) {
                 distanceMin = distance(nearestTile.getValue().getCoords(), location);
                 tile = nearestTile.getValue() ;
             }
@@ -126,7 +127,6 @@ public class Carte {
 
         carte.remove(tile.getCoords());
         return tile.getCoords();
-        //throw new RuntimeException("No resources");
     }
 
     /**
