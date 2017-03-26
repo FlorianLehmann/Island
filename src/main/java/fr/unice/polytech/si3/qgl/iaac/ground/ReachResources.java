@@ -43,6 +43,7 @@ public class ReachResources implements State {
         map = new ArrayMap(carte.getCases());
         way = new ArrayDeque<>();
         resourcesToCollect = new ArrayDeque<>();
+
         //TODO incapable d'aller chercher des poissons
     }
 

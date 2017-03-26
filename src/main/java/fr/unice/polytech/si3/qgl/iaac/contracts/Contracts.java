@@ -4,6 +4,8 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,8 @@ public class Contracts {
 
     private Map<EnumResources, Contract> primaryContracts;
     private Map<EnumResources, Contract> secondaryContracts;
+
+    private static final Logger logger = LogManager.getLogger(Contracts.class);
 
     /**
      * default constructor
@@ -50,14 +54,32 @@ public class Contracts {
      */
     public void add(Contract contract) {
         if (contract.getName().isPrimary()) {
-            primaryContracts.put( contract.getName() ,contract);
+            if (primaryContracts.containsKey(contract.getName()))
+                primaryContracts.get(contract.getName()).addRequired(contract.getRequired());
+            else
+                primaryContracts.put( contract.getName() ,contract);
         } else {
             secondaryContracts.put(contract.getName(), contract);
-            EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) contract.getName();
+        }
+    }
+
+    public void allocateContracts() {
+        for (Map.Entry<EnumResources, Contract> secondaryContract: secondaryContracts.entrySet()) {
+            EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getValue().getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + ((int)(contract.getRequired()*SECURITY_MARGIN))));
+                logger.info("ingre" + ingredient.getIngredient() + " nb " + ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
+                primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
             }
         }
+    }
+
+    private void primaryContractsAdd(EnumPrimaryResources ingredient, int amount) {
+
+        if (primaryContracts.containsKey(ingredient))
+            primaryContracts.get(ingredient).addRequired(amount);
+
+        add(new Contract(amount, ingredient));
+
     }
 
     /**

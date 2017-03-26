@@ -4,6 +4,8 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,9 @@ public class ContractsStrategy {
 
     private Contracts contracts;
 
+    private static final Logger logger = LogManager.getLogger(ContractsStrategy.class);
+
+
     public ContractsStrategy(Contracts contracts) {
         this.contracts = contracts;
     }
@@ -26,7 +31,9 @@ public class ContractsStrategy {
     public boolean couldCompleteAnotherContract() {
         for (Map.Entry<EnumResources, Contract> secondaryContract: contracts.getSecondaryContracts().entrySet()) {
             if (!secondaryContract.getValue().isCompleted()) {
+
                 int amount = secondaryContract.getValue().getRequired();
+
                 List<Ingredient> ingredients = ((EnumManufacturedResources) secondaryContract.getValue().getName()).getIngredients();
                 if (hasEnoughToMakeManufacturedContract(ingredients, amount))
                     return true;
@@ -40,6 +47,7 @@ public class ContractsStrategy {
         for (Ingredient ingredient :
                 ingredients) {
             int necessaryAmount = ingredient.getAmount() * (amount + ((int) (amount * SECURITY_MARGIN)));
+            logger.info("NECESSARY" + necessaryAmount);
             for (Map.Entry<EnumResources, Contract> primaryContract: contracts.getPrimaryContracts().entrySet()) {
 
                 if (primaryContract.getValue().getName() == ingredient.getIngredient() && primaryContract.getValue().getCollected() >= necessaryAmount) {

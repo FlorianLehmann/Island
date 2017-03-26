@@ -41,6 +41,7 @@ public class Explorer implements IExplorerRaid {
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
         contracts = readJSON.initContracts();
+        contracts.allocateContracts();
         nbMen = readJSON.initNbMen();
         men = new Men(new Point(0,0));
         ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );

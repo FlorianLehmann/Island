@@ -91,7 +91,7 @@ public class ContractsTest {
     @Test
     public void transformSecondaryContractToPrimaryContract(){
         contracts.add(new Contract(20,RUM));
-        //contracts.allocateContracts();
+        contracts.allocateContracts();
         assertTrue(contracts.needResource(SUGAR_CANE));
         assertTrue(contracts.needResource(FRUITS));
     }

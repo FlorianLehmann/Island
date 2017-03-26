@@ -42,6 +42,7 @@ public class GroundStrategy {
         state = new Land(nbMen);
         contractsStrategy = new ContractsStrategy(contracts);
         //contracts.allocateContracts();
+        //contracts.allocateContracts();
     }
 
     /**
