@@ -52,7 +52,7 @@ public class GroundStrategy {
         if ((budget.hasBudget() && budget.getBudget() >= 1700) && !contracts.isPrimaryCompleted() && contractsStrategy.hasNextContract(budget.getBudget())) {
             return state.execute(men, contracts, carte, budget);
         }
-        if (((budget.getBudget() > 700 && budget.getBudget() < 1700) || contracts.isPrimaryCompleted()) && contractsStrategy.couldCompleteAnotherContract()) {
+        if (((budget.getBudget() > 700 && budget.getBudget() < 1700) || contracts.isPrimaryCompleted() || !contractsStrategy.hasNextContract(budget.getBudget())) && contractsStrategy.couldCompleteAnotherContract()) {
             state =  new Factory();
             return state.execute(men, contracts, carte, budget);
         }
