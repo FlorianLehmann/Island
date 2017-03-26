@@ -68,7 +68,8 @@ public class ContractsStrategyTest {
         contracts.add(new Contract(60000, FISH));
         readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"MANGROVE\", \"ALPINE\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
         carte.addAirCase(new Point(3, 3));
-        contractsStrategy.nextContract(10000);
+        assertTrue(contractsStrategy.hasNextContract(10000));
+        assertEquals(WOOD, contractsStrategy.nextContract(10000));
     }
 
     @Test(expected = RuntimeException.class)

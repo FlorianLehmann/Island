@@ -7,7 +7,6 @@ import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
@@ -31,19 +30,23 @@ public class ReachResourcesTest {
     public void defineContext() {
         readJSON = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         carte = new Carte(readJSON);
-        men = new Men(new Point(2, 3));
+        men = new Men(new Point(8, 3));
         contracts = new Contracts();
         contracts.add(new Contract(200, WOOD));
         budget = new Budget(3000);
-        reachResources = new ReachResources(carte);
         readJSON.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"MANGROVE\", \"ALPINE\"], \"creeks\": [], \"sites\": []}, \"status\": \"OK\"}");
         carte.addAirCase(new Point(3, 3));
+        carte.addAirCase(new Point(6, 3));
+        carte.addAirCase(new Point(9, 3));
+        carte.addAirCase(new Point(3, 6));
+        carte.addAirCase(new Point(3, 9));
+        reachResources = new ReachResources(carte);
+
     }
 
-    @Ignore
     @Test
     public void ShouldMove() {
-        assertEquals(men.moveTo(EnumOrientation.WEST), reachResources.execute(men, contracts, carte, budget));
+        assertEquals(men.moveTo(EnumOrientation.NORTH), reachResources.execute(men, contracts, carte, budget));
     }
 
 }

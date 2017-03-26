@@ -49,7 +49,7 @@ public class GroundStrategy {
      */
     public String takeAction() {
         //contracts.sortPrimaryContracts(budget.getBudget());
-        if ((budget.hasBudget() && budget.getBudget() >= 1700) && !contracts.isPrimaryCompleted()) {
+        if ((budget.hasBudget() && budget.getBudget() >= 1700) && !contracts.isPrimaryCompleted() && contractsStrategy.hasNextContract(budget.getBudget())) {
             return state.execute(men, contracts, carte, budget);
         }
         if (((budget.getBudget() > 700 && budget.getBudget() < 1700) || contracts.isPrimaryCompleted()) && contractsStrategy.couldCompleteAnotherContract()) {

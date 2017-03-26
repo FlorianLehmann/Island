@@ -38,6 +38,7 @@ public class GroundStrategyTest {
         json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
         json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         Carte carte = mock(Carte.class);
+        when(carte.hasResource(WOOD)).thenReturn(true);
         when(carte.getCreekID()).thenReturn("ID");
         budget = new Budget(2000);
         Contracts contracts = new Contracts();
