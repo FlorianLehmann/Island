@@ -24,11 +24,12 @@ public class Factory implements State {
 
 
     private Contract contract;
+    private Contracts contracts;
     private ContractsStrategy contractsStrategy;
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
-
+        this.contracts = contracts;
         contractsStrategy = new ContractsStrategy(contracts);
         contract = contractsStrategy.getManufacturedContract();
         int amount = contract.getRequired();
@@ -44,6 +45,7 @@ public class Factory implements State {
     @Override
     public State changeState(ReadJSON json) {
         contract.sub(json.getProduction());
+        contracts.getSecondaryContracts().remove(contract.getName());
         logger.info("TEST " + contract.isCompleted() + " amount" + contract.getCollected());
         return this;
     }

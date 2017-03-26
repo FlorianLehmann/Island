@@ -54,20 +54,28 @@ public class Contracts {
      */
     public void add(Contract contract) {
         if (contract.getName().isPrimary()) {
-            if (primaryContracts.containsKey(contract.getName()))
+            if (primaryContracts.containsKey(contract.getName())) {
                 primaryContracts.get(contract.getName()).addRequired(contract.getRequired());
-            else
-                primaryContracts.put( contract.getName() ,contract);
+                logger.info(contract.getName() + " contract.getRequired() " + contract.getRequired());
+            }
+            else {
+                primaryContracts.put(contract.getName(), contract);
+                logger.info(contract.getName() + " contract.getRequired() " + contract.getRequired());
+            }
+
+            logger.info(contract.getName() + " contract.getRequired() " + primaryContracts.get(contract.getName()).getRequired());
         } else {
             secondaryContracts.put(contract.getName(), contract);
         }
+
+
     }
 
     public void allocateContracts() {
         for (Map.Entry<EnumResources, Contract> secondaryContract: secondaryContracts.entrySet()) {
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getValue().getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                logger.info("ingre" + ingredient.getIngredient() + " nb " + ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
+                //logger.info("ingre" + ingredient.getIngredient() + " nb " + ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
                 primaryContractsAdd(ingredient.getIngredient(), ingredient.getAmount() * (secondaryContract.getValue().getRequired() + ((int)( secondaryContract.getValue().getRequired()*SECURITY_MARGIN))));
             }
         }
@@ -77,8 +85,8 @@ public class Contracts {
 
         if (primaryContracts.containsKey(ingredient))
             primaryContracts.get(ingredient).addRequired(amount);
-
-        add(new Contract(amount, ingredient));
+        else
+            add(new Contract(amount, ingredient));
 
     }
 

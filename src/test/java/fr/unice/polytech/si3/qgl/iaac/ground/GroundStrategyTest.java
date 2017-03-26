@@ -1,6 +1,7 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
 import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
 import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.LAND;
 import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
@@ -38,7 +40,9 @@ public class GroundStrategyTest {
         Carte carte = mock(Carte.class);
         when(carte.getCreekID()).thenReturn("ID");
         budget = new Budget(2000);
-        strategy = new GroundStrategy(8, json, men, carte, budget, new Contracts());
+        Contracts contracts = new Contracts();
+        contracts.add(new Contract(100, WOOD));
+        strategy = new GroundStrategy(8, json, men, carte, budget, contracts);
     }
 
     @Test
