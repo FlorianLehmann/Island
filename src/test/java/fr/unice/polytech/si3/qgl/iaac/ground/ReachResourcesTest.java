@@ -45,8 +45,35 @@ public class ReachResourcesTest {
     }
 
     @Test
-    public void ShouldMove() {
+    public void ShouldMove() throws InterruptedException {
         assertEquals(men.moveTo(EnumOrientation.NORTH), reachResources.execute(men, contracts, carte, budget));
+    }
+
+    @Test
+    public void ShouldExplore() throws InterruptedException {
+        assertEquals(men.moveTo(EnumOrientation.NORTH), reachResources.execute(men, contracts, carte, budget));
+        reachResources.changeState(readJSON);
+        assertEquals(men.explore(), reachResources.execute(men, contracts, carte, budget));
+    }
+
+    @Test
+    public void ShouldExploit() throws InterruptedException {
+        assertEquals(men.moveTo(EnumOrientation.NORTH), reachResources.execute(men, contracts, carte, budget));
+        reachResources.changeState(readJSON);
+        assertEquals(men.explore(), reachResources.execute(men, contracts, carte, budget));
+        readJSON.read("{\n" +
+                "  \"cost\": 5,\n" +
+                "  \"extras\": {\n" +
+                "    \"resources\": [\n" +
+                "      { \"amount\": \"HIGH\", \"resource\": \"FUR\", \"cond\": \"FAIR\" },\n" +
+                "      { \"amount\": \"LOW\", \"resource\": \"WOOD\", \"cond\": \"HARSH\" }\n" +
+                "    ],\n" +
+                "    \"pois\": [{\"kind\": \"Creek\", \"id\": \"43e3eb42-50f0-47c5-afa3-16cd3d50faff\"}]\n" +
+                "  },\n" +
+                "  \"status\": \"OK\"\n" +
+                "}");
+        reachResources.changeState(readJSON);
+        assertEquals(men.exploit(WOOD), reachResources.execute(men, contracts, carte, budget));
     }
 
 }
