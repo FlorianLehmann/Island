@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.json;
+/*package fr.unice.polytech.si3.qgl.iaac.json;
 
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
@@ -6,9 +6,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lehmann on 22/03/17.
- */
+
 public class Extras {
 
     private int range;
@@ -73,4 +71,4 @@ public class Extras {
     }
 
 
-}
+}*/

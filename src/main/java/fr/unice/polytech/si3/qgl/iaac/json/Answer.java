@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.json;
+/*package fr.unice.polytech.si3.qgl.iaac.json;
 
 import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
@@ -8,9 +8,7 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by florian on 22/03/2017.
- */
+
 public class Answer {
 
     private int men;
@@ -98,4 +96,4 @@ public class Answer {
 
 
 
-}
+}*/

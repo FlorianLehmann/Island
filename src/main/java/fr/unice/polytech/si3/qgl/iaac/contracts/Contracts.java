@@ -4,8 +4,6 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +16,6 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources
  */
 public class Contracts {
 
-    private static final Logger logger = LogManager.getLogger(Contracts.class);
     /**
      * attributes
      */
@@ -49,16 +46,10 @@ public class Contracts {
      */
     public void add(Contract contract) {
         if (contract.getName().isPrimary()) {
-            if (primaryContracts.containsKey(contract.getName())) {
+            if (primaryContracts.containsKey(contract.getName()))
                 primaryContracts.get(contract.getName()).addRequired(contract.getRequired());
-                logger.info(contract.getName() + " contract.getRequired() " + contract.getRequired());
-            }
-            else {
+            else
                 primaryContracts.put(contract.getName(), contract);
-                logger.info(contract.getName() + " contract.getRequired() " + contract.getRequired());
-            }
-
-            logger.info(contract.getName() + " contract.getRequired() " + primaryContracts.get(contract.getName()).getRequired());
         } else {
             secondaryContracts.put(contract.getName(), contract);
         }
@@ -66,6 +57,9 @@ public class Contracts {
 
     }
 
+    /**
+     * convert ManufacturedContract to PrimaryContract
+     */
     public void allocateContracts() {
         for (Map.Entry<EnumResources, Contract> secondaryContract: secondaryContracts.entrySet()) {
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) secondaryContract.getValue().getName();
@@ -75,6 +69,12 @@ public class Contracts {
         }
     }
 
+    /**
+     * Add the required amount for a contract
+     *
+     * @param ingredient
+     * @param amount
+     */
     private void primaryContractsAdd(EnumPrimaryResources ingredient, int amount) {
 
         if (primaryContracts.containsKey(ingredient))

@@ -5,8 +5,6 @@ import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 import fr.unice.polytech.si3.qgl.iaac.resources.Ingredient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Map;
@@ -19,17 +17,28 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
  */
 public class ContractsStrategy {
 
-    private static final Logger logger = LogManager.getLogger(ContractsStrategy.class);
+    /**
+     * attribute
+     */
     private Contracts contracts;
     private Carte carte;
 
 
+    /**
+     * default constructor
+     *
+     * @param contracts
+     * @param carte
+     */
     public ContractsStrategy(Contracts contracts, Carte carte) {
         this.contracts = contracts;
         this.carte = carte;
     }
 
-
+    /**
+     *
+     * @return true if it can complete another contract
+     */
     public boolean couldCompleteAnotherContract() {
         for (Map.Entry<EnumResources, Contract> secondaryContract: contracts.getSecondaryContracts().entrySet()) {
             if (!secondaryContract.getValue().isCompleted()) {
@@ -44,12 +53,17 @@ public class ContractsStrategy {
         return false;
     }
 
+    /**
+     *
+     * @param ingredients
+     * @param amount
+     * @return true if we have enough resources
+     */
     private boolean hasEnoughToMakeManufacturedContract(List<Ingredient> ingredients, int amount) {
         int numberOfIngredients = ingredients.size();
         for (Ingredient ingredient :
                 ingredients) {
             int necessaryAmount = ingredient.getAmount() * (amount + ((int) (amount * SECURITY_MARGIN)));
-            logger.info("NECESSARY" + necessaryAmount);
             for (Map.Entry<EnumResources, Contract> primaryContract: contracts.getPrimaryContracts().entrySet()) {
 
                 if (primaryContract.getValue().getName() == ingredient.getIngredient() && primaryContract.getValue().getCollected() >= necessaryAmount) {
@@ -60,6 +74,10 @@ public class ContractsStrategy {
         return numberOfIngredients == 0;
     }
 
+    /**
+     *
+     * @return a contract which can be manufactured
+     */
     public Contract getManufacturedContract() {
         for (Map.Entry<EnumResources, Contract> secondaryContract: contracts.getSecondaryContracts().entrySet()) {
             if (!secondaryContract.getValue().isCompleted()) {
@@ -75,18 +93,34 @@ public class ContractsStrategy {
         throw new RuntimeException("no Manufactured contract");
     }
 
+    /**
+     *
+     * @param resource
+     * @param amountMax
+     * @return
+     */
     private boolean couldBeRecolted(EnumPrimaryResources resource, int amountMax) {
         if (contracts.needResource(resource) && carte.hasResource(resource) && contracts.getPrimaryContracts(resource).getRequired() <= amountMax)
             return true;
         return false;
     }
 
+    /**
+     * if it is not sure that a contract could be completed
+     * @param resource
+     * @return
+     */
     private boolean mayBeRecolted(EnumPrimaryResources resource) {
         if (contracts.needResource(resource) && carte.hasResource(resource))
             return true;
         return false;
     }
 
+    /**
+     *
+     * @param budget
+     * @return the next contract to handle
+     */
     public EnumPrimaryResources nextContract(int budget) {
 
         int amountMax = budget / 2;

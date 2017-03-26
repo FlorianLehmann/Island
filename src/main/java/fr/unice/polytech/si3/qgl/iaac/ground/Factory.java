@@ -29,12 +29,15 @@ public class Factory implements State {
 
     @Override
     public String execute(Men men, Contracts contracts, Carte carte, Budget budget) {
+
         this.contracts = contracts;
         contractsStrategy = new ContractsStrategy(contracts, carte);
         contract = contractsStrategy.getManufacturedContract();
+
         int amount = contract.getRequired();
         List<Ingredient> ingredients = ((EnumManufacturedResources)contract.getName()).getIngredients();
         int amountManufactured = ((EnumManufacturedResources)contract.getName()).getAmountManufactured();
+
         if (ingredients.size() == 1)
             return men.transform(ingredients.get(0).getIngredient(),
                     (ingredients.get(0).getAmount())*(amount + ((int)(amount*SECURITY_MARGIN))));
@@ -46,7 +49,6 @@ public class Factory implements State {
     public State changeState(ReadJSON json) {
         contract.sub(json.getProduction());
         contracts.getSecondaryContracts().remove(contract.getName());
-        logger.info("TEST " + contract.isCompleted() + " amount" + contract.getCollected());
         return this;
     }
 }
