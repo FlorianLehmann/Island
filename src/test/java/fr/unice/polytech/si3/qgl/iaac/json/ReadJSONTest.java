@@ -1,4 +1,4 @@
-package fr.unice.polytech.si3.qgl.iaac.json;
+/*package fr.unice.polytech.si3.qgl.iaac.json;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +12,7 @@ import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.FUR;
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by florian on 22/03/2017.
- */
+
 public class ReadJSONTest {
 
     private ReadJSON readJSON2;
@@ -115,4 +113,4 @@ public class ReadJSONTest {
     }
 
 
-}
+}*/
