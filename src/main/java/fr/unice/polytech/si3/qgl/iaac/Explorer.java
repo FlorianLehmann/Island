@@ -11,7 +11,8 @@ import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 
 import java.awt.*;
-import java.io.IOException;
+
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
 
 
 public class Explorer implements IExplorerRaid {
@@ -53,9 +54,13 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public String takeDecision() {
-        if (!air.isOver())
-            return air.takeAction();
-        return ground.takeAction();
+        try {
+            if (!air.isOver())
+                return air.takeAction();
+            return ground.takeAction();
+        } catch (RuntimeException ex) {
+            return STOP.toString("");
+        }
     }
 
     /**
@@ -65,7 +70,7 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void acknowledgeResults(String s) {
 
-            readJSON.read(s);
+        readJSON.read(s);
 
         if (!air.isOver()) {
             air.acknowledgeResults();
