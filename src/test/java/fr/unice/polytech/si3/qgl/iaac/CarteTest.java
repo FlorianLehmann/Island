@@ -25,7 +25,7 @@ public class CarteTest {
 
     @Before
     public void defineContext() throws IOException {
-        readJSON = new ReadJSON();
+        readJSON = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
         readJSON.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         carte = new Carte(readJSON);

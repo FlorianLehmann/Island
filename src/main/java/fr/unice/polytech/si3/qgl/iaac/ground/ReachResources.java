@@ -124,10 +124,9 @@ public class ReachResources implements State {
                 state = EXPLORE;
                 break;
             case EXPLORE:
-                for (EnumResources resource: json.getAnswer().getResources())
-                    if (contracts.needResource((EnumPrimaryResources) resource))
-                        resourcesToCollect.add((EnumPrimaryResources) resource);
-
+                for (String resource: json.getResources())
+                    if (contracts.needResource(((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource))))
+                        resourcesToCollect.add((EnumPrimaryResources) EnumPrimaryResources.getEnumPrimaryResources(resource));
                 if (!resourcesToCollect.isEmpty()) {
                     state = EXPLOIT;
                 }
@@ -136,7 +135,7 @@ public class ReachResources implements State {
                 }
                 break;
             case EXPLOIT:
-                contracts.addColectedContract(json.getAnswer().getAmount(), resourcesToCollect.pop());
+                contracts.addColectedContract(json.getCollect(), resourcesToCollect.pop());
 
                 if (resourcesToCollect.isEmpty()) {
                     state = MOVE;

@@ -35,20 +35,15 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void initialize(String s) {
-        readJSON = new ReadJSON();
-        try {
-            readJSON.read(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        drone = new Drone(readJSON.getAnswer().getHeading());
-        budget = new Budget(readJSON.getAnswer().getBudget());
+        readJSON = new ReadJSON(s);
+        drone = readJSON.initDrone();
+        budget = readJSON.initBudget();
         carte = new Carte(readJSON);
         air = new AirStrategy(drone, readJSON, carte, budget);
-        contracts = new Contracts(readJSON.getAnswer().getContracts());
-        nbMen = readJSON.getAnswer().getMen();
+        contracts = readJSON.initContracts();
+        nbMen = readJSON.initNbMen();
         men = new Men(new Point(0,0));
-        ground = new GroundStrategy(nbMen, readJSON, men, carte, budget, contracts );
+        ground = new GroundStrategy(readJSON.initNbMen(), readJSON, men, carte, budget, contracts );
     }
 
     /**
@@ -68,11 +63,9 @@ public class Explorer implements IExplorerRaid {
      */
     @Override
     public void acknowledgeResults(String s) {
-        try {
+
             readJSON.read(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         if (!air.isOver()) {
             air.acknowledgeResults();
             if (air.isOver()) {

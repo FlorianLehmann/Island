@@ -33,7 +33,7 @@ public class GroundStrategyTest {
     @Before
     public void defineContext() throws IOException {
         men = new Men(new Point(0,0));
-        json = new ReadJSON();
+        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
         json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         Carte carte = mock(Carte.class);
         when(carte.getCreekID()).thenReturn("ID");

@@ -36,7 +36,7 @@ public class AStarTest {
         location = new Point(3,3);
         target = new Point(6,3);
         list = new HashMap<>();
-        json = new ReadJSON();
+        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
         json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();

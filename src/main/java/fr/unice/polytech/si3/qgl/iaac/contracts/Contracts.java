@@ -55,7 +55,7 @@ public class Contracts {
             secondaryContracts.put(contract.getName(), contract);
             EnumManufacturedResources manufacturedResource = (EnumManufacturedResources) contract.getName();
             for (Ingredient ingredient : manufacturedResource.getIngredients()) {
-                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + ((int)(contract.getRequired()/SECURITY_MARGIN))));
+                primaryContractAddRequired(ingredient.getIngredient(), ingredient.getAmount() * (contract.getRequired() + ((int)(contract.getRequired()*SECURITY_MARGIN))));
             }
         }
     }

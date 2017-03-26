@@ -42,19 +42,26 @@ public class Case {
     }
 
     public void updateBiomes(ReadJSON json){
-        if (json.getAnswer().getBiomes() != null)
-            biomes=json.getAnswer().getBiomes();
+        if (json.getBiomes() != null)
+            biomes=json.getBiomes();
     }
 
     public void updateCreek(ReadJSON json){
-        if (json.getAnswer().getCreeks() != null)
-            idCreek=json.getAnswer().getCreeks();
+        if (json.getCreekID() != null)
+            idCreek=json.getCreekID();
     }
 
     public void updatePu(ReadJSON json){
-        if (json.getAnswer().getSites() != null)
-            idPu=json.getAnswer().getSites();
+        idPu=json.getSiteID();
     }
+
+    /*public void updateRessources(ReadJSON json){
+        ressources=json.getResources();
+    }
+
+    public void updateNbRessources(ReadJSON json){
+        nbRessources=json.getNbRessources();
+    }*/
 
     public void update(ReadJSON json) {
         updateBiomes(json);

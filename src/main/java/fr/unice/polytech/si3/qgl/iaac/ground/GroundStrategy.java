@@ -65,7 +65,7 @@ public class GroundStrategy {
      */
     public void acknowledgeResults() {
         if (budget.hasBudget()) {
-            budget.subBudget(json.getAnswer().getCost());
+            budget.subBudget(json.getCost());
             state = state.changeState(json);
         }
     }

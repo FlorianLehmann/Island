@@ -29,7 +29,7 @@ public class AirStrategyTest {
     @Before
     public void defineContext() throws IOException {
         drone = new Drone(EST);
-        json = new ReadJSON();
+        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
         json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         carte = new Carte(json);
         budget = new Budget(1000);

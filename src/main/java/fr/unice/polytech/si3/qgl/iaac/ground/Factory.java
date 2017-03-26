@@ -43,7 +43,7 @@ public class Factory implements State {
 
     @Override
     public State changeState(ReadJSON json) {
-        contract.sub(json.getAnswer().getProduction());
+        contract.sub(json.getProduction());
         logger.info("TEST " + contract.isCompleted() + " amount" + contract.getCollected());
         return this;
     }
