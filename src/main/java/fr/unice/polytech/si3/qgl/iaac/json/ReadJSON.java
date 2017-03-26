@@ -81,7 +81,7 @@ public class ReadJSON {
                         contracts.add(new Contract(am, EnumPrimaryResources.getEnumPrimaryResources(re)));
                     }
                     else {
-                        contracts.add(new Contract(am, EnumPrimaryResources.getEnumPrimaryResources(re)));
+                        contracts.add(new Contract(am, EnumManufacturedResources.getEnumManufacturedResources(re)));
                     }
 
                 }

@@ -90,14 +90,16 @@ public class ContractsStrategy {
         if (couldBeRecolted(QUARTZ, amountMax))
             return QUARTZ;
 
-        for (int i = 0; i < contracts.getPrimaryContracts().size(); i++) {
-            if (couldBeRecolted((EnumPrimaryResources) contracts.getPrimaryContracts().get(i).getName(), amountMax))
-                return (EnumPrimaryResources) contracts.getPrimaryContracts().get(i).getName();
+        for (Map.Entry<EnumResources, Contract> contractEntry: contracts.getPrimaryContracts().entrySet()) {
+            if (couldBeRecolted((EnumPrimaryResources) contractEntry.getValue().getName(), amountMax)) {
+                return (EnumPrimaryResources) contractEntry.getValue().getName();
+            }
         }
 
-        for (int i = 0; i < contracts.getPrimaryContracts().size(); i++) {
-            if (mayBeRecolted((EnumPrimaryResources) contracts.getPrimaryContracts().get(i).getName()))
-                return (EnumPrimaryResources) contracts.getPrimaryContracts().get(i).getName();
+        for (Map.Entry<EnumResources, Contract> contractEntry: contracts.getPrimaryContracts().entrySet()) {
+            if (mayBeRecolted((EnumPrimaryResources) contractEntry.getValue().getName())) {
+                return (EnumPrimaryResources) contractEntry.getValue().getName();
+            }
         }
 
         throw new RuntimeException("All contracts are completed");
