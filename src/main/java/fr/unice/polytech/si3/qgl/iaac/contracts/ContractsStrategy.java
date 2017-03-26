@@ -148,4 +148,14 @@ public class ContractsStrategy {
 
         throw new RuntimeException("All contracts are completed");
     }
+
+    public boolean hasNextContract(int budget) {
+
+        for (Map.Entry<EnumResources, Contract> contractEntry : contracts.getPrimaryContracts().entrySet()) {
+            if (mayBeRecolted((EnumPrimaryResources) contractEntry.getValue().getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

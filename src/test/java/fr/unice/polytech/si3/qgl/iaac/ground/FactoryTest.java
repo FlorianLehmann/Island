@@ -32,7 +32,7 @@ public class FactoryTest {
     public void defineContext() throws IOException{
         men=new Men(new Point(0,0));
         carte=mock(Carte.class);
-        json=new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");;
+        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         json.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         contracts=new Contracts();
         state=new Factory();

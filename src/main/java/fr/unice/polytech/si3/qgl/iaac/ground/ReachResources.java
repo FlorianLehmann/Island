@@ -70,15 +70,12 @@ public class ReachResources implements State {
     private Point chooseTarget(Men men, Contracts contracts, Carte carte, Budget budget) {
         Contract contract;
         Point target = new Point(men.getCoord());
-        if(!contracts.isPrimaryCompleted()){
+        if (!contracts.isPrimaryCompleted() && contractsStrategy.hasNextContract(budget.getBudget())) {
             EnumResources resource = contractsStrategy.nextContract(budget.getBudget());
             if (carte.hasResource(resource)) {
                 target = carte.getNearestResource(resource, men.getCoord());
             }
         }
-        logger.info("MEN" + men.getCoord());
-        logger.info("TARGET" + target);
-        //TODO ici on peut crasher
         if (target.equals(men.getCoord()))
             target = map.getRandomTarget();
         return target;

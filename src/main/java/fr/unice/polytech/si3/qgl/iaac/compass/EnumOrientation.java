@@ -17,7 +17,6 @@ public enum EnumOrientation {
     WEST("W", "S", "N", "E"),
     EST("E", "N", "S", "W");
 
-    private String front, left, right, back;
     private static Map<String, EnumOrientation> map = new HashMap();
 
     /**
@@ -28,6 +27,8 @@ public enum EnumOrientation {
     static {
         Arrays.asList(EnumOrientation.values()).forEach(cw -> map.put(cw.front, cw));
     }
+
+    private String front, left, right, back;
 
     /**
      * Constructeur de l'enum
@@ -43,6 +44,17 @@ public enum EnumOrientation {
         this.right = right;
         this.back = back;
 
+    }
+
+    /**
+     *
+     * @return EnumOrientation
+     */
+    @JsonCreator
+    public static EnumOrientation getEnumDirection(String direction) {
+        if (map.containsKey(direction))
+            return map.get(direction);
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -79,15 +91,6 @@ public enum EnumOrientation {
 
         return getEnumDirection(front);
 
-    }
-
-    /**
-     *
-     * @return EnumOrientation
-     */
-    @JsonCreator
-    public static EnumOrientation getEnumDirection(String direction) {
-        return map.get(direction);
     }
 
     @Override
