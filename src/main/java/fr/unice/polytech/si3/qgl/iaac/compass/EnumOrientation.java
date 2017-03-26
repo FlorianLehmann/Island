@@ -1,6 +1,5 @@
 package fr.unice.polytech.si3.qgl.iaac.compass;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,7 +49,6 @@ public enum EnumOrientation {
      *
      * @return EnumOrientation
      */
-    @JsonCreator
     public static EnumOrientation getEnumDirection(String direction) {
         if (map.containsKey(direction))
             return map.get(direction);

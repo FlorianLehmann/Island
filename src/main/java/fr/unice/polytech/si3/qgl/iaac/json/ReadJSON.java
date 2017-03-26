@@ -1,28 +1,24 @@
 package fr.unice.polytech.si3.qgl.iaac.json;
 
+import fr.unice.polytech.si3.qgl.iaac.air.Drone;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
+import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-        import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-        import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
-        import fr.unice.polytech.si3.qgl.iaac.air.Drone;
-        import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
-        import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
-        import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
-        import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
-        import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
-        import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
-        import fr.unice.polytech.si3.qgl.iaac.resources.EnumManufacturedResources;
-        import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
-
-        import org.checkerframework.checker.nullness.qual.Nullable;
-        import org.json.JSONArray;
-        import org.json.JSONObject;
-
-        import java.util.*;
-
-        import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
+import static fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome.OCEAN;
 
 /**
  * Created by lehmann on 04/02/17.

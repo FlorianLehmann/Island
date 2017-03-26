@@ -3,8 +3,6 @@ package fr.unice.polytech.si3.qgl.iaac.json;
 /**
  * Created by florian on 26/03/2017.
  */
-import com.fasterxml.jackson.annotation.JsonCreator;
-import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 
 /**
  * Created by florian on 15/01/2017.

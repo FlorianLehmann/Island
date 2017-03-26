@@ -1,8 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.resources;
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +38,10 @@ public enum EnumBiome {
         }
     }
 
+    public static EnumBiome getEnumBiome(String name) {
+        return valueOf(name);
+    }
+
     public List<EnumResources> getResources(){
         return resources;
     }
@@ -47,10 +49,5 @@ public enum EnumBiome {
     @Override
     public String toString() {
         return name();
-    }
-
-    @JsonCreator
-    public static EnumBiome getEnumBiome(String name){
-        return valueOf(name);
     }
 }
