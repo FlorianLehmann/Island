@@ -1,4 +1,8 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.json;
+
+/**
+ * Created by florian on 26/03/2017.
+ */
 
 /**
  * Created by florian on 15/01/2017.
@@ -30,6 +34,7 @@ public enum EnumReadJSON {
     EnumReadJSON(String word) {
         this.word = word;
     }
+
 
     @Override
     public String toString() {

@@ -1,15 +1,16 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
-import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.FlyToEarth4;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
 import org.junit.Test;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.ECHO;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.EST;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.SOUTH;
+import java.io.IOException;
+
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.EST;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.SOUTH;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.ECHO;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -23,10 +24,10 @@ public class EchoLeftTest {
     private ReadJSON read;
 
     @Before
-    public void ini(){
+    public void ini() throws IOException {
         drone = new Drone(SOUTH);
         echoLeft = new EchoLeft();
-        read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
+        read = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
@@ -37,15 +38,15 @@ public class EchoLeftTest {
 
 
     @Test
-    public void waitWithOceanFly(){
+    public void waitWithOceanFly() throws IOException {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\"}");
-        assertTrue(echoLeft.wait(read) instanceof EchoRight);
+        assertTrue(echoLeft.nextState(read) instanceof EchoRight);
     }
 
     @Test
-    public void waitWithGroundLeft(){
+    public void waitWithGroundLeft() throws IOException {
         read.read("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        assertTrue(echoLeft.wait(read) instanceof HeadingLeft);
+        assertTrue(echoLeft.nextState(read) instanceof HeadingLeft);
     }
 
 }

@@ -1,10 +1,10 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.LEFT;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.LEFT;
 
 /**
  * Created by Quentin on 05/02/2017.
@@ -17,8 +17,8 @@ public class EchoLeft implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
-        if(json.getGround())
+    public State nextState(ReadJSON json) {
+        if (json.getFound())
             return new HeadingLeft();
 
         return new EchoRight();

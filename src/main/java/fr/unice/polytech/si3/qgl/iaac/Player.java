@@ -1,17 +1,17 @@
 package fr.unice.polytech.si3.qgl.iaac;
 
-import java.awt.*;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.*;
+import java.awt.*;
 
 /**
  * Created by florian on 24/02/2017.
  */
 public abstract class Player {
 
+    protected final int nbCaseUsedForAction;
     protected Point coord;
     protected EnumOrientation orientation;
-    protected final int nbCaseUsedForAction;
 
     protected Player(Point coord, int nbCaseUsedForAction) {
         this.coord = coord;

@@ -1,7 +1,5 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.contracts.Contract;
-import fr.unice.polytech.si3.qgl.iaac.contracts.PrimaryContract;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
 import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
 import org.junit.Before;
@@ -20,13 +18,13 @@ public class ContractTest {
 
     @Before
     public void defineContext() {
-        contract = new PrimaryContract(EnumPrimaryResources.WOOD, 1500);
+        contract = new Contract(1500, EnumPrimaryResources.WOOD);
     }
 
     @Test
     public void defineBadContextTest() {
         try {
-            new PrimaryContract(EnumPrimaryResources.WOOD, 0);
+            new Contract(0, EnumPrimaryResources.WOOD);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -34,7 +32,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new PrimaryContract(EnumPrimaryResources.WOOD, -10);
+            new Contract(-10, EnumPrimaryResources.WOOD);
             assertTrue(false);
         }
         catch (NoAmountContractException exception)
@@ -42,7 +40,7 @@ public class ContractTest {
             assertTrue(true);
         }
         try {
-            new PrimaryContract(EnumPrimaryResources.WOOD, 5);
+            new Contract(5, EnumPrimaryResources.WOOD);
             assertTrue(true);
         }
         catch (NoAmountContractException exception)
@@ -54,26 +52,33 @@ public class ContractTest {
     @Test
     public void addAmountTest() {
         contract.add(15);
-        assertEquals(1515, contract.getAmount());
+        assertEquals(15, contract.getCollected());
     }
 
     @Test
     public void subAmountTest() {
+        contract.add(150);
         contract.sub(15);
-        assertEquals(1485, contract.getAmount());
+        assertEquals(135, contract.getCollected());
         contract.sub(1500);
-        assertEquals(0, contract.getAmount());
+        assertEquals(0, contract.getCollected());
     }
 
     @Test
     public void isCompletedTest(){
-        contract.sub(1500);
+        contract.add(1500);
         assertTrue(contract.isCompleted());
     }
 
     @Test
     public void getNameTest() {
-        assertEquals(EnumPrimaryResources.valueOf("FISH"), new PrimaryContract(FISH, 1500).getName());
+        assertEquals(EnumPrimaryResources.valueOf("FISH"), new Contract(1500, FISH).getName());
+    }
+
+    @Test
+    public void shouldIncreaseNumberOfResourcesRequired() {
+        contract.addRequired(500);
+        assertEquals(2000, contract.getRequired());
     }
 
 }

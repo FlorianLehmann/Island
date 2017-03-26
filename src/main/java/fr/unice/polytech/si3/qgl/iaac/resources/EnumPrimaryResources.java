@@ -1,5 +1,6 @@
 package fr.unice.polytech.si3.qgl.iaac.resources;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,10 +18,6 @@ public enum EnumPrimaryResources implements EnumResources {
     SUGAR_CANE,
     WOOD;
 
-    public boolean isPrimary() {
-        return true;
-    }
-
     public static boolean isPrimary(String resource) {
         List<EnumPrimaryResources> resources = Arrays.asList(EnumPrimaryResources.values());
         for (int i = 0; i < resources.size(); i++)
@@ -29,13 +26,17 @@ public enum EnumPrimaryResources implements EnumResources {
         return false;
     }
 
+    public static EnumResources getEnumPrimaryResources(String resource) {
+        return EnumPrimaryResources.valueOf(resource);
+    }
+
+    public boolean isPrimary() {
+        return true;
+    }
+
     @Override
     public String toString() {
         return name();
-    }
-
-    public static EnumResources getEnumPrimaryResources(String resource) {
-        return EnumPrimaryResources.valueOf(resource);
     }
 
 }

@@ -1,14 +1,16 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
 import org.junit.Test;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.HEADING;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.EST;
-import static fr.unice.polytech.si3.qgl.iaac.EnumOrientation.SOUTH;
+import java.io.IOException;
+
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.EST;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation.SOUTH;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.HEADING;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -22,10 +24,10 @@ public class HeadingLeftTest {
     private ReadJSON read;
 
     @Before
-    public void ini(){
+    public void ini() throws IOException {
         drone = new Drone(SOUTH);
         HeadingLeft = new HeadingLeft();
-        read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
+        read = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
@@ -36,9 +38,9 @@ public class HeadingLeftTest {
 
 
     @Test
-    public void waitTest(){
+    public void waitTest() throws IOException {
         read.read("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"E\" } }");
-        assertTrue(HeadingLeft.wait(read) instanceof EchoFace);
+        assertTrue(HeadingLeft.nextState(read) instanceof EchoFace);
     }
 
 

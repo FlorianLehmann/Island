@@ -4,15 +4,12 @@ package fr.unice.polytech.si3.qgl.iaac.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.*;
 
 /**
  * Created by Quentin on 09/02/2017.
  */
 public enum EnumBiome {
-
-
 
     OCEAN(FISH),
     LAKE(FISH),
@@ -41,6 +38,10 @@ public enum EnumBiome {
         }
     }
 
+    public static EnumBiome getEnumBiome(String name) {
+        return valueOf(name);
+    }
+
     public List<EnumResources> getResources(){
         return resources;
     }
@@ -48,12 +49,5 @@ public enum EnumBiome {
     @Override
     public String toString() {
         return name();
-    }
-
-    public static EnumBiome getEnumBiome(String name){
-        for(EnumBiome biome : EnumBiome.values())
-            if (biome.toString().equals(name))
-                return biome;
-        throw new RuntimeException("Le biome n'existe pas");
     }
 }

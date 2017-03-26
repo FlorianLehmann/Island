@@ -1,46 +1,49 @@
 package fr.unice.polytech.si3.qgl.iaac.ground.tools;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
-import fr.unice.polytech.si3.qgl.iaac.carte.ArrayMap;
-import fr.unice.polytech.si3.qgl.iaac.carte.Case;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.map.ArrayMap;
+import fr.unice.polytech.si3.qgl.iaac.map.Case;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by florian on 03/03/2017.
  */
 public class AStarTest {
 
+    public static final int size = 10;
+    public static final int border = 2;
     private AStar aStar;
     private Point location;
     private Point target;
     private ArrayMap map;
-
-    private java.util.List<Case> list;
+    private Map<Point, Case> list;
     private ReadJSON json;
 
-    public static final int size = 10;
-    public static final int border = 2;
-
     @Before
-    public void defineWay() {
+    public void defineWay() throws IOException {
         location = new Point(3,3);
         target = new Point(6,3);
-        list = new ArrayList<>();
-        json = new ReadJSON("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
+        list = new HashMap<>();
+        json = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+        ;
+        json.read("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, \"resource\": \"WOOD\" }, " +
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
         createAnIsland();
         map = new ArrayMap(list);
         aStar = new AStar(location, target, map );
     }
 
-    private void createAnIsland() {
+    private void createAnIsland() throws IOException {
 
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
 
@@ -48,7 +51,7 @@ public class AStarTest {
             for (int j = 0; j < border; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i, j), tile);
             }
         }
 
@@ -56,7 +59,7 @@ public class AStarTest {
             for (int j = border; j < border; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i, j), tile);
             }
         }
 
@@ -64,7 +67,7 @@ public class AStarTest {
             for (int j = 0; j < size; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i, j), tile);
             }
         }
 
@@ -72,7 +75,7 @@ public class AStarTest {
             for (int j = size - border; j < size; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i, j), tile);
             }
         }
 
@@ -83,7 +86,7 @@ public class AStarTest {
             for (int j = border; j < size - border; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(new Point(i, j), tile);
             }
         }
 
@@ -99,8 +102,19 @@ public class AStarTest {
         }
     }
 
+    @Ignore
     @Test
-    public void ShouldReachTile2(){
+    public void ShouldReachTile3() {
+        location = new Point(2, 1);
+        target = new Point(7, 4);
+        aStar = new AStar(location, target, map);
+        aStar.compute();
+        Deque<Point> way = aStar.getWay();
+        assertEquals(12, way.size());
+    }
+
+    @Test
+    public void ShouldReachTile2() throws IOException {
         location = new Point(2,4);
         target = new Point(6,3);
         createAnIsland2();
@@ -108,12 +122,12 @@ public class AStarTest {
         aStar = new AStar(location, target, map );
         aStar.compute();
         Deque<Point> way = aStar.getWay();
-        assertEquals(11, way.size());
 
+        assertEquals(9, way.size());
     }
 
 
-    private void createAnIsland2() {
+    private void createAnIsland2() throws IOException {
 
         list.clear();
         json.read("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": [], \"sites\": [\"id\"]}, \"status\": \"OK\"}");
@@ -122,7 +136,7 @@ public class AStarTest {
             for (int j =  border; j < size-border; j++) {
                 Case tile = new Case(new Point(4,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(tile.getCoords(), tile);
             }
 
 
@@ -131,20 +145,20 @@ public class AStarTest {
         for (int j =  0; j < border; j++) {
             Case tile = new Case(new Point(4,j));
             tile.update(json);
-            list.add(tile);
+            list.put(tile.getCoords(), tile);
         }
 
         for (int j =  size-border; j < size; j++) {
             Case tile = new Case(new Point(4,j));
             tile.update(json);
-            list.add(tile);
+            list.put(tile.getCoords(), tile);
         }
 
         for (int i = 0; i < 4 ; i++) {
             for (int j = 0; j < size ; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(tile.getCoords(), tile);
             }
         }
 
@@ -152,7 +166,7 @@ public class AStarTest {
             for (int j = 0; j < size; j++) {
                 Case tile = new Case(new Point(i,j));
                 tile.update(json);
-                list.add(tile);
+                list.put(tile.getCoords(), tile);
             }
         }
 

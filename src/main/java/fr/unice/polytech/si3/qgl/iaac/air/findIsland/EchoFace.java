@@ -1,11 +1,11 @@
 package fr.unice.polytech.si3.qgl.iaac.air.findIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.FlyToEarth4;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumDirection.FRONT;
+import static fr.unice.polytech.si3.qgl.iaac.compass.EnumDirection.FRONT;
 
 /**
  * Created by Quentin on 04/02/2017.
@@ -18,8 +18,8 @@ public class EchoFace implements State {
     }
 
     @Override
-    public State wait(ReadJSON json) {
-        if(json.getGround())
+    public State nextState(ReadJSON json) {
+        if (json.getFound())
             return new FlyToEarth4(json.getRange());
 
         return new EchoLeft();

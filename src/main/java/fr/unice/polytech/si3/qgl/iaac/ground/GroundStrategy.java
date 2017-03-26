@@ -1,24 +1,29 @@
 package fr.unice.polytech.si3.qgl.iaac.ground;
 
-import fr.unice.polytech.si3.qgl.iaac.Budget;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
 import fr.unice.polytech.si3.qgl.iaac.contracts.Contracts;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.contracts.ContractsStrategy;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import static fr.unice.polytech.si3.qgl.iaac.EnumJSON.STOP;
+import static fr.unice.polytech.si3.qgl.iaac.json.EnumJSON.STOP;
 
 /**
  * Created by lehmann on 11/02/17.
  */
 public class GroundStrategy {
 
+    private static final Logger logger = LogManager.getLogger(GroundStrategy.class);
     private State state;
-    private int nbMen;
     private Men men;
     private ReadJSON json;
     private Carte carte;
     private Budget budget;
     private Contracts contracts;
+    private ContractsStrategy contractsStrategy;
+
 
     /**
      * default constructor
@@ -28,13 +33,14 @@ public class GroundStrategy {
      * @param carte
      */
     public GroundStrategy(int nbMen, ReadJSON json, Men men, Carte carte, Budget budget, Contracts contracts){
-        this.nbMen = nbMen;
         this.men = men;
         this.json = json;
         this.carte = carte;
         this.budget = budget;
         this.contracts = contracts;
         state = new Land(nbMen);
+        contractsStrategy = new ContractsStrategy(contracts, carte);
+
     }
 
     /**
@@ -42,10 +48,13 @@ public class GroundStrategy {
      * @return
      */
     public String takeAction() {
-        if (budget.hasBudget()) {
-            contracts.sortPrimaryContracts(budget.getBudget());
-            contracts.sortSecondaryContracts(budget.getBudget());
-            return state.execute(men, contracts, carte);
+        //contracts.sortPrimaryContracts(budget.getBudget());
+        if ((budget.hasBudget() && budget.getBudget() >= 1700) && !contracts.isPrimaryCompleted() && contractsStrategy.hasNextContract(budget.getBudget())) {
+            return state.execute(men, contracts, carte, budget);
+        }
+        if (((budget.getBudget() > 700 && budget.getBudget() < 1700) || contracts.isPrimaryCompleted() || !contractsStrategy.hasNextContract(budget.getBudget())) && contractsStrategy.couldCompleteAnotherContract()) {
+            state = new Factory();
+            return state.execute(men, contracts, carte, budget);
         }
         return STOP.toString("");
     }
@@ -56,10 +65,8 @@ public class GroundStrategy {
     public void acknowledgeResults() {
         if (budget.hasBudget()) {
             budget.subBudget(json.getCost());
-            state = state.wait(json);
+            state = state.changeState(json);
         }
-        //todo
-        //carte.addGroundCase(men.getCoord());
     }
 
 }

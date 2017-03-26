@@ -1,48 +1,51 @@
 package fr.unice.polytech.si3.qgl.iaac.contracts;
 
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
+
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoAmountContractException;
+import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
 
 /**
  * Created by lehmann on 04/02/17.
  */
-public abstract class Contract {
+public class Contract {
 
-    protected EnumResources name;
-    protected int amount;
+    /**
+     * attributes
+     */
+    private EnumResources name;
+    private int collected;
+    private int required;
 
     /**
      * default constructor
-     * @param name
      * @param amount
+     * @param resource
      * @throws NoAmountContractException
      */
-
-    public Contract(){}
-
-    public Contract(EnumResources name, int amount) throws NoAmountContractException {
-            this.name =  name;
+    public Contract(int amount, EnumResources resource) throws NoAmountContractException {
+        this.name = resource;
             if (amount <= 0)
                 throw new NoAmountContractException();
-            this.amount = amount;
+        this.collected = 0;
+        required = amount;
     }
 
     /**
-     *
+     * reduce the collected with quantity collected
      * @param amount
      */
     public void add(int amount){
-        this.amount += amount;
+        this.collected += amount;
     }
 
     /**
-     *
+     * increase the collected
      * @param amount
      */
     public void sub(int amount){
-        this.amount -= amount;
-        if (this.amount < 0)
-            this.amount = 0;
+        this.collected -= amount;
+        if (this.collected < 0)
+            this.collected = 0;
     }
 
     /**
@@ -54,11 +57,11 @@ public abstract class Contract {
     }
 
     /**
-     * return the amount of resource
+     * return the collected of resource
      * @return
      */
-    public int getAmount() {
-        return amount;
+    public int getCollected() {
+        return collected;
     }
 
     /**
@@ -66,7 +69,22 @@ public abstract class Contract {
      * @return true if the contract is completed
      */
     public boolean isCompleted() {
-        return amount == 0;
+        return collected >= required;
     }
 
+    /**
+     * @return the total amount of resource required to complete this contract
+     */
+    public int getRequired() {
+        return required;
+    }
+
+    /**
+     * increase the total amount of resource required to complete this contract
+     *
+     * @param amount
+     */
+    public void addRequired(int amount) {
+        required += amount;
+    }
 }

@@ -1,4 +1,5 @@
-package fr.unice.polytech.si3.qgl.iaac;
+package fr.unice.polytech.si3.qgl.iaac.compass;
+
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,8 +16,7 @@ public enum EnumOrientation {
     WEST("W", "S", "N", "E"),
     EST("E", "N", "S", "W");
 
-    String front, left, right, back;
-    static Map<String, EnumOrientation> map = new HashMap();
+    private static Map<String, EnumOrientation> map = new HashMap();
 
     /**
      *
@@ -26,6 +26,8 @@ public enum EnumOrientation {
     static {
         Arrays.asList(EnumOrientation.values()).forEach(cw -> map.put(cw.front, cw));
     }
+
+    private String front, left, right, back;
 
     /**
      * Constructeur de l'enum
@@ -42,12 +44,19 @@ public enum EnumOrientation {
         this.back = back;
 
     }
-    
 
     /**
-     * Donne la direction pour tourner à gauche
      *
-     * @return String left
+     * @return EnumOrientation
+     */
+    public static EnumOrientation getEnumDirection(String direction) {
+        if (map.containsKey(direction))
+            return map.get(direction);
+        throw new IllegalArgumentException();
+    }
+
+    /**
+     * @return left direction
      */
     public EnumOrientation left() {
 
@@ -55,38 +64,29 @@ public enum EnumOrientation {
 
     }
 
+    /**
+     *
+     * @return back direction
+     */
     public EnumOrientation back() {
         return getEnumDirection(back);
     }
 
     /**
-     * Donne la direction pour tourner à droite
      *
-     * @return String right
+     * @return right direction
      */
     public EnumOrientation right() {
-
         return getEnumDirection(right);
     }
 
     /**
-     * Donne la direction courante
      *
-     * @return String direction
+     * @return current direction
      */
     public EnumOrientation front() {
 
         return getEnumDirection(front);
-
-    }
-
-    /**
-     * Retourne l'enum direction associe
-     *
-     * @return EnumOrientation
-     */
-    public static EnumOrientation getEnumDirection(String direction) {
-        return map.get(direction);
 
     }
 

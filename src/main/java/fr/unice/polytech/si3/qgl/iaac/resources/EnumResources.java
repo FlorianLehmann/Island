@@ -5,5 +5,12 @@ package fr.unice.polytech.si3.qgl.iaac.resources;
  */
 public interface EnumResources {
 
+    public static EnumResources getEnumResources(String string) {
+        if (EnumPrimaryResources.isPrimary(string))
+            return Enum.valueOf(EnumPrimaryResources.class, string);
+        return Enum.valueOf(EnumManufacturedResources.class, string);
+    }
+
     public boolean isPrimary();
+
 }

@@ -2,14 +2,10 @@ package fr.unice.polytech.si3.qgl.iaac;
 
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoBudgetfield;
 import fr.unice.polytech.si3.qgl.iaac.exceptions.NoHeadingField;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumBiome;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources;
-import fr.unice.polytech.si3.qgl.iaac.resources.EnumResources;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -26,19 +22,14 @@ public class ReadJSONTest {
                 "{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}");
     }
 
-    @Ignore
-    @Test
-    public void defineContextWithoutMen() {
 
-    }
 
     @Test
     public void initDroneWithoutFieldForHeading() {
         try {
             json.initDrone();
             assertTrue(true);
-        }
-        catch (NoHeadingField exception) {
+        } catch (NoHeadingField exception) {
             assertTrue(false);
         }
     }
@@ -48,8 +39,7 @@ public class ReadJSONTest {
         try {
             json.initBudget();
             assertTrue(true);
-        }
-        catch (NoBudgetfield exception) {
+        } catch (NoBudgetfield exception) {
             assertTrue(false);
         }
     }
@@ -60,8 +50,7 @@ public class ReadJSONTest {
             new ReadJSON("{ \"men\": 12, \"budget\": 10000, \"contracts\": [ { \"amount\": 600, " +
                     "\"resource\": \"WOOD\" }, { \"amount\": 200, \"resource\": \"GLASS\" }]}").initDrone();
             assertTrue(false);
-        }
-        catch (NoHeadingField exception) {
+        } catch (NoHeadingField exception) {
             assertTrue(true);
         }
     }
@@ -72,23 +61,10 @@ public class ReadJSONTest {
             new ReadJSON("{ \"men\": 12, \"contracts\": [ { \"amount\": 600, " +
                     "\"resource\": \"WOOD\" }, { \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"W\"}").initBudget();
             assertTrue(false);
-        }
-        catch (NoBudgetfield exception) {
+        } catch (NoBudgetfield exception) {
             assertTrue(true);
         }
     }
-
-    @Ignore
-    @Test
-    public void defineContextWithoutContracts() {
-
-    }
-
-    @Test
-    public void initContractsTest() {
-        assertEquals(EnumPrimaryResources.WOOD, json.initContracts().getContract().getName());
-    }
-
 
 
 }

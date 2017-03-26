@@ -1,11 +1,13 @@
 package fr.unice.polytech.si3.qgl.iaac.air.exploreIsland;
 
-import fr.unice.polytech.si3.qgl.iaac.EnumOrientation;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.Drone;
 import fr.unice.polytech.si3.qgl.iaac.air.State;
+import fr.unice.polytech.si3.qgl.iaac.compass.EnumOrientation;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -19,10 +21,11 @@ public class Fly3Test {
     State state;
 
     @Before
-    public void ini() {
+    public void ini() throws IOException {
         drone = new Drone(EnumOrientation.EST);
         state = new Fly3();
-        read = new ReadJSON("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
+        read = new ReadJSON("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+        read.read("{\"men\": 12,\"budget\": 10000,\"contracts\": [{ \"amount\": 600, \"resource\": \"WOOD\" },{ \"amount\": 200, \"resource\": \"GLASS\" }],\"heading\": \"S\"}");
     }
 
     @Test
@@ -33,6 +36,6 @@ public class Fly3Test {
 
     @Test
     public void waitTest(){
-        assertTrue(state.wait(read) instanceof Scan1);
+        assertTrue(state.nextState(read) instanceof Scan1);
     }
 }

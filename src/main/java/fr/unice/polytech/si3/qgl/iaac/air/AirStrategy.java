@@ -1,34 +1,23 @@
 package fr.unice.polytech.si3.qgl.iaac.air;
 
-import fr.unice.polytech.si3.qgl.iaac.Budget;
-import fr.unice.polytech.si3.qgl.iaac.carte.Carte;
-import fr.unice.polytech.si3.qgl.iaac.ReadJSON;
 import fr.unice.polytech.si3.qgl.iaac.air.exploreIsland.Stop;
 import fr.unice.polytech.si3.qgl.iaac.air.findIsland.EchoFace;
-
-
-import static fr.unice.polytech.si3.qgl.iaac.resources.EnumPrimaryResources.WOOD;
+import fr.unice.polytech.si3.qgl.iaac.contracts.Budget;
+import fr.unice.polytech.si3.qgl.iaac.json.ReadJSON;
+import fr.unice.polytech.si3.qgl.iaac.map.Carte;
 
 /**
  * Created by lehmann on 04/02/17.
  */
 public class AirStrategy {
 
+    private static int halfTurn;
     private State state;
     private Drone drone;
     private ReadJSON json;
     private Carte carte;
     private Budget budget;
     private boolean isOver;
-
-    //temp todo
-    private static int demitour;
-
-
-
-    public static void incDemitour() {
-        demitour++;
-    }
 
     /**
      * default constructor
@@ -37,17 +26,22 @@ public class AirStrategy {
      * @param carte
      * @param budget
      */
-    public AirStrategy(Drone drone, ReadJSON json, Carte carte,Budget budget) {
+    public AirStrategy(Drone drone, ReadJSON json, Carte carte, Budget budget) {
         this.drone = drone;
         this.json = json;
         this.carte = carte;
         this.budget = budget;
         state = new EchoFace();
         isOver = false;
-        demitour = 0;
+        halfTurn = 0;
     }
 
-    //todo condition d'arrêt
+    /**
+     * increase the number of halfTurn
+     */
+    public static void incHalfTurn() {
+        halfTurn++;
+    }
 
     /**
      * take an action
@@ -65,15 +59,18 @@ public class AirStrategy {
     public void acknowledgeResults() {
         if (budget.hasBudget()){
             budget.subBudget(json.getCost());
-            state = state.wait(json);
+            state = state.nextState(json);
             carte.addAirCase(drone.getCoord());
 
-            if (carte.tmp_hasAcrique() && demitour == 1) {
+            if (carte.hasAcrique() && halfTurn == 1) {
                isOver = true;
             }
         }
     }
 
+    /**
+     * @return true if air exploration is over
+     */
     public boolean isOver(){
         return isOver;
     }
